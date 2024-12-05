@@ -22,6 +22,9 @@
 
 /*---------------general-------------*/
 
+strong {
+	font-weight: normal;
+}
 
 body, header, section, .div {
 	width: 100%;
