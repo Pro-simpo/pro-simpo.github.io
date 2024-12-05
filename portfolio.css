@@ -742,7 +742,7 @@ address{
 		display: flex;
 		justify-content: flex-end;
 		align-items: center;
-		padding-right: 10px;
+		padding-right: 30px;
 		position: relative;
 	}
 	details{
@@ -761,8 +761,8 @@ address{
 		right: 0px;
 		width: auto;
 		
-		padding-left: 10px;
-		padding-right: 10px;
+		padding-left: 30px;
+		padding-right: 30px;
 		border-radius: 5px 0px 0px 5px;
 
 		#ul1{
@@ -770,7 +770,7 @@ address{
 			flex-direction: column;
 			width: auto;
 			padding: 0px;
-			gap: 5px;
+			gap: 20px;
 			font-size: initial;
 		}
 	}
@@ -778,6 +778,7 @@ address{
 		list-style: none;
 		transform: rotate(90deg);
 		color: #FFFEFE;
+		font-size: 2em;
 	}
 	details[open] summary{
 		transform: none;
