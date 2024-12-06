@@ -168,7 +168,7 @@ hgroup{
 }
 .coded2{
 	display: inline-block;
-    animation: scroll 14s linear 2;
+    animation: scroll 14s linear 1;
 }
 @keyframes scroll {
     0% {
