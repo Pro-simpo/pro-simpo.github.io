@@ -45,7 +45,7 @@ section{
 
 #pageHome, #div2, #pageAboutme, #pageEducation, #pageSkills, #pageCertificates, #pageExperience, #pageServices, #pagePortfolio, #pageContact {
 	height: 700px;
-	overflow-x: hidden;
+	overflow: hidden;
 }
 
 .sections {
@@ -77,7 +77,7 @@ section{
 	display: none;
 }
 
-p{
+#pageAboutme p, #pageAboutme p, #pageExperience p, #pageServices p{ 
 	text-align: justify;
 }
 
