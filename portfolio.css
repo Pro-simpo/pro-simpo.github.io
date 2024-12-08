@@ -45,6 +45,7 @@ section{
 
 #pageHome, #div2, #pageAboutme, #pageEducation, #pageSkills, #pageCertificates, #pageExperience, #pageServices, #pagePortfolio, #pageContact {
 	height: 700px;
+	overflow-x: hidden;
 }
 
 .sections {
@@ -137,6 +138,7 @@ hgroup{
 	position: relative;
 	left: 1%;
 	z-index: 20;
+	margin-bottom: 15px;
 }
 .nom{
 	font-family: norwester;
@@ -159,6 +161,7 @@ hgroup{
 	margin: 0px;
 	width: 55%;
 	overflow: hidden;
+	white-space: nowrap;
 }
 #coded2{
 	width: 100%;
@@ -181,6 +184,7 @@ hgroup{
 
 #desktop {
 	display: none;
+	white-space: nowrap;
 }
 
 /*--------------div2--------------*/
