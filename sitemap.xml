@@ -1,52 +1,30 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
-
-
+<?xml version="1.0" encoding="UTF-8"?> 
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"> 
 <url>
-  <loc>https://pro-simpo.github.io/</loc>
-  <lastmod>2024-12-10T19:00:49+00:00</lastmod>
-  <priority>1.00</priority>
+  <loc>http://pro-simpo.github.io/certificates/Alison_certificate_cyber_security__understand_threats_and_prevent_attacks.pdf</loc>
 </url>
 <url>
-  <loc>https://pro-simpo.github.io/certificates/Alison_certificate_cyber_security__understand_threats_and_prevent_attacks.pdf</loc>
-  <lastmod>2024-12-10T19:00:49+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>http://pro-simpo.github.io/certificates/Certificat en Intelligence Artificielle.pdf</loc>
 </url>
 <url>
-  <loc>https://pro-simpo.github.io/certificates/Certificat_en_Intelligence_Artificielle.pdf</loc>
-  <lastmod>2024-12-10T19:00:49+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>http://pro-simpo.github.io/certificates/Learner-Verification-HTML5_CSS3_JS.pdf</loc>
 </url>
 <url>
-  <loc>https://pro-simpo.github.io/certificates/Learner-Verification-HTML5_CSS3_JS.pdf</loc>
-  <lastmod>2024-12-10T19:00:49+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>http://pro-simpo.github.io/certificates/Cours sur la citoyenneté numérique et la sécurité _ Google.pdf</loc>
 </url>
 <url>
-  <loc>https://pro-simpo.github.io/certificates/Cours_sur_la_citoyenneté_numérique_et_la_sécurité___Google.pdf</loc>
-  <lastmod>2024-12-10T19:00:49+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>http://pro-simpo.github.io/certificates/certificate machine learning.pdf</loc>
 </url>
 <url>
-  <loc>https://pro-simpo.github.io/certificates/certificate_machine_learning.pdf</loc>
-  <lastmod>2024-12-10T19:00:49+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>http://pro-simpo.github.io/certificates/Alison_certificate_how_to_design_with_canva.pdf</loc>
 </url>
 <url>
-  <loc>https://pro-simpo.github.io/certificates/Alison_certificate_how_to_design_with_canva.pdf</loc>
-  <lastmod>2024-12-10T19:00:49+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>http://pro-simpo.github.io/certificates/Ratatype.pdf</loc>
 </url>
 <url>
-  <loc>https://pro-simpo.github.io/certificates/Ratatype.pdf</loc>
-  <lastmod>2024-12-10T19:00:49+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>http://pro-simpo.github.io/</loc>
 </url>
-
-
+<url>
+  <loc></loc>
+</url>
 </urlset>
