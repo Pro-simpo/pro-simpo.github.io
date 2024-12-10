@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://pro-simpo.github.io/sitemap.xml
