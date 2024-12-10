@@ -9,10 +9,13 @@
 	<meta name="robots" content="index, follow">
 	<link rel="stylesheet" type="text/css" href="portfolio.css">
 	<link rel="icon" type="img/svg" href="img/logo.svg">
+	<link rel="preload" fetchpriority="high" as="image" href="img/logo.svg" type="image/svg">
+	<link rel="preload" as="font" href="fonts/norwester/norwester.otf" type="font/otf" crossorigin="anonymous">
+	<link rel="preload" fetchpriority="high" as="image" href="img/img27.jpg" type="image/jpg">
 	<title>SIMPORE Taobata - PORTFOLIO</title>
 </head>
 <body>
-	<img id="loadImage" src="img/logo.svg" alt="site logo">
+	<img id="loadImage" src="img/logo.svg" alt="site logo" fetchpriority="high">
 	<div id="loadDiv">
 	<header class="navbar">
 		<nav>
@@ -52,7 +55,7 @@
 			</hgroup>
 			<p id="coded"><span id="coded2" class="coded2">This website was entirely coded by myself.</span></p>
 			<p id="desktop"><span class="desktop">Use desktop view for full experience</span></p>
-			<img class="maphoto" src="img/img27.jpg" height="100%" alt="a photo of me">
+			<img class="maphoto" src="img/img27.jpg" height="100%" alt="a photo of me" fetchpriority="high">
 		</div>
 <!--	<div id="div2" class="sections">
 			<h1 class="nom">ONLINE<br>PORTFOLIO</h1>
