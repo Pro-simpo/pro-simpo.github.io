@@ -92,6 +92,29 @@ section{
 	display: none;
 }
 
+/* --- Styles des boutons --- */
+button {
+    background: linear-gradient(to bottom, #0288d1, #0277bd); /* Dégradé de fond */
+    color: white; /* Couleur du texte */
+    padding: 6px 10px; /* Espacement interne */
+    border: none; /* Pas de bordure */
+    border-radius: 5px; /* Bordure arrondie */
+    cursor: pointer; /* Curseur en main */
+    transition: all 0.3s ease; /* Transition pour effet de survol */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25); /* Ombre portée */
+}
+
+button:hover {
+    background: linear-gradient(to bottom, #0277bd, #01579b); /* Dégradé au survol */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5); /* Ombre plus marquée au survol */
+}
+
+button:active {
+    background: #01579b; /* Couleur enfoncée */
+    box-shadow: none; /* Suppression de l'ombre */
+}
+
+
 /*-------------navbar---------------*/
 ul{
 	list-style: none;
@@ -527,8 +550,11 @@ hgroup{
 	align-self: flex-start;
 	margin-top: 80px;
 }
+.choose {
+	padding-top: 3px;
+}
 .choose a{
-	color: royalblue;
+	color: white;
 	font-style: italic;
 }
 #skillphoto1{
