@@ -48,6 +48,7 @@ section{
 	overflow: hidden;
 }
 
+
 .sections {
     opacity: 0;
     transform: translateY(50px);
@@ -115,8 +116,9 @@ button:active {
 }
 
 
+
 /*-------------navbar---------------*/
-ul{
+#ul1, #ul2{
 	list-style: none;
 	display: flex;
 	justify-content: flex-end;
@@ -125,7 +127,7 @@ ul{
 	font-size: 0.65em;
 	font-weight: bold;
 }
-ul a {
+#ul1 a, #ul2 a {
 	color: #FFFEFE;
 }
 
@@ -474,7 +476,6 @@ hgroup{
 	background-position: center;
 	display: flex;
 	position: relative;
-	justify-content: center;
 	align-items: center;
 }
 
@@ -585,7 +586,6 @@ hgroup{
 	background-position: center;
 	display: flex;
 	position: relative;
-	justify-content: center;
 	align-items: center;
 }
 .div8{
@@ -596,6 +596,7 @@ hgroup{
 						 "projetadd projetadd projetadd";
 	text-align: center;
 	padding-top: 100px;
+	justify-content: center;
 }
 
 .projets{
@@ -681,6 +682,276 @@ address{
 	color: black;
 }
 
+
+
+/*-------------div11---------------*/
+
+#pageAgencyProject {
+	display: grid;
+	grid-template-rows: auto;
+	grid-template-columns: 212.5px auto;
+	grid-template-areas: "gauche droite";
+	position: relative;
+}
+
+.AgencyArea1{
+	grid-area: gauche;
+}
+
+.AgencyArea2{
+	background-color: white;
+	grid-area: droite;
+	padding-top: 180px;
+	padding-bottom: 50px;
+	background-image: url("img/agencyBg.png");
+	background-size: cover;
+}
+
+.overview{
+	display: grid;
+	grid-template-rows: auto;
+	grid-template-columns: 65% 35%;
+	border-left: 10px solid #0288d1;
+	border-bottom: 3px solid #0288d1;
+	border-radius: 20px 0 10px 20px;
+	padding-left: 20px;
+	h3{
+		margin-top: 10px;
+		margin-bottom: 0px;
+	}
+	margin-bottom: 30px;
+}
+
+.overviewBg{
+	width: 100%;
+	margin-right: 0px;
+	margin-left: 0px;
+	margin-top: 20px;
+	margin-bottom: 0px;
+	text-align: center;
+	background-color: #0288d1;
+	border-radius: 0 0 5px 5px;
+	color: white;
+	align-self: flex-end;
+}
+
+.featuresList, .technologiesList{
+	display: grid;
+	grid-template-rows: auto auto auto;
+	grid-template-columns: 1fr 2px 1fr;
+	gap: 20px 10px;
+}
+
+.adminFeaturesList{
+	display: grid;
+	grid-template-rows: auto;
+	grid-template-columns: 1fr 2px 1fr;
+	gap: 20px 10px;
+}
+
+.structureList{
+	display: grid;
+	grid-template-rows: auto auto;
+	grid-template-columns: 1fr 2px 1fr;
+	gap: 20px 10px;
+}
+
+.backsep{
+	background-color: darkgray;
+}
+
+.gap{
+	display: grid;
+	gap: 10px;
+}
+
+.list{
+	outline: solid darkgray; 
+	border-radius: 0px 0px 20px 20px; 
+
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-right: 10px;
+	margin-top: 13px;
+	background-image: url("img/listBg.png");
+}
+
+.videolist{
+	display: grid;
+	justify-items: center;
+	outline: solid darkgray; 
+	border-radius: 0px 0px 20px 20px; 
+	padding-bottom: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin-top: 13px;
+	border-bottom: 10px solid #0288d1;
+	text-align: center;
+
+}
+
+#video-container{
+	box-shadow: 0 0 5px 2px #0288d1;
+	border-radius: 5px;
+	cursor: pointer;
+	width: 90%;
+}
+
+
+
+#pageAgencyProject	ol{
+	list-style: none;
+}
+
+#pageAgencyProject	ul{
+	list-style: none;
+	padding-left: 10px;
+}
+
+#pageAgencyProject	ul li{
+	position: relative;
+  	padding-left: 18px;
+}
+
+#pageAgencyProject	ul li::before{
+	content: "";
+  	position: absolute;
+  	left: 0;
+  	top: 12.5px;
+  	transform: translateY(-50%);
+  	width: 12px; /* Largeur de l’image */
+  	height: 12px; /* Hauteur de l’image */
+  	background: url('img/puce.png') no-repeat center / cover;
+}
+
+.technologiesList li {
+	opacity: 0;
+  	transform: translateX(-20px);
+}
+
+.technologiesList li:nth-of-type(1) { animation-delay: 0s; }
+.technologiesList li:nth-of-type(2) { animation-delay: 0.5s; }
+.technologiesList li:nth-of-type(3) { animation-delay: 0.8s; }
+.technologiesList li:nth-of-type(4) { animation-delay: 1s; }
+
+.featuresList li {
+	opacity: 0;
+  	transform: translateX(-20px);
+}
+
+.featuresList li:nth-of-type(1) { animation-delay: 0s; }
+.featuresList li:nth-of-type(2) { animation-delay: 0.5s; }
+.featuresList li:nth-of-type(3) { animation-delay: 0.8s; }
+.featuresList li:nth-of-type(4) { animation-delay: 1s; }
+.featuresList li:nth-of-type(5) { animation-delay: 1.2s; }
+.featuresList li:nth-of-type(6) { animation-delay: 1.4s; }
+.featuresList li:nth-of-type(7) { animation-delay: 1.6s; }
+.featuresList li:nth-of-type(8) { animation-delay: 1.8s; }
+.featuresList li:nth-of-type(9) { animation-delay: 2s; }
+.featuresList li:nth-of-type(10) { animation-delay: 2.2s; }
+.featuresList li:nth-of-type(11) { animation-delay: 2.4s; }
+
+.adminFeaturesList li {
+	opacity: 0;
+  	transform: translateX(-20px);
+}
+.adminFeaturesList li:nth-of-type(1) { animation-delay: 0s; }
+.adminFeaturesList li:nth-of-type(2) { animation-delay: 0.5s; }
+.adminFeaturesList li:nth-of-type(3) { animation-delay: 0.8s; }
+.adminFeaturesList li:nth-of-type(4) { animation-delay: 1s; }
+.adminFeaturesList li:nth-of-type(5) { animation-delay: 1.2s; }
+
+.databaselist li {
+	opacity: 0;
+  	transform: translateX(-20px);
+}
+.databaselist li:nth-of-type(1) { animation-delay: 0s; }
+.databaselist li:nth-of-type(2) { animation-delay: 0.5s; }
+.databaselist li:nth-of-type(3) { animation-delay: 0.8s; }
+.databaselist li:nth-of-type(4) { animation-delay: 1s; }
+.databaselist li:nth-of-type(5) { animation-delay: 1.2s; }
+
+.animation {
+	animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+
+.listTitre{
+	padding: 5px;
+	border: 5px solid #0288d1; 
+	outline: solid darkgray; 
+	display: inline; 
+	border-radius: 10px 0px 10px 0px; 
+	background-color: #f8f8f6;
+}
+
+
+.Area2Element{
+	display: grid;
+	gap: 60px;
+}
+
+.width100 {
+	overflow: hidden;
+	padding: 12px 5px;
+}
+
+
+.sousTitre{
+	display: block;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.videoPartie{
+	display: grid;
+	grid-template-columns: 70% auto;
+}
+
+
+
+.credit{
+	display: grid;
+	align-content: center;
+	justify-content: right;
+	padding: 10px;
+}
+
+.lienProjet{
+	position: absolute;
+	left: 50%;
+	bottom: -5px;
+	transform: translateX(-50%);
+}
+
+
+.videoImage {
+	width: 100%;
+}
+
+.supervised740 {
+	display: none;
+}
+
+#pageAgencyProject	ul li::before{
+  	top: 8.5px;
+  	width: 10px;
+  	height: 10px;
+}
+
+
+
+
+
+
+
 /*---------------police-------------*/
 .norwester{
 	font-family: norwester;
@@ -702,7 +973,7 @@ address{
 
 /*----------------------------*/
 
-@media (max-width : 500px ){
+@media (max-width : 740px ){
 
 	/*--------------general--------------*/
 
@@ -760,6 +1031,10 @@ address{
 		margin: 5%;
 	}
 	.espaceNoir{
+		display: none;
+	}
+
+	.noirAgency1{
 		display: none;
 	}
 
@@ -950,6 +1225,10 @@ address{
 		transform: rotate(-90deg);
 	}
 
+	#pageCertificates .div8 {
+		justify-content: initial;
+	}
+
 	/*-------------div7---------------*/
 
 	#pageExperience .div3{
@@ -990,6 +1269,10 @@ address{
 		padding: 0px;
 	}
 
+	#pageCertificates, #pagePortfolio{
+		justify-content: center;
+	}
+
 	.div8 {
 		padding-top: 0px;
 		padding-left: 3%;
@@ -1025,6 +1308,46 @@ address{
 		margin-bottom: 80px;
 	}
 	/*----------------------------*/
+
+
+	/*--------------div11--------------*/
+
+	#pageAgencyProject {
+		grid-template-columns: auto;
+	}
+
+	.AgencyArea2 {
+		background-repeat: repeat-y;
+		background-size: auto;
+		padding-top: 50px;
+	}
+
+	.overview {
+		display: flex;
+		flex-direction: column;
+		padding-left: 0px;
+		div{
+			padding-left: 20px;
+		}
+	}
+
+	.overviewBg {
+		margin: 0px;
+	}
+
+	.list, .structureList{
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+	}
+
+	.Area2Element {
+		gap: 20px;
+	}
+
+	.supervised740{
+		display: initial;
+	}
 	
 
 
@@ -1032,7 +1355,7 @@ address{
 
 
 
-@media (max-width : 1000px ) and (min-width : 501px ){
+@media (max-width : 1000px ) and (min-width : 740px ){
 
 	/*--------------general--------------*/
 
@@ -1048,10 +1371,16 @@ address{
 		background-color: #2E2E2E;
 	}
 
-	#pageAboutme, #pageCertificates, #pagePortfolio{
+	#pageAboutme {
 		display: grid;
 		grid-template-columns: auto auto;
 	}
+
+	#pageCertificates, #pagePortfolio {
+		display: grid;
+		grid-template-columns: auto auto;
+	}
+
 	#pageEducation, #pageSkills, #pageExperience, #pageServices, #pageContact{
 		display: grid;
 		grid-template-columns: auto auto auto;
@@ -1097,6 +1426,15 @@ address{
 		top: 42%;
 	}
 
+
+	#pageAgencyProject {
+		grid-template-columns: 140px auto;
+	}
+
+
+	.noirAgency1{
+		width: 140px;
+	}
 
 
 }
