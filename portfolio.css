@@ -913,6 +913,7 @@ address{
 .videoPartie{
 	display: grid;
 	grid-template-columns: 70% auto;
+	overflow-x: scroll;
 }
 
 
