@@ -202,3 +202,17 @@ video.addEventListener("click", function(){
             <source src="img/video.mp4" type="video/mp4">
         </video>`;
 })
+
+// animation des listes
+window.addEventListener('scroll', function() {
+    let windowHeight = window.innerHeight;
+    var animations = document.querySelectorAll('.animations');
+    animations.forEach(function(anim) {
+        var position = anim.getBoundingClientRect().top;
+        
+        if (position < windowHeight - 100) {
+            anim.classList.add('animation');
+        }
+    });
+});
+
