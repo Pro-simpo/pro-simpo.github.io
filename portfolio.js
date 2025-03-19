@@ -193,3 +193,12 @@ for(element of choose) {
     });
 }
 
+// video of agencyProject
+
+let video = document.getElementById("video-container");
+video.addEventListener("click", function(){
+    video.innerHTML = `
+        <video width="100%" height="auto" controls autoplay>
+            <source src="img/video.mp4" type="video/mp4">
+        </video>`;
+})
