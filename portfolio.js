@@ -216,3 +216,10 @@ window.addEventListener('scroll', function() {
     });
 });
 
+// Age
+
+const annee = new Date().getFullYear();
+let calcul = annee - 2003
+console.log(calcul);
+let age = document.getElementById("age");
+age.innerHTML = calcul;
