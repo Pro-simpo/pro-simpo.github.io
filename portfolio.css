@@ -962,11 +962,81 @@ address{
 }
 
 #pageAgencyProject	ul li::before{
-  	top: 8.5px;
+  	top: 10px;
   	width: 10px;
   	height: 10px;
 }
 
+
+
+/*-------------div12---------------*/
+
+#pageBrainwave {
+	display: grid;
+	grid-template-rows: auto;
+	grid-template-columns: 212.5px auto;
+	grid-template-areas: "gauche droite";
+	position: relative;
+}
+
+.internIndent {
+	padding: 20px;
+}
+
+#pageBrainwave	ol{
+	list-style: none;
+}
+
+#pageBrainwave	ul{
+	list-style: none;
+	padding-left: 10px;
+}
+
+#pageBrainwave	ul li{
+	position: relative;
+  	padding-left: 18px;
+}
+
+#pageBrainwave	ul li::before{
+	content: "";
+  	position: absolute;
+  	left: 0;
+  	top: 12.5px;
+  	transform: translateY(-50%);
+  	width: 12px; /* Largeur de l’image */
+  	height: 12px; /* Hauteur de l’image */
+  	background: url('img/puce.png') no-repeat center / cover;
+}
+
+#pageBrainwave	ul li::before{
+  	top: 10px;
+  	width: 10px;
+  	height: 10px;
+}
+
+#video-container2{
+	box-shadow: 0 0 5px 2px #0288d1;
+	border-radius: 5px;
+	cursor: pointer;
+	width: 90%;
+}
+
+#video-container3{
+	box-shadow: 0 0 5px 2px #0288d1;
+	border-radius: 5px;
+	cursor: pointer;
+	width: 90%;
+}
+
+#pageBrainwave .list {
+	background-image: url("img/brainwave.png");
+	background-position: center;
+} 
+
+
+.videoProjet {
+	display: initial;
+} 
 
 
 
@@ -1378,6 +1448,15 @@ address{
 	}
 	
 
+	/*--------------div12--------------*/
+
+	#pageBrainwave {
+		grid-template-columns: auto;
+	}
+
+	#pageBrainwave	ol{
+		padding-left: 5px;
+	}
 
 }
 
@@ -1455,7 +1534,7 @@ address{
 	}
 
 
-	#pageAgencyProject {
+	#pageAgencyProject, #pageBrainwave {
 		grid-template-columns: 140px auto;
 	}
 

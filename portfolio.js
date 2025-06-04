@@ -193,7 +193,10 @@ for(element of choose) {
     });
 }
 
+
+
 // video of agencyProject
+
 
 let video = document.getElementById("video-container");
 video.addEventListener("click", function(){
@@ -203,7 +206,10 @@ video.addEventListener("click", function(){
         </video>`;
 })
 
+
 // animation des listes
+
+
 window.addEventListener('scroll', function() {
     let windowHeight = window.innerHeight;
     var animations = document.querySelectorAll('.animations');
@@ -222,3 +228,23 @@ const annee = new Date().getFullYear();
 let calcul = annee - 2003;
 let age = document.getElementById("age");
 age.innerHTML = calcul;
+
+
+// videos of Brainwave projects
+
+
+let video2 = document.getElementById("video-container2");
+video2.addEventListener("click", function(){
+    video2.innerHTML = `
+        <video width="100%" height="auto" controls autoplay>
+            <source src="img/phishing_checker.mp4" type="video/mp4">
+        </video>`;
+})
+
+let video3 = document.getElementById("video-container3");
+video3.addEventListener("click", function(){
+    video3.innerHTML = `
+        <video width="100%" height="auto" controls autoplay>
+            <source src="img/password_checker.mp4" type="video/mp4">
+        </video>`;
+})
