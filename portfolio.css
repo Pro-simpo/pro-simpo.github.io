@@ -1040,6 +1040,72 @@ address{
 
 
 
+/*-------------div13---------------*/
+#pageSolarPanel {
+	display: grid;
+	grid-template-rows: auto;
+	grid-template-columns: 212.5px auto;
+	grid-template-areas: "gauche droite";
+	position: relative;
+}
+
+
+#pageSolarPanel	ol{
+	list-style: none;
+}
+
+#pageSolarPanel	ul{
+	list-style: none;
+	padding-left: 10px;
+}
+
+#pageSolarPanel	ul li{
+	position: relative;
+  	padding-left: 18px;
+}
+
+#pageSolarPanel	ul li::before{
+	content: "";
+  	position: absolute;
+  	left: 0;
+  	top: 12.5px;
+  	transform: translateY(-50%);
+  	width: 12px; /* Largeur de l’image */
+  	height: 12px; /* Hauteur de l’image */
+  	background: url('img/puce.png') no-repeat center / cover;
+}
+
+#pageSolarPanel	ul li::before{
+  	top: 10px;
+  	width: 10px;
+  	height: 10px;
+}
+
+
+
+#video-container4{
+	box-shadow: 0 0 5px 2px #0288d1;
+	border-radius: 5px;
+	cursor: pointer;
+	width: 90%;
+}
+
+#pageSolarPanel .list {
+	background-image: url("img/solarBg.jpg");
+	background-position: center;
+	background-size: cover;
+} 
+
+
+#video-container4{
+	box-shadow: 0 0 5px 2px #0288d1;
+	border-radius: 5px;
+	cursor: pointer;
+	width: 90%;
+}
+
+
+
 
 
 
@@ -1458,6 +1524,16 @@ address{
 		padding-left: 5px;
 	}
 
+	/*--------------div13--------------*/
+
+	#pageSolarPanel {
+		grid-template-columns: auto;
+	}
+
+	#pageSolarPanel	ol{
+		padding-left: 5px;
+	}
+
 }
 
 
@@ -1534,7 +1610,7 @@ address{
 	}
 
 
-	#pageAgencyProject, #pageBrainwave {
+	#pageAgencyProject, #pageBrainwave, #pageSolarPanel {
 		grid-template-columns: 140px auto;
 	}
 

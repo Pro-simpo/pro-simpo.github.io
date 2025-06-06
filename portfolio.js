@@ -248,3 +248,11 @@ video3.addEventListener("click", function(){
             <source src="img/password_checker.mp4" type="video/mp4">
         </video>`;
 })
+
+let video4 = document.getElementById("video-container4");
+video4.addEventListener("click", function(){
+    video4.innerHTML = `
+        <video width="100%" height="auto" controls autoplay>
+            <source src="img/Solar_Tracker.mp4" type="video/mp4">
+        </video>`;
+})
