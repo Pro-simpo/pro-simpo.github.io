@@ -1104,6 +1104,13 @@ address{
 	width: 90%;
 }
 
+.doc {
+	color: #004AAD;
+}
+
+#pageSolarPanel .lienProjet {
+	text-align: center;
+}
 
 
 
