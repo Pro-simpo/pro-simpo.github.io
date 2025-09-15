@@ -256,3 +256,16 @@ video4.addEventListener("click", function(){
             <source src="img/Solar_Tracker.mp4" type="video/mp4">
         </video>`;
 })
+
+
+// Gestion des thèmes
+
+document.documentElement.setAttribute('data-theme', 'light');
+let themeButton = document.getElementsByClassName("theme-toggle")[0];
+themeButton.innerHTML = "🌙";
+themeButton.addEventListener("click", function(){
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', newTheme);
+    themeButton.innerHTML = `${newTheme === "dark" ? "☀️" : "🌙"}`
+});

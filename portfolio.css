@@ -20,6 +20,105 @@
 	font-style: normal;
 }
 
+/*---------------thèmes-------------*/
+
+/* Variables CSS pour les thèmes */
+:root[data-theme="light"] {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f9fafb;
+  --bg-tertiary: #f3f4f6;
+  --text-primary: #1f2937;
+  --text-secondary: #6b7280;
+  --text-tertiary: #9ca3af;
+  --border-primary: #e5e7eb;
+  --border-secondary: #d1d5db;
+  --hover-bg: #f3f4f6;
+  --hover-border: #9ca3af;
+  --shadow: rgba(0, 0, 0, 0.1);
+  --shadow-lg: rgba(0, 0, 0, 0.15);
+}
+
+:root[data-theme="dark"] {
+  --bg-primary: #1f2937;
+  --bg-secondary: #111827;
+  --bg-tertiary: #374151;
+  --text-primary: #f9fafb;
+  --text-secondary: #d1d5db;
+  --text-tertiary: #9ca3af;
+  --border-primary: #374151;
+  --border-secondary: #4b5563;
+  --hover-bg: #374151;
+  --hover-border: #6b7280;
+  --shadow: rgba(0, 0, 0, 0.3);
+  --shadow-lg: rgba(0, 0, 0, 0.4);
+}
+
+/* Application des variables aux éléments globaux */
+
+[data-theme="dark"] #pageHome {
+	background-image: url(img/img1.png);
+	background-size: cover;
+	background-position: center;
+}
+
+[data-theme="dark"] #pageAboutme, [data-theme="dark"] #pageEducation, [data-theme="dark"] #pageSkills, [data-theme="dark"] #pageCertificates, [data-theme="dark"] #pageExperience, [data-theme="dark"] #pageServices, [data-theme="dark"] #pagePortfolio, [data-theme="dark"] #pageContact {
+  background-image: url('img/dark_bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+[data-theme="dark"] .AgencyArea2 {
+  background-image: url('img/dark_bg.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: repeat-y;
+}
+
+[data-theme="dark"] .theme-toggle:hover {
+    background: linear-gradient(to bottom, #0277bd, #01579b); /* Dégradé au survol */
+    box-shadow: 0 3px 6px white; /* Ombre plus marquée au survol */
+}
+
+[data-theme="light"] .theme-toggle:hover {
+    background: linear-gradient(to bottom, #0277bd, #01579b); /* Dégradé au survol */
+    box-shadow: 0 3px 6px black; /* Ombre plus marquée au survol */
+}
+
+[data-theme="dark"] .rouge, [data-theme="dark"] .nom, [data-theme="dark"] .nom2 {
+    color: #0288d1;
+}
+
+[data-theme="dark"] .section, [data-theme="dark"] body, [data-theme="dark"] .address {
+    color: #FFFEFE;
+}
+
+[data-theme="dark"] .sites {
+    color: skyblue;
+}
+
+[data-theme="dark"] .list, [data-theme="dark"] .videolist{
+	outline: solid #374151; 
+}
+
+[data-theme="dark"] .listTitre{
+	border: 3px solid #0288d1; 
+	outline: solid #374151; 
+	background-color: #111827;
+}
+
+[data-theme="dark"] #pageBrainwave .list {
+	background-image: url("img/brainwave2.png");
+	background-position: center;
+	background-size: contain;
+} 
+
+[data-theme="dark"] #pageSolarPanel .list {
+	background-image: none;
+	background-color: rgb(17, 24, 39, 0.5);
+}
+
+
 /*---------------general-------------*/
 
 strong{
@@ -117,6 +216,8 @@ button:active {
 
 
 
+
+
 /*-------------navbar---------------*/
 #ul1, #ul2{
 	list-style: none;
@@ -146,9 +247,8 @@ button:active {
 
 .cvnav {
 	display: grid;
-	grid-template-columns: auto 1fr;
+	grid-template-columns: auto auto 1fr;
 }
-
 
 
 details{
@@ -164,7 +264,11 @@ summary {
 }
 .cv {
 	margin-left: 10px;
-	width: 60px;
+	align-self: center;
+}
+
+.theme-toggle {
+	margin-left: 10px;
 	align-self: center;
 }
 
@@ -788,7 +892,6 @@ address{
 .list{
 	outline: solid darkgray; 
 	border-radius: 0px 0px 20px 20px; 
-
 	padding-top: 10px;
 	padding-bottom: 10px;
 	padding-right: 10px;
@@ -1165,6 +1268,21 @@ address{
 		background-color: #FDFCFC;
 		margin-top: 25px;
 	}
+
+	[data-theme="dark"] #pageAboutme, [data-theme="dark"] #pageEducation, [data-theme="dark"] #pageSkills, [data-theme="dark"] #pageCertificates, [data-theme="dark"] #pageExperience, [data-theme="dark"] #pageServices, [data-theme="dark"] #pagePortfolio, [data-theme="dark"] #pageContact {
+	  background-image: url('img/dark_bg.png');
+	  background-size: contain;
+	  background-position: center;
+	  background-repeat: repeat-y;
+	}
+
+	[data-theme="dark"] body, [data-theme="dark"] nav, 	[data-theme="dark"] details[open]  {
+		background-color: var(--bg-secondary);
+	}
+
+	[data-theme="dark"] nav, 	[data-theme="dark"] details[open]  {
+		background-color: #1f2937;
+	}
 	
 	section{
 		gap: 20px;
@@ -1233,7 +1351,7 @@ address{
 		right: 0px;
 		width: auto;
 		
-		padding-left: 30px;
+		padding-left: 20px;
 		padding-right: 30px;
 		border-radius: 5px 0px 0px 5px;
 
@@ -1242,6 +1360,7 @@ address{
 			flex-direction: column;
 			width: auto;
 			padding: 0px;
+			padding-top: 30px;
 			gap: 20px;
 			font-size: initial;
 		}
@@ -1251,6 +1370,7 @@ address{
 		transform: rotate(90deg);
 		color: #FFFEFE;
 		font-size: 2em;
+		line-height: 0px;
 	}
 	details[open] summary{
 		transform: none;
@@ -1263,8 +1383,12 @@ address{
 	}
 
 	.cvnav {
-		grid-template-columns: auto auto;
+		grid-template-columns: auto auto 1fr;
+		padding-top: 5px;
+		padding-bottom: 5px;
 	}
+
+
 
 	/*--------------div1--------------*/
 	
@@ -1369,6 +1493,12 @@ address{
 		background-color: #FDFCFC;
 		border-radius: 5px 5px 0px 0px;
 	}
+
+	[data-theme="dark"] #pageCertificates figure {
+	    box-shadow: -8px 8px 20px black;
+	    background-color: #111827;
+	}
+
 	#pageCertificates .div8 {
 		display: flex;
 		flex-direction: row;
