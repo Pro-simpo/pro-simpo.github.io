@@ -284,7 +284,7 @@ window.addEventListener("load", () => {
         }
     }
 });
-
+console.log(seeMore[1]);
 for(let e = 0; e < seeMoreButton.length; e++) {
     seeMoreButton[e].addEventListener("click", () => {
         const currentScroll = window.scrollY;
@@ -296,6 +296,7 @@ for(let e = 0; e < seeMoreButton.length; e++) {
         } else {
             seeMoreButton[e].textContent = "↓ SEE MORE ↓";
             lienProjet[e].style.display = "none";
+            window.scrollTo({top: seeMore[e].offsetTop});
         }
     });
 }
