@@ -269,3 +269,33 @@ themeButton.addEventListener("click", function(){
     document.documentElement.setAttribute('data-theme', newTheme);
     themeButton.innerHTML = `${newTheme === "dark" ? "☀️" : "🌙"}`
 });
+
+// Gestion de seeMore
+
+let seeMore = document.getElementsByClassName("seeMore");
+let lienProjet = document.getElementsByClassName("lienProjet");
+let seeMoreButton = document.getElementsByClassName("seeMoreButton");
+
+
+window.addEventListener("load", () => {
+    for(let see = 0; see < seeMore.length; see++) {
+        if (seeMore[see].offsetHeight < 705) {
+            lienProjet[see].style.display = "none";
+        }
+    }
+});
+
+for(let e = 0; e < seeMoreButton.length; e++) {
+    seeMoreButton[e].addEventListener("click", () => {
+        const currentScroll = window.scrollY;
+        seeMore[e].classList.toggle("expanded");
+        if (seeMore[e].classList.contains("expanded")) {
+            window.scrollTo({top: currentScroll});
+            seeMoreButton[e].textContent = "↑ SEE LESS ↑";
+            lienProjet[e].style.display = "initial";
+        } else {
+            seeMoreButton[e].textContent = "↓ SEE MORE ↓";
+            lienProjet[e].style.display = "none";
+        }
+    });
+}

@@ -1051,7 +1051,7 @@ address{
 .lienProjet{
 	position: absolute;
 	left: 50%;
-	bottom: -5px;
+	bottom: -18px;
 	transform: translateX(-50%);
 }
 
@@ -1215,6 +1215,51 @@ address{
 	text-align: center;
 }
 
+/*-------------div11-12-13(see more)---------------*/
+.seeMore {
+	max-height: 700px;
+	overflow-y: hidden;
+	transition: max-height 1s ease;
+}
+
+.seeMore.expanded {
+	max-height: initial;
+}
+
+
+.seeMore::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: calc(100% - 212.5px);
+  height: 300px;
+  background: linear-gradient(to top, white, transparent);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.seeMoreButton{
+	padding: 10px 50px;
+	font-size: 1em;
+	z-index: 1;
+	position: absolute;
+	left: 50%;
+	bottom: 20px;
+	transform: translateX(-50%);
+	box-shadow: 0px 0px 10px 2px gray;
+	border-bottom-left-radius: 20px;
+	border-bottom-right-radius: 20px;
+	border-bottom: solid darkgrey;
+}
+
+.seeMore.expanded::after {
+	display: none;
+}
+
+[data-theme="dark"] .seeMore::after {
+	background: linear-gradient(to top, black, transparent);
+}
 
 
 
@@ -1669,6 +1714,22 @@ address{
 
 	#pageSolarPanel	ol{
 		padding-left: 5px;
+	}
+
+	/*--------------div11-12-13(see more)--------------*/
+
+	.seeMore::after {
+		overflow-y: initial;
+		width: 100%;
+	}
+
+	.seeMoreButton{
+		padding: 10px 30px;
+		left: 50%;
+	}
+
+	[data-theme="dark"] .seeMore::after {
+		background: linear-gradient(to top, black, transparent);
 	}
 
 }
