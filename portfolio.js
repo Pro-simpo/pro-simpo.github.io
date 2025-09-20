@@ -262,12 +262,24 @@ video4.addEventListener("click", function(){
 
 document.documentElement.setAttribute('data-theme', 'light');
 let themeButton = document.getElementsByClassName("theme-toggle")[0];
+let img24 = document.getElementsByClassName("img24");
+
 themeButton.innerHTML = "🌙";
 themeButton.addEventListener("click", function(){
     const currentTheme = document.documentElement.getAttribute('data-theme');
     const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', newTheme);
     themeButton.innerHTML = `${newTheme === "dark" ? "☀️" : "🌙"}`
+    if (newTheme === "dark") {
+        for (let i = 0; i < img24.length; i++) {
+            img24[i].style.filter = "invert(100%)";
+        }
+    }
+    else {
+        for (let i = 0; i < img24.length; i++) {
+            img24[i].style.filter = "initial";
+        }
+    }
 });
 
 // Gestion de seeMore
@@ -285,7 +297,7 @@ window.addEventListener("load", () => {
     }
 });
 
-let handleButton = function(){};
+let handleButton = [];
 
 for(let e = 0; e < seeMoreButton.length; e++) {
     seeMoreButton[e].addEventListener("click", () => {
@@ -296,8 +308,8 @@ for(let e = 0; e < seeMoreButton.length; e++) {
             window.scrollTo({top: currentScroll});
             seeMoreButton[e].textContent = "↑ SEE LESS ↑";
             lienProjet[e].style.display = "initial";
-            seeMoreButton[e].style.opacity = "0.9"
-            window.addEventListener('scroll', handleButton = function () {
+            seeMoreButton[e].style.opacity = "0.9";
+            window.addEventListener('scroll', handleButton[e] = function () {
                 let dist = window.innerHeight  - seeMore[e].getBoundingClientRect().top;
                 if ((dist - 50) < seeMore[e].offsetHeight) {
                     seeMoreButton[e].style.top = `${dist - 100}px`;
@@ -307,7 +319,7 @@ for(let e = 0; e < seeMoreButton.length; e++) {
             seeMoreButton[e].textContent = "↓ SEE MORE ↓";
             lienProjet[e].style.display = "none";
             window.scrollTo({top: seeMore[e].offsetTop});
-            window.removeEventListener('scroll', handleButton);
+            window.removeEventListener('scroll', handleButton[e]);
             seeMoreButton[e].style.top = "initial";
             seeMoreButton[e].style.opacity = "initial"
         }
