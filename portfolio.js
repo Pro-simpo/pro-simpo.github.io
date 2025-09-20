@@ -284,19 +284,32 @@ window.addEventListener("load", () => {
         }
     }
 });
-console.log(seeMore[1]);
+
+let handleButton = function(){};
+
 for(let e = 0; e < seeMoreButton.length; e++) {
     seeMoreButton[e].addEventListener("click", () => {
         const currentScroll = window.scrollY;
         seeMore[e].classList.toggle("expanded");
+        seeMoreButton[e].classList.toggle("expended");
         if (seeMore[e].classList.contains("expanded")) {
             window.scrollTo({top: currentScroll});
             seeMoreButton[e].textContent = "↑ SEE LESS ↑";
             lienProjet[e].style.display = "initial";
+            seeMoreButton[e].style.opacity = "0.9"
+            window.addEventListener('scroll', handleButton = function () {
+                let dist = window.innerHeight  - seeMore[e].getBoundingClientRect().top;
+                if ((dist - 50) < seeMore[e].offsetHeight) {
+                    seeMoreButton[e].style.top = `${dist - 100}px`;
+                }
+            });
         } else {
             seeMoreButton[e].textContent = "↓ SEE MORE ↓";
             lienProjet[e].style.display = "none";
             window.scrollTo({top: seeMore[e].offsetTop});
+            window.removeEventListener('scroll', handleButton);
+            seeMoreButton[e].style.top = "initial";
+            seeMoreButton[e].style.opacity = "initial"
         }
     });
 }

@@ -1051,7 +1051,7 @@ address{
 .lienProjet{
 	position: absolute;
 	left: 50%;
-	bottom: -18px;
+	bottom: -5px;
 	transform: translateX(-50%);
 }
 
@@ -1251,6 +1251,11 @@ address{
 	border-bottom-left-radius: 20px;
 	border-bottom-right-radius: 20px;
 	border-bottom: solid darkgrey;
+}
+
+.seeMoreButton.expended{
+	position: fixed;
+	bottom: initial;
 }
 
 .seeMore.expanded::after {
