@@ -64,15 +64,49 @@
 [data-theme="dark"] #pageAboutme, [data-theme="dark"] #pageEducation, [data-theme="dark"] #pageSkills, [data-theme="dark"] #pageCertificates, [data-theme="dark"] #pageExperience, [data-theme="dark"] #pageServices, [data-theme="dark"] #pagePortfolio, [data-theme="dark"] #pageContact {
   background-image: url('img/dark_bg.png');
   background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-repeat: repeat-x;
+  animation: scrollBg 180s linear infinite;
+}
+
+[data-theme="dark"] #pageEducation, [data-theme="dark"] #pageCertificates, [data-theme="dark"] #pageServices {
+  animation: scrollBg2 180s linear infinite;
+}
+
+@keyframes scrollBg {
+	from {
+		background-position: 0 0;
+	}
+	to {
+		background-position: 100vw 0;
+	}
+}
+
+@keyframes scrollBg2 {
+	from {
+		background-position: 0 0;
+	}
+	to {
+		background-position: -100vw 0;
+	}
 }
 
 [data-theme="dark"] .AgencyArea2 {
   background-image: url('img/dark_bg.png');
   background-size: contain;
   background-position: center;
-  background-repeat: repeat-y;
+  background-repeat: repeat;
+  background-position: 0 0;
+  animation: scrollBg3 180s linear infinite;
+}
+
+@keyframes scrollBg3 {
+	from {
+		background-position: 0 0;
+	}
+	to {
+		background-position: calc(-100vw + 212.5px) 0;
+	}
 }
 
 [data-theme="dark"] .theme-toggle:hover {
@@ -1323,7 +1357,8 @@ address{
 	  background-image: url('img/dark_bg.png');
 	  background-size: contain;
 	  background-position: center;
-	  background-repeat: repeat-y;
+	  background-repeat: repeat;
+	  animation-duration: 80s;
 	}
 
 	[data-theme="dark"] body, [data-theme="dark"] nav, 	[data-theme="dark"] details[open]  {
@@ -1332,6 +1367,16 @@ address{
 
 	[data-theme="dark"] nav, 	[data-theme="dark"] details[open]  {
 		background-color: #1f2937;
+	}
+
+	[data-theme="dark"] .AgencyArea2 {
+		animation-duration: 80s;
+	}
+
+	@keyframes scrollBg3 {
+		to {
+			background-position: -100vw 0;
+		}
 	}
 	
 	section{
@@ -1820,6 +1865,10 @@ address{
 
 	.noirAgency1{
 		width: 140px;
+	}
+
+	.seeMore::after {
+	  width: calc(100% - 140px);
 	}
 
 
