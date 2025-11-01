@@ -1387,6 +1387,10 @@ address{
 		bottom: initial;
 	}
 
+	[data-theme="dark"] .glisser {
+		color: #FFFEFE;
+	}
+
 	.img5{
 	position: absolute;
 	left: 14.3%;
