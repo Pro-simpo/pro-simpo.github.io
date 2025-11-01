@@ -1470,7 +1470,6 @@ address{
 		color: #FFFEFE;
 		font-size: 2em;
 		line-height: 0;
-		transition: transform 1s ease;
 	}
 	details[open] summary{
 		transform: none;
