@@ -27,7 +27,13 @@
 	<div id="loadDiv">
 	<header class="navbar">
 		<nav class="cvnav">
-			<button class="cv"><a class="cvlink adec" href="certificates/Taobata_SIMPORE_CV.pdf" target="_blank">My CV</a></button>
+			<div class="cv_div dropdown">
+				<button class="cv dropdown_toggle cvlink" id="cv_button">My CV</button>
+				<div class="dropdown_menu" id="cv_menu">
+					<button class="cv_option"><a class="cvlink adec" href="certificates/Taobata_SIMPORE_CV_EN.pdf" target="_blank">in En</a></button>
+					<button class="cv_option"><a class="cvlink adec" href="certificates/Taobata_SIMPORE_CV_FR.pdf" target="_blank">in Fr</a></button>
+				</div>
+			</div>
 			<button class="theme-toggle">theme</button>
 			<details>
 				<summary>|||</summary>

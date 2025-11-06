@@ -297,8 +297,31 @@ summary {
 	color: white;
 }
 .cv {
-	margin-left: 10px;
 	align-self: center;
+}
+
+.cv_div{
+	display: inline-block;
+	margin-left: 10px;
+	display: grid;
+}
+
+.dropdown {
+	position: relative;
+}
+
+.dropdown_menu {
+	display: none;
+	position: absolute;
+	top: 40px;
+}
+
+.dropdown_menu.show {
+	display: initial;
+}
+
+.cv_option {
+	width: 100%;
 }
 
 .theme-toggle {
@@ -1459,7 +1482,6 @@ address{
 			flex-direction: column;
 			width: auto;
 			padding: 0px;
-			padding-top: 30px;
 			gap: 20px;
 			font-size: initial;
 		}
@@ -1486,6 +1508,16 @@ address{
 		grid-template-columns: auto auto 1fr;
 		padding-top: 5px;
 		padding-bottom: 5px;
+	}
+
+	.dropdown_menu {
+		top: 32px;
+	}
+
+	.dropdown_menu.show {
+		display: grid;
+		gap: 3px;
+		width: 100%;
 	}
 
 

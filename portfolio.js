@@ -188,7 +188,7 @@ for(let i = 0; i < projetliens.length; i++) {
 let choose = document.getElementsByClassName("choose");
 for(element of choose) {
     element.addEventListener("click", function(){
-        setTimeout(function(){alert("Please contact me for this service.");}, 1000);
+        setTimeout(function(){alert("Contact me for this service.");}, 1000);
         
     });
 }
@@ -325,3 +325,25 @@ for(let e = 0; e < seeMoreButton.length; e++) {
         }
     });
 }
+
+
+// Gestion des documents cv
+
+document.addEventListener('DOMContentLoaded', function() {
+  
+  const cv_button = document.getElementById('cv_button');
+  const cv_menu = document.getElementById('cv_menu');
+
+  cv_button.addEventListener('click', function() {
+    cv_menu.classList.toggle('show');
+  });
+
+  window.addEventListener('click', function(event) {
+    if (!cv_button.contains(event.target)) {
+      if (cv_menu.classList.contains('show')) {
+        cv_menu.classList.remove('show');
+      }
+    }
+  });
+
+});
