@@ -276,7 +276,18 @@ button:active {
 	left: 0px;
 	top: 0px;
 	color: #FFFEFE;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
 	
+}
+
+#progress-bar {
+    position: absolute;
+    bottom: 0; 
+    left: 0;
+    height: 4px;
+    width: 0%; /* Contrôlé par JS */
+    background-color: #06B6D4;
+    transition: width 0.1s linear; /* Animation douce */
 }
 
 .cvnav {
@@ -428,6 +439,10 @@ hgroup{
 	left: 263px;
 	top: 88px;
 }
+
+
+
+
 .div3{
 	padding: 0px 10%;
 }
@@ -1425,6 +1440,18 @@ address{
 	top: 0px;
 	left: 20.5%;
 	margin-bottom: 15px;
+	padding-bottom: 8px;
+	}
+
+	.section::after{
+		content: '';
+	    position: absolute;
+	    left: 0;
+	    bottom: 0;
+	    width: 70%; 
+	    height: 4px;
+	    background-color: #0277bd;
+	    border-radius: 2px;
 	}
 
 	.sections{
@@ -1583,18 +1610,18 @@ address{
 	}
 	#pageAboutme .div3{
 		width: initial;
-		margin-top: 30px;
+		margin-top: 50px;
 	}
 	/*-------------div4---------------*/
 	#pageEducation .div3{
-		margin-top: 55px;
+		margin-top: 75px;
 	}
 	/*-------------div5---------------*/
 	#pageSkills{
 		padding-bottom: 30px;
 	}
 	#pageSkills .div3{
-		margin-top: 35px;
+		margin-top: 55px;
 	}
 	#skillphoto4{
 		height: 30px;
@@ -1637,7 +1664,7 @@ address{
 		overflow-x: scroll;
 	}
 	#pageCertificates .div3{
-		margin-top: 30px;
+		margin-top: 50px;
 		overflow: hidden;
 	}
 	.image-zoom {
@@ -1661,7 +1688,7 @@ address{
 	/*-------------div7---------------*/
 
 	#pageExperience .div3{
-		margin-top: 60px;
+		margin-top: 80px;
 	}
 	
 	#pageExperience .section{
@@ -1678,7 +1705,7 @@ address{
 
 	/*--------------div8--------------*/
 	#pageServices .div3{
-		margin-top: 60px;
+		margin-top: 80px;
 	}
 
 	.div7 {
@@ -1694,7 +1721,7 @@ address{
 	}
 	/*---------------div9-------------*/
 	#pagePortfolio .div3{
-		margin-top: 30px;
+		margin-top: 50px;
 		padding: 0px;
 	}
 
@@ -1716,7 +1743,7 @@ address{
 
 	/*--------------div10--------------*/
 	#pageContact .div3{
-		margin-top: 60px;
+		margin-top: 80px;
 	}
 
 	.div9{
@@ -1772,7 +1799,13 @@ address{
 
 	.Area2Element {
 		gap: 20px;
+		margin-top: 20px;
 	}
+
+	#pageAgencyProject .Area2Element {
+		margin-top: 0px;
+	}
+
 
 	.supervised740{
 		display: initial;

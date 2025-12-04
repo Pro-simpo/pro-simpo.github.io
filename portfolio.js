@@ -347,3 +347,29 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
 });
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const progressBar = document.getElementById('progress-bar');
+ 
+    const updateProgressBar = () => {
+        // Calcul de la hauteur totale du contenu défilable
+        const totalHeight = document.body.scrollHeight - window.innerHeight;
+        // Position de défilement actuelle
+        const scrollPosition = window.scrollY;
+ 
+        // Calcul du pourcentage de progression
+        const progress = (scrollPosition / totalHeight) * 100;
+ 
+        // Mise à jour de la largeur de la barre
+        if (progressBar) {
+            progressBar.style.width = progress + '%';
+        }
+    };
+ 
+    // Écouter l'événement de défilement
+    window.addEventListener('scroll', updateProgressBar);
+ 
+    // Mettre à jour au chargement pour les pages déjà défilées
+    updateProgressBar();
+});
