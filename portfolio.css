@@ -569,76 +569,50 @@ hgroup{
 	bottom: 10px;
 }
 .skills{
-	padding: 20px 0px;
+	padding: 30px 0px 0px 0px;
 }
 
-.progress1{
-	background-color: #D6D4D4;
-	height: 6.5px;
-	width: 80%;
-	border-radius: 7px;
-	margin-bottom: 15px;
+.skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; 
+    margin-top: 20px;
 }
-.skill1{
-	background-color: #004AAD;
-	width: 80%;
-	height: 100%;
-	border-radius: 7px;
+ 
+.skill-badge {
+    display: inline-block;
+    padding: 8px 15px;
+    border-radius: 20px; 
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background-color: rgba(150, 198, 244, 0.6); /* Accentuation avec transparence */
+    color:  black;
+    border: 1px solid white;
+    transition: all 0.3s ease;
 }
-.skill2{
-	background-color: #004AAD;
-	width: 50%;
-	height: 100%;
-	border-radius: 7px;
+
+.skill-badge:hover {
+    background-color: #06B6D4;
+    color: #111827;
+    transform: translateY(-2px); /* Micro-interaction : léger soulèvement */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
-.skill3{
-	background-color: #004AAD;
-	width: 50%;
-	height: 100%;
-	border-radius: 7px;
+
+[data-theme="dark"] .skill-badge {
+    background-color: rgba(6, 182, 212, 0.15); /* Accentuation avec transparence */
+    color: #06B6D4;
+    border: 1px solid #06B6D4;
 }
-.skill4{
-	background-color: #004AAD;
-	width: 80%;
-	height: 100%;
-	border-radius: 7px;
+
+[data-theme="dark"] .skill-badge:hover {
+    background-color: #06B6D4;
+    color: #111827;
+    transform: translateY(-2px); /* Micro-interaction : léger soulèvement */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
-.skill5{
-	background-color: #004AAD;
-	width: 90%;
-	height: 100%;
-	border-radius: 7px;
-}
-.skill6{
-	background-color: #004AAD;
-	width: 90%;
-	height: 100%;
-	border-radius: 7px;
-}
-.skill7{
-	background-color: #004AAD;
-	width: 90%;
-	height: 100%;
-	border-radius: 7px;
-}
-.skill8{
-	background-color: #004AAD;
-	width: 90%;
-	height: 100%;
-	border-radius: 7px;
-}
-.skill9{
-	background-color: #004AAD;
-	width: 80%;
-	height: 100%;
-	border-radius: 7px;
-}
-.skill10{
-	background-color: #004AAD;
-	width: 90%;
-	height: 100%;
-	border-radius: 7px;
-}
+
 #skillphoto2{
 	position: absolute;
 	left: 40%;
@@ -1623,6 +1597,10 @@ address{
 	#pageSkills .div3{
 		margin-top: 55px;
 	}
+
+	#pageSkills .ecart2{
+		display: initial;
+	}
 	#skillphoto4{
 		height: 30px;
 		left: 20%;
@@ -1630,14 +1608,9 @@ address{
 	.smallsize2{
 		font-size: 0.8em;
 	}
-	.body1 .skills{
-		padding-bottom: 0px;
-	}
-	.body2 .skills{
-		padding-bottom: 0px;
-	}
+	
 	.ecart2 {
-		column-gap: 20px;
+		padding-bottom: 20px;
 	}
 	/*-------------div6---------------*/
 
