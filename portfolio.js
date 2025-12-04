@@ -349,6 +349,8 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
+// Gestion barre niveau contenu visité
+
 document.addEventListener('DOMContentLoaded', () => {
     const progressBar = document.getElementById('progress-bar');
  
