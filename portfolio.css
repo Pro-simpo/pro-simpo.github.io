@@ -554,30 +554,37 @@ hgroup{
 .header{
 	grid-area: header;
 }
-.body1{
+.skills-block{
 	grid-area: body1;
-	border: solid darkgray;
+	border: 2px solid rgba(232, 229, 254, 1);
+	box-shadow: 0 5px 5px rgba(30, 30, 30, 0.3), 
+                0 0 0 1px rgb(232, 229, 254) inset;
+	padding: 10px;
 	padding: 10px;
 	border-radius: 10px;
-	background: rgba(30, 58, 138, 0.8);
+	background: linear-gradient(130deg, rgba(10, 124, 179, 1) 0%, rgb(25, 117, 161, 1)  20%, #5673c5 60%, rgba(55, 84, 163, 0.8) 100%);
 	backdrop-filter: blur(2px);
-}
-.body2{
-	grid-area: body2;
-	border: solid darkgray;
-	padding: 10px;
-	border-radius: 10px;
-	background: rgba(30, 58, 138, 0.8);
-	backdrop-filter: blur(2px);
+	transition: transform 0.3s ease;
 }
 
-[data-theme="dark"] .body1, [data-theme="dark"] .body2 {
-	/*background: rgba(30, 58, 138, 0.5);*/
+
+.skills-block:hover {
+    transform: scale(1.03);
+}
+
+[data-theme="dark"] .skills-block {
     background: rgba(30, 58, 98, 0.7);
-    border: solid darkgray;
+    border: 2px solid rgba(30, 58, 98, 1);
+    box-shadow: 0 5px 5px rgba(30, 30, 30, 0.5), 
+                0 0 0 1px rgb(30, 58, 98) inset;
 }
 
-
+.body1 {
+	grid-area: body1;
+}
+.body2 {
+	grid-area: body2;
+}
 
 .ecart2{
 	display: grid;
