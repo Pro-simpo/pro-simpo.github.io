@@ -221,7 +221,56 @@ section{
 	top: 50%;
 	width: 30%;
 	transform: translateX(-50%) translateY(-50%);
+	display: flex;
+	flex-direction: column;
+	background-color: black;
+	padding-bottom: 5px;
 }
+
+.loading {
+	align-self: center;
+	display: flex;
+	justify-content: center;
+	align-content: center;
+	width: 35%;
+	gap: 5%;
+	position: relative;
+	bottom: 5%;
+}
+
+.loading span {
+	width: 3%;
+	height: 4vh;
+	background-color: #276ecc;
+	animation: scale 0.9s ease-in-out infinite;
+}
+
+.loading span:nth-child(2) {
+	background-color: white;
+	animation-delay: -0.8s;
+}
+.loading span:nth-child(3) {
+	background-color: #56a4d1;
+	animation-delay: -0.7s;
+}
+.loading span:nth-child(4) {
+	background-color: white;
+	animation-delay: -0.6s;
+}
+.loading span:nth-child(5) {
+	background-color: #276ecc;
+	animation-delay: -0.5s;
+}
+
+@keyframes scale {
+	0%, 40%, 100% {
+		transform: scaleY(0.05);
+	}
+	20% {
+		transform: scaleY(1);
+	}
+}
+
 #loadDiv{
 	display: none;
 }
@@ -1483,6 +1532,10 @@ address{
 		display: none;
 	}
 
+	.loading span {
+		height: 2vh;
+	}
+
 
 	/*--------------navbar--------------*/
 
@@ -1955,4 +2008,16 @@ address{
 	}
 
 
+	.loading span {
+		height: 2vh;
+	}
+
+
+}
+
+@media (max-width : 500px ){
+
+	.loading span {
+		height: 1vh;
+	}
 }

@@ -148,13 +148,13 @@ for(let i = 0; i < projetimage.length; i++){
 
 // loadImage
 
-let loadImage = document.getElementById("loadImage");
+/*let loadImage = document.getElementById("loadImage");
 let loadDiv = document.getElementById("loadDiv");
 window.onload = function() {
     loadImage.style.display = "none";
     loadDiv.style.display = "initial"
 }
-
+*/
 // affichage projets
 
 let projetremove = document.getElementsByClassName("projetremove");
