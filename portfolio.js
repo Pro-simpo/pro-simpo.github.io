@@ -260,7 +260,17 @@ video4.addEventListener("click", function(){
 
 // Gestion des thèmes
 
-document.documentElement.setAttribute('data-theme', 'light');
+//document.documentElement.setAttribute('data-theme', 'light');
+
+const heure = new Date().getHours();
+
+// Détermine si c'est jour ou nuit
+if (heure >= 6 && heure < 19) {
+  document.documentElement.setAttribute('data-theme', 'light');
+} else {
+  document.documentElement.setAttribute('data-theme', 'dark');
+}
+
 let themeButton = document.getElementsByClassName("theme-toggle")[0];
 let img24 = document.getElementsByClassName("img24");
 
@@ -281,6 +291,9 @@ themeButton.addEventListener("click", function(){
         }
     }
 });
+
+
+
 
 // Gestion de seeMore
 
