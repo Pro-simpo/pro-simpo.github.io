@@ -418,6 +418,7 @@ hgroup{
 .maphoto{
 	position: absolute;
 	right: 0px;
+	z-index: 21;
 }
 #coded{
 	font-size: 0.8em;
@@ -448,9 +449,136 @@ hgroup{
     }
 }
 
+.dom1, .dom3 {
+	display: inline-block;
+    animation: domaineScroll1 40s ease-in-out infinite;
+    width: 100%;
+}
+
+.dom1{
+	animation-delay: 2s;
+}
+
+.dom3 {
+	animation-duration: 34s;
+}
+@keyframes domaineScroll1 {
+    0% {
+    	transform: translateX(0);
+    }
+    25%{
+    	transform: translateX(-101%);
+    }
+    50% {
+    	transform: translateX(0);
+    }
+    75% {
+    	transform: translateX(101%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.dom2 {
+	display: inline-block;
+    animation: domaineScroll2 30s ease-in-out infinite;
+    width: 100%;
+}
+
+
+
+@keyframes domaineScroll2 {
+    0% {
+    	transform: translateX(0);
+    }
+    25%{
+    	transform: translateX(101%);
+    }
+    50% {
+    	transform: translateX(0);
+    }
+    75% {
+    	transform: translateX(-101%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+
 #desktop {
 	display: none;
 	white-space: nowrap;
+}
+
+.accimg {
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	width: 60%;
+	height: 100%;
+	display: flex;
+	gap: 2%;
+	align-items: flex-end;
+}
+
+.acc {
+	animation: accScroll 9s linear infinite;
+}
+
+.acc:nth-child(1), .acc:nth-child(6), .acc:nth-child(11) {
+	animation-delay: 1s;
+}
+
+.acc:nth-child(15), .acc:nth-child(20), .acc:nth-child(25) {
+	animation-delay: 2s;
+}
+
+.acc:nth-child(2), .acc:nth-child(7), .acc:nth-child(12) {
+	animation-delay: 3s;
+}
+
+.acc:nth-child(16), .acc:nth-child(21), .acc:nth-child(26) {
+	animation-delay: 4s;
+}
+
+.acc:nth-child(3), .acc:nth-child(8), .acc:nth-child(13) {
+	animation-delay: 5s;
+}
+
+.acc:nth-child(17), .acc:nth-child(22), .acc:nth-child(27) {
+	animation-delay: 6s;
+}
+.acc:nth-child(4), .acc:nth-child(9), .acc:nth-child(14) {
+	animation-delay: 7s;
+}
+.acc:nth-child(18), .acc:nth-child(23), .acc:nth-child(28) {
+	animation-delay: 8s;
+}
+.acc:nth-child(5), .acc:nth-child(10), .acc:nth-child(30) {
+	animation-delay: 9s;
+}
+.acc:nth-child(19), .acc:nth-child(24), .acc:nth-child(29) {
+	animation-delay: 10s;
+}
+
+@keyframes accScroll {
+    0% {
+    	transform: translate(0, 100%);
+    }
+    20%{
+    	transform: translate(20px,-50px)
+    }
+    60%{
+    	transform: translate(0, -300px);
+	}
+	80% {
+		transform: translate(-20px, -600px)
+	}
+    100% {
+        transform: translate(0, -700px);
+    }
 }
 
 /*--------------div2--------------*/
@@ -1636,7 +1764,14 @@ address{
 	hgroup .nom, hgroup .domaine {
 		margin: 0px;
 	}
+
+	hgroup {
+		z-index: 1;
+		overflow: hidden;
+	}
 	
+
+
 	#coded{
 		left: 2%;
 		width: 70%;
@@ -1663,6 +1798,14 @@ address{
 		bottom: 0px;
 		left: 10%;
     }
+
+    .accimg {
+		gap: 1.5%;
+	}
+
+	.acc {
+		width: 3px;
+	}
 	
 	/*--------------div3--------------*/
 	
