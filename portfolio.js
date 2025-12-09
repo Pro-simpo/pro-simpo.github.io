@@ -260,18 +260,19 @@ video4.addEventListener("click", function(){
 // Gestion des thèmes
 
 //document.documentElement.setAttribute('data-theme', 'light');
-
+let themeButton = document.getElementsByClassName("theme-toggle")[0];
+let img24 = document.getElementsByClassName("img24");
 const heure = new Date().getHours();
 
 // Détermine si c'est jour ou nuit
 if (heure >= 6 && heure < 19) {
-  document.documentElement.setAttribute('data-theme', 'light');
+    document.documentElement.setAttribute('data-theme', 'light');
 } else {
-  document.documentElement.setAttribute('data-theme', 'dark');
+    document.documentElement.setAttribute('data-theme', 'dark');
+    for (let i = 0; i < img24.length; i++) {
+        img24[i].style.filter = "invert(100%)";
+    }
 }
-
-let themeButton = document.getElementsByClassName("theme-toggle")[0];
-let img24 = document.getElementsByClassName("img24");
 
 themeButton.innerHTML = "🌙";
 themeButton.addEventListener("click", function(){
