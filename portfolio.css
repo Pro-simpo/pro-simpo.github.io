@@ -808,13 +808,19 @@ hgroup{
 .body2 {
 	grid-area: body2;
 }
+.body3 {
+	grid-area: body3;
+}
+.body4 {
+	grid-area: body4;
+}
 
 .ecart2{
 	display: grid;
 	grid-template-rows: auto auto;
-	grid-auto-columns: 1fr 1fr;
-	grid-template-areas: "header header"
-						 "body1 body2";
+	grid-template-columns: 1fr 1fr;
+	grid-template-areas: "body1 body2"
+						 "body3 body4";
 	flex: 1;
 	gap: 10px;
 	margin-top: 110px;
