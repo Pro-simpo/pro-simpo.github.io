@@ -944,6 +944,7 @@ hgroup{
 	position: relative;
 	justify-content: center;
 	align-items: center;
+	height: auto;
 }
 
 #pageExperience .img5{
@@ -952,10 +953,16 @@ hgroup{
 #pageExperience .section{
 	top: 72px;
 }
+
+#pageExperience .removeContainer{
+
+}
+
 #pageExperience .div3{
 	align-self: flex-start;
 	margin-top: 180px;
 }
+
 #skillphoto7{
 	position: absolute;
 	left: 230px;
@@ -1074,7 +1081,9 @@ hgroup{
 	cursor: pointer;
 }
 
-
+.restaurantRemove {
+	display: none;
+}
 
 
 /*-------------div10---------------*/
@@ -1962,6 +1971,10 @@ address{
 	#skillphoto8{
 		left: 10px;
 		top: 350px;
+	}
+
+	.restaurantRemove {
+		display: initial;
 	}
 
 	/*--------------div8--------------*/
