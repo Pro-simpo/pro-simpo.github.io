@@ -388,3 +388,22 @@ document.addEventListener('DOMContentLoaded', () => {
     // Mettre à jour au chargement pour les pages déjà défilées
     updateProgressBar();
 });
+
+
+// Positionnement dynamique des skillimages
+
+let skillphoto7 = document.getElementById('skillphoto7');
+let skillphoto8 = document.getElementById('skillphoto8');
+let aiesec = document.getElementById('aiesec');
+let skillphoto7para = document.getElementById('skillphoto7para');
+let skillphoto8para = document.getElementById('skillphoto8para');
+let aiesecpara = document.getElementById('aiesecpara');
+let pageExperience = document.getElementById('pageExperience');
+
+document.addEventListener('scroll', function() {
+    aiesec.style.top = `${aiesecpara.offsetTop + 6 }px`;
+    skillphoto7.style.top = `${skillphoto7para.offsetTop + 6 }px`;
+    skillphoto8.style.top = `${skillphoto8para.offsetTop + 6 }px`;
+});
+
+

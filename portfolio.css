@@ -945,6 +945,7 @@ hgroup{
 	justify-content: center;
 	align-items: center;
 	height: auto;
+
 }
 
 #pageExperience .img5{
@@ -955,7 +956,8 @@ hgroup{
 }
 
 #pageExperience .removeContainer{
-
+	background-color: #2E2E2E;
+	align-self: stretch;
 }
 
 #pageExperience .div3{
@@ -966,14 +968,22 @@ hgroup{
 #skillphoto7{
 	position: absolute;
 	left: 230px;
-	top: 226px;
+	top: 386px;
 	z-index: -1;
 	opacity: 0.8;
 }
 #skillphoto8{
 	position: absolute;
 	left: 230px;
-	top: 423px;
+	top: 583px;
+	z-index: -1;
+	opacity: 1;
+}
+
+#aiesec{
+	position: absolute;
+	left: 230px;
+	top: 220px;
 	z-index: -1;
 	opacity: 1;
 }
@@ -1966,11 +1976,15 @@ address{
 	}
 	#skillphoto7{
 		left: 10px;
-		top: 150px;
+		top: 280px;
+	}
+	#aiesec{
+		left: 10px;
+		top: 130px;
 	}
 	#skillphoto8{
 		left: 10px;
-		top: 350px;
+		top: 470px;
 	}
 
 	.restaurantRemove {
@@ -2181,11 +2195,15 @@ address{
 
 	#skillphoto7{
 		left: 150px;
+		top: 423px;
+	}
+	#aiesec{
+		left: 150px;
 		top: 226px;
 	}
 	#skillphoto8{
 		left: 150px;
-		top: 423px;
+		top: 700px;
 	}
 
 	#skillphoto1{
