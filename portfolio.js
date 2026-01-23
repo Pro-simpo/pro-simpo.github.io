@@ -421,16 +421,17 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 const alphabet = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッンABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-const fontSize = 16;
+const fontSize = 8;
 const columns = Math.floor(canvas.width / fontSize);
 
 const rainDrops = Array(columns).fill(1);
 
 function draw() {
-    ctx.fillStyle = 'rgba(46, 46, 46, 0.1)';
+    ctx.fillStyle = 'rgba(17, 24, 39, 0.1)';
+    //ctx.fillStyle = 'rgba(249, 250, 251, 0.1)';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    ctx.fillStyle = '#0F0'; // Vert
+    ctx.fillStyle = 'rgba(0, 255, 0, 0.3)'; // Vert
     ctx.font = fontSize + 'px monospace';
 
     for (let i = 0; i < rainDrops.length; i++) {

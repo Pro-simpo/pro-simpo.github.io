@@ -113,7 +113,7 @@
     box-shadow: 0 3px 6px black; /* Ombre plus marquée au survol */
 }
 
-[data-theme="dark"] .rouge, [data-theme="dark"] .nom, [data-theme="dark"] .nom2 {
+[data-theme="dark"] .rouge, [data-theme="dark"] .nom2 {
     color: #0288d1;
 }
 
