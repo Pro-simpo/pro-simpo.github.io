@@ -404,9 +404,28 @@ hgroup{
 .nom{
 	font-family: norwester;
 	font-size: 3em;
-	color: #004AAD;
+	color: #00ff41;
 	text-align: center;
+	overflow: hidden; /* Cache le texte qui n'est pas encore "tapé" */
+    border-right: .15em solid #00ff41; /* Simule le curseur de frappe */
+    white-space: nowrap; /* Empêche le texte de passer à la ligne */
+    animation: 
+        typing 3.5s steps(30, end), /* L'effet de frappe */
+        blink-caret .75s step-end infinite; /* Le clignotement du curseur */
 }
+
+/* Animation de la frappe */
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+/* Animation du curseur qui clignote */
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: #00ff41; }
+}
+
 .domaine{
 	font-size: 2.2em;
 	color: #FFFEFE;
@@ -418,6 +437,21 @@ hgroup{
 	bottom: -3px;
 	z-index: 21;
 }
+
+.lamp{
+		z-index: 25;
+        position: absolute;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        background-image: radial-gradient(
+            circle at var(--x, 50%) var(--y, 50%), /* Position du cercle suit les variables CSS */
+            rgba(198, 202, 235, 0.2) 0%,   /* Cœur de la lumière */
+            rgba(173, 216, 230, 0.4) 2%,  /* Halo intermédiaire */
+            rgba(28, 31, 50, 0) 15%                 /* Fond sombre principal */
+        );
+        transition: background 0.1s ease-out; /* Pour un mouvement plus fluide */
+    }
 
 #Home3 {
 	position: absolute;
@@ -480,13 +514,13 @@ hgroup{
     	transform: translateX(0);
     }
     25%{
-    	transform: translateX(-101%);
+    	transform: translateX(-50%);
     }
     50% {
     	transform: translateX(0);
     }
     75% {
-    	transform: translateX(101%);
+    	transform: translateX(50%);
     }
     100% {
         transform: translateX(0);
@@ -506,13 +540,13 @@ hgroup{
     	transform: translateX(0);
     }
     25%{
-    	transform: translateX(101%);
+    	transform: translateX(50%);
     }
     50% {
     	transform: translateX(0);
     }
     75% {
-    	transform: translateX(-101%);
+    	transform: translateX(-50%);
     }
     100% {
         transform: translateX(0);
@@ -1846,6 +1880,11 @@ address{
 	hgroup .nom, hgroup .domaine {
 		margin: 0px;
 	}
+
+	.maphoto {
+		height: 70%;
+	}
+
 	
 
 	#coded{
@@ -1875,9 +1914,6 @@ address{
 		left: 10%;
     }
 
-    .accimg {
-		gap: 1.5%;
-	}
 
 	.acc {
 		width: 3px;

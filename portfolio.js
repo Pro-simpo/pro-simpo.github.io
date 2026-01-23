@@ -407,3 +407,8 @@ document.addEventListener('scroll', function() {
 });
 
 
+// Met à jour les variables CSS --x et --y avec la position du curseur
+document.getElementsByClassName("lamp")[0].addEventListener('mousemove', function(e) {
+    document.documentElement.style.setProperty('--x', e.clientX + 'px');
+    document.documentElement.style.setProperty('--y', e.clientY + window.scrollY + 'px');
+});
