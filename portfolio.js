@@ -412,3 +412,42 @@ document.getElementsByClassName("lamp")[0].addEventListener('mousemove', functio
     document.documentElement.style.setProperty('--x', e.clientX + 'px');
     document.documentElement.style.setProperty('--y', e.clientY + window.scrollY + 'px');
 });
+
+
+const canvas = document.getElementById('matrix-canvas');
+const ctx = canvas.getContext('2d');
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const alphabet = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッンABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+const fontSize = 16;
+const columns = Math.floor(canvas.width / fontSize);
+
+const rainDrops = Array(columns).fill(1);
+
+function draw() {
+    ctx.fillStyle = 'rgba(46, 46, 46, 0.1)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = '#0F0'; // Vert
+    ctx.font = fontSize + 'px monospace';
+
+    for (let i = 0; i < rainDrops.length; i++) {
+        const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+        ctx.fillText(text, i * fontSize, rainDrops[i] * fontSize);
+
+        if (rainDrops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+            rainDrops[i] = 0;
+        }
+        rainDrops[i]++;
+    }
+}
+setInterval(draw, 103); // 33ms correspond à environ 30 images par seconde
+
+// Gère le redimensionnement de la fenêtre pour que l'animation reste fluide
+window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    // Recalculer les colonnes serait idéal ici pour une adaptation parfaite
+});    

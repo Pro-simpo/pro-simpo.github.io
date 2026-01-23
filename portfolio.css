@@ -192,6 +192,17 @@ section{
 	text-decoration: none;
 }
 
+/* --- Styles pour le Canvas (l'arrière-plan animé) --- */
+#matrix-canvas {
+    position: fixed; /* Reste fixe même si on fait défiler la page */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* C'est la clé ! Place le canvas derrière tout le reste */
+    display: block;
+}
+
 .glisser {
 	margin: auto;
 	display: flex;
