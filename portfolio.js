@@ -120,7 +120,7 @@ document.getElementsByTagName("section")[0].addEventListener("click", function (
     }
 });
 
-
+/*
 // comportement de "codé totalement par moi"
 
 let coded2 = document.getElementById("coded2");
@@ -135,7 +135,7 @@ coded2.addEventListener('animationend', function(){
     }
 
 });
-
+*/
 // comportement des images de projets portfolio
 
 let projetlien = document.getElementsByClassName("projets");

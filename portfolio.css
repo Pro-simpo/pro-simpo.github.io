@@ -55,12 +55,6 @@
 
 /* Application des variables aux éléments globaux */
 
-[data-theme="dark"] #pageHome {
-	background-image: url(img/img1.png);
-	background-size: cover;
-	background-position: center;
-}
-
 [data-theme="dark"] #pageAboutme, [data-theme="dark"] #pageEducation, [data-theme="dark"] #pageSkills, [data-theme="dark"] #pageCertificates, [data-theme="dark"] #pageExperience, [data-theme="dark"] #pageServices, [data-theme="dark"] #pagePortfolio, [data-theme="dark"] #pageContact {
   background-image: url('img/dark_bg.png');
   background-size: cover;
@@ -122,6 +116,7 @@
 [data-theme="dark"] .rouge, [data-theme="dark"] .nom, [data-theme="dark"] .nom2 {
     color: #0288d1;
 }
+
 
 [data-theme="dark"] .section, [data-theme="dark"] body, [data-theme="dark"] .address {
     color: #FFFEFE;
@@ -391,7 +386,7 @@ summary {
 
 /*--------------div1--------------*/
 #pageHome{
-	background-image: url(img/img1.jpg);
+	background-image: url(img/Home.png);
 	background-size: cover;
 	background-position: center;
 	position: relative;
@@ -401,7 +396,7 @@ summary {
 hgroup{
 	text-align: center;
 	position: relative;
-	left: 1%;
+	left: 15%;
 	z-index: 20;
 	margin-bottom: 15px;
 	padding-top: 20px;
@@ -414,12 +409,30 @@ hgroup{
 }
 .domaine{
 	font-size: 2.2em;
+	color: #FFFEFE;
 }
+
 .maphoto{
 	position: absolute;
 	right: 0px;
+	bottom: -3px;
 	z-index: 21;
 }
+
+#Home3 {
+	position: absolute;
+	left: 0px;
+	top: 20px;
+	opacity: 0.3;
+}
+
+#Home4 {
+	position: absolute;
+	left: 0px;
+	bottom: 0px;
+	opacity: 0.3;
+}
+
 #coded{
 	font-size: 0.8em;
 	position: absolute;
@@ -514,12 +527,12 @@ hgroup{
 
 .accimg {
 	position: absolute;
-	bottom: 0px;
+	bottom: -5px;
 	left: 0px;
 	width: 60%;
 	height: 100%;
 	display: flex;
-	gap: 2%;
+	gap: 5%;
 	align-items: flex-end;
 }
 
@@ -575,7 +588,7 @@ hgroup{
 
 @keyframes accScroll1 {
     0% {
-    	transform: translate(0, 100%);
+    	transform: translate(0, 10px);
     }
     20%{
     	transform: translate(20px,-50px)
@@ -593,7 +606,7 @@ hgroup{
 
 @keyframes accScroll2 {
     0% {
-    	transform: translate(0, 100%);
+    	transform: translate(0, 10px);
     }
     20%{
     	transform: translate(-20px,-50px)
@@ -611,7 +624,7 @@ hgroup{
 
 @keyframes accScroll3 {
     0% {
-    	transform: translate(0, 100%);
+    	transform: translate(0, 10px);
     }
     20%{
     	transform: translate(0, -50px)
@@ -1628,6 +1641,10 @@ address{
 
 	/*--------------general--------------*/
 
+	.div3{
+		padding: 0px 4%;
+	}
+
 	#pageAboutme .div3, #pageEducation .div3, #pageSkills .div3, #pageExperience .div3, #pageServices .div3, #pageContact .div3 {
 		margin-top: initial;
 	}
@@ -1825,23 +1842,11 @@ address{
 		align-items: center;
 		justify-content: center;
 	}
-	.maphoto{
-		position: initial;
-		width: 50%;
-		height: 100%;
-		z-index: 2;
-	}
 
 	hgroup .nom, hgroup .domaine {
 		margin: 0px;
 	}
-
-	hgroup {
-		z-index: 1;
-		overflow: hidden;
-	}
 	
-
 
 	#coded{
 		left: 2%;
@@ -1974,17 +1979,10 @@ address{
 	#pageExperience .section{
 		top: 0px;
 	}
-	#skillphoto7{
-		left: 10px;
-		top: 280px;
-	}
-	#aiesec{
-		left: 10px;
-		top: 130px;
-	}
-	#skillphoto8{
-		left: 10px;
-		top: 470px;
+
+	#aiesec, #skillphoto7, #skillphoto8{
+		position: initial;
+		margin-right: 1%;
 	}
 
 	.restaurantRemove {
