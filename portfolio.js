@@ -414,6 +414,10 @@ document.getElementsByClassName("lamp")[0].addEventListener('mousemove', functio
 });
 
 
+
+
+
+// création du canevas de défilement style hacker
 const canvas = document.getElementById('matrix-canvas');
 const ctx = canvas.getContext('2d');
 
@@ -452,3 +456,57 @@ window.addEventListener('resize', () => {
     canvas.height = window.innerHeight;
     // Recalculer les colonnes serait idéal ici pour une adaptation parfaite
 });    
+
+
+//
+
+document.addEventListener('DOMContentLoaded', function() {
+    /**
+     * Fonction récursive qui parcourt les nœuds d'un élément pour appliquer l'effet glitch.
+     * @param {Node} node - Le nœud HTML à traiter (peut être un élément ou un nœud de texte).
+     */
+    function processNode(node) {
+        // Cas 1 : Le nœud est un nœud de texte (le contenu textuel lui-même)
+        if (node.nodeType === Node.TEXT_NODE) {
+            // On vérifie que le texte n'est pas juste des espaces vides
+            if (node.textContent.trim().length === 0) {
+                return;
+            }
+
+            const fragment = document.createDocumentFragment(); // Un conteneur temporaire et performant
+            const words = node.textContent.split(/\s+/);
+
+            words.forEach(word => {
+                if (word.length > 0) {
+                    const span = document.createElement('span');
+                    span.className = 'glitch-word';
+                    span.setAttribute('data-text', word);
+                    span.textContent = word;
+                    fragment.appendChild(span);
+                    fragment.appendChild(document.createTextNode(' ')); // Recrée l'espace
+                }
+            });
+
+            // Remplace le nœud de texte original par notre fragment de spans
+            node.parentNode.replaceChild(fragment, node);
+        } 
+        // Cas 2 : Le nœud est un élément HTML (comme <p>, <a>, <strong>)
+        else if (node.nodeType === Node.ELEMENT_NODE) {
+            // On ne veut pas appliquer l'effet à l'intérieur de balises qui ont déjà un effet
+            // ou qui sont des scripts/styles.
+            if (node.classList.contains('glitch-word') || node.tagName === 'SCRIPT' || node.tagName === 'STYLE') {
+                return;
+            }
+            
+            // On parcourt tous les enfants de cet élément et on relance la fonction sur eux.
+            // On utilise Array.from pour créer une copie, car la liste des enfants va être modifiée.
+            Array.from(node.childNodes).forEach(child => processNode(child));
+        }
+    }
+
+    // Ciblez les conteneurs principaux où l'effet doit être appliqué.
+    const elementsToGlitch = document.querySelectorAll('.glitch-container');
+    elementsToGlitch.forEach(element => {
+        processNode(element);
+    });
+});

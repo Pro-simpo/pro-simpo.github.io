@@ -203,6 +203,80 @@ section{
     display: block;
 }
 
+
+/*
+  Le conteneur qui contiendra les mots.
+  Nécessaire pour que les pseudo-éléments ne dépassent pas.
+*/
+.glitch-container {
+    position: relative;
+}
+
+/*
+  Le style de base pour chaque mot qui sera "glitchable".
+  On le rend 'relative' pour positionner les pseudo-éléments par-dessus.
+*/
+.glitch-word {
+    position: relative;
+    display: inline-block; /* Permet aux spans de se comporter comme des blocs mais de rester en ligne */
+}
+
+/*
+  Les deux pseudo-éléments qui créent l'illusion de glitch.
+  Ils sont invisibles par défaut et n'apparaissent qu'au survol.
+*/
+.glitch-word::before,
+.glitch-word::after {
+    content: attr(data-text); /* Le texte du mot est copié ici */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; /* Assurez-vous que c'est la couleur de fond de votre page */
+    overflow: hidden;
+    opacity: 0; /* Cachés par défaut */
+    transition: opacity 0.3s ease-out; /* Transition douce */
+}
+
+/* Au survol du mot, les pseudo-éléments deviennent visibles et s'animent */
+.glitch-word:hover::before,
+.glitch-word:hover::after {
+    opacity: 1;
+}
+
+/* Calque de glitch n°1 (rouge/magenta) */
+.glitch-word:hover::before {
+    left: 1px;
+    text-shadow: -1px 0 #0f0;
+    /* Animation qui déplace une "tranche" du texte */
+    animation: glitch-anim-1 3s infinite linear alternate-reverse;
+}
+
+/* Calque de glitch n°2 (bleu/cyan) */
+.glitch-word:hover::after {
+    text-shadow: -1px 0, 1px 1px;
+    /* Animation différente pour un effet plus chaotique */
+    animation: glitch-anim-2 3s infinite linear alternate-reverse;
+}
+
+/* Les animations qui créent le mouvement de distorsion en découpant le texte */
+@keyframes glitch-anim-1 {
+    0% { clip-path: inset(95% 0 2% 0); }
+    25% { clip-path: inset(5% 0 80% 0); }
+    50% { clip-path: inset(45% 0 45% 0); }
+    75% { clip-path: inset(80% 0 5% 0); }
+    100% { clip-path: inset(2% 0 95% 0); }
+}
+
+@keyframes glitch-anim-2 {
+    0% { clip-path: inset(2% 0 95% 0); }
+    25% { clip-path: inset(80% 0 5% 0); }
+    50% { clip-path: inset(45% 0 45% 0); }
+    75% { clip-path: inset(5% 0 80% 0); }
+    100% { clip-path: inset(95% 0 2% 0); }
+}
+
+
 .glisser {
 	margin: auto;
 	display: flex;
