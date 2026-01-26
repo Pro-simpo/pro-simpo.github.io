@@ -126,7 +126,7 @@
     color: skyblue;
 }
 
-[data-theme="dark"] .list, [data-theme="dark"] .videolist{
+[data-theme="dark"] .list, [data-theme="dark"] .listP, [data-theme="dark"] .videolist{
 	outline: solid #374151; 
 }
 
@@ -136,7 +136,7 @@
 	background-color: #111827;
 }
 
-[data-theme="dark"] #pageBrainwave .list {
+[data-theme="dark"] #pageBrainwave .list, [data-theme="dark"] #pageBrainwave .listP {
 	background-image: url("img/brainwave2.png");
 	background-position: center;
 	background-size: contain;
@@ -1355,7 +1355,7 @@ address{
 	gap: 10px;
 }
 
-.list{
+.list, .listP{
 	outline: solid darkgray; 
 	border-radius: 0px 0px 20px 20px; 
 	padding-top: 10px;
@@ -1597,7 +1597,7 @@ address{
 	width: 90%;
 }
 
-#pageBrainwave .list {
+#pageBrainwave .list, #pageBrainwave .listP {
 	background-image: url("img/brainwave.png");
 	background-position: center;
 } 
@@ -2203,6 +2203,7 @@ address{
 		flex-direction: column;
 		gap: 10px;
 	}
+
 
 	.Area2Element {
 		gap: 20px;
