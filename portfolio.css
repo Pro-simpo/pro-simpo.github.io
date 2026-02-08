@@ -978,8 +978,10 @@ hgroup{
 
  
 .skill-badge {
-    display: inline-block;
-    padding: 8px 15px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 8px 10px;
     border-radius: 20px; 
     font-size: 0.9rem;
     font-weight: 500;
@@ -1039,6 +1041,23 @@ hgroup{
 	align-self: flex-start;
 	margin-top: 195px;
 }
+
+
+.skillImage {
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	width: 20px;
+	height: 20px;
+	background-color: lightgray;
+	border-radius: 20px;
+	overflow: hidden;
+}
+
+.ibadge {
+	color: black;
+}
+
 
 /*--------------div6--------------*/
 #pageCertificates{
