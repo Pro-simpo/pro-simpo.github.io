@@ -256,6 +256,30 @@ video4.addEventListener("click", function(){
         </video>`;
 })
 
+let videoHePRAS = document.getElementById("videoHePRAS");
+videoHePRAS.addEventListener("click", function(){
+    videoHePRAS.innerHTML = `
+        <video width="100%" height="auto" controls autoplay>
+            <source src="img/videoHePRAS.mp4" type="video/mp4">
+        </video>`;
+})
+
+let videoJobApplication = document.getElementById("videoJobApplication");
+videoJobApplication.addEventListener("click", function(){
+    videoJobApplication.innerHTML = `
+        <video width="100%" height="auto" controls autoplay>
+            <source src="img/videoJobApplication.mp4" type="video/mp4">
+        </video>`;
+})
+
+let videoFireDetection = document.getElementById("videoFireDetection");
+videoFireDetection.addEventListener("click", function(){
+    videoFireDetection.innerHTML = `
+        <video width="100%" height="auto" controls autoplay>
+            <source src="img/videoFireDetection.mp4" type="video/mp4">
+        </video>`;
+})
+
 
 // Gestion des thèmes
 

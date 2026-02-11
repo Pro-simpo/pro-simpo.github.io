@@ -1700,6 +1700,55 @@ address{
 	text-align: center;
 }
 
+
+/*-------------div14-----div15----------*/
+
+#pageHePRAS, #pageJobApplication, #pageFPGA, #pageFireDetection {
+	display: grid;
+	grid-template-rows: auto;
+	grid-template-columns: 212.5px auto;
+	grid-template-areas: "gauche droite";
+	position: relative;
+}
+
+#pageHePRAS	ol, #pageJobApplication ol, #pageFPGA ol, #pageFireDetection ol{
+	list-style: none;
+}
+
+#pageHePRAS	ul, #pageJobApplication ul, #pageFPGA ul, #pageFireDetection ul{
+	list-style: none;
+	padding-left: 10px;
+}
+
+#pageHePRAS	ul li, #pageJobApplication ul li, #pageFPGA ul li, #pageFireDetection ul li{
+	position: relative;
+  	padding-left: 18px;
+}
+
+#pageHePRAS	ul li::before, #pageJobApplication ul li::before, #pageFPGA ul li::before, #pageFireDetection ul li::before{
+	content: "";
+  	position: absolute;
+  	left: 0;
+  	top: 12.5px;
+  	transform: translateY(-50%);
+  	width: 12px; /* Largeur de l’image */
+  	height: 12px; /* Hauteur de l’image */
+  	background: url('img/puce.png') no-repeat center / cover;
+}
+
+#pageHePRAS	ul li::before, #pageJobApplication ul li::before, #pageFPGA ul li::before, #pageFireDetection ul li::before{
+  	top: 10px;
+  	width: 10px;
+  	height: 10px;
+}
+
+#videoHePRAS, #videoJobApplication, #videoFPGA, #videoFireDetection{
+	box-shadow: 0 0 5px 2px #0288d1;
+	border-radius: 5px;
+	cursor: pointer;
+	width: 90%;
+}
+
 /*-------------div11-12-13(see more)---------------*/
 .seeMore {
 	max-height: 700px;
@@ -2263,6 +2312,20 @@ address{
 		padding-left: 5px;
 	}
 
+	/*--------------div14--------------*/
+
+	#pageHePRAS, #pageJobApplication, #pageFPGA, #pageFireDetection {
+		grid-template-columns: auto;
+	}
+
+	#pageHePRAS .Area2Element, #pageJobApplication .Area2Element, #pageFPGA .Area2Element, #pageFireDetection .Area2Element {
+		margin-top: 0px;
+	}
+
+	#pageHePRAS	ol, #pageJobApplication ol, #pageFPGA ol, #pageFireDetection ol{
+		padding-left: 5px;
+	}
+
 	/*--------------div11-12-13(see more)--------------*/
 
 	.seeMore::after {
@@ -2359,7 +2422,7 @@ address{
 	}
 
 
-	#pageAgencyProject, #pageBrainwave, #pageSolarPanel {
+	#pageAgencyProject, #pageBrainwave, #pageSolarPanel, #pageHePRAS, #pageJobApplication, #pageFPGA, #pageFireDetection {
 		grid-template-columns: 140px auto;
 	}
 
