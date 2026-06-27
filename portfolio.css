@@ -158,6 +158,10 @@ body, header, section, .div {
 	width: 100%;
 }
 
+html, body {
+	overflow-x: hidden;
+}
+
 body{
 	font-family: lato;
 	margin: auto;
