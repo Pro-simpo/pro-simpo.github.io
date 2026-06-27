@@ -201,12 +201,12 @@ window.addEventListener('scroll', function() {
     var animations = document.querySelectorAll('.animations');
     animations.forEach(function(anim) {
         var position = anim.getBoundingClientRect().top;
-        
+
         if (position < windowHeight - 100) {
             anim.classList.add('animation');
         }
     });
-});
+}, { passive: true });
 
 // Age
 
@@ -415,12 +415,12 @@ document.addEventListener('scroll', function() {
     if (aiesec && aiesecpara) aiesec.style.top = `${aiesecpara.offsetTop + 6 }px`;
     if (skillphoto7 && skillphoto7para) skillphoto7.style.top = `${skillphoto7para.offsetTop + 6 }px`;
     if (skillphoto8 && skillphoto8para) skillphoto8.style.top = `${skillphoto8para.offsetTop + 6 }px`;
-});
+}, { passive: true });
 
 
-// Met à jour les variables CSS --x et --y avec la position du curseur (desktop uniquement)
+// Met à jour les variables CSS --x et --y avec la position du curseur
 var lampEl = document.getElementById('pageHome');
-if (lampEl && window.matchMedia('(pointer: fine)').matches) lampEl.addEventListener('mousemove', function(e) {
+if (lampEl) lampEl.addEventListener('mousemove', function(e) {
     document.documentElement.style.setProperty('--x', e.clientX + 'px');
     document.documentElement.style.setProperty('--y', e.clientY + window.scrollY + 'px');
 });
@@ -839,20 +839,18 @@ document.addEventListener('DOMContentLoaded', function() {
         ticking = false;
     }
 
-    if (window.matchMedia('(pointer: fine)').matches) {
-        home.addEventListener('mousemove', function(e) {
-            mx = e.clientX;
-            my = e.clientY;
-            if (!ticking) { requestAnimationFrame(update); ticking = true; }
-        }, { passive: true });
+    home.addEventListener('mousemove', function(e) {
+        mx = e.clientX;
+        my = e.clientY;
+        if (!ticking) { requestAnimationFrame(update); ticking = true; }
+    }, { passive: true });
 
-        home.addEventListener('mouseleave', function() {
-            grid.style.transform = '';
-            if (heroText) heroText.style.transform = '';
-            if (photoStage) photoStage.style.transform = '';
-            if (glowTop) glowTop.style.transform = 'translateX(-50%)';
-        });
-    }
+    home.addEventListener('mouseleave', function() {
+        grid.style.transform = '';
+        if (heroText) heroText.style.transform = '';
+        if (photoStage) photoStage.style.transform = '';
+        if (glowTop) glowTop.style.transform = 'translateX(-50%)';
+    });
 })();
 
 /* ===================== SCROLL INDICATOR FADE ===================== */

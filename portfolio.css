@@ -4482,11 +4482,12 @@ address{
 	mix-blend-mode: screen;
 	animation: heroScan 3.5s linear infinite;
 	pointer-events: none;
+	will-change: transform;
 }
 
 @keyframes heroScan {
-	from { top: -46px; }
-	to   { top: 100%; }
+	from { transform: translateY(0); }
+	to   { transform: translateY(600px); }
 }
 
 .photo-cap {
@@ -4509,7 +4510,7 @@ address{
 		height: auto !important;
 		min-height: 100vh;
 		align-items: flex-start;
-		overflow-y: auto;
+		overflow: visible;
 	}
 
 	.hero-grid {
