@@ -418,9 +418,9 @@ document.addEventListener('scroll', function() {
 });
 
 
-// Met à jour les variables CSS --x et --y avec la position du curseur
+// Met à jour les variables CSS --x et --y avec la position du curseur (desktop uniquement)
 var lampEl = document.getElementById('pageHome');
-if (lampEl) lampEl.addEventListener('mousemove', function(e) {
+if (lampEl && window.matchMedia('(pointer: fine)').matches) lampEl.addEventListener('mousemove', function(e) {
     document.documentElement.style.setProperty('--x', e.clientX + 'px');
     document.documentElement.style.setProperty('--y', e.clientY + window.scrollY + 'px');
 });
@@ -839,18 +839,20 @@ document.addEventListener('DOMContentLoaded', function() {
         ticking = false;
     }
 
-    home.addEventListener('mousemove', function(e) {
-        mx = e.clientX;
-        my = e.clientY;
-        if (!ticking) { requestAnimationFrame(update); ticking = true; }
-    }, { passive: true });
+    if (window.matchMedia('(pointer: fine)').matches) {
+        home.addEventListener('mousemove', function(e) {
+            mx = e.clientX;
+            my = e.clientY;
+            if (!ticking) { requestAnimationFrame(update); ticking = true; }
+        }, { passive: true });
 
-    home.addEventListener('mouseleave', function() {
-        grid.style.transform = '';
-        if (heroText) heroText.style.transform = '';
-        if (photoStage) photoStage.style.transform = '';
-        if (glowTop) glowTop.style.transform = 'translateX(-50%)';
-    });
+        home.addEventListener('mouseleave', function() {
+            grid.style.transform = '';
+            if (heroText) heroText.style.transform = '';
+            if (photoStage) photoStage.style.transform = '';
+            if (glowTop) glowTop.style.transform = 'translateX(-50%)';
+        });
+    }
 })();
 
 /* ===================== SCROLL INDICATOR FADE ===================== */
