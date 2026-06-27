@@ -1255,7 +1255,7 @@ hgroup{
   transform: scale(1.1);
 }
 
-#scroll{
+.ce-swipe-hint {
 	display: none;
 }
 
@@ -2267,12 +2267,29 @@ address{
 	.image-zoom:hover {
 	  transform: scale(1.05);
 	}
-	#scroll{
-		display: initial;
-		position: absolute;
-		right: 0px;
-		top: 100px;
-		transform: rotate(-90deg);
+	.ce-swipe-hint {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 8px;
+		margin-top: -16px;
+		padding-bottom: 24px;
+	}
+	.ce-swipe-hint span {
+		display: block;
+		width: 10px;
+		height: 10px;
+		border-right: 2.5px solid #0288d1;
+		border-top: 2.5px solid #0288d1;
+		border-radius: 1px;
+		transform: rotate(45deg);
+		animation: ceSwipeFlow 1.3s ease-in-out infinite;
+	}
+	.ce-swipe-hint span:nth-child(2) { animation-delay: 0.2s; }
+	.ce-swipe-hint span:nth-child(3) { animation-delay: 0.4s; }
+	@keyframes ceSwipeFlow {
+		0%, 100% { opacity: 0.2; transform: rotate(45deg) translate(0, 0); }
+		50%       { opacity: 1;   transform: rotate(45deg) translate(3px, -3px); }
 	}
 
 	#pageCertificates .div8 {
