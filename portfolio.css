@@ -499,7 +499,7 @@ button:active {
 .menu-toggle.is-open .burger-line:nth-child(1) { transform: translateY(8px) rotate(45deg); }
 .menu-toggle.is-open .burger-line:nth-child(2) { opacity: 0; width: 0; }
 .menu-toggle.is-open .burger-line:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-[data-theme="light"] .burger-line { background: #1e293b; }
+[data-theme="light"] .burger-line { background: #fff; }
 
 /* ── Mobile drawer ── */
 .mobile-drawer {
