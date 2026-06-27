@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="utf-8">
@@ -9,6 +9,7 @@
 	<meta name="robots" content="index, follow">
 	<meta name="color-scheme" content="only light">
 	<link rel="stylesheet" type="text/css" href="portfolio.css">
+	<style>#side-nav{opacity:0!important;pointer-events:none!important}</style>
 	<link rel="icon" type="img/svg" href="img/logo.svg">
 	<link rel="preload" fetchpriority="high" as="image" href="img/img27.jpg" type="image/jpg">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -45,47 +46,49 @@
 				</div>
 			</div>
 			<button class="theme-toggle">theme</button>
-			<details>
-				<summary>|||</summary>
-				<ul id="ul1">
-					<li class="open"><a class="nav-button adec" href="#pageHome">Home</a></li>
-					<li class="open"><a class="nav-button adec" href="#pageAboutme">About Me</a></li>
-					<li class="open"><a class="nav-button adec" href="#pageEducation">Education</a></li>
-					<li class="open"><a class="nav-button adec" href="#pageSkills">Skills</a></li>
-					<li class="open"><a class="nav-button adec" href="#pageCertificates">Certificates</a></li>
-					<li class="open"><a class="nav-button adec" href="#pageExperience">Experience</a></li>
-					<li class="open"><a class="nav-button adec" href="#pageServices">Services</a></li>
-					<li class="open"><a class="nav-button adec" href="#pagePortfolio">Portfolio</a></li>
-					<li class="open"><a class="nav-button adec" href="#pageContact">Contacts</a></li>
-				</ul>
-			</details>
+			<button class="lang-toggle" id="langToggle">FR</button>
+			<button class="menu-toggle" id="menuToggle" aria-label="Menu" aria-expanded="false">
+				<span class="burger-line"></span>
+				<span class="burger-line"></span>
+				<span class="burger-line"></span>
+			</button>
 			<ul id="ul2">
-				<li><a class="nav-button button2 adec" href="#pageHome">Home</a></li>
-				<li><a class="nav-button button2 adec" href="#pageAboutme" target="_parent">About Me</a></li>
-				<li><a class="nav-button button2 adec" href="#pageEducation">Education</a></li>
-				<li><a class="nav-button button2 adec" href="#pageSkills">Skills</a></li>
-				<li><a class="nav-button button2 adec" href="#pageCertificates">Certificates</a></li>
-				<li><a class="nav-button button2 adec" href="#pageExperience">Experience</a></li>
-				<li><a class="nav-button button2 adec" href="#pageServices">Services</a></li>
-				<li><a class="nav-button button2 adec" href="#pagePortfolio">Portfolio</a></li>
-				<li><a class="nav-button adec" href="#pageContact">Contacts</a></li>
+				<li><a class="nav-button button2 adec" href="#pageHome" data-i18n="nav-home">Home</a></li>
+				<li><a class="nav-button button2 adec" href="#pageEducation" data-i18n="nav-education">Education</a></li>
+				<li><a class="nav-button button2 adec" href="#pageSkills" data-i18n="nav-skills">Skills</a></li>
+				<li><a class="nav-button button2 adec" href="#pageCertificates" data-i18n="nav-certs">Certificates</a></li>
+				<li><a class="nav-button button2 adec" href="#pageExperience" data-i18n="nav-experience">Experience</a></li>
+				<li><a class="nav-button button2 adec" href="#pageServices" data-i18n="nav-services">Services</a></li>
+				<li><a class="nav-button button2 adec" href="#pagePortfolio" data-i18n="nav-portfolio">Portfolio</a></li>
+				<li><a class="nav-button adec" href="#pageContact" data-i18n="nav-contacts">Contacts</a></li>
 			</ul>
 		</nav>
 		<div id="progress-bar"></div>
 	</header>
+
+	<!-- ── Mobile drawer ── -->
+	<div class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
+		<button class="drawer-close" id="drawerClose" aria-label="Close menu">
+			<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+		</button>
+		<ul id="ul1">
+			<li><a class="nav-button adec" href="#pageHome" data-i18n="nav-home">Home</a></li>
+			<li><a class="nav-button adec" href="#pageEducation" data-i18n="nav-education">Education</a></li>
+			<li><a class="nav-button adec" href="#pageSkills" data-i18n="nav-skills">Skills</a></li>
+			<li><a class="nav-button adec" href="#pageCertificates" data-i18n="nav-certs">Certificates</a></li>
+			<li><a class="nav-button adec" href="#pageExperience" data-i18n="nav-experience">Experience</a></li>
+			<li><a class="nav-button adec" href="#pageServices" data-i18n="nav-services">Services</a></li>
+			<li><a class="nav-button adec" href="#pagePortfolio" data-i18n="nav-portfolio">Portfolio</a></li>
+			<li><a class="nav-button adec" href="#pageContact" data-i18n="nav-contacts">Contacts</a></li>
+		</ul>
+	</div>
+	<div class="drawer-backdrop" id="drawerBackdrop"></div>
 	<section>
 		<!-- 1. Le Canvas pour l'animation -->
     	<canvas id="matrix-canvas"></canvas>
 		<div id="pageHome" class="div">		<!-- div1 -->
-			
-			<hgroup>
-				<h1 class="nom"><strong>Taobata Simpore</strong></h1>
-				<h2 class="domaine norwester"><strong><span class="dom1">Cybersecurity</span><br><span class="dom2">Embedded systems</span><br><span class="dom3">Front-end development</span></strong></h2>
-			</hgroup>
-			<p id="desktop"><span class="desktop">Use desktop view for full experience</span></p>
-			<img class="maphoto" src="img/Home2.png" height="60%" alt="a photo of me" fetchpriority="high">
-			<img id="Home3" src="img/Home3.png" height="50%" alt="illustrative image" fetchpriority="high">
-			<img id="Home4" src="img/Home4.png" height="50%" alt="illustrative image" fetchpriority="high">
+
+			<!-- ── Background original ─────────────────────────── -->
 			<div class="lamp"></div>
 			<div class="accimg accimg1">
 				<img class="acc" src="img/acc1.png" width="5"><img class="acc" src="img/acc2.png" width="5"><img class="acc" src="img/acc3.png" width="5">
@@ -123,34 +126,74 @@
 				<img class="acc" src="img/acc1.png" width="5"><img class="acc" src="img/acc2.png" width="5"><img class="acc" src="img/acc3.png" width="5">
 				<img class="acc" src="img/acc1.png" width="5"><img class="acc" src="img/acc2.png" width="5"><img class="acc" src="img/acc3.png" width="5">
 			</div>
-		</div>
-<!--	<div id="div2" class="sections">
-			<h1 class="nom">ONLINE<br>PORTFOLIO</h1>
-			<img class="img2" src="img/img2.svg" width="70%">svg
-		</div> -->
-		<div class="glisser">
-			<p>Swipe up</p>
-			<video id="toucher" class="" src="img/vid1.mp4" width="10%" autoplay loop></video>
-			<video id="toucher2" class="" src="img/vid2.mp4" width="10%" autoplay loop></video>
-		</div>
-		<div id="pageAboutme" class="sections div">		<!-- div3 -->
-			<div class="espaceNoir"></div>
-			<img class="remove remove1000" src="img/img4.svg" height="101%" usemap="#pageAboutme" alt="image of navigation">
-			<img class="img5 remove" src="img/img5.svg" width="320" alt="section tiltle support">
-			<h2 class="section norwester">About Me</h2>
-			<div class="div3">
-			    <img id="personal" class="remove image-zoom" src="img/maphoto.jpg" width="28%" alt="a photo of me">
-			    <h2 class="rouge">Personal Overview</h2>
-			    <p>Hailing from Burkina Faso, I am a <span id="age">23</span>-year-old engineering student currently based in Morocco. I am pursuing my degree in <strong>Cybersecurity and Embedded Systems</strong> at ENSA Tetouan, where I bridge the gap between hardware security and software resilience. Beyond my core technical focus, I am a creative front-end developer and designer, dedicated to building secure, intuitive, and visually compelling digital experiences.</p>
-			    <p>Explore my portfolio to discover how I merge technical rigor with creative innovation.</p>
+
+			<!-- ── Hero overlay glow ────────────────────────────── -->
+			<div class="hero-glowtop"></div>
+
+			<!-- ── Hero content ─────────────────────────────────── -->
+			<div class="hero-grid">
+				<div class="hero-text">
+					<span class="hero-status"><span class="pulse"></span><span data-i18n="hero-status">AVAILABLE &middot; ENSA T&Eacute;TOUAN</span></span>
+					<h1 class="hero-h1">
+						<span class="hero-intro" data-i18n="hero-intro">// Hi, I'm</span>
+						<span class="glitch" data-text="Taobata Simporé">Taobata Simporé</span>
+					</h1>
+					<div class="role-line">
+						<span class="pmt">&gt;</span><span id="typedRole"></span><span class="cur"></span>
+					</div>
+					<p class="hero-bio" data-i18n="hero-bio">23-year-old engineering student from Burkina&nbsp;Faso, based in Morocco. I bridge <strong>cybersecurity</strong> and <strong>embedded systems</strong> &mdash; deploying SOC infrastructures, cloud IDS/IPS and IoT solutions that are resilient by design.</p>
+					<div class="hero-badges">
+						<span class="chip" data-i18n="hero-badge1">&#9702; ENSA T&eacute;touan</span>
+						<span class="chip" data-i18n="hero-badge2">&#9702; Cybersecurity &amp; Embedded</span>
+						<span class="chip" data-i18n="hero-badge3">&#9702; Open to opportunities</span>
+					</div>
+					<div class="hero-cta">
+						<a href="#pagePortfolio" class="btn-hero btn-hero-pri"><span data-i18n="hero-cta-pri">View my projects</span> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6l6 6-6 6"/></svg></a>
+						<a href="#pageContact" class="btn-hero btn-hero-ghost" data-i18n="hero-cta-ghost">Contact me</a>
+					</div>
+				</div>
+				<div class="photo-stage">
+					<div class="photo-aura"></div>
+					<div class="photo-frame">
+						<span class="photo-corner pc-tl"></span>
+						<span class="photo-corner pc-tr"></span>
+						<span class="photo-corner pc-bl"></span>
+						<span class="photo-corner pc-br"></span>
+						<div class="photo-inner">
+							<img class="photo-img" src="img/profile.png" alt="Taobata Simporé" fetchpriority="high">
+							<div class="photo-scan"></div>
+							<span class="photo-cap">// PORTRAIT.IMG &middot; TS</span>
+						</div>
+					</div>
+				</div>
 			</div>
+
+			<!-- ── Scroll indicator ──────────────────────────── -->
+			<div class="glisser">
+				<span class="scroll-label">scroll</span>
+				<div class="scroll-line"><div class="scroll-dot"></div></div>
+			</div>
+
 		</div>
+		<aside id="side-nav">
+			<a class="sn-dot" href="#pageEducation" data-label="Education" data-i18n-label="nav-education"><span>1</span></a>
+			<div class="sn-line"></div>
+			<a class="sn-dot" href="#pageSkills" data-label="Skills" data-i18n-label="nav-skills"><span>2</span></a>
+			<div class="sn-line"></div>
+			<a class="sn-dot" href="#pageCertificates" data-label="Certificates" data-i18n-label="nav-certs"><span>3</span></a>
+			<div class="sn-line"></div>
+			<a class="sn-dot" href="#pageExperience" data-label="Experience" data-i18n-label="nav-experience"><span>4</span></a>
+			<div class="sn-line"></div>
+			<a class="sn-dot" href="#pageServices" data-label="Services" data-i18n-label="nav-services"><span>5</span></a>
+			<div class="sn-line"></div>
+			<a class="sn-dot" href="#pagePortfolio" data-label="Portfolio" data-i18n-label="nav-portfolio"><span>6</span></a>
+		</aside>
 		<div id="pageEducation" class="sections div">	<!-- div4 -->
 			<div class="espaceNoir"></div>
-			<img class="remove remove1000" src="img/img7.svg" height="101%" usemap="#pageEducation" alt="image of navigation">
+			<div class="nav-ribbon"></div>
 			<div>
 				<img class="img5 remove" src="img/img5.svg" width="320" alt="section tiltle support">
-				<h2 class="section norwester">Education</h2>
+				<h2 class="section norwester" data-i18n="nav-education">Education</h2>
 			</div>
 			<div class="div3 ecart">
 				<div class="smallsize">
@@ -158,46 +201,53 @@
 						<img id="ENSA" src="img/ENSA.png" width="100%" alt="image of ENSA">
 						<figcaption>ENSA - Tetouan</figcaption>
 					</figure>
-					<h3 class="ecole ecole1 rouge">ENSA - TETOUAN | 2024 - Currently | Engineering Cycle</h3>
-					<p class="ecole">A cycle of three years studies in cybersecurity and embedded systems.<br>More information on <a class="sites" href="https://ensate.uae.ac.ma/" target="_blank">the official site of ENSATE.</a></p>
+					<h3 class="ecole ecole1 rouge" data-i18n="edu1-title">ENSA - TETOUAN | 2024 - Currently | Engineering Cycle</h3>
+					<p class="ecole" data-i18n="edu1-desc">A cycle of three years studies in cybersecurity and embedded systems.<br>More information on <a class="sites" href="https://ensate.uae.ac.ma/" target="_blank">the official site of ENSATE.</a></p>
 				</div>
 				<div class="smallsize">
-					<h3 class="ecole ecole1 rouge">ENSA - TETOUAN | 2022 - 2024 | Preparatory Cycle</h3>
-					<p class="ecole">Two years of <strong>preparatory studies for the Engineering Cycle</strong>.<br>More information on <a class="sites" href="https://ensa-tetouan.ac.ma/" target="_blank">the official site of ENSATE.</a></p>
+					<h3 class="ecole ecole1 rouge" data-i18n="edu2-title">ENSA - TETOUAN | 2022 - 2024 | Preparatory Cycle</h3>
+					<p class="ecole" data-i18n="edu2-desc">Two years of <strong>preparatory studies for the Engineering Cycle</strong>.<br>More information on <a class="sites" href="https://ensa-tetouan.ac.ma/" target="_blank">the official site of ENSATE.</a></p>
 				</div>
 				<div class="smallsize">
 					<figure class="lsno remove image-zoom">
 						<img id="lsno" src="img/lsno.png" width="100%" alt="image of lsno">
 						<figcaption>LSNO</figcaption>
 					</figure>
-					<h3 class="ecole ecole1 rouge">LYCÉE SCIENTIFIQUE NATIONAL DE OUAGADOUGOU | 2019 - 2022 | High School Degree</h3>
-					<p class="ecole"><strong>Scientific High School Degree</strong> (C) obtained in Burkina Faso with honors (BIEN).<br>More information on <a class="sites" href="https://lsno-bf.org/" target="_blank">the official site of LSNO.</a></p>
+					<h3 class="ecole ecole1 rouge" data-i18n="edu3-title">LYCÉE SCIENTIFIQUE NATIONAL DE OUAGADOUGOU | 2019 - 2022 | High School Degree</h3>
+					<p class="ecole" data-i18n="edu3-desc"><strong>Scientific High School Degree</strong> (C) obtained in Burkina Faso with honors (BIEN).<br>More information on <a class="sites" href="https://lsno-bf.org/" target="_blank">the official site of LSNO.</a></p>
 				</div>
 			</div>
 		</div>
 		<div id="pageSkills" class="sections div">		<!-- div5 -->
 			<div class="espaceNoir"></div>
-			<img class="remove remove1000" src="img/img9.svg" height="101%" usemap="#pageSkills" alt="image of navigation">
+			<div class="nav-ribbon"></div>
 			<div class="header">
 				<img class="img5 remove" src="img/img5.svg" width="320" alt="section tiltle support">
-				<h2 class="section norwester">Skills</h2>
+				<h2 class="section norwester" data-i18n="nav-skills">Skills</h2>
 			</div>
 			<div class="div3 ecart ecart2 div3skillphoto">
 				<img id="skillphoto2" src="img/skillphoto2.svg" width="15%" alt="decorative image"><!-- svg -->
 				<img id="skillphoto3" src="img/skillphoto3.svg" width="15%" alt="decorative image">
 				<img id="skillphoto4" src="img/skillphoto4.svg" height="60" alt="decorative image"><!-- svg -->
 				<div class="body1 skills-block">
-					<h3 class="ecole ecole1 rouge skills">Cybersecurity</h3>
+					<h3 class="ecole ecole1 rouge skills" data-i18n="skills-cat1">Cybersecurity</h3>
 					<div class="skills-container">
 						<span class="skill-badge" data-skill="Penetration testing"><div class="skillImage"><i class="fa-solid fa-user-secret ibadge"></i></div>Penetration testing</span>
 						<span class="skill-badge" data-skill="Security testing"><div class="skillImage"><i class="fa-solid fa-shield-halved ibadge"></i></div>Security testing</span>
-						<span class="skill-badge" data-skill="Computing"><div class="skillImage"><i class="fa-solid fa-laptop-code ibadge"></i></div>Computing</span>
 						<span class="skill-badge" data-skill="Computer networking"><div class="skillImage"><i class="fa-solid fa-network-wired ibadge"></i></div>Computer networking</span>
 						<span class="skill-badge" data-skill="Malware analysis"><div class="skillImage"><i class="fa-solid fa-bug-slash ibadge"></i></div>Malware analysis</span>
+						<span class="skill-badge" data-skill="Kali Linux"><div class="skillImage"><i class="fa-solid fa-terminal ibadge"></i></div>Kali Linux</span>
+						<span class="skill-badge" data-skill="Wazuh"><div class="skillImage"><i class="fa-solid fa-eye ibadge"></i></div>Wazuh</span>
+						<span class="skill-badge" data-skill="TheHive"><div class="skillImage"><i class="fa-solid fa-bug ibadge"></i></div>TheHive</span>
+						<span class="skill-badge" data-skill="Suricata"><div class="skillImage"><i class="fa-solid fa-tower-broadcast ibadge"></i></div>Suricata</span>
+						<span class="skill-badge" data-skill="Burp Suite"><div class="skillImage"><i class="fa-solid fa-magnifying-glass ibadge"></i></div>Burp Suite</span>
+						<span class="skill-badge" data-skill="Metasploit"><div class="skillImage"><i class="fa-solid fa-crosshairs ibadge"></i></div>Metasploit</span>
+						<span class="skill-badge" data-skill="SIEM"><div class="skillImage"><i class="fa-solid fa-chart-line ibadge"></i></div>SIEM</span>
+						<span class="skill-badge" data-skill="iptables"><div class="skillImage"><i class="fa-solid fa-fire-flame-curved ibadge"></i></div>iptables</span>
 					</div>
 				</div>
 				<div class="body2 skills-block">
-					<h3 class="ecole ecole1 rouge skills">Embedded systems</h3>
+					<h3 class="ecole ecole1 rouge skills" data-i18n="skills-cat2">Embedded systems</h3>
 					<div class="skills-container">
 						<span class="skill-badge" data-skill="FPGA"><div class="skillImage"><i class="fa-solid fa-microchip ibadge"></i></div>FPGA</span>
 						<span class="skill-badge" data-skill="VHDL"><div class="skillImage"><i class="fa-solid fa-file-code ibadge"></i></div>VHDL</span>
@@ -205,10 +255,13 @@
 						<span class="skill-badge" data-skill="ESP32"><div class="skillImage"><i class="fa-solid fa-microchip ibadge"></i></div>ESP32</span>
 						<span class="skill-badge" data-skill="Arduino"><div class="skillImage"><i class="fa-brands fa-usb ibadge"></i></div>Arduino</span>
 						<span class="skill-badge" data-skill="Circuits design"><div class="skillImage"><i class="fa-solid fa-draw-polygon ibadge"></i></div>Circuits design</span>
+						<span class="skill-badge" data-skill="MQTT"><div class="skillImage"><i class="fa-solid fa-wifi ibadge"></i></div>MQTT</span>
+						<span class="skill-badge" data-skill="Modbus"><div class="skillImage"><i class="fa-solid fa-plug ibadge"></i></div>Modbus</span>
+						<span class="skill-badge" data-skill="Raspberry Pi"><div class="skillImage"><i class="fa-brands fa-raspberry-pi ibadge"></i></div>Raspberry Pi</span>
 					</div>
 				</div>
 				<div class="body3 skills-block">
-					<h3 class="ecole ecole1 rouge skills">Web and Software Development</h3>
+					<h3 class="ecole ecole1 rouge skills" data-i18n="skills-cat3">Web and Software Development</h3>
 					<div class="skills-container">
 						<span class="skill-badge" data-skill="JavaScript"><div class="skillImage"><i class="fa-brands fa-js skill-icon ibadge" title="JavaScript"></i></div>JavaScript</span>
 						<span class="skill-badge" data-skill="ReactJs"><div class="skillImage"><i class="fa-brands fa-react skill-icon ibadge" title="ReactJS"></i></div>ReactJs</span>
@@ -217,10 +270,16 @@
 						<span class="skill-badge" data-skill="Python"><div class="skillImage"><i class="fa-brands fa-python skill-icon ibadge" title="Python"></i></div>Python</span>
 						<span class="skill-badge" data-skill="Java"><div class="skillImage"><i class="fa-brands fa-java skill-icon ibadge" title="Java"></i></div>Java</span>
 						<span class="skill-badge" data-skill="C"><div class="skillImage"><i class="fa-solid fa-c skill-icon ibadge" title="Langage C"></i></div>C</span>
+						<span class="skill-badge" data-skill="Flask"><div class="skillImage"><i class="fa-solid fa-flask ibadge"></i></div>Flask</span>
+						<span class="skill-badge" data-skill="Scikit-learn"><div class="skillImage"><i class="fa-solid fa-brain ibadge"></i></div>Scikit-learn</span>
+						<span class="skill-badge" data-skill="MySQL"><div class="skillImage"><i class="fa-solid fa-database ibadge"></i></div>MySQL</span>
+						<span class="skill-badge" data-skill="JavaFX"><div class="skillImage"><i class="fa-brands fa-java ibadge"></i></div>JavaFX</span>
+						<span class="skill-badge" data-skill="Git"><div class="skillImage"><i class="fa-brands fa-git-alt ibadge"></i></div>Git</span>
+						<span class="skill-badge" data-skill="Streamlit"><div class="skillImage"><i class="fa-solid fa-chart-bar ibadge"></i></div>Streamlit</span>
 					</div>
 				</div>
 				<div class="body4 skills-block">
-					<h3 class="ecole ecole1 rouge skills">Other skills</h3>
+					<h3 class="ecole ecole1 rouge skills" data-i18n="skills-cat4">Other skills</h3>
 					<div class="skills-container">
 						<span class="skill-badge" data-skill="Figma"><div class="skillImage"><i class="fa-brands fa-figma skill-icon ibadge" title="Figma"></i></div>Figma</span>
 						<span class="skill-badge" data-skill="Canva"><div class="skillImage"><i class="fa-solid fa-pen-ruler ibadge"></i></div>Canva</span>
@@ -230,1522 +289,1040 @@
 						<span class="skill-badge" data-skill="discipline"><div class="skillImage"><i class="fa-solid fa-bullseye ibadge"></i></div>discipline</span>
 						<span class="skill-badge" data-skill="leadership"><div class="skillImage"><i class="fa-solid fa-people-group ibadge"></i></div>leadership</span>
 						<span class="skill-badge" data-skill="management"><div class="skillImage"><i class="fa-solid fa-sitemap ibadge"></i></div>management</span>
-						<span class="skill-badge" data-skill="">...</span>
+						<span class="skill-badge" data-skill="QA Testing"><div class="skillImage"><i class="fa-solid fa-clipboard-check ibadge"></i></div>QA Testing</span>
+						<span class="skill-badge" data-skill="Agile"><div class="skillImage"><i class="fa-solid fa-rotate ibadge"></i></div>Agile</span>
+						<span class="skill-badge" data-skill="Azure"><div class="skillImage"><i class="fa-solid fa-cloud ibadge"></i></div>Azure</span>
+						<span class="skill-badge" data-skill="OCI"><div class="skillImage"><i class="fa-solid fa-server ibadge"></i></div>OCI</span>
+						<span class="skill-badge" data-skill="GitHub"><div class="skillImage"><i class="fa-brands fa-github ibadge"></i></div>GitHub</span>
 					</div>
 				</div>
 			</div>
 		</div>
 		<div id="pageCertificates" class="sections div">	<!-- div6 -->
 			<div class="espaceNoir"></div>
-			<img class="remove remove1000" src="img/img11.svg" height="101%" usemap="#pageCertificates" alt="image of navigation">
+			<div class="nav-ribbon"></div>
 			<div class="div3 ecart container">
 				<video id="scroll" src="img/vid2.mp4" width="10%" autoplay loop></video>
 				<div>
 					<img class="img5 remove" src="img/img5.svg" width="320" alt="section tiltle support">
-					<h2 class="section norwester">Certificates</h2>
+					<h2 class="section norwester" data-i18n="nav-certs">Certificates</h2>
 				</div>
-				<div class="div8">
-					<figure>
-						<img class="image-zoom projetimage" src="img/CC.jpg" width="100%" alt="ISC2 CC certificate image">
-						<figcaption class="smallsize"><a class="projets adec" href="certificates/CC.pdf" target="_blank">Certified in Cybersecurity</a></figcaption>
-					</figure>
-					<figure>
-						<img class="image-zoom projetimage" src="img/cisco_ethical_hacker.jpeg" width="100%" alt="ISC2 CC certificate image">
-						<figcaption class="smallsize"><a class="projets adec" href="certificates/cisco_ethical_hacker.pdf" target="_blank">Cisco Ethical Hacker</a></figcaption>
-					</figure>
-					<figure>
-						<img class="image-zoom projetimage" src="img/cybersecurity.png" width="100%" alt="cybersecuity certificate image">
-						<figcaption class="smallsize"><a class="projets adec" href="certificates/Alison_certificate_cyber_security__understand_threats_and_prevent_attacks.pdf" target="_blank">Alison cybersecurity course</a></figcaption>
-					</figure>
-					<figure>
-						<img class="image-zoom projetimage" src="img/intelligence artificielle.png" width="100%" alt="artificial intelligence certificate image">
-						<figcaption class="smallsize"><a class="projets adec" href="certificates/Certificat en Intelligence Artificielle.pdf" target="_blank">Certificat en Intelligence Artificielle</a></figcaption>
-					</figure>
-					<figure>
-						<img class="image-zoom projetimage" src="img/HTML5_CSS3_JS.pdf.png" width="100%" alt="web development certificate image">
-						<figcaption class="smallsize"><a class="projets adec" href="certificates/Learner-Verification-HTML5_CSS3_JS.pdf" target="_blank">HTML5-CSS3-JavaScript</a></figcaption>
-					</figure>
-					<figure>
-						<img class="image-zoom projetimage" src="img/hacking.png" width="100%" alt="ethical hacking certificate image">
-						<figcaption class="smallsize"><a class="projets adec" href="certificates/Ethical_Hacking.pdf" target="_blank">Ethical hacking</a></figcaption>
-					</figure>
-					<figure class="remove1200">
-						<img class="image-zoom projetimage" src="img/citoyennete.png" width="100%" alt="google online security certificate image">
-						<figcaption class="smallsize"><a class="projets adec" href="certificates/Cours sur la citoyenneté numérique et la sécurité _ Google.pdf" target="_blank">Citoyenneté numérique et sécurité</a></figcaption>
-					</figure>
-					<figure class="remove1200">
-						<img class="image-zoom projetimage" src="img/machine.png" width="100%" alt="machine learning certificate image">
-						<figcaption class="smallsize"><a class="projets adec" href="certificates/certificate machine learning.pdf" target="_blank">Machine learning</a></figcaption>
-					</figure>
-					<figure class="remove1200">
-						<img class="image-zoom projetimage" src="img/design.png" width="100%" alt="design certificate image">
-						<figcaption class="smallsize"><a class="projets adec" href="certificates/Alison_certificate_how_to_design_with_canva.pdf" target="_blank">How to design in Canva</a></figcaption>
-					</figure>
+				<div class="ce-grid">
+					<a class="ce-card" href="certificates/CC.pdf" target="_blank" rel="noopener">
+						<div class="ce-thumb"><img src="img/CC.jpg" alt="ISC2 CC"></div>
+						<div class="ce-body">
+							<span class="ce-code">ISC² · CC</span>
+							<h4 class="ce-title">Certified in Cybersecurity</h4>
+							<div class="ce-iss">ISC²</div>
+						</div>
+					</a>
+					<a class="ce-card" href="certificates/cisco_ethical_hacker.pdf" target="_blank" rel="noopener">
+						<div class="ce-thumb"><img src="img/cisco_ethical_hacker.jpeg" alt="Cisco Ethical Hacker"></div>
+						<div class="ce-body">
+							<span class="ce-code">CISCO · EH</span>
+							<h4 class="ce-title">Ethical Hacker</h4>
+							<div class="ce-iss">Cisco</div>
+						</div>
+					</a>
+					<a class="ce-card" href="certificates/Alison_certificate_cyber_security__understand_threats_and_prevent_attacks.pdf" target="_blank" rel="noopener">
+						<div class="ce-thumb"><img src="img/cybersecurity.png" alt="Cybersecurity"></div>
+						<div class="ce-body">
+							<span class="ce-code">ALISON · CYBER</span>
+							<h4 class="ce-title">Cybersecurity: Understand Threats & Prevent Attacks</h4>
+							<div class="ce-iss">Alison</div>
+						</div>
+					</a>
+					<a class="ce-card" href="certificates/Certificat en Intelligence Artificielle.pdf" target="_blank" rel="noopener">
+						<div class="ce-thumb"><img src="img/intelligence artificielle.png" alt="Intelligence Artificielle"></div>
+						<div class="ce-body">
+							<span class="ce-code">IA · CERT</span>
+							<h4 class="ce-title">Artificial Intelligence Certificate</h4>
+							<div class="ce-iss">Formation IA</div>
+						</div>
+					</a>
+					<a class="ce-card" href="certificates/Learner-Verification-HTML5_CSS3_JS.pdf" target="_blank" rel="noopener">
+						<div class="ce-thumb"><img src="img/HTML5_CSS3_JS.pdf.png" alt="Web Development"></div>
+						<div class="ce-body">
+							<span class="ce-code">WEB · DEV</span>
+							<h4 class="ce-title">HTML5 · CSS3 · JavaScript</h4>
+							<div class="ce-iss">Learner Verification</div>
+						</div>
+					</a>
+					<a class="ce-card" href="certificates/Ethical_Hacking.pdf" target="_blank" rel="noopener">
+						<div class="ce-thumb"><img src="img/hacking.png" alt="Ethical Hacking"></div>
+						<div class="ce-body">
+							<span class="ce-code">SEC · HACK</span>
+							<h4 class="ce-title">Ethical Hacking</h4>
+							<div class="ce-iss">Certification</div>
+						</div>
+					</a>
+					<a class="ce-card" href="certificates/Cours sur la citoyenneté numérique et la sécurité _ Google.pdf" target="_blank" rel="noopener">
+						<div class="ce-thumb"><img src="img/citoyennete.png" alt="Google Digital Citizenship"></div>
+						<div class="ce-body">
+							<span class="ce-code">GOOGLE · DIGITAL</span>
+							<h4 class="ce-title">Digital Citizenship &amp; Security</h4>
+							<div class="ce-iss">Google</div>
+						</div>
+					</a>
+					<a class="ce-card" href="certificates/certificate machine learning.pdf" target="_blank" rel="noopener">
+						<div class="ce-thumb"><img src="img/machine.png" alt="Machine Learning"></div>
+						<div class="ce-body">
+							<span class="ce-code">ML · CERT</span>
+							<h4 class="ce-title">Machine Learning</h4>
+							<div class="ce-iss">Certification</div>
+						</div>
+					</a>
+					<a class="ce-card" href="certificates/Alison_certificate_how_to_design_with_canva.pdf" target="_blank" rel="noopener">
+						<div class="ce-thumb"><img src="img/design.png" alt="Design with Canva"></div>
+						<div class="ce-body">
+							<span class="ce-code">ALISON · DESIGN</span>
+							<h4 class="ce-title">How to Design with Canva</h4>
+							<div class="ce-iss">Alison</div>
+						</div>
+					</a>
 				</div>
 			</div>
 		</div>
 		<div id="pageExperience" class="sections div">		<!-- div7 -->
 			<div class="espaceNoir"></div>
-			<div class="removeContainer remove remove1000"><img class="remove remove1000" src="img/img13.svg" height="707" usemap="#pageExperience" alt="image of navigation"></div>
+			<div class="nav-ribbon"></div>
 			<div>
 				<img class="img5 remove" src="img/img5.svg" width="320" alt="section tiltle support">
-				<h2 class="section norwester">Experience</h2>
+				<h2 class="section norwester" data-i18n="nav-experience">Experience</h2>
 			</div>
 			<div class="div3 ecart">
-			    <!-- AIESEC Experience -->
-			    <div class="smallsize">
-			        <h3 class="ecole ecole1 rouge">EP Manager – OGX-OGT, AIESEC in Tangier | 02/2025 – 07/2025</h3>
-			        <p id="aiesecpara" class="ecole">
-			            <img id="aiesec" src="img/aiesec.png" width="7%" alt="decorative image">
-			            AIESEC is a global youth-led organization focused on leadership development through international exchanges. As an Experience Participant (EP) Manager for Outgoing Global Talent, I managed and coordinated international internship programs, helping young professionals secure impactful opportunities abroad.
-			        </p>
-			    </div>
-
-			    <!-- CoderSphere Experience -->
-			    <div class="smallsize">
-			        <h3 class="ecole ecole1 rouge">Club CoderSphere - O'dace | 01/2025 - 05/2025</h3>
-			        <p id="skillphoto7para" class="ecole">
-			            <img id="skillphoto7" src="img/odace.jpg" width="6%" alt="decorative image">
-			            CoderSphere is a technology hub dedicated to robotics, embedded systems, and cybersecurity. Through hands-on projects, I deepened my expertise in electronics and hardware design while strengthening my technical problem-solving and teamwork skills in a collaborative environment.
-			        </p>
-			    </div>
-
-			    <!-- AEBM Experience -->
-			    <div class="smallsize">
-			        <h3 class="ecole ecole1 rouge">Secrétaire Général Adjoint (SGA), AEBM - Tetouan | 10/2023 - 10/2024</h3>
-			        <p id="skillphoto8para" class="ecole">
-			            <img id="skillphoto8" src="img/aebm.jpg" width="6%" alt="decorative image">
-			            The AEBM supports Burkinabé students in Morocco through integration and guidance. During my tenure as Deputy Secretary General, I oversaw administrative tasks and coordinated community projects, significantly enhancing my leadership, organizational, and cross-cultural communication abilities.
-			        </p>
-			    </div>
+				<div class="ex-tl">
+					<!-- L3M Stage -->
+					<div class="ex-tl-item">
+						<div class="ex-tl-card">
+							<img class="ex-tl-logo" src="img/l3m_holding_logo.jpg" alt="L3M logo">
+							<span class="ex-when" data-i18n="exp1-when">2026</span>
+							<h3 class="ex-role" data-i18n="exp1-role">Internship – QA Tester Web/Mobile</h3>
+							<div class="ex-org">L3M</div>
+							<p class="ex-det" data-i18n="exp1-det">Functional, regression and security testing on web and mobile applications. Writing test plans, test cases and bug reports; collaboration with development teams in an agile cycle.</p>
+						</div>
+					</div>
+					<!-- Ensate CLUB -->
+					<div class="ex-tl-item">
+						<div class="ex-tl-card">
+							<span class="ex-when" data-i18n="exp2-when">Feb. 2026 – Present</span>
+							<h3 class="ex-role" data-i18n="exp2-role">Secretary General</h3>
+							<div class="ex-org">Ensate International Students CLUB</div>
+							<p class="ex-det" data-i18n="exp2-det">Managing administrative operations, communication and logistics for major events of the international student association at ENSA Tétouan.</p>
+						</div>
+					</div>
+					<!-- AIESEC -->
+					<div class="ex-tl-item">
+						<div class="ex-tl-card">
+							<img class="ex-tl-logo" src="img/aiesec.png" alt="AIESEC logo">
+							<span class="ex-when" data-i18n="exp3-when">02/2025 – 07/2025</span>
+							<h3 class="ex-role" data-i18n="exp3-role">EP Manager – OGX-OGT</h3>
+							<div class="ex-org">AIESEC in Tangier</div>
+							<p class="ex-det" data-i18n="exp3-det">AIESEC is a global youth-led organization focused on leadership development through international exchanges. As an Experience Participant (EP) Manager for Outgoing Global Talent, I managed and coordinated international internship programs, helping young professionals secure impactful opportunities abroad.</p>
+						</div>
+					</div>
+					<!-- Brainwave Matrix Stage -->
+					<div class="ex-tl-item">
+						<div class="ex-tl-card">
+							<img class="ex-tl-logo" src="img/brainwave.jpg" alt="Brainwave Matrix logo">
+							<span class="ex-when" data-i18n="exp4-when">Apr. – May 2025</span>
+							<h3 class="ex-role" data-i18n="exp4-role">Internship – Cybersecurity &amp; ML</h3>
+							<div class="ex-org">Brainwave Matrix</div>
+							<p class="ex-det" data-i18n="exp4-det">Built a Phishing URL Scanner (Python, Flask, Scikit-learn) classifying URLs in real time, and a Password Strength Checker (Python, Streamlit) with visual feedback and improvement suggestions.</p>
+						</div>
+					</div>
+					<!-- CoderSphere / O'dace -->
+					<div class="ex-tl-item">
+						<div class="ex-tl-card">
+							<img class="ex-tl-logo" src="img/odace.jpg" alt="O'dace logo">
+							<span class="ex-when" data-i18n="exp5-when">01/2025 – 05/2025</span>
+							<h3 class="ex-role" data-i18n="exp5-role">Club CoderSphere</h3>
+							<div class="ex-org">O'dace</div>
+							<p class="ex-det" data-i18n="exp5-det">CoderSphere is a technology hub dedicated to robotics, embedded systems, and cybersecurity. Through hands-on projects, I deepened my expertise in electronics and hardware design while strengthening my technical problem-solving and teamwork skills in a collaborative environment.</p>
+						</div>
+					</div>
+					<!-- AEBM -->
+					<div class="ex-tl-item">
+						<div class="ex-tl-card">
+							<img class="ex-tl-logo" src="img/aebm.jpg" alt="AEBM logo">
+							<span class="ex-when" data-i18n="exp6-when">10/2023 – 10/2024</span>
+							<h3 class="ex-role" data-i18n="exp6-role">Deputy Secretary General</h3>
+							<div class="ex-org">AEBM – Tétouan</div>
+							<p class="ex-det" data-i18n="exp6-det">The AEBM supports Burkinabé students in Morocco through integration and guidance. During my tenure as Deputy Secretary General, I oversaw administrative tasks and coordinated community projects, significantly enhancing my leadership, organizational, and cross-cultural communication abilities.</p>
+						</div>
+					</div>
+				</div>
 			</div>
 
 		</div>
 		<div id="pageServices" class="sections div">		<!-- div8 -->
 			<div class="espaceNoir"></div>
-			<img class="remove remove1000" src="img/img15.svg" height="101%" usemap="#pageServices" alt="image of navigation">
+			<div class="nav-ribbon"></div>
 			<div>
 				<img class="img5 remove" src="img/img5.svg" width="320" alt="section tiltle support">
-				<h2 class="section norwester">Services</h2>
+				<h2 class="section norwester" data-i18n="nav-services">Services</h2>
 			</div>
-			<div class="div3 ecart">
-				<img id="skillphoto1" src="img/skillphoto1.png" width="8%" alt="decorative image">
-				<img id="skillphoto5" src="img/skillphoto5.png" width="8%" alt="decorative image">
-				<img id="skillphoto6" src="img/skillphoto6.png" width="8%" alt="decorative image">
-				<div class="div7">
-					<div class="ecart">
-						<div class="smallsize">
-							<h3 class="ecole ecole1 rouge"><strong>Security testing</strong></h3>
-							<p class="ecole">Evaluate and enhance the resilience of your systems by identifying vulnerabilities and implementing measures to protect against potential threats.	</p>
-							<button class="choose"><a class="ecole adec" href="#pageContact">Choose</a></button>
+			<div class="sv-wrapper">
+				<div class="sv-grid">
+
+					<div class="sv-card" data-clr="red">
+						<div class="sv-icon-wrap">
+							<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><circle cx="12" cy="11" r="3"/></svg>
 						</div>
-						<div class="smallsize">
-							<h3 class="ecole ecole1 rouge"><strong>Penetration testing</strong></h3>
-							<p class="ecole">Simulate real-world attacks on your IT infrastructure to discover security weaknesses before malicious actors can exploit them.</p>
-							<button class="choose"><a class="ecole adec" href="#pageContact">Choose</a></button>
-						</div>
-						<div class="smallsize">
-							<h3 class="ecole ecole1 rouge"><strong>Network management</strong></h3>
-							<p class="ecole">Ensure seamless operation and security of your network infrastructure with proactive monitoring, maintenance, and optimization services.</p>
-							<button class="choose"><a class="ecole adec" href="#pageContact">Choose</a></button>
-						</div>
+						<h3 class="sv-title" data-i18n="sv1-title">Penetration Testing</h3>
+						<p class="sv-desc" data-i18n="sv1-desc">Real-world attack simulation on your systems to uncover vulnerabilities before malicious actors can exploit them.</p>
+						<div class="sv-tags"><span>Kali Linux</span><span>OWASP</span><span>Metasploit</span></div>
+						<a href="#pageContact" class="sv-cta" data-i18n="sv-cta">Contact me</a>
 					</div>
-					<div class="ecart">
-						<div class="smallsize">
-							<h3 class="ecole ecole1 rouge"><strong>Website front-end development</strong></h3>
-							<p class="ecole">Create modern, responsive, and user-friendly web interfaces that ensure an engaging experience for your audience across all devices.</p>
-							<button class="choose"><a class="ecole adec" href="#pageContact">Choose</a></button>
+
+					<div class="sv-card" data-clr="blue">
+						<div class="sv-icon-wrap">
+							<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M7 10l2 2 3-3 2 2 2-2"/></svg>
 						</div>
-						<div class="smallsize">
-							<h3 class="ecole ecole1 rouge"><strong>Design</strong></h3>
-							<p class="ecole">Deliver innovative and visually appealing designs tailored to your brand identity and business needs, boosting your online presence.</p>
-							<button class="choose"><a class="ecole adec" href="#pageContact">Choose</a></button>
-						</div>
-						<div class="smallsize">
-							<h3 class="ecole ecole1 rouge">Other services</h3>
-							<p class="ecole">Tailor-made solutions designed to meet your unique requirements, ensuring maximum satisfaction and effective results.</p>
-							<button class="choose"><a class="ecole adec" href="#pageContact">Choose</a></button>
-						</div>
+						<h3 class="sv-title" data-i18n="sv2-title">SOC &amp; Blue Team</h3>
+						<p class="sv-desc" data-i18n="sv2-desc">Full SOC infrastructure deployment (SIEM, SOAR, incident management) to detect and respond to threats in real time.</p>
+						<div class="sv-tags"><span>Wazuh</span><span>TheHive 5</span><span>Shuffle SOAR</span></div>
+						<a href="#pageContact" class="sv-cta" data-i18n="sv-cta">Contact me</a>
 					</div>
+
+					<div class="sv-card" data-clr="purple">
+						<div class="sv-icon-wrap">
+							<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/><path d="M8 11l2 2 4-4"/></svg>
+						</div>
+						<h3 class="sv-title" data-i18n="sv3-title">Security &amp; Web/Mobile Testing</h3>
+						<p class="sv-desc" data-i18n="sv3-desc">Functional, regression and security testing on your web and mobile apps, with structured bug reports in an agile cycle.</p>
+						<div class="sv-tags"><span>QA Testing</span><span>Burp Suite</span><span>Agile</span></div>
+						<a href="#pageContact" class="sv-cta" data-i18n="sv-cta">Contact me</a>
+					</div>
+
+					<div class="sv-card" data-clr="green">
+						<div class="sv-icon-wrap">
+							<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+						</div>
+						<h3 class="sv-title" data-i18n="sv4-title">Front-End Development</h3>
+						<p class="sv-desc" data-i18n="sv4-desc">Modern, responsive and animated web interfaces — from mockup to deployment, with a strong focus on UX quality.</p>
+						<div class="sv-tags"><span>HTML/CSS</span><span>JavaScript</span><span>React</span></div>
+						<a href="#pageContact" class="sv-cta" data-i18n="sv-cta">Contact me</a>
+					</div>
+
+					<div class="sv-card" data-clr="orange">
+						<div class="sv-icon-wrap">
+							<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="2" y1="7" x2="22" y2="7"/><path d="M8 21h8M12 17v4"/></svg>
+						</div>
+						<h3 class="sv-title" data-i18n="sv5-title">Java Desktop Apps</h3>
+						<p class="sv-desc" data-i18n="sv5-desc">Full-featured desktop applications for client management, reservations or business workflows, connected to a database.</p>
+						<div class="sv-tags"><span>JavaFX</span><span>MySQL</span><span>JDBC</span></div>
+						<a href="#pageContact" class="sv-cta" data-i18n="sv-cta">Contact me</a>
+					</div>
+
+					<div class="sv-card" data-clr="amber">
+						<div class="sv-icon-wrap">
+							<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="7" y="7" width="10" height="10" rx="1"/><path d="M9 2v2M15 2v2M9 20v2M15 20v2M2 9h2M2 15h2M20 9h2M20 15h2"/></svg>
+						</div>
+						<h3 class="sv-title" data-i18n="sv6-title">IoT &amp; Embedded Systems</h3>
+						<p class="sv-desc" data-i18n="sv6-desc">Design of intelligent embedded systems: data acquisition, automation and IoT/cloud connectivity.</p>
+						<div class="sv-tags"><span>ESP32</span><span>Arduino</span><span>FPGA</span><span>VHDL</span></div>
+						<a href="#pageContact" class="sv-cta" data-i18n="sv-cta">Contact me</a>
+					</div>
+
+					<div class="sv-card" data-clr="sky">
+						<div class="sv-icon-wrap">
+							<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9z"/><rect x="10" y="13" width="4" height="4" rx="1"/><path d="M12 13v-2a2 2 0 0 1 4 0v2"/></svg>
+						</div>
+						<h3 class="sv-title" data-i18n="sv7-title">Cloud Security &amp; IDS/IPS</h3>
+						<p class="sv-desc" data-i18n="sv7-desc">Deployment and hardening of cloud infrastructures with active intrusion detection and prevention systems.</p>
+						<div class="sv-tags"><span>Azure</span><span>OCI</span><span>Suricata</span><span>VNet</span></div>
+						<a href="#pageContact" class="sv-cta" data-i18n="sv-cta">Contact me</a>
+					</div>
+
+					<div class="sv-card" data-clr="violet">
+						<div class="sv-icon-wrap">
+							<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="5" cy="7" r="2"/><circle cx="19" cy="7" r="2"/><circle cx="5" cy="17" r="2"/><circle cx="19" cy="17" r="2"/><circle cx="12" cy="12" r="2"/><path d="M7 7h3m4 0h3M7 17h3m4 0h3M12 14v2M12 10V8"/></svg>
+						</div>
+						<h3 class="sv-title" data-i18n="sv8-title">AI &amp; Machine Learning</h3>
+						<p class="sv-desc" data-i18n="sv8-desc">ML models for classification, anomaly detection and predictive analytics applied to real-world problems.</p>
+						<div class="sv-tags"><span>Python</span><span>Scikit-learn</span><span>Flask</span><span>Streamlit</span></div>
+						<a href="#pageContact" class="sv-cta" data-i18n="sv-cta">Contact me</a>
+					</div>
+
 				</div>
 			</div>
 		</div>
 		<div id="pagePortfolio" class="sections div">		<!-- div9 -->
 			<div class="espaceNoir"></div>
-			<img class="remove remove1000" src="img/img17.svg" height="101%" usemap="#pagePortfolio" alt="image of navigation">
+			<div class="nav-ribbon"></div>
 			<div class="div3 ecart">
 				<div>
 					<img class="img5 remove" src="img/img5.svg" width="320" alt="section tiltle support">
-					<h2 class="section norwester">Portfolio</h2>
+					<h2 class="section norwester" data-i18n="nav-portfolio">Portfolio</h2>
 				</div>
-				<div class="div8">
-					<figure class="projetremove">
-						<img class="image-zoom projetimage" src="img/prepa4.svg" width="100%" alt="illustrative image">
-						<figcaption class="smallsize"><a class="projets adec projetlien" href="">Preparatory Cycle Project</a></figcaption>
-					</figure>
-					<div class="projetadd">
-						<h2 class=" rouge">Preparatory Cycle Project</h2>
-						<div class="projetaddcontent">
-							<div class="description">
-								<h3 class=" rouge">Description</h3>
-								<p>During our two-year preparatory cycle, we carried out our <strong>first university project</strong>. The aim of the project was to introduce us to the professional world. In a team of five, our project involved renovating the study room of an orphanage, organizing eating sessions with the orphans, and providing them with tutoring sessions. To achieve this, we first raised a budget of approximately 6,500 Moroccan dirhams.</p>
-							</div>
-							<div class="resources">
-								<h3 class=" rouge">Resources</h3>
-								<span class="resourcestitle rouge">Some images of the project.</span>	
-								<figure class="resourcesImages">
-									<img class="image" src="img/prepa1.jpg" width="100%" alt="illustrative image">
-									<img class="image" src="img/prepa2.jpg" width="100%" alt="illustrative image">
-									<img class="image" src="img/prepa3.jpg" width="100%" alt="illustrative image">
-								</figure>
-								
-								<button class="projetbutton">Click here to go back</button>
-							</div>
+				<div class="pt-section">
+					<div class="pt-list" id="pt-list">
+						<div class="pt-filters">
+							<button class="pt-filter pt-active" data-cat="all" data-i18n="pt-filter-all">All</button>
+							<button class="pt-filter" data-cat="iot" data-i18n="pt-filter-iot">IoT / Embedded</button>
+							<button class="pt-filter" data-cat="cyber" data-i18n="pt-filter-cyber">Cybersecurity</button>
+							<button class="pt-filter" data-cat="web" data-i18n="pt-filter-web">Web</button>
+							<button class="pt-filter" data-cat="java" data-i18n="pt-filter-java">Java</button>
+							<button class="pt-filter" data-cat="fpga" data-i18n="pt-filter-fpga">FPGA</button>
+							<button class="pt-filter" data-cat="autre" data-i18n="pt-filter-other">Other</button>
 						</div>
-					</div>
-					<figure class="projetremove">
-						<img class="image-zoom projetimage" src="img/img19.png" width="100%" alt="image of navigation" alt="illustrative image">
-						<figcaption class="smallsize"><a class="projets adec projetlien" href="">Ingeneering Cycle Projects</a></figcaption>
-					</figure>
-					<div class="projetadd">
-						<h2 class=" rouge">Ingeneering Cycle Projects</h2>
-						<div class="projetaddcontent">
-							<div class="description">
-								<h3 class=" rouge">Description</h3>
-								<p>During the engineering cycle, <strong>we work on many projects</strong>, almost in every module. In our field, which is cybersecurity and embedded systems, our projects combine both aspects simultaneously.</p>
-							</div>
-							<div class="resources">
-								<h3 class=" rouge">Resources</h3>
-								<span class="resourcestitle rouge">Some aspects of the projects.</span>
-								<figure class="resourcesImages">
-									<img class="image" src="img/ci2.jpg" width="100%" alt="illustrative image">
-									<img class="image" src="img/ci1.jpg" width="100%" alt="illustrative image">
-									<img class="image" src="img/ci3.jpg" width="100%" alt="illustrative image">
-								</figure>
-									
-								<button class="projetbutton">Click here to go back</button>
-							</div>
+						<div class="pt-grid">
+
+							<article class="pt-card" data-cat="cyber" data-det="shadow">
+								<div class="pt-glare"></div>
+								<div class="pt-thumb"><img src="img/img19.png" alt="ShadowFactory SOC"></div>
+								<div class="pt-body">
+									<div class="pt-cats" data-i18n="pt-shadow-cats">Cybersecurity &middot; SOC &middot; Cloud · R&amp;D</div>
+									<h3 class="pt-title">ShadowFactory – Red Team vs Blue Team</h3>
+									<p class="pt-desc" data-i18n="pt-shadow-desc">Full SOC infrastructure (Wazuh, TheHive 5, Shuffle SOAR) on OCI monitoring a simulated IT/OT industrial environment. 15 detection rules, automated SOAR workflow (detect → block IP → TheHive incident).</p>
+									<div class="pt-stack"><span>OCI</span><span>Wazuh</span><span>TheHive 5</span><span>Shuffle SOAR</span><span>Modbus</span><span>iptables</span></div>
+									<a class="pt-link" href="https://github.com/Pro-simpo" target="_blank" rel="noopener">GitHub <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+								</div>
+							</article>
+
+							<article class="pt-card" data-cat="cyber" data-det="ids">
+								<div class="pt-glare"></div>
+								<div class="pt-thumb"><img src="img/img19.png" alt="IDS/IPS Azure"></div>
+								<div class="pt-body">
+									<div class="pt-cats" data-i18n="pt-ids-cats">Cybersecurity &middot; IDS/IPS &middot; Azure</div>
+									<h3 class="pt-title">IDS/IPS Cloud Deployment (Azure)</h3>
+									<p class="pt-desc" data-i18n="pt-ids-desc">Suricata 8.0.4 deployment on Azure with custom VNet segmentation and NSG rules. 50,000+ active signatures and 4 custom detection rules for intrusion prevention.</p>
+									<div class="pt-stack"><span>Azure</span><span>Suricata 8.0.4</span><span>VNet</span><span>NSG</span><span>IDS/IPS</span></div>
+									<a class="pt-link" href="https://github.com/Pro-simpo" target="_blank" rel="noopener">GitHub <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+								</div>
+							</article>
+
+							<article class="pt-card" data-cat="iot" data-det="fire">
+								<div class="pt-glare"></div>
+								<div class="pt-thumb"><img src="img/videoFireDetection.jpg" alt="Forest Fire Detection"></div>
+								<div class="pt-body">
+									<div class="pt-cats" data-i18n="pt-fire-cats">IoT &middot; Embedded &middot; ML</div>
+									<h3 class="pt-title">Forest Fire Detection System</h3>
+									<p class="pt-desc" data-i18n="pt-fire-desc">End-to-end IoT solution combining ESP32 sensors, Random Forest ML, and a real-time web dashboard for early forest fire detection.</p>
+									<div class="pt-stack"><span>ESP32</span><span>MQTT</span><span>Python</span><span>Scikit-learn</span><span>Flask</span><span>MySQL</span></div>
+									<a class="pt-link" href="https://github.com/KunakaDK/Proactive-Forest-Fire-Detection-Management-System" target="_blank" rel="noopener">GitHub <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+								</div>
+							</article>
+
+							<article class="pt-card" data-cat="iot" data-det="solar">
+								<div class="pt-glare"></div>
+								<div class="pt-thumb"><img src="img/solar.jpg" alt="Solar Tracker"></div>
+								<div class="pt-body">
+									<div class="pt-cats" data-i18n="pt-solar-cats">IoT &middot; AI &middot; Embedded</div>
+									<h3 class="pt-title">Solar Tracker AI-Driven System</h3>
+									<p class="pt-desc" data-i18n="pt-solar-desc">Embedded system with ESP32 and AI algorithms that automatically adjusts solar panel orientation to maximize energy production.</p>
+									<div class="pt-stack"><span>ESP32</span><span>Arduino</span><span>Flutter</span><span>Firebase</span><span>AI/ML</span></div>
+									<a class="pt-link" href="https://github.com/Pro-simpo/" target="_blank" rel="noopener">GitHub <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+								</div>
+							</article>
+
+							<article class="pt-card" data-cat="java" data-det="hepras">
+								<div class="pt-glare"></div>
+								<div class="pt-thumb"><img src="img/videoHePRAS.jpg" alt="HePRAS"></div>
+								<div class="pt-body">
+									<div class="pt-cats" data-i18n="pt-hepras-cats">Java &middot; Database</div>
+									<h3 class="pt-title">HePRAS Healthcare System</h3>
+									<p class="pt-desc" data-i18n="pt-hepras-desc">Database management app for medical practices &mdash; patient records, appointments, billing, and role-based access control with SHA-256.</p>
+									<div class="pt-stack"><span>Java Swing</span><span>Oracle DB 21c</span><span>JDBC</span><span>SHA-256</span></div>
+									<a class="pt-link" href="https://github.com/KunakaDK/Healthcare-Patient-Records-and-Analytics-System-HePRAS-" target="_blank" rel="noopener">GitHub <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+								</div>
+							</article>
+
+							<article class="pt-card" data-cat="fpga" data-det="fpga">
+								<div class="pt-glare"></div>
+								<div class="pt-thumb"><img src="img/videoFPGA.jpg" alt="FPGA Parking"></div>
+								<div class="pt-body">
+									<div class="pt-cats" data-i18n="pt-fpga-cats">FPGA &middot; VHDL &middot; Digital Design</div>
+									<h3 class="pt-title">Intelligent Parking System</h3>
+									<p class="pt-desc" data-i18n="pt-fpga-desc">FPGA-based parking management with automated barrier control, real-time occupancy display, and FSM logic deployed in VHDL.</p>
+									<div class="pt-stack"><span>VHDL</span><span>FPGA</span><span>FSM</span><span>50 MHz</span></div>
+									<a class="pt-link" href="https://github.com/KunakaDK/Intelligent_Parking_System_with_VHDL" target="_blank" rel="noopener">GitHub <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+								</div>
+							</article>
+
+							<article class="pt-card" data-cat="web" data-det="job">
+								<div class="pt-glare"></div>
+								<div class="pt-thumb"><img src="img/videoJobApplication.png" alt="Job Tracker"></div>
+								<div class="pt-body">
+									<div class="pt-cats" data-i18n="pt-job-cats">Web &middot; React</div>
+									<h3 class="pt-title">React Job Application Tracker</h3>
+									<p class="pt-desc" data-i18n="pt-job-desc">React app to manage job applications with an analytics dashboard, advanced search/filter, and JSON import/export features.</p>
+									<div class="pt-stack"><span>React</span><span>Context API</span><span>Recharts</span></div>
+									<a class="pt-link" href="https://github.com/Pro-simpo/REACT_Job_Application_Tracker" target="_blank" rel="noopener">GitHub <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+								</div>
+							</article>
+
+							<article class="pt-card" data-cat="cyber" data-det="brainwave">
+								<div class="pt-glare"></div>
+								<div class="pt-thumb"><img src="img/brainwave.jpg" alt="Brainwave Internship"></div>
+								<div class="pt-body">
+									<div class="pt-cats" data-i18n="pt-brainwave-cats">Cybersecurity &middot; Python &middot; ML</div>
+									<h3 class="pt-title">Brainwave Internship Projects</h3>
+									<p class="pt-desc" data-i18n="pt-brainwave-desc">Two security tools built during internship: a Phishing URL Scanner with ML classification and a Password Strength Checker following OWASP standards.</p>
+									<div class="pt-stack"><span>Python</span><span>Flask</span><span>Streamlit</span><span>Scikit-learn</span></div>
+									<a class="pt-link" href="https://github.com/Pro-simpo/Brainwave_Matrix_Intern" target="_blank" rel="noopener">GitHub <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+								</div>
+							</article>
+
+							<article class="pt-card" data-cat="java" data-det="agency">
+								<div class="pt-glare"></div>
+								<div class="pt-thumb"><img src="img/overviewBg.png" alt="Travel Agency"></div>
+								<div class="pt-body">
+									<div class="pt-cats" data-i18n="pt-agency-cats">Java &middot; JavaFX &middot; Database</div>
+									<h3 class="pt-title">Travel Agency App</h3>
+									<p class="pt-desc" data-i18n="pt-agency-desc">Desktop app for managing clients, reservations, itineraries, and payments &mdash; with admin dashboard and WhatsApp integration.</p>
+									<div class="pt-stack"><span>JavaFX</span><span>MySQL</span><span>JDBC</span><span>CSS</span></div>
+									<a class="pt-link" href="https://github.com/Pro-simpo/JAVA-Travel_Agency_Project" target="_blank" rel="noopener">GitHub <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+								</div>
+							</article>
+
+							<article class="pt-card" data-cat="web" data-det="portfolio">
+								<div class="pt-glare"></div>
+								<div class="pt-thumb"><img src="img/img23.png" alt="Portfolio"></div>
+								<div class="pt-body">
+									<div class="pt-cats" data-i18n="pt-portfolio-cats">Web &middot; Front-end</div>
+									<h3 class="pt-title">Portfolio Website</h3>
+									<p class="pt-desc" data-i18n="pt-portfolio-desc">This portfolio &mdash; built from scratch with vanilla HTML, CSS, and JavaScript. Dark/light themes, canvas animations, and fully responsive.</p>
+									<div class="pt-stack"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
+								</div>
+							</article>
+
+							<article class="pt-card" data-cat="iot" data-det="odace">
+								<div class="pt-glare"></div>
+								<div class="pt-thumb"><img src="img/img22.png" alt="O'dace Electronics"></div>
+								<div class="pt-body">
+									<div class="pt-cats" data-i18n="pt-odace-cats">IoT &middot; Electronics &middot; Arduino</div>
+									<h3 class="pt-title">O'dace Electronics Projects</h3>
+									<p class="pt-desc" data-i18n="pt-odace-desc">Hands-on Arduino and electronics projects in the O&apos;dace club &mdash; components, circuits, and applied embedded systems theory.</p>
+									<div class="pt-stack"><span>Arduino</span><span>C++</span><span>Electronics</span></div>
+								</div>
+							</article>
+
+							<article class="pt-card" data-cat="web" data-det="marathon">
+								<div class="pt-glare"></div>
+								<div class="pt-thumb"><img src="img/img20.png" alt="CoderSphere Marathons"></div>
+								<div class="pt-body">
+									<div class="pt-cats" data-i18n="pt-marathon-cats">Web &middot; HTML &middot; CSS</div>
+									<h3 class="pt-title">CoderSphere Coding Marathons</h3>
+									<p class="pt-desc" data-i18n="pt-marathon-desc">Two timed front-end coding challenges. Won Marathon 1 by delivering a complete website in 5 hours. Placed 3rd in Marathon 2.</p>
+									<div class="pt-stack"><span>HTML</span><span>CSS</span></div>
+								</div>
+							</article>
+
+							<article class="pt-card" data-cat="autre" data-det="engineering">
+								<div class="pt-glare"></div>
+								<div class="pt-thumb"><img src="img/img19.png" alt="Engineering Projects"></div>
+								<div class="pt-body">
+									<div class="pt-cats" data-i18n="pt-engineering-cats">Academic &middot; Engineering</div>
+									<h3 class="pt-title">Engineering Cycle Projects</h3>
+									<p class="pt-desc" data-i18n="pt-engineering-desc">Academic projects from the engineering cycle at ENSA Tetouan combining cybersecurity and embedded systems across various modules.</p>
+									<div class="pt-stack"><span>Cybersecurity</span><span>Embedded</span><span>ENSA Tetouan</span></div>
+								</div>
+							</article>
+
+							<article class="pt-card" data-cat="autre" data-det="preparatory">
+								<div class="pt-glare"></div>
+								<div class="pt-thumb"><img src="img/prepa4.svg" alt="Preparatory Project"></div>
+								<div class="pt-body">
+									<div class="pt-cats" data-i18n="pt-preparatory-cats">Community &middot; Social</div>
+									<h3 class="pt-title">Preparatory Cycle Project</h3>
+									<p class="pt-desc" data-i18n="pt-preparatory-desc">Team social project: renovated an orphanage study room, organized tutoring sessions, and raised 6,500 MAD in community funding.</p>
+									<div class="pt-stack"><span>Teamwork</span><span>Community</span><span>Leadership</span></div>
+								</div>
+							</article>
+
 						</div>
-					</div>
-					<figure class="projetremove">
-						<img class="image-zoom projetimage" src="img/img20.png" width="100%" alt="illustrative image">
-						<figcaption class="smallsize"><a class="projets adec projetlien" href="">Marathon 1 CoderSphere</a></figcaption>
-					</figure>
-					<div class="projetadd">
-						<h2 class=" rouge">Marathon 1 CoderSphere</h2>
-						<div class="projetaddcontent">
-							<div class="description">
-								<h3 class=" rouge">Description</h3>
-								<p>This was our first project in the Codersphere club. We approached it as a challenge to see who would finish it successfully first. The project involved coding the front-end of a website based on a design created on Canva. The aim of the challenge was to test our knowledge in web development, specifically in HTML and CSS. We carried out the challenge on November 11, 2023. I won this first challenge by finishing it first in 5 hours.</p>
+					</div><!-- /.pt-list -->
+					<div class="pt-detail" id="pt-detail">
+						<button class="pt-back" id="pt-back" data-i18n="pt-back">&#8592; All projects</button>
+
+						<!-- ==================== FIRE DETECTION ==================== -->
+						<div class="pt-det" id="pd-fire">
+							<div class="pd-header">
+								<div class="pd-cats">IoT &middot; Embedded &middot; ML</div>
+								<h2 class="pd-title">Forest Fire Detection System</h2>
 							</div>
-							<div class="resources">
-								<h3 class=" rouge">Resources</h3>
-								<span class="resourcestitle rouge">Some images of the website.</span>
-								<figure class="resourcesImages">
-									<img class="image" src="img/marathon1-1.png" width="100%" alt="illustrative image">
-									<img class="image" src="img/marathon1-2.png" width="100%" alt="illustrative image">
-									<img class="image" src="img/marathon1-3.png" width="100%" alt="illustrative image">
-								</figure>
-									
-								<button class="projetbutton">Click here to go back</button>
-							</div>
-						</div>
-					</div>
-					<figure class="projetremove">
-						<img class="image-zoom projetimage" src="img/img20.png" width="100%" alt="illustrative image">
-						<figcaption class="smallsize"><a class="projets adec projetlien" href="">Marathon 2 CoderSphere</a></figcaption>
-					</figure>
-					<div class="projetadd">
-						<h2 class=" rouge">Marathon 2 CoderSphere</h2>
-						<div class="projetaddcontent">
-							<div class="description">
-								<h3 class=" rouge">Description</h3>
-								<p>This was our second project in the Codersphere club. We also approached it as a challenge to see who would finish it successfully first. The project involved coding the front-end of a personal portfolio. The aim of the challenge was to test our knowledge in web development, specifically in HTML and CSS. We carried out the challenge on November 11, 2023. I finished third at this challenge.</p>
-							</div>
-							<div class="resources">
-								<h3 class=" rouge">Resources</h3>
-								<span class="resourcestitle rouge">Some images of the website.</span>
-								<figure class="resourcesImages">
-									<img class="image" src="img/mara1.png" width="100%" alt="illustrative image">
-									<img class="image" src="img/mara2.png" width="100%" alt="illustrative image">
-									<img class="image" src="img/mara3.png" width="100%" alt="illustrative image">
-								</figure>
-								
-								<button class="projetbutton">Click here to go back</button>	
-							</div>
-						</div>
-					</div>
-					<figure class="projetremove">
-						<img class="image-zoom projetimage" src="img/img22.png" width="100%" alt="illustrative image">
-						<figcaption class="smallsize"><a class="projets adec projetlien" href="">Projects O'dace</a></figcaption>
-					</figure>
-					<div class="projetadd">
-						<h2 class=" rouge">Projects O'dace</h2>
-						<div class="projetaddcontent">
-							<div class="description">
-								<h3 class=" rouge">Description</h3>
-								<p>In the O'dace club, I take part in electronics projects. Our first projects were Arduino-based. Through these projects, we learned to work with various electronic components and to build several standard electronic circuits. It is through activities like these that we successfully apply the theoretical knowledge we gain at university.</p>
-							</div>
-							<div class="resources">
-								<h3 class=" rouge">Resources</h3>
-								<span class="resourcestitle rouge">Some images of the activities.</span>
-								<figure class="resourcesImages">
-									<img class="image" src="img/odace1.jpg" width="100%" alt="illustrative image">
-									<img class="image" src="img/odace2.jpg" width="100%" alt="illustrative image">
-									<img class="image" src="img/odace3.jpg" width="100%" alt="illustrative image">
-								</figure>
-									
-								<button class="projetbutton">Click here to go back</button>
-							</div>
-						</div>
-					</div>
-					<figure class="projetremove">
-						<img class="image-zoom projetimage" src="img/img23.png" width="100%" alt="illustrative image">
-						<figcaption class="smallsize"><a class="projets adec projetlien" href="">Portfolio Project</a></figcaption>
-					</figure>
-					<div class="projetadd">
-						<h2 class=" rouge">Portfolio Project</h2>
-						<div class="projetaddcontent">
-							<div class="description">
-								<h3 class=" rouge">Description</h3>
-								<p>Driven by the desire to create my own portfolio website to showcase my various achievements throughout my journey, I started coding. On this site, I included personal information, details about my academic and university background, my skills, certifications, professional experience, the services I offer, completed projects, and my contact information—in short, everything typically found on a portfolio website.</p>
-							</div>
-							<div class="resources">
-								<h3 class=" rouge">Resources</h3>
-								<span class="resourcestitle rouge">Some images of the website.</span>
-								<figure class="resourcesImages">
-									<img class="image" src="img/port1.png" width="100%" alt="illustrative image">
-									<img class="image" src="img/port2.png" width="100%" alt="illustrative image">
-									<img class="image" src="img/port3.png" width="100%" alt="illustrative image">
-								</figure>
-									
-								<button class="projetbutton">Click here to go back</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div id="pageHePRAS" class="sections div seeMore">	<!-- div11 -->
-			<div class="noirAgency1 AgencyArea1"></div>
-			<div class="div3 ecart AgencyArea2">
-				<div>
-					<img class="img5 remove" src="img/img5_2.png" height="83" alt="section tiltle support">
-					<h2 class="section norwester">HePRAS Healthcare System</h2>
-				</div>
-				<div class="smallsize Area2Element">
-					<div class="overview">
-						<div><h3 class="rouge">Overview</h3>
-						<p>HePRAS (Healthcare Practice Management System) is a comprehensive database management application developed during the "Administration Bases de Données" module. This solution streamlines the daily operations of medical practices by centralizing patient records, appointments, consultations, billing, and staff management.<br>
-						Built with Oracle Database 21c and Java Swing, the system implements role-based access control to ensure data security while maintaining an intuitive user experience for medical staff.</p></div>
-						<figure class="overviewBg">
-							<img src="img/videoHePRAS.jpg" width="100%">
-							<legend>Application interface</legend>
-						</figure>
-					</div>
-					<div class="width100">
-						<h3 class="listTitre rouge">Objective</h3>
-						<ol class="list indent databaselist">
-							<p>
-								In medical environments, inefficient data management leads to:
-								<ul class="structureList">
-									<li class="backSep animations">Lost patient records</li>
-									<div class="backsep"></div>
-									<li class="animations">Appointment conflicts and no-shows</li>
-									<li class="animations">Billing errors and revenue loss</li>
-									<div class="backsep"></div>
-									<li class="animations">Compromised patient confidentiality</li>
-								</ul>
-							</p>
-							<p>
-								Our goals were to:
-								<ul class="structureList">
-									<li class="backSep animations">Centralize all medical practice data in a secure, relational database.</li>
-									<div class="backsep"></div>
-									<li class="animations">Automate appointment scheduling and invoice generation.</li>
-									<li class="animations">Implement role-based permissions (Admin, Doctor, Nurse, Secretary, Accountant).</li>
-									<div class="backsep"></div>
-									<li class="animations">Ensure data integrity and HIPAA-aligned security practices.</li>
-								</ul>
-							</p>
-							<p>
-								This project demonstrates how database architecture and software design work together to solve real-world healthcare challenges.
-							</p>
-						</ol>
-					</div>
-					<div class="features width100">
-						<h3 class="listTitre rouge">Features</h3>
-						<ol class="featuresList list">
-							<li class="backSep animations"><span class="rouge sousTitre">Patient Management</span>
-								<ul class="gap">
-									<li class="animations">Complete patient registration with medical history</li>
-									<li class="animations">Instant search and retrieval of patient records</li>
-									<li class="animations">Full consultation history tracking</li>
-								</ul>
-							</li>
-							<div class="backsep"></div>
-							<li class="animations"><span class="rouge sousTitre">Appointment Scheduling</span>
-								<ul class="gap">
-									<li class="animations">Real-time calendar view for all medical staff</li>
-									<li class="animations">Conflict detection and automatic notifications</li>
-									<li class="animations">Support for recurring appointments</li>
-								</ul>
-							</li>
-							<li class="animations"><span class="rouge sousTitre ">Medical Consultations</span>
-								<ul class="gap">
-									<li class="animations">Structured documentation (symptoms, diagnosis, prescriptions)</li>
-									<li class="animations">Digital prescription generation</li>
-									<li class="animations">Complete patient journey tracking</li>
-								</ul>
-							</li>
-							<div class="backsep"></div>
-							<li class="animations"><span class="rouge sousTitre">Billing & Invoicing</span>
-								<ul>
-									<li class="animations">Automatic invoice generation from consultations</li>
-									<li class="animations">Payment tracking and financial reporting</li>
-									<li class="animations">Multi-service pricing configuration</li>
-								</ul>
-							</li>
-							<li class="animations"><span class="rouge sousTitre ">Staff Management</span>
-								<ul class="gap">
-									<li class="animations">Doctor profiles with specialties and schedules</li>
-									<li class="animations">Role-based dashboard customization</li>
-									<li class="animations">Activity logs for audit trails</li>
-								</ul>
-							</li>
-							<div class="backsep"></div>
-							<li class="animations"><span class="rouge sousTitre">Role-Based Access Control</span>
-								<ul>
-									<li class="animations">Admin: Full system access and configuration</li>
-									<li class="animations">Doctor: Consultations, prescriptions, appointments</li>
-									<li class="animations">Secretary: Patient registration, scheduling</li>
-									<li class="animations">Patient: Read-only access to his own data</li>
-								</ul>
-							</li>
-						</ol>
-					</div>
-					<div class="features width100">
-						<h3 class="listTitre rouge">Technologies Used</h3>
-						<ol class="featuresList list">
-							<li class="backSep animations"><span class="rouge sousTitre">Backend & Database</span>
-								<ul class="gap">
-									<li class="animations">Oracle Database 21c: Enterprise-grade RDBMS with PL/SQL stored procedures</li>
-									<li class="animations">JDBC: Java Database Connectivity for seamless integration</li>
-									<li class="animations">PL/SQL, SQL Developer: Database design and optimization</li>
-								</ul>
-							</li>
-							<div class="backsep"></div>
-							<li class="animations"><span class="rouge sousTitre">Frontend</span>
-								<ul class="gap">
-									<li class="animations">JavaFX</li>
-									<li class="animations">FXML</li>
-									<li class="animations">CSS</li>
-								</ul>
-							</li>
-							<li class="animations"><span class="rouge sousTitre ">Security</span>
-								<ul class="gap">
-									<li class="animations">SHA-256 Password Hashing: Secure credential storage</li>
-									<li class="animations">Prepared Statements: SQL injection prevention</li>
-									<li class="animations">Session Management: User authentication and authorization/li>
-								</ul>
-							</li>
-							<div class="backsep"></div>
-							<li class="animations"><span class="rouge sousTitre">Architecture</span>
-								<ul>
-									<li class="animations">MVC Pattern: Clean separation of concerns</li>
-									<li class="animations">DAO Layer: Database abstraction</li>
-									<li class="animations">Entity Classes: Object-relational mapping</li>
-								</ul>
-							</li>
-						</ol>
-					</div>
-					<div class="width100">
-						<h3 class="listTitre rouge">Database Design Highlights</h3>
-						<ul class="technologiesList list">
-							<li class="backSep animations">9 interconnected tables: Patients, Appointments, Consultations, Invoices, Doctors, Users, Roles, Services, Payments</li>
-							<div class="backsep"></div>
-							<li class="animations">Triggers: Auto-generating invoice IDs and timestamps</li>
-							<li class="animations">Views: Pre-configured queries for role-specific dashboards</li>
-							<div class="backsep"></div>
-							<li class="animations">Indexes: Optimized search performance on frequently queried fields</li>
-						</ul>
-					</div>
-					<div class="videoPartie width100">
-						<div class="videoside">
-							<h3 class="listTitre rouge">Results & Demonstration</h3>
-							<div class="videolist">
-								<p>Below is a video demonstration showcasing the key features:</p>
-								<div id="videoHePRAS">
-									<img class="videoImage border" src="img/videoHePRAS.jpg" alt="Aperçu de la vidéo">
+							<div class="pd-layout">
+								<div class="pd-main">
+									<div class="pd-section">
+										<h3 class="pd-section-h">Overview</h3>
+										<p>End-to-end IoT solution for early forest fire detection. ESP32 sensor nodes collect environmental data and publish via MQTT to a Python backend running a Random Forest classifier, with a real-time Flask web dashboard for monitoring and alerts.</p>
+									</div>
+									<div class="pd-section">
+										<h3 class="pd-section-h">Key Features</h3>
+										<ul class="pd-list">
+											<li>Distributed ESP32 sensor nodes (temperature, humidity, smoke, CO&#8322;)</li>
+											<li>MQTT publish/subscribe for real-time data streaming</li>
+											<li>Random Forest ML classifier — fire risk classification</li>
+											<li>Flask web dashboard with live sensor maps and alert logs</li>
+											<li>Automated SMS/email alerts on threshold breach</li>
+											<li>MySQL data persistence for historical analysis</li>
+										</ul>
+									</div>
+									<div class="pd-section">
+										<h3 class="pd-section-h">Technologies</h3>
+										<div class="pd-stack"><span>ESP32</span><span>MQTT</span><span>Python</span><span>Scikit-learn</span><span>Flask</span><span>MySQL</span><span>Node-RED</span></div>
+									</div>
+									<div class="pd-meta">
+										<a class="pd-link-btn" href="https://github.com/KunakaDK/Proactive-Forest-Fire-Detection-Management-System" target="_blank" rel="noopener"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.4-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.6 2.4 1.1 3 .9.1-.7.3-1.1.6-1.4-2.2-.3-4.6-1.1-4.6-5a4 4 0 011-2.7c-.1-.3-.5-1.3.1-2.7 0 0 .8-.3 2.7 1a9.4 9.4 0 015 0c1.9-1.3 2.7-1 2.7-1 .6 1.4.2 2.4.1 2.7a4 4 0 011 2.7c0 3.9-2.3 4.7-4.6 5 .4.3.7.9.7 1.8v2.6c0 .3.2.6.7.5A10 10 0 0012 2z"/></svg> GitHub</a>
+									</div>
+									<div class="pd-team">
+										<span class="pd-team-label">Team</span>
+										Taobata SIMPO&#x2019;R&Eacute;, Abdoul-Moumouni DIALLO, Daniel KUNAKA
+									</div>
+								</div>
+								<div class="pd-media">
+									<div class="pd-video-wrap" data-src="img/videoFireDetection.mp4">
+										<img src="img/videoFireDetection.jpg" alt="Forest Fire Detection demo">
+										<div class="pd-play"><svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg><span>Watch demo</span></div>
+									</div>
 								</div>
 							</div>
 						</div>
-						<div class="credit">
-							<div>
-								<h3 class="rouge">Team Members:</h3>
-								<ul>
-									<li>Taobata SIMPORE</li>
-									<li>Abdoul-Moumouni <br>DIALLO</li>
-									<li>Daniel KUNAKA</li>
-								</ul>
+
+						<!-- ==================== SOLAR TRACKER ==================== -->
+						<div class="pt-det" id="pd-solar">
+							<div class="pd-header">
+								<div class="pd-cats">IoT &middot; AI &middot; Embedded</div>
+								<h2 class="pd-title">Solar Tracker AI-Driven System</h2>
 							</div>
-						</div>
-						<p class="lienProjet">
-							Resources of the project here : <a class="sites" href="https://github.com/KunakaDK/Healthcare-Patient-Records-and-Analytics-System-HePRAS-" target="_blank">github</a>
-						</p>
-					</div>
-				</div>
-			</div>
-			<button class="seeMoreButton norwester">↓ SEE MORE ↓</button>
-		</div>
-		<div id="pageBrainwave" class="sections div seeMore">	<!-- div12 -->
-			<div class="noirAgency1 AgencyArea1"></div>
-			<div class="div3 ecart AgencyArea2">
-				<div>
-					<img class="img5 remove" src="img/img5_2.png" height="83" alt="section tiltle support">
-					<h2 class="section norwester">Brainwave Intership Projects</h2>
-				</div>
-				<div class="smallsize Area2Element">
-					<div class="overview">
-						<div>
-							<h3 class="rouge">Overview</h3>
-							<p>During my cybersecurity internship at <strong>Brainwave Matrix</strong>, I successfully developed two key projects that aim to enhance digital security, user awareness, and secure authentication methods.
-							Each project demonstrates my ability to combine software development, cybersecurity analysis, and interactive design to create useful and engaging security tools.
-							</p>
-						</div>
-						<figure class="overviewBg">
-							<img src="img/brainwave.jpg" width="100%">
-							<legend>Brainwave internship</legend>
-						</figure>
-					</div>
-					<div id="phishingScanner" class="width100">
-						<div>
-							<h2 class="rouge brainwaveTitre">Project 1: Phishing URL Scanner</h2>
-						</div>
-						<h3 class="listTitre rouge">Objective</h3>
-						<p class="internIndent listP">
-						Phishing attacks are one of the most prevalent cybersecurity threats today. They exploit users by tricking them into visiting fraudulent websites that steal sensitive information. To combat this, I built a Phishing URL Scanner, a tool that quickly determines whether a given URL is legitimate or malicious.
-						</p>
-					</div>
-					<div class="width100">
-						<h3 class="listTitre rouge">How It Works</h3>
-						<ul class="technologiesList list">
-							<li class="backSep animations">Real-time URL analysis: The tool takes user-provided URLs and evaluates them using security databases.</li>
-							<div class="backsep"></div>
-							<li class="animations">Pattern recognition: Detects red flags like domain misspellings, IP-based links, and common phishing indicators.</li>
-							<li class="animations">Threat classification: Categorizes URLs into safe, suspicious, or malicious based on various security markers.</li>
-							<div class="backsep"></div>
-							<li class="animations">Integration with known phishing databases: Cross-references URLs with a blacklist of phishing websites to ensure accurate detection.</li>
-						</ul>
-					</div>
-					<div class="width100">
-						<h3 class="listTitre rouge">Outcome & Impact</h3>
-						<ul class="technologiesList list">
-							<li class="backSep animations">Enables users to verify links before clicking, preventing potential phishing attacks.</li>
-							<div class="backsep"></div>
-							<li class="animations">Provides educational feedback on what makes a link suspicious.</li>
-							<li class="animations">Improves cybersecurity awareness by showing users why certain URLs may be dangerous.</li>
-							<div class="backsep"></div>
-							<li class="animations">Built using Python and integrated with security databases for accuracy.</li>
-						</ul>
-					</div>
-					<div class="width100">
-						<h3 class="listTitre rouge">Technologies Used</h3>
-						<ul class="technologiesList list">
-							<li class="backSep animations">Programming & Backend: Python, Flask, Streamlit.</li>
-							<div class="backsep"></div>
-							<li class="animations">Data Processing & ML: pandas, scikit-learn, under-sampling, hyperparameter tuning.</li>
-							<li class="animations">Security Analysis: tldextract, regex, requests.</li>
-							<div class="backsep"></div>
-							<li class="animations">Threat Intelligence: Known phishing databases.</li>
-						</ul>
-					</div>
-					<div class="videoProjet width100">
-						<div class="videoside">
-							<h3 class="listTitre rouge">Video Presentation</h3>
-							<div class="videolist">
-								<p>Check out this live demonstration</p>
-								<div id="video-container2">
-									<img class="videoImage border" src="img/brainwaveVideo.png" alt="Aperçu de la vidéo">
+							<div class="pd-layout">
+								<div class="pd-main">
+									<div class="pd-section">
+										<h3 class="pd-section-h">Overview</h3>
+										<p>Intelligent embedded system that automatically adjusts solar panel orientation using AI inference on an ESP32. A Flutter mobile app provides remote monitoring via Firebase, with live performance graphs and power analytics.</p>
+									</div>
+									<div class="pd-section">
+										<h3 class="pd-section-h">Key Features</h3>
+										<ul class="pd-list">
+											<li>ESP32 with dual-axis LDR feedback for angle computation</li>
+											<li>AI model inference for optimal panel orientation in real time</li>
+											<li>Flutter mobile app — live monitoring and remote control</li>
+											<li>Firebase real-time database for data sync</li>
+											<li>Power consumption analytics and production graphs</li>
+											<li>MATLAB simulation for algorithm validation</li>
+										</ul>
+									</div>
+									<div class="pd-section">
+										<h3 class="pd-section-h">Technologies</h3>
+										<div class="pd-stack"><span>ESP32</span><span>Arduino</span><span>Flutter</span><span>Firebase</span><span>AI/ML</span><span>MATLAB</span></div>
+									</div>
+									<div class="pd-meta">
+										<a class="pd-link-btn" href="https://github.com/Pro-simpo/" target="_blank" rel="noopener"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.4-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.6 2.4 1.1 3 .9.1-.7.3-1.1.6-1.4-2.2-.3-4.6-1.1-4.6-5a4 4 0 011-2.7c-.1-.3-.5-1.3.1-2.7 0 0 .8-.3 2.7 1a9.4 9.4 0 015 0c1.9-1.3 2.7-1 2.7-1 .6 1.4.2 2.4.1 2.7a4 4 0 011 2.7c0 3.9-2.3 4.7-4.6 5 .4.3.7.9.7 1.8v2.6c0 .3.2.6.7.5A10 10 0 0012 2z"/></svg> GitHub</a>
+										<a class="pd-link-btn pd-link-ghost" href="certificates/solar_Tracker.pdf" target="_blank" rel="noopener"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10,9 9,9 8,9"/></svg> Rapport PDF</a>
+									</div>
+									<div class="pd-team">
+										<span class="pd-team-label">Superviseur</span>
+										Mr. Younes WADIAI
+									</div>
+								</div>
+								<div class="pd-media">
+									<div class="pd-video-wrap" data-src="img/Solar_Tracker.mp4">
+										<img src="img/solarVid.jpg" alt="Solar Tracker demo">
+										<div class="pd-play"><svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg><span>Watch demo</span></div>
+									</div>
 								</div>
 							</div>
 						</div>
-						<p>
-							Resources of the project here : <a class="sites" href="https://github.com/Pro-simpo/Brainwave_Matrix_Intern" target="_blank">my github</a>
-						</p>
-					</div>
-					<div id="passwordChecker" class="width100">
-						<div>
-							<h2 class="rouge brainwaveTitre">Project 2: Password Strength Checker</h2>
-						</div>
-						<h3 class="listTitre rouge">Objective</h3>
-						<p class="internIndent listP">
-						Passwords are the first line of defense against unauthorized access. Weak passwords leave accounts vulnerable to brute-force attacks and credential stuffing. To help users create and validate strong passwords, I built a Password Strength Checker, a tool that assesses password security and provides real-time feedback.
-						</p>
-					</div>
-					<div class="width100">
-						<h3 class="listTitre rouge">How It Works</h3>
-						<ul class="technologiesList list">
-							<li class="backSep animations">Strength analysis: Evaluates passwords based on length, complexity, and uniqueness.</li>
-							<div class="backsep"></div>
-							<li class="animations">Interactive UI: Real-time validation using Streamlit, offering a color-coded indicator (red/orange/green) for password security levels.</li>
-							<li class="animations">Secure password generator: Allows users to generate strong passwords with customizable length & complexity preferences.</li>
-							<div class="backsep"></div>
-							<li class="animations">Educational feedback: Guides users on how to improve weak passwords with immediate suggestions.</li>
-						</ul>
-					</div>
-					<div class="width100">
-						<h3 class="listTitre rouge">Outcome & Impact</h3>
-						<ul class="technologiesList list">
-							<li class="backSep animations">Makes password security more accessible & understandable for users.</li>
-							<div class="backsep"></div>
-							<li class="animations">Created a user-friendly application with an intuitive design.</li>
-							<li class="animations">Encourages better security habits by providing educational tips.</li>
-							<div class="backsep"></div>
-							<li class="animations">Designed using Python, Streamlit, and UI/UX optimization techniques.</li>
-						</ul>
-					</div>
-					<div class="width100">
-						<h3 class="listTitre rouge">Technologies Used</h3>
-						<ul class="technologiesList list">
-							<li class="backSep animations">Python → Core programming language for security analysis.</li>
-							<div class="backsep"></div>
-							<li class="animations">Streamlit → Interactive framework for real-time password validation.</li>
-							<li class="animations">Base64 → Used for custom background implementation.</li>
-							<div class="backsep"></div>
-							<li class="animations">Security Guidelines → Principles aligned with OWASP password standards for secure authentication.</li>
-						</ul>
-					</div>
-					<div class="videoProjet width100">
-						<div class="videoside">
-							<h3 class="listTitre rouge">Video Presentation</h3>
-							<div class="videolist">
-								<p>Check out this live demonstration</p>
-								<div id="video-container3">
-									<img class="videoImage border" src="img/brainwaveVideo.png" alt="Aperçu de la vidéo">
+
+						<!-- ==================== HEPRAS ==================== -->
+						<div class="pt-det" id="pd-hepras">
+							<div class="pd-header">
+								<div class="pd-cats">Java &middot; Database</div>
+								<h2 class="pd-title">HePRAS Healthcare System</h2>
+							</div>
+							<div class="pd-layout">
+								<div class="pd-main">
+									<div class="pd-section">
+										<h3 class="pd-section-h">Overview</h3>
+										<p>Multi-role desktop application for healthcare facilities. Manages patient records, appointments, prescriptions, and billing with SHA-256 authentication and role-based access control for admins, doctors, and receptionists.</p>
+									</div>
+									<div class="pd-section">
+										<h3 class="pd-section-h">Key Features</h3>
+										<ul class="pd-list">
+											<li>Role-based access: admin, doctor, receptionist</li>
+											<li>SHA-256 password hashing and session management</li>
+											<li>Patient registration with complete medical history</li>
+											<li>Appointment scheduling with conflict detection</li>
+											<li>Prescription management and billing system</li>
+											<li>Analytics dashboards for clinical KPIs</li>
+											<li>JDBC connection pool to Oracle DB 21c</li>
+										</ul>
+									</div>
+									<div class="pd-section">
+										<h3 class="pd-section-h">Technologies</h3>
+										<div class="pd-stack"><span>Java Swing</span><span>Oracle DB 21c</span><span>JDBC</span><span>SHA-256</span><span>Maven</span></div>
+									</div>
+									<div class="pd-meta">
+										<a class="pd-link-btn" href="https://github.com/KunakaDK/Healthcare-Patient-Records-and-Analytics-System-HePRAS-" target="_blank" rel="noopener"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.4-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.6 2.4 1.1 3 .9.1-.7.3-1.1.6-1.4-2.2-.3-4.6-1.1-4.6-5a4 4 0 011-2.7c-.1-.3-.5-1.3.1-2.7 0 0 .8-.3 2.7 1a9.4 9.4 0 015 0c1.9-1.3 2.7-1 2.7-1 .6 1.4.2 2.4.1 2.7a4 4 0 011 2.7c0 3.9-2.3 4.7-4.6 5 .4.3.7.9.7 1.8v2.6c0 .3.2.6.7.5A10 10 0 0012 2z"/></svg> GitHub</a>
+									</div>
+									<div class="pd-team">
+										<span class="pd-team-label">Team</span>
+										Taobata SIMPO&#x2019;R&Eacute;, Abdoul-Moumouni DIALLO, Daniel KUNAKA
+									</div>
+								</div>
+								<div class="pd-media">
+									<div class="pd-video-wrap" data-src="img/videoHePRAS.mp4">
+										<img src="img/videoHePRAS.jpg" alt="HePRAS demo">
+										<div class="pd-play"><svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg><span>Watch demo</span></div>
+									</div>
 								</div>
 							</div>
 						</div>
-						<p class="lienProjet">
-							Resources of the project here : <a class="sites" href="https://github.com/Pro-simpo/Brainwave_Matrix_Intern-2" target="_blank">my github</a>
-						</p>
-					</div>
-				</div>
-			</div>
-			<button class="seeMoreButton norwester">↓ SEE MORE ↓</button>
-		</div>
-		<div id="pageFPGA" class="sections div seeMore">	<!-- div11 -->
-			<div class="noirAgency1 AgencyArea1"></div>
-			<div class="div3 ecart AgencyArea2">
-				<div>
-					<img class="img5 remove" src="img/img5_2.png" height="83" alt="section tiltle support">
-					<h2 class="section norwester">Parking System with VHDL</h2>
-				</div>
-				<div class="smallsize Area2Element">
-					<div class="overview">
-						<div><h3 class="rouge">Overview</h3>
-						<p>Intelligent Parking System with VHDL is an academic FPGA-based project developed as part of the module "Programmation FPGA". This system implements a complete parking management solution using hardware description language (VHDL) deployed on an FPGA development board.<br>
-						The system combines real-time vehicle tracking, automated barrier control, dynamic occupancy display, and safety mechanisms to create an efficient and secure parking management infrastructure. By leveraging modular digital design principles and finite state machines, the project demonstrates practical applications of FPGA technology in smart infrastructure.</p></div>
-						<figure class="overviewBg">
-							<img src="img/videoFPGA.jpg" width="100%">
-							<legend>Illustration</legend>
-						</figure>
-					</div>
-					<div class="width100">
-						<h3 class="listTitre rouge">Objective</h3>
-						<ol class="list indent databaselist">
-							<p>
-								With modern urban environments, parking management presents significant challenges related to space optimization, traffic flow, and user safety. Our main objectives for this project were to:
-								<ul class="structureList">
-									<li class="backSep animations">Automate vehicle entry and exit with real-time capacity monitoring.</li>
-									<div class="backsep"></div>
-									<li class="animations">Implement safety-first barrier control to prevent accidents.</li>
-									<li class="animations">Provide clear visual feedback on parking availability through dynamic displays.</li>
-									<div class="backsep"></div>
-									<li class="animations">Design a modular, scalable VHDL architecture suitable for FPGA synthesis.</li>
-									<li class="animations">Apply theoretical knowledge of digital systems design to a practical embedded solution.</li>
-								</ul>
-							</p>
-							<p>
-								This project demonstrates the practical implementation of FPGA programming concepts, offering a real-world application of hardware description languages in intelligent infrastructure systems.
-							</p>
-						</ol>
-					</div>
-					<div class="features width100">
-						<h3 class="listTitre rouge">Hardware Components to use</h3>
-						<ol class="featuresList list">
-							<li class="backSep animations"><span class="rouge sousTitre">FPGA Development Board</span>
-								<ul class="gap">
-									<li class="animations">Platform: Altera Cyclone / Xilinx Artix series.</li>
-									<li class="animations">System Clock: 50 MHz on-board oscillator for timing and synchronization.</li>
-									<li class="animations">Programming Interface: JTAG for bitstream configuration.</li>
-								</ul>
-							</li>
-							<div class="backsep"></div>
-							<li class="animations"><span class="rouge sousTitre">Sensors & Detection</span>
-								<ul class="gap">
-									<li class="animations">Entry/Exit Sensors: Inductive loop detectors or HC-SR04 ultrasonic sensors to detect vehicle presence at entry and exit points.</li>
-									<li class="animations">Passage Sensor: IR break-beam sensor positioned under the barrier for safety interlock detection.</li>
-									<li class="animations">Limit Switches: Mechanical switches to detect barrier fully open and fully closed positions.</li>
-								</ul>
-							</li>
-							<li class="animations"><span class="rouge sousTitre ">Actuators & Display</span>
-								<ul class="gap">
-									<li class="animations">Barrier Motor: DC motor controlled via L298N H-Bridge driver for opening and closing operations.</li>
-									<li class="animations">4-Digit 7-Segment Display: Multiplexed display showing real-time count of available parking spots.</li>
-								</ul>
-							</li>
-							<div class="backsep"></div>
-							<li class="animations"><span class="rouge sousTitre">Circuit Integration</span>
-								<ul>
-									<li class="animations">The FPGA interfaces with sensors through digital input pins and controls the motor driver and display through dedicated output pins, creating a complete hardware-software integration.</li>
-								</ul>
-							</li>
-						</ol>
-					</div>
-					<div class="features width100">
-						<h3 class="listTitre rouge">Software Architecture</h3>
-						<ol class="list indent databaselist">
-							<p>
-								The VHDL design follows a hierarchical, modular architecture with clear separation of concerns across four main components:
-								<ol class="featuresList">
-									<li class="backSep animations"><span class="rouge sousTitre">Top Level Controller (top_parking)</span>
-										<ul class="gap">
-											<li class="animations">Central coordinator managing all system modules and global logic.</li>
-											<li class="animations">Generic parameter: MAX_PLACES defines total parking capacity.</li>
-											<li class="animations">Entry Logic: Authorizes entry only when sensor_entry = '1' AND available_spots > 0.</li>
-											<li class="animations">Exit Logic: Always permits exit to prevent system deadlock (sensor_exit = '1' triggers exit).</li>
-										</ul>
-									</li>
-									<div class="backsep"></div>
-									<li class="animations"><span class="rouge sousTitre">Parking Counter Module (counter_block)</span>
-										<ul class="gap">
-											<li class="animations">Bidirectional counter maintaining data integrity.</li>
-											<li class="animations">Decrements count on valid entry (available_spots - 1).</li>
-											<li class="animations">Increments count on valid exit (available_spots + 1).</li>
-											<li class="animations">Outputs current available spots to both display controller and top-level logic.</li>
-										</ul>
-									</li>
-									<li class="animations"><span class="rouge sousTitre ">Barrier Control FSM (barrier_control)</span>
-										<ul class="gap">
-											<li class="animations">Finite State Machine with five distinct states: IDLE, OPENING, OPEN, WAITING_PASSAGE, CLOSING.</li>
-											<li class="animations">Safety interlock: Cannot transition to CLOSING state while sensor_passage is HIGH (vehicle detected under barrier).</li>
-											<li class="animations">Motor control: Drives H-Bridge inputs based on current FSM state and limit switch feedback.</li>
-											<li class="animations">State transitions based on sensor inputs and timer conditions.</li>
-										</ul>
-									</li>
-									<div class="backsep"></div>
-									<li class="animations"><span class="rouge sousTitre">Display Controller (display_block)</span>
-										<ul>
-											<li class="animations">Converts binary spot count to Binary-Coded Decimal (BCD) format.</li>
-											<li class="animations">Implements multiplexing logic for 4-digit 7-segment display.</li>
-											<li class="animations">Uses system clock to cycle through digits rapidly, creating persistence of vision effect.</li>
-											<li class="animations">Cathode outputs drive segment patterns (a-g), anode outputs select active digit.</li>
-										</ul>
-									</li>
-								</ol>
-							</p>
-						</ol>
-					</div>
-					<div class="features width100">
-						<h3 class="listTitre rouge">System Operation & Control Logic</h3>
-						<ol class="list indent databaselist">
-							<p>
-								The intelligent parking system operates through coordinated interaction between all modules:
-								<ol class="featuresList">
-									<li class="backSep animations"><span class="rouge sousTitre">Entry Scenario:</span>
-										<ul class="gap">
-											<li class="animations">Driver arrives at entry point, triggering sensor_entry.</li>
-											<li class="animations">Top-level logic checks if available_spots > 0.</li>
-											<li class="animations">If capacity available, barrier FSM transitions to OPENING state.</li>
-											<li class="animations">Barrier opens until limit_open switch is activated.</li>
-											<li class="animations">BSystem waits for vehicle passage (sensor_passage HIGH then LOW).</li>
-											<li class="animations">Barrier closes after vehicle clears (sensor_passage returns to LOW).</li>
-											<li class="animations">Counter decrements available spots by 1.</li>
-										</ul>
-									</li>
-									<div class="backsep"></div>
-									<li class="animations"><span class="rouge sousTitre">Exit Scenario:</span>
-										<ul class="gap">
-											<li class="animations">Driver triggers sensor_exit.</li>
-											<li class="animations">Exit is always authorized (deadlock prevention logic).</li>
-											<li class="animations">Barrier opens following same FSM sequence.</li>
-											<li class="animations">Counter increments available spots by 1 after vehicle exits.</li>
-										</ul>
-									</li>
-									<li class="animations"><span class="rouge sousTitre ">Safety Mechanisms:</span>
-										<ul class="gap">
-											<li class="animations">Hardware interlock prevents barrier closure while vehicle is underneath.</li>
-											<li class="animations">Capacity enforcement blocks new entries when parking is full.</li>
-											<li class="animations">Independent exit authorization ensures vehicles can always leave.</li>
-										</ul>
-									</li>
-								</ol>
-							</p>
-						</ol>
-					</div>
-					<div class="width100">
-						<h3 class="listTitre rouge">Key Features</h3>
-						<ul class="technologiesList list">
-							<li class="backSep animations">Automatic Vehicle Counting: Real-time bidirectional tracking of parking occupancy with entry decrement and exit increment logic.</li>
-							<div class="backsep"></div>
-							<li class="animations">Capacity Management: System automatically denies entry when places_disponibles = 0, preventing overcrowding.</li>
-							<li class="animations">Safety-First Design: Barrier control FSM includes hardware interlock logic preventing closure when obstacle detected.</li>
-							<div class="backsep"></div>
-							<li class="animations">Real-Time Visual Feedback: Multiplexed 4-digit 7-segment display continuously shows available parking spots.</li>
-							<li class="backSep animations">Deadlock Prevention: Exit operations are always authorized regardless of system state, ensuring smooth traffic flow.</li>
-							<div class="backsep"></div>
-							<li class="animations">Modular Architecture: Clear separation of concerns across counter, FSM, display, and top-level modules enables easy maintenance and scalability.</li>
-						</ul>
-					</div>
-					<div class="width100">
-						<h3 class="listTitre rouge">Technologies Used</h3>
-						<ul class="technologiesList list">
-							<li class="backSep animations">VHDL: Hardware description language for all digital logic implementation.</li>
-							<div class="backsep"></div>
-							<li class="animations">FPGA: Field-Programmable Gate Array platform (Altera Cyclone / Xilinx Artix series).</li>
-							<li class="animations">Digital Design Principles: Finite state machines, synchronous sequential logic, combinational logic.</li>
-							<div class="backsep"></div>
-							<li class="animations">Clock Management: 50 MHz system clock with proper timing constraints.</li>
-							<li class="backSep animations">Sensor Integration: Digital input interfacing for inductive loops, ultrasonic sensors, and IR detectors.</li>
-							<div class="backsep"></div>
-							<li class="animations">Motor Control: H-Bridge driver integration for DC motor actuation.</li>
-							<li class="animations">Display Multiplexing: Time-division multiplexing for multi-digit 7-segment display.</li>
-						</ul>
-					</div>
-					<div class="videoPartie width100">
-						<div class="videoside">
-							<h3 class="listTitre rouge">Full report in pdf</h3>
-							<div class="videolist">
-								<figure>
-									<img class="image-zoom projetimage" src="img/videoFPGA.jpg" width="100%" alt="FPGA project illustration">
-									<figcaption class="smallsize"><a class="projets adec" href="certificates/pdfFPGA.pdf" target="_blank">Intelligent Parking System with VHDL</a></figcaption>
-								</figure>
+
+						<!-- ==================== FPGA ==================== -->
+						<div class="pt-det" id="pd-fpga">
+							<div class="pd-header">
+								<div class="pd-cats">FPGA &middot; VHDL &middot; Digital Design</div>
+								<h2 class="pd-title">Intelligent Parking System</h2>
 							</div>
-						</div>
-						<div class="credit">
-							<div>
-								<h3 class="rouge">Team Members:</h3>
-								<ul>
-									<li>Taobata SIMPORE</li>
-									<li>Abdoul-Moumouni <br>DIALLO</li>
-									<li>Daniel KUNAKA</li>
-									<li>Doha BOUARRAF</li>
-									<li>Yousra MAKRI</li>
-									<li>Malak EL BAROUDI</li>
-									<li>Hafsa MOUHAFID</li>
-									<li>Laila SABOR</li>
-								</ul>
-							</div>
-						</div>
-						<p class="lienProjet">
-							Resources of the project here : <a class="sites" href="https://github.com/KunakaDK/Intelligent_Parking_System_with_VHDL" target="_blank">github</a>
-						</p>
-					</div>
-				</div>
-			</div>
-			<button class="seeMoreButton norwester">↓ SEE MORE ↓</button>
-		</div>
-		<div id="pageJobApplication" class="sections div seeMore">	<!-- div11 -->
-			<div class="noirAgency1 AgencyArea1"></div>
-			<div class="div3 ecart AgencyArea2">
-				<div>
-					<img class="img5 remove" src="img/img5_2.png" height="83" alt="section tiltle support">
-					<h2 class="section norwester">React Job Application Tracker</h2>
-				</div>
-				<div class="smallsize Area2Element">
-					<div class="overview">
-						<div><h3 class="rouge">Overview</h3>
-						<p>Job Application Tracker is a comprehensive web application designed to help job seekers efficiently organize, track, and manage their job applications. Built with React, the application leverages a modular component architecture and centralized state management through React Context API to deliver a seamless and consistent user experience.<br>
-						This tool addresses a common challenge faced by job seekers: keeping track of multiple applications across different platforms, stages, and timelines. With visual insights, advanced filtering, and data portability features, the application transforms the job hunting process into a structured and manageable workflow.</p></div>
-						<figure class="overviewBg">
-							<img src="img/videoJobApplication.png" width="100%">
-							<legend>Application interface</legend>
-						</figure>
-					</div>
-					<div class="width100">
-						<h3 class="listTitre rouge">Objective</h3>
-						<ol class="list indent databaselist">
-							<p>
-								In an increasingly competitive job market, managing numerous applications simultaneously can become overwhelming. The main objectives of this project were to:
-								<ul class="structureList">
-									<li class="backSep animations">Provide a centralized platform to track all job applications in one place.</li>
-									<div class="backsep"></div>
-									<li class="animations">Offer visual insights through charts and statistics to monitor application progress.</li>
-									<li class="animations">Enable advanced search and filtering capabilities for quick access to specific applications.</li>
-									<div class="backsep"></div>
-									<li class="animations">Allow data export and import for backup, migration, and sharing purposes.</li>
-									<li class="animations">Create an intuitive, user-friendly interface with theme customization options.</li>
-								</ul>
-							</p>
-							<p>
-								This project demonstrates the practical application of modern web development principles, delivering a real-world solution for personal productivity and career management.
-							</p>
-						</ol>
-					</div>
-					<div class="features width100">
-						<h3 class="listTitre rouge">Key Features</h3>
-						<ol class="featuresList list">
-							<li class="backSep animations"><span class="rouge sousTitre">Dashboard & Analytics</span>
-								<ul class="gap">
-									<li class="animations">Interactive dashboard with overview statistics of all job applications.</li>
-									<li class="animations">Visual data representation using pie charts and bar graphs powered by Recharts library.</li>
-									<li class="animations">Real-time updates reflecting the current status of applications (pending, interview, rejected, accepted).</li>
-								</ul>
-							</li>
-							<div class="backsep"></div>
-							<li class="animations"><span class="rouge sousTitre">Application Management</span>
-								<ul class="gap">
-									<li class="animations">Real-time calendar view for all medical staff</li>
-									<li class="animations">Conflict detection and automatic notifications</li>
-									<li class="animations">Support for recurring appointments</li>
-								</ul>
-							</li>
-							<li class="animations"><span class="rouge sousTitre ">Medical Consultations</span>
-								<ul class="gap">
-									<li class="animations">Add Job: Dedicated form interface for creating new job application entries with details like company name, position, status, and application date.</li>
-									<li class="animations">Edit & Details: Modify existing applications and view comprehensive details through an intuitive job details page.</li>
-									<li class="animations">Status Tracking: Monitor the progress of each application through different stages of the hiring process.</li>
-								</ul>
-							</li>
-							<div class="backsep"></div>
-							<li class="animations"><span class="rouge sousTitre">Search & Filter System</span>
-								<ul>
-									<li class="animations">Advanced search functionality to locate specific applications by company name, position, or status.</li>
-									<li class="animations">Multi-criteria filtering system for refined results.</li>
-									<li class="animations">Sort options to organize applications by date, company, or status.</li>
-								</ul>
-							</li>
-							<li class="animations"><span class="rouge sousTitre ">Data Portability</span>
-								<ul class="gap">
-									<li class="animations">Export functionality: Download all application data in JSON format for backup or analysis.</li>
-									<li class="animations">Import functionality: Upload previously exported data or migrate information from other sources.</li>
-									<li class="animations">Data persistence to ensure no loss of information between sessions.</li>
-								</ul>
-							</li>
-							<div class="backsep"></div>
-							<li class="animations"><span class="rouge sousTitre">User Experience Enhancements</span>
-								<ul>
-									<li class="animations">Theme Toggle: Switch between light and dark modes for comfortable viewing in any environment.</li>
-									<li class="animations">Responsive design ensuring optimal display across desktop and mobile devices.</li>
-									<li class="animations">Clean, professional interface with intuitive navigation.</li>
-								</ul>
-							</li>
-						</ol>
-					</div>
-					<div class="width100">
-						<h3 class="listTitre rouge">Technologies Used</h3>
-						<ul class="technologiesList list">
-							<li class="backSep animations">React: Core framework for building the user interface with component-based architecture.</li>
-							<div class="backsep"></div>
-							<li class="animations">React Context API: Centralized state management for global data handling across components.</li>
-							<li class="animations">Recharts: Data visualization library for creating interactive charts and graphs.</li>
-							<div class="backsep"></div>
-							<li class="animations">Modular Architecture: Separation of concerns with dedicated folders for components, context, and styles.</li>
-						</ul>
-					</div>
-					<div class="videoPartie width100">
-						<div class="videoside">
-							<h3 class="listTitre rouge">Results & Demonstration</h3>
-							<div class="videolist">
-								<p>Below is a video demonstration showcasing the key features:</p>
-								<div id="videoJobApplication">
-									<img class="videoImage border" src="img/videoJobApplication.png" alt="Aperçu de la vidéo">
+							<div class="pd-layout">
+								<div class="pd-main">
+									<div class="pd-section">
+										<h3 class="pd-section-h">Overview</h3>
+										<p>FPGA-based parking management system implementing a hierarchical Finite State Machine in VHDL at 50 MHz. Controls entry/exit barriers, tracks real-time slot availability across multiple zones, and drives a 7-segment display panel for live occupancy readout.</p>
+									</div>
+									<div class="pd-section">
+										<h3 class="pd-section-h">Key Features</h3>
+										<ul class="pd-list">
+											<li>Hierarchical FSM design synthesized at 50 MHz on FPGA</li>
+											<li>Automated entry/exit barrier control via infrared sensors</li>
+											<li>Multi-zone occupancy tracking (full/available state)</li>
+											<li>7-segment display for live slot count</li>
+											<li>Debounce logic and synchronous reset</li>
+											<li>Full testbench simulation in ModelSim</li>
+										</ul>
+									</div>
+									<div class="pd-section">
+										<h3 class="pd-section-h">Technologies</h3>
+										<div class="pd-stack"><span>VHDL</span><span>FPGA</span><span>FSM</span><span>ModelSim</span><span>Xilinx</span><span>Vivado</span></div>
+									</div>
+									<div class="pd-meta">
+										<a class="pd-link-btn" href="https://github.com/KunakaDK/Intelligent_Parking_System_with_VHDL" target="_blank" rel="noopener"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.4-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.6 2.4 1.1 3 .9.1-.7.3-1.1.6-1.4-2.2-.3-4.6-1.1-4.6-5a4 4 0 011-2.7c-.1-.3-.5-1.3.1-2.7 0 0 .8-.3 2.7 1a9.4 9.4 0 015 0c1.9-1.3 2.7-1 2.7-1 .6 1.4.2 2.4.1 2.7a4 4 0 011 2.7c0 3.9-2.3 4.7-4.6 5 .4.3.7.9.7 1.8v2.6c0 .3.2.6.7.5A10 10 0 0012 2z"/></svg> GitHub</a>
+										<a class="pd-link-btn pd-link-ghost" href="certificates/pdfFPGA.pdf" target="_blank" rel="noopener"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10,9 9,9 8,9"/></svg> Rapport PDF</a>
+									</div>
+									<div class="pd-team">
+										<span class="pd-team-label">Team</span>
+										Taobata SIMPO&#x2019;R&Eacute;, Daniel KUNAKA, Abdoul-Moumouni DIALLO, Issoufou ABOUBACAR, Hind KADDOUR, Lina RAHMOUNE, Imane BENAKKA, Oussama LEMTIOUI
+									</div>
+								</div>
+								<div class="pd-media">
+									<img class="pd-overview-img" src="img/videoFPGA.jpg" alt="FPGA Parking System overview">
 								</div>
 							</div>
 						</div>
-						<p class="lienProjet">
-							Resources of the project here : <a class="sites" href="https://github.com/Pro-simpo/REACT_Job_Application_Tracker" target="_blank">github</a>
-						</p>
-					</div>
-				</div>
-			</div>
-			<button class="seeMoreButton norwester">↓ SEE MORE ↓</button>
-		</div>
-		<div id="pageFireDetection" class="sections div seeMore">	<!-- div11 -->
-			<div class="noirAgency1 AgencyArea1"></div>
-			<div class="div3 ecart AgencyArea2">
-				<div>
-					<img class="img5 remove" src="img/img5_2.png" height="83" alt="section tiltle support">
-					<h2 class="section norwester">Forest Fire Detection System</h2>
-				</div>
-				<div class="smallsize Area2Element">
-					<div class="overview">
-						<div><h3 class="rouge">Overview</h3>
-						<p>Proactive Forest Fire Detection & Management System is a comprehensive IoT solution developed as part of the module "Architecture des technologies IoT". This end-to-end system integrates edge computing, machine learning, and web technologies to create an intelligent early warning system for forest fire detection and management.<br>
-						By combining real-time sensor data acquisition through ESP32 microcontrollers, intelligent risk assessment using Random Forest machine learning algorithms, and secure web-based monitoring dashboards, the system provides a complete solution for proactive fire detection in forest or building environments. The architecture emphasizes reliability, scalability, and accurate discrimination between genuine fire threats and environmental false alarms.</p></div>
-						<figure class="overviewBg">
-							<img src="img/videoFireDetection.jpg" width="100%">
-							<legend>Illustration</legend>
-						</figure>
-					</div>
-					<div class="width100">
-						<h3 class="listTitre rouge">Objective</h3>
-						<ol class="list indent databaselist">
-							<p>
-								Forest fires pose significant threats to ecosystems, property, and human lives, with early detection being critical for effective response. Traditional detection methods often suffer from high false alarm rates and delayed response times. Our main objectives for this project were to:
-								<ul class="structureList">
-									<li class="backSep animations">Develop a real-time monitoring system capable of continuous environmental surveillance.</li>
-									<div class="backsep"></div>
-									<li class="animations">Implement intelligent risk assessment to distinguish between actual fires and benign environmental conditions (hot weather, humidity fluctuations).</li>
-									<li class="animations">Create a scalable IoT architecture supporting multiple distributed sensor nodes.</li>
-									<div class="backsep"></div>
-									<li class="animations">Design a secure, user-friendly web interface for real-time visualization and administrative control.</li>
-									<li class="animations">Apply machine learning techniques to improve detection accuracy and reduce false positives.</li>
-								</ul>
-							</p>
-							<p>
-								This project demonstrates the practical integration of IoT architecture principles, embedded systems programming, cloud connectivity, and data analytics to address real-world environmental monitoring challenges.
-							</p>
-						</ol>
-					</div>
-					<div class="features width100">
-						<h3 class="listTitre rouge">Hardware Components</h3>
-						<ol class="featuresList list">
-							<li class="backSep animations"><span class="rouge sousTitre">Microcontroller & Processing</span>
-								<ul class="gap">
-									<li class="animations">ESP32 Dev Kit V1: Dual-core 32-bit processor with built-in Wi-Fi (2.4GHz) for wireless connectivity and local data processing.</li>
-									<li class="animations">Edge Computing Capability: Pre-processing and data normalization performed locally before cloud transmission.</li>
-								</ul>
-							</li>
-							<div class="backsep"></div>
-							<li class="animations"><span class="rouge sousTitre">Sensors</span>
-								<ul class="gap">
-									<li class="animations">MQ-2/MQ-135 Gas Sensors: Analog sensors detecting combustible gases, smoke, and air quality indicators.</li>
-									<li class="animations">DHT11/DHT22: Digital temperature and humidity sensors providing environmental baseline readings.</li>
-									<li class="animations">IR Flame Sensor (Optional): Additional verification layer for flame detection.</li>
-								</ul>
-							</li>
-							<li class="animations"><span class="rouge sousTitre ">Sensor Integration</span>
-								<ul class="gap">
-									<li class="animations">Analog-to-Digital Conversion (ADC): ESP32 reads raw sensor values and applies software-based calibration mapping.</li>
-									<li class="animations">Multi-sensor fusion combines temperature, humidity, and gas readings for comprehensive environmental assessment.</li>
-								</ul>
-							</li>
-						</ol>
-					</div>
-					<div class="features width100">
-						<h3 class="listTitre rouge">Software Architecture</h3>
-						<ol class="list indent databaselist">
-							<p>
-								The system follows a modular, layered architecture with clear separation between edge devices, processing middleware, and user interfaces:
-								<ol class="featuresList">
-									<li class="backSep animations"><span class="rouge sousTitre">Edge Layer (ESP32 Firmware)</span>
-										<ul class="gap">
-											<li class="animations">Developed using VS Code with PlatformIO framework (C++).</li>
-											<li class="animations">Sensor Reading Logic: Periodic sampling of temperature, humidity, and gas sensors with configurable intervals.</li>
-											<li class="animations">Data Serialization: JSON formatting of sensor readings with node identification and timestamps.</li>
-											<li class="animations">MQTT Publishing: Reliable message transmission to central broker using Paho-MQTT protocol.</li>
-											<li class="animations">Auto-Calibration: Software mapping of raw ADC values to standardized ranges compatible with ML model.</li>
+
+						<!-- ==================== JOB TRACKER ==================== -->
+						<div class="pt-det" id="pd-job">
+							<div class="pd-header">
+								<div class="pd-cats">Web &middot; React</div>
+								<h2 class="pd-title">React Job Application Tracker</h2>
+							</div>
+							<div class="pd-layout">
+								<div class="pd-main">
+									<div class="pd-section">
+										<h3 class="pd-section-h">Overview</h3>
+										<p>Single-page React application for managing job applications through their full lifecycle — from application sent to offer received or rejected — with an integrated analytics dashboard and data persistence via local storage.</p>
+									</div>
+									<div class="pd-section">
+										<h3 class="pd-section-h">Key Features</h3>
+										<ul class="pd-list">
+											<li>Application pipeline: applied → interview → offer → rejected</li>
+											<li>Smooth drag-and-drop status transitions</li>
+											<li>Analytics dashboard with Recharts (weekly activity, acceptance rates)</li>
+											<li>Advanced search and multi-criteria filtering</li>
+											<li>JSON import/export for data portability</li>
+											<li>Context API for global state management</li>
+											<li>Local storage persistence — no backend required</li>
 										</ul>
-									</li>
-									<div class="backsep"></div>
-									<li class="animations"><span class="rouge sousTitre">Transport Layer (MQTT Broker)</span>
-										<ul class="gap">
-											<li class="animations">Mosquitto MQTT Broker: Lightweight publish-subscribe messaging protocol ensuring low-latency communication.</li>
-											<li class="animations">Topic Structure: Hierarchical topics for scalable multi-node deployment (sensors/node_id/data).</li>
-											<li class="animations">Quality of Service: Configurable QoS levels for guaranteed message delivery.</li>
-										</ul>
-									</li>
-									<li class="animations"><span class="rouge sousTitre ">Processing Layer (ML Gateway)</span>
-										<ul class="gap">
-											<li class="animations">Python-based orchestrator acting as MQTT subscriber and database writer.</li>
-											<li class="animations">Random Forest Classifier: Pre-trained machine learning model (fire_model.pkl) for fire risk prediction.</li>
-											<li class="animations">Model Training: Scikit-learn implementation trained on fire_data.csv dataset with features including temperature, humidity, and smoke levels.</li>
-											<li class="animations">Data Normalization: Standardization of incoming sensor data to match training distribution.</li>
-											<li class="animations">Risk Assessment: Real-time probability calculation for fire presence with configurable alert thresholds.</li>
-											<li class="animations">MySQL Integration: Persistent storage of raw readings, predictions, and alert statuses with timestamp indexing.</li>
-										</ul>
-									</li>
-									<div class="backsep"></div>
-									<li class="animations"><span class="rouge sousTitre">API Layer (REST Backend)</span>
-										<ul>
-											<li class="animations">Remote REST API exposing sensor data and analytics endpoints.</li>
-											<li class="animations">Database Abstraction: Query interface for historical data retrieval and real-time status.</li>
-											<li class="animations">Authentication Service: JWT-based token generation for secure client access.</li>
-										</ul>
-									</li>
-									<li class="animations"><span class="rouge sousTitre">Application Layer (Flask BFF)</span>
-										<ul>
-											<li class="animations">Backend-for-Frontend Pattern: Flask proxy server handling authentication and API requests.</li>
-											<li class="animations">Security Architecture: JWT tokens managed server-side, never exposed to browser localStorage.</li>
-											<li class="animations">Session Management: Server-maintained sessions with automatic logout on token expiration.</li>
-											<li class="animations">Proxy Routing: Authorization header injection for all upstream API calls.</li>
-										</ul>
-									</li>
-								</ol>
-							</p>
-						</ol>
-					</div>
-					<div class="features width100">
-						<h3 class="listTitre rouge">Web Dashboard Features</h3>
-						<ol class="featuresList list">
-							<li class="backSep animations"><span class="rouge sousTitre">Interactive Mapping</span>
-								<ul class="gap">
-									<li class="animations">LeafletJS Integration: Geographic visualization of sensor node locations.</li>
-									<li class="animations">Status Indicators: Color-coded markers (Green = Normal, Red = Fire Alert) for quick status assessment.</li>
-									<li class="animations">Real-Time Updates: Dynamic marker updates reflecting current system state.</li>
-								</ul>
-							</li>
-							<div class="backsep"></div>
-							<li class="animations"><span class="rouge sousTitre">Data Visualization</span>
-								<ul class="gap">
-									<li class="animations">Chart.js Analytics: Historical trend visualization for temperature, humidity, and gas levels.</li>
-									<li class="animations">Node-Specific Views: Click-to-view detailed graphs for individual sensor nodes.</li>
-									<li class="animations">Time-Series Analysis: Configurable time ranges for historical data exploration.</li>
-								</ul>
-							</li>
-							<li class="animations"><span class="rouge sousTitre ">Administrative Interface</span>
-								<ul class="gap">
-									<li class="animations">User Management: Role-based access control with admin and standard user privileges.</li>
-									<li class="animations">Node Configuration: Remote sensor node registration and parameter adjustment.</li>
-									<li class="animations">Alert Configuration: Customizable threshold settings for fire risk detection.</li>
-								</ul>
-							</li>
-						</ol>
-					</div>
-					<div class="features width100">
-						<h3 class="listTitre rouge">System Operation & Data Flow</h3>
-						<ol class="list indent databaselist">
-							<p>
-								The complete data pipeline operates through the following sequence:
-								<ol class="featuresList">
-									<li class="backSep animations"><span class="rouge sousTitre">Data Acquisition:</span>
-										<ul class="gap">
-											<li class="animations">ESP32 reads analog sensor values at configured intervals (e.g., every 5 seconds).</li>
-											<li class="animations">Raw ADC values undergo software calibration to physical units (temperature in °C, humidity in %, gas in PPM).</li>
-											<li class="animations">Data is packaged into JSON format with node_id, timestamp, and sensor readings.</li>
-										</ul>
-									</li>
-									<div class="backsep"></div>
-									<li class="animations"><span class="rouge sousTitre">Data Transmission:</span>
-										<ul class="gap">
-											<li class="animations">ESP32 publishes JSON payload to MQTT broker on designated topic.</li>
-											<li class="animations">Mosquitto broker receives and queues messages for subscriber delivery.</li>
-											<li class="animations">Python Gateway subscribes to sensor topics and receives data streams.</li>
-										</ul>
-									</li>
-									<li class="animations"><span class="rouge sousTitre ">Intelligent Processing:</span>
-										<ul class="gap">
-											<li class="animations">Gateway extracts sensor values from JSON payload.</li>
-											<li class="animations">Values are normalized using same scaler used during model training.</li>
-											<li class="animations">Random Forest model predicts fire probability (0.0 to 1.0).</li>
-											<li class="animations">Alert status determined based on configurable threshold (e.g., >0.75 triggers alert).</li>
-										</ul>
-									</li>
-									<div class="backsep"></div>
-									<li class="animations"><span class="rouge sousTitre">Data Persistence:</span>
-										<ul>
-											<li class="animations">Complete record (raw data + prediction + alert status) written to MySQL database.</li>
-											<li class="animations">Timestamp indexing enables efficient historical queries.</li>
-											<li class="animations">Database tables structured for scalable multi-node deployment.</li>
-										</ul>
-									</li>
-									<li class="animations"><span class="rouge sousTitre">User Access:</span>
-										<ul>
-											<li class="animations">Web dashboard requests data via Flask BFF proxy.</li>
-											<li class="animations">BFF authenticates user, injects JWT token, forwards request to REST API.</li>
-											<li class="animations">API queries database and returns formatted response.</li>
-											<li class="animations">Frontend renders data on interactive map and charts.</li>
-										</ul>
-									</li>
-								</ol>
-							</p>
-						</ol>
-					</div>
-					<div class="width100">
-						<h3 class="listTitre rouge">Technologies Used</h3>
-						<ul class="technologiesList list">
-							<li class="backSep animations">Embedded Development: VS Code, PlatformIO, C++ for ESP32 firmware.</li>
-							<div class="backsep"></div>
-							<li class="animations">IoT Communication: MQTT (Mosquitto Broker), Paho-MQTT client libraries.</li>
-							<li class="animations">Machine Learning: Python, Scikit-learn, Pandas, Joblib for Random Forest classifier.</li>
-							<div class="backsep"></div>
-							<li class="animations">Backend: Python, Flask (BFF), REST API architecture.</li>
-							<li class="backSep animations">Database: MySQL for sensor data persistence and historical logging.</li>
-							<div class="backsep"></div>
-							<li class="animations">Frontend: HTML5, CSS3, JavaScript, LeafletJS for mapping, Chart.js for data visualization.</li>
-							<li class="animations">Security: JWT (JSON Web Tokens) for authentication and authorization.</li>
-							<div class="backsep"></div>
-							<li class="animations">Hardware: ESP32 microcontroller, MQ-2/MQ-135 gas sensors, DHT11/DHT22 temperature/humidity sensors.</li>
-						</ul>
-					</div>
-					<div class="videoPartie width100">
-						<div class="videoside">
-							<h3 class="listTitre rouge">Video Presentation</h3>
-							<div class="videolist">
-								<p>Below is a video demonstration showcasing the key features:</p>
-								<div id="videoFireDetection">
-									<img class="videoImage border" src="img/videoFireDetection.jpg" alt="Aperçu de la vidéo">
+									</div>
+									<div class="pd-section">
+										<h3 class="pd-section-h">Technologies</h3>
+										<div class="pd-stack"><span>React</span><span>Context API</span><span>Recharts</span><span>CSS Modules</span></div>
+									</div>
+									<div class="pd-meta">
+										<a class="pd-link-btn" href="https://github.com/Pro-simpo/REACT_Job_Application_Tracker" target="_blank" rel="noopener"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.4-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.6 2.4 1.1 3 .9.1-.7.3-1.1.6-1.4-2.2-.3-4.6-1.1-4.6-5a4 4 0 011-2.7c-.1-.3-.5-1.3.1-2.7 0 0 .8-.3 2.7 1a9.4 9.4 0 015 0c1.9-1.3 2.7-1 2.7-1 .6 1.4.2 2.4.1 2.7a4 4 0 011 2.7c0 3.9-2.3 4.7-4.6 5 .4.3.7.9.7 1.8v2.6c0 .3.2.6.7.5A10 10 0 0012 2z"/></svg> GitHub</a>
+									</div>
+								</div>
+								<div class="pd-media">
+									<div class="pd-video-wrap" data-src="img/videoJobApplication.mp4">
+										<img src="img/videoJobApplication.png" alt="Job Tracker demo">
+										<div class="pd-play"><svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg><span>Watch demo</span></div>
+									</div>
 								</div>
 							</div>
 						</div>
-						<div class="credit">
-							<div>
-								<h3 class="rouge">Team Members:</h3>
-								<ul>
-									<li>Taobata SIMPORE</li>
-									<li>Abdoul-Moumouni <br>DIALLO</li>
-									<li>Daniel KUNAKA</li>
-								</ul>
+
+						<!-- ==================== BRAINWAVE ==================== -->
+						<div class="pt-det" id="pd-brainwave">
+							<div class="pd-header">
+								<div class="pd-cats">Cybersecurity &middot; Python &middot; ML</div>
+								<h2 class="pd-title">Brainwave Internship Projects</h2>
 							</div>
-						</div>
-						<p class="lienProjet">
-							Resources of the project here : <a class="sites" href="https://github.com/KunakaDK/Proactive-Forest-Fire-Detection-Management-System" target="_blank">github</a>
-						</p>
-					</div>
-				</div>
-			</div>
-			<button class="seeMoreButton norwester">↓ SEE MORE ↓</button>
-		</div>
-		<div id="pageAgencyProject" class="sections div seeMore">	<!-- div11 -->
-			<div class="noirAgency1 AgencyArea1"></div>
-			<div class="div3 ecart AgencyArea2">
-				<div>
-					<img class="img5 remove" src="img/img5_2.png" height="83" alt="section tiltle support">
-					<h2 class="section norwester">Travel Agency Project</h2>
-				</div>
-				<div class="smallsize Area2Element">
-					<div class="overview">
-						<div><h3 class="rouge">Overview</h3>
-						<p>Our Object-oriented programming team developed a comprehensive Travel Agency Management Application designed to streamline the management of clients, reservations, itineraries, and secure payments. The application offers an intuitive and user-friendly interface, making travel arrangements more efficient for both administrators and users.</p></div>
-						<figure class="overviewBg">
-							<img src="img/overviewBg.png" width="100%">
-							<legend>Application interface</legend>
-						</figure>
-					</div>
-					<div class="features width100">
-						<h3 class="listTitre rouge">Features</h3>
-						<ol class="featuresList list">
-							<li class="backSep animations"><span class="rouge sousTitre">User Authentication</span>
-								<ul class="gap">
-									<li class="animations">User Login: Users can securely log in with their username and password.</li>
-									<li class="animations">User Registration: New users can create an account by providing personal details such as name, date of birth, phone number, and a secure password.</li>
-								</ul>
-							</li>
-							<div class="backsep"></div>
-							<li class="animations"><span class="rouge sousTitre">Itinerary Search and Booking</span>
-								<ul class="gap">
-									<li class="animations">Search Itineraries: Users can search for itineraries based on departure and arrival stations, as well as specific dates. The search results can be filtered by class (First or Second) and type of journey (One-Way or Round-Trip).</li>
-									<li class="animations">Booking Itineraries: Once an itinerary is selected, users can proceed with booking by entering the required details and confirming the reservation.</li>
-								</ul>
-							</li>
-							<li class="animations"><span class="rouge sousTitre ">Payment System</span>
-								<ul class="gap">
-									<li class="animations">Payment Information: Users can enter payment details, including cardholder name, card number, expiration date, and CVV.</li>
-									<li class="animations">Payment Validation: The system securely processes the payment and confirms the reservation. Users receive a notification upon successful payment.</li>
-								</ul>
-							</li>
-							<div class="backsep"></div>
-							<li class="animations"><span class="rouge sousTitre">Support and Assistance</span>
-								<ul>
-									<li class="animations">Contact Support: Users can contact support via WhatsApp for assistance or password reset. A "Contact Us" button is available on key interfaces for easy access to support.</li>
-								</ul>
-							</li>
-						</ol>
-					</div>
-					<div class="width100">
-						<h3 class="listTitre rouge">Admin Features</h3>
-						<ol class="adminFeaturesList list animations">
-							<li class="backSep animations"><span class="rouge sousTitre">Admin Authentication</span>
-								<ul class="gap">
-									<li class="animations">Admin Login: Administrators have a separate login interface with special credentials for secure access.</li>
-									<li class="animations">Admin Registration: New administrators can create an account by providing additional information such as employee code and CIN number.</li>
-								</ul>
-							</li>
-							<div class="backsep"></div>
-							<li class="animations"><span class="rouge sousTitre">Admin Dashboard</span>
-								<ul class="gap">
-									<li class="animations">Manage Client Accounts: Administrators can view, modify, and delete client information. They can also search for specific clients by username.</li>
-									<li class="animations">Manage Itineraries: Administrators can add, modify, and delete itineraries, including details such as train number, departure and arrival stations, times, and ticket prices.</li>
-									<li class="animations">Manage Reservations: Administrators can view, confirm, and delete client reservations, with details such as reservation date, client name, and phone number.</li>
-								</ul>
-							</li>
-						</ol>
-					</div>
-					<div class="width100">
-						<h3 class="listTitre rouge">Technologies Used</h3>
-						<ul class="technologiesList list">
-							<li class="backSep animations">JavaFX: For the user interface, providing a smooth and responsive user experience.</li>
-							<div class="backsep"></div>
-							<li class="animations">MySQL: For database management, ensuring efficient data handling of users, itineraries, reservations, and payments.</li>
-							<li class="animations">JDBC: For database connectivity, enabling seamless interaction between the application and the database.</li>
-							<div class="backsep"></div>
-							<li class="animations">CSS: For customization of the application's appearance, delivering a visually appealing and professional interface.</li>
-						</ul>
-					</div>
-					<div class="width100">
-						<h3 class="listTitre rouge">Database Structure</h3>
-						<ol class="list indent databaselist">
-							<h4 class="rouge sousTitre">Key Tables</h4>
-							<ul class="structureList">
-								<li class="backSep animations">user: Stores user information including name, date of birth, phone number, username, and password.</li>
-								<div class="backsep"></div>
-								<li class="animations">admin: Stores administrator information including name, date of birth, phone number, employee code, CIN number, username, and password.</li>
-								<li class="animations">itinerary: Contains itinerary details including train number, departure and arrival stations, departure and arrival times, and ticket prices.</li>
-								<div class="backsep"></div>
-								<li class="animations">reservation_confirmation: Contains reservation details including client name, phone number, and reservation specifics.</li>
-								<li class="animations">payment: Contains payment details including cardholder name, card number, expiration date, and CVV.</li>
-								<div class="backsep"></div>
-							</ul>
-						</ol>
-					</div>
-					<div class="videoPartie width100">
-						<div class="videoside">
-							<h3 class="listTitre rouge">Video Presentation</h3>
-							<div class="videolist">
-								<p>Below is a video presentation of the application showcasing its features:</p>
-								<div id="video-container">
-									<img class="videoImage border" src="img/resumeBg.png" alt="Aperçu de la vidéo">
+							<div class="pd-layout">
+								<div class="pd-main">
+									<div class="pd-section">
+										<h3 class="pd-section-h">Overview</h3>
+										<p>Two cybersecurity tools developed during a Brainwave Matrix internship. A Phishing URL Scanner using a Scikit-learn ML classifier exposed as a Flask API, and a Password Strength Checker with real-time OWASP feedback built with Streamlit.</p>
+									</div>
+									<div class="pd-section">
+										<h3 class="pd-section-h">Tool 1 — Phishing URL Scanner</h3>
+										<ul class="pd-list">
+											<li>ML classifier trained on phishing URL datasets</li>
+											<li>Feature extraction: URL length, domain age, HTTPS, redirects</li>
+											<li>Flask REST API — JSON response with confidence score</li>
+											<li>Interactive web UI for real-time URL checks</li>
+										</ul>
+									</div>
+									<div class="pd-section">
+										<h3 class="pd-section-h">Tool 2 — Password Strength Checker</h3>
+										<ul class="pd-list">
+											<li>Shannon entropy calculation for password strength</li>
+											<li>Common-pattern and dictionary attack detection</li>
+											<li>OWASP compliance scoring in real time</li>
+											<li>Streamlit interactive dashboard with visual feedback</li>
+										</ul>
+									</div>
+									<div class="pd-section">
+										<h3 class="pd-section-h">Technologies</h3>
+										<div class="pd-stack"><span>Python</span><span>Flask</span><span>Streamlit</span><span>Scikit-learn</span><span>Pandas</span></div>
+									</div>
+									<div class="pd-meta">
+										<a class="pd-link-btn" href="https://github.com/Pro-simpo/Brainwave_Matrix_Intern" target="_blank" rel="noopener"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.4-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.6 2.4 1.1 3 .9.1-.7.3-1.1.6-1.4-2.2-.3-4.6-1.1-4.6-5a4 4 0 011-2.7c-.1-.3-.5-1.3.1-2.7 0 0 .8-.3 2.7 1a9.4 9.4 0 015 0c1.9-1.3 2.7-1 2.7-1 .6 1.4.2 2.4.1 2.7a4 4 0 011 2.7c0 3.9-2.3 4.7-4.6 5 .4.3.7.9.7 1.8v2.6c0 .3.2.6.7.5A10 10 0 0012 2z"/></svg> GitHub</a>
+									</div>
+								</div>
+								<div class="pd-media">
+									<div class="pd-media-label">Phishing URL Scanner</div>
+									<div class="pd-video-wrap" data-src="img/phishing_checker.mp4">
+										<img src="img/brainwaveVideo.png" alt="Phishing scanner demo">
+										<div class="pd-play"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg><span>Watch demo</span></div>
+									</div>
+									<div class="pd-media-label" style="margin-top:16px">Password Strength Checker</div>
+									<div class="pd-video-wrap" data-src="img/password_checker.mp4">
+										<img src="img/brainwave.jpg" alt="Password checker demo">
+										<div class="pd-play"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg><span>Watch demo</span></div>
+									</div>
 								</div>
 							</div>
-							<div class="supervised740">
-								<h3 class="rouge">Supervised by:</h3>
-								<p>Fouad AYTOUNA</p>
+						</div>
+
+						<!-- ==================== TRAVEL AGENCY ==================== -->
+						<div class="pt-det" id="pd-agency">
+							<div class="pd-header">
+								<div class="pd-cats">Java &middot; JavaFX &middot; Database</div>
+								<h2 class="pd-title">Travel Agency App</h2>
 							</div>
-						</div>
-						<div class="credit">
-							<div>
-								<h3 class="rouge">Team Members:</h3>
-								<ul>
-									<li>Taobata SIMPORE</li>
-									<li>Abdoul-Moumouni <br>DIALLO</li>
-									<li>Doha BOUARRAF</li>
-									<li>Yousra MAKRI</li>
-								</ul>
-							</div>
-							<div class="remove">
-								<h3 class="rouge">Supervised by:</h3>
-								<p>Pr. Fouad AYTOUNA</p>
-							</div>
-						</div>
-						<p class="lienProjet">
-							Resources of the project here : <a class="sites" href="https://github.com/Pro-simpo/JAVA-Travel_Agency_Project" target="_blank">my github</a>
-						</p>
-					</div>
-				</div>
-			</div>
-			<button class="seeMoreButton norwester">↓ SEE MORE ↓</button>
-		</div>
-		<div id="pageSolarPanel" class="sections div seeMore">	<!-- div12 -->
-			<div class="noirAgency1 AgencyArea1"></div>
-			<div class="div3 ecart AgencyArea2">
-				<div>
-					<img class="img5 remove" src="img/img5_2.png" height="83" alt="section tiltle support">
-					<h2 class="section norwester">Solar Tracker AI-Driven System</h2>
-				</div>
-				<div class="smallsize Area2Element">
-					<div class="overview">
-						<div>
-							<h3 class="rouge">Overview</h3>
-							<p><strong>Solar Tracker AI-Driven System</strong> is an academic project developed as part of the module "Architecture des systèmes embarqués". This solution combines embedded electronics, cloud communication, and artificial intelligence to optimize solar panel performance.
-							<br>By using real-time environmental data and predictive algorithms, the system automatically adjusts the orientation of a solar panel to maximize energy production.
-							</p>
-						</div>
-						<figure class="overviewBg">
-							<img src="img/solar.jpg" width="100%">
-							<legend>Smart solar tracker</legend>
-						</figure>
-					</div>
-					<div class="width100">
-						<h3 class="listTitre rouge">Objective</h3>
-						<div class="list internIndent">
-							<span class="textDehors2">In the context of global energy challenges, our main goals were to:</span>
-							<ul class="technologiesList">
-								<li class="backSep animations">Maximize photovoltaic energy output through smart orientation.</li>
-								<div class="backsep"></div>
-								<li class="animations">Maintain high efficiency despite variable weather.</li>
-								<li class="animations">Integrate advanced technologies like AI, IoT, and mobile development into a fully embedded system.</li>
-								<div class="backsep"></div>
-								<li class="animations">Build a user-friendly application on which real and predicted data will be displayed</li>
-							</ul>
-							<div class="textDehors">This project demonstrates a practical implementation of classroom knowledge, offering a real-world solution for intelligent energy management.</div>
-						</div>
-					</div>
-					<div class="features width100">
-						<h3 class="listTitre rouge">Hardware Components</h3>
-						<ol class="featuresList list">
-							<li class="backSep animations"><span class="rouge sousTitre">Microcontrollers & Communication</span>
-								<ul class="gap">
-									<li class="animations">ESP32: Collects sensor data (light, temperature, humidity) and sends it to the cloud (Firebase).</li>
-									<li class="animations">Arduino Uno: Receives data from the ESP32 via serial communication and controls the servo motor accordingly.</li>
-								</ul>
-							</li>
-							<div class="backsep"></div>
-							<li class="animations"><span class="rouge sousTitre">Sensors & Actuators</span>
-								<ul class="gap">
-									<li class="animations">LDR (Light Dependent Resistor): Detects sunlight intensity.</li>
-									<li class="animations">DHT11: Measures temperature and humidity.</li>
-									<li class="animations">Servo Motor: Rotates the panel based on sensor inputs to track the sun’s position.</li>
-								</ul>
-							</li>
-							<li class="animations"><span class="rouge sousTitre ">Circuit Design</span>
-								<ul class="gap">
-									<li class="animations">A communication link between ESP32 and Arduino ensures accurate orientation adjustments based on real-time data.</li>
-								</ul>
-							</li>
-							<div class="backsep"></div>
-						</ol>
-					</div>
-					<div class="features width100">
-						<h3 class="listTitre rouge">Software Components</h3>
-						<ol class="featuresList list">
-							<li class="backSep animations"><span class="rouge sousTitre">Mobile App</span>
-								<ul class="gap">
-									<li class="animations">Developed using Flutter & Dart, the app displays real-time data: sunlight, energy harvested, temperature, and humidity. It also shows AI-based predictions for solar activity.</li>
-								</ul>
-							</li>
-							<div class="backsep"></div>
-							<li class="animations"><span class="rouge sousTitre">Backend & Cloud</span>
-								<ul class="gap">
-									<li class="animations">With Firebase, the system securely stores and retrieves data in real time, enabling seamless communication between hardware and the mobile interface.</li>
-								</ul>
-							</li>
-							<li class="animations"><span class="rouge sousTitre ">Machine Learning Integration</span>
-								<ul class="gap">
-									<li class="animations">A custom AI model uses historical data to predict solar patterns and recommend optimal tilt angles for the panel.</li>
-								</ul>
-							</li>
-							<div class="backsep"></div>
-						</ol>
-					</div>
-					<div class="width100">
-						<h3 class="listTitre rouge">Key Features</h3>
-						<ul class="technologiesList list">
-							<li class="backSep animations">Real-time solar tracking using LDR sensors.</li>
-							<div class="backsep"></div>
-							<li class="animations">AI-powered predictions for upcoming solar conditions.</li>
-							<li class="animations">User-friendly mobile interface with dynamic charts and live updates.</li>
-							<div class="backsep"></div>
-							<li class="animations">Cloud-based data management for reliability and scalability.</li>
-						</ul>
-					</div>
-					<div class="videoPartie width100">
-						<div class="videoside">
-							<h3 class="listTitre rouge">Results & Demonstration</h3>
-							<div class="videolist">
-								<p>Below is a video presentation of the system in action:</p>
-								<div id="video-container4">
-									<img class="videoImage border" src="img/solarVid.jpg" alt="Aperçu de la vidéo">
+							<div class="pd-layout">
+								<div class="pd-main">
+									<div class="pd-section">
+										<h3 class="pd-section-h">Overview</h3>
+										<p>Feature-rich JavaFX desktop application for travel agency operations. Manages clients, reservations, itineraries, and payments — with an admin statistics dashboard, printable invoices, and WhatsApp integration for automated booking confirmations.</p>
+									</div>
+									<div class="pd-section">
+										<h3 class="pd-section-h">Key Features</h3>
+										<ul class="pd-list">
+											<li>Client profile management with history</li>
+											<li>Reservation system with conflict detection</li>
+											<li>Dynamic itinerary builder with day-by-day planning</li>
+											<li>Payment tracking and printable PDF invoices</li>
+											<li>Admin dashboard: booking stats, revenue charts</li>
+											<li>WhatsApp API integration for booking confirmations</li>
+											<li>CSS-styled JavaFX UI with dark theme</li>
+										</ul>
+									</div>
+									<div class="pd-section">
+										<h3 class="pd-section-h">Technologies</h3>
+										<div class="pd-stack"><span>JavaFX</span><span>MySQL</span><span>JDBC</span><span>CSS</span><span>WhatsApp API</span></div>
+									</div>
+									<div class="pd-meta">
+										<a class="pd-link-btn" href="https://github.com/Pro-simpo/JAVA-Travel_Agency_Project" target="_blank" rel="noopener"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.4-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.6 2.4 1.1 3 .9.1-.7.3-1.1.6-1.4-2.2-.3-4.6-1.1-4.6-5a4 4 0 011-2.7c-.1-.3-.5-1.3.1-2.7 0 0 .8-.3 2.7 1a9.4 9.4 0 015 0c1.9-1.3 2.7-1 2.7-1 .6 1.4.2 2.4.1 2.7a4 4 0 011 2.7c0 3.9-2.3 4.7-4.6 5 .4.3.7.9.7 1.8v2.6c0 .3.2.6.7.5A10 10 0 0012 2z"/></svg> GitHub</a>
+									</div>
+									<div class="pd-team">
+										<span class="pd-team-label">Superviseur</span>
+										Fouad AYTOUNA
+									</div>
+								</div>
+								<div class="pd-media">
+									<div class="pd-video-wrap" data-src="img/video.mp4">
+										<img src="img/resumeBg.png" alt="Travel Agency demo">
+										<div class="pd-play"><svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg><span>Watch demo</span></div>
+									</div>
+									<img class="pd-overview-img" src="img/overviewBg.png" alt="Travel Agency overview" style="margin-top:12px;border-radius:10px;width:100%;object-fit:cover">
 								</div>
 							</div>
-							<div class="supervised740">
-								<h3 class="rouge">Supervised by:</h3>
-								<p>Mr. Younes WADIAI</p>
+						</div>
+
+						<!-- ==================== PORTFOLIO ==================== -->
+						<div class="pt-det" id="pd-portfolio">
+							<div class="pd-header">
+								<div class="pd-cats">Web &middot; Front-end</div>
+								<h2 class="pd-title">Portfolio Website</h2>
+							</div>
+							<div class="pd-layout">
+								<div class="pd-main">
+									<div class="pd-section">
+										<h3 class="pd-section-h">Overview</h3>
+										<p>This portfolio, built from scratch without any framework. Features a time-based dark/light theme, matrix canvas background animation, scroll-progress bar, fixed side navigation, and a Formspree-powered contact form.</p>
+									</div>
+									<div class="pd-section">
+										<h3 class="pd-section-h">Features</h3>
+										<ul class="pd-list">
+											<li>Automatic dark/light theme based on time of day</li>
+											<li>Matrix canvas animation in the background</li>
+											<li>Scroll-progress indicator in the navbar</li>
+											<li>Fixed side navigation with smooth scroll</li>
+											<li>Responsive project grid with filter and glare effects</li>
+											<li>Formspree contact form with status feedback</li>
+											<li>CSS-only animations — no library dependencies</li>
+										</ul>
+									</div>
+									<div class="pd-section">
+										<h3 class="pd-section-h">Technologies</h3>
+										<div class="pd-stack"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Canvas API</span><span>Formspree</span></div>
+									</div>
+								</div>
+								<div class="pd-media">
+									<div class="pd-imgs">
+										<img src="img/port1.png" alt="Portfolio screenshot 1">
+										<img src="img/port2.png" alt="Portfolio screenshot 2">
+										<img src="img/port3.png" alt="Portfolio screenshot 3">
+									</div>
+								</div>
 							</div>
 						</div>
-						<div class="credit">
-							<div>
-								<h3 class="rouge">Team Members:</h3>
-								<ul>
-									<li>Taobata SIMPORE</li>
-									<li>Abdoul-Moumouni <br>DIALLO</li>
-									<li>KUNAKA Daniel</li>
-								</ul>
+
+						<!-- ==================== ODACE ==================== -->
+						<div class="pt-det" id="pd-odace">
+							<div class="pd-header">
+								<div class="pd-cats">IoT &middot; Electronics &middot; Arduino</div>
+								<h2 class="pd-title">O&apos;dace Electronics Projects</h2>
 							</div>
-							<div class="remove">
-								<h3 class="rouge">Supervised by:</h3>
-								<p>Mr. Younes WADIAI</p>
+							<div class="pd-layout">
+								<div class="pd-main">
+									<div class="pd-section">
+										<h3 class="pd-section-h">Overview</h3>
+										<p>Hands-on electronics and embedded programming projects in the O&apos;dace engineering club at ENSA T&eacute;touan. Applied theoretical knowledge to real hardware: oscillators, sensor interfaces, motor drivers, and IoT prototype boards.</p>
+									</div>
+									<div class="pd-section">
+										<h3 class="pd-section-h">Projects</h3>
+										<ul class="pd-list">
+											<li>RC oscillator design and characterization</li>
+											<li>Sensor interfaces (temperature, ultrasonic, IR)</li>
+											<li>DC motor driver with PWM speed control</li>
+											<li>IoT prototype board — sensor-to-cloud pipeline</li>
+											<li>Component characterization labs (diodes, transistors)</li>
+										</ul>
+									</div>
+									<div class="pd-section">
+										<h3 class="pd-section-h">Technologies</h3>
+										<div class="pd-stack"><span>Arduino</span><span>C++</span><span>Electronics</span><span>Oscilloscope</span></div>
+									</div>
+								</div>
+								<div class="pd-media">
+									<div class="pd-imgs">
+										<img src="img/odace1.jpg" alt="O'dace project 1">
+										<img src="img/odace2.jpg" alt="O'dace project 2">
+										<img src="img/odace3.jpg" alt="O'dace project 3">
+									</div>
+								</div>
 							</div>
 						</div>
-						<p class="lienProjet">
-							Resources of the project here : <a class="sites" href="https://github.com/Pro-simpo/" target="_blank">my github</a>
-							<br><a class="sites doc" href="certificates/solar_Tracker.pdf" target="_blank">-- Full report in pdf</a>
-						</p>
-					</div>
-				</div>
+
+						<!-- ==================== MARATHON ==================== -->
+						<div class="pt-det" id="pd-marathon">
+							<div class="pd-header">
+								<div class="pd-cats">Web &middot; HTML &middot; CSS</div>
+								<h2 class="pd-title">CoderSphere Coding Marathons</h2>
+							</div>
+							<div class="pd-layout">
+								<div class="pd-main">
+									<div class="pd-section">
+										<h3 class="pd-section-h">Overview</h3>
+										<p>Two competitive front-end coding challenges organized by the CoderSphere club at ENSA T&eacute;touan. Marathon 1: delivered a complete website from a Canva design in under 5 hours &mdash; won the challenge. Marathon 2: coded a personal portfolio from scratch &mdash; placed 3rd.</p>
+									</div>
+									<div class="pd-section">
+										<h3 class="pd-section-h">Marathon 1 &mdash; 1st Place</h3>
+										<ul class="pd-list">
+											<li>Objective: pixel-perfect implementation of a Canva design</li>
+											<li>Delivered in under 5 hours</li>
+											<li>Responsive layout, animations, interactive navigation</li>
+										</ul>
+									</div>
+									<div class="pd-section">
+										<h3 class="pd-section-h">Marathon 2 &mdash; 3rd Place</h3>
+										<ul class="pd-list">
+											<li>Objective: personal portfolio website from scratch</li>
+											<li>Timed competitive environment</li>
+											<li>Clean design with CSS transitions and mobile-first layout</li>
+										</ul>
+									</div>
+									<div class="pd-section">
+										<h3 class="pd-section-h">Technologies</h3>
+										<div class="pd-stack"><span>HTML</span><span>CSS</span></div>
+									</div>
+								</div>
+								<div class="pd-media">
+									<div class="pd-imgs">
+										<img src="img/marathon1-1.png" alt="Marathon 1 screenshot 1">
+										<img src="img/marathon1-2.png" alt="Marathon 1 screenshot 2">
+										<img src="img/mara1.png" alt="Marathon 2 screenshot 1">
+										<img src="img/mara2.png" alt="Marathon 2 screenshot 2">
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- ==================== ENGINEERING ==================== -->
+						<div class="pt-det" id="pd-engineering">
+							<div class="pd-header">
+								<div class="pd-cats">Academic &middot; Engineering</div>
+								<h2 class="pd-title">Engineering Cycle Projects</h2>
+							</div>
+							<div class="pd-layout">
+								<div class="pd-main">
+									<div class="pd-section">
+										<h3 class="pd-section-h">Overview</h3>
+										<p>Academic projects from the engineering cycle at ENSA T&eacute;touan, spanning cybersecurity and embedded systems. The practical backbone of the engineering curriculum: network analysis, microcontroller programming, RTOS experiments, and hardware-software co-design.</p>
+									</div>
+									<div class="pd-section">
+										<h3 class="pd-section-h">Project Areas</h3>
+										<ul class="pd-list">
+											<li>Network security labs and protocol analysis</li>
+											<li>Microcontroller programming (STM32, PIC)</li>
+											<li>RTOS experiments with FreeRTOS</li>
+											<li>Hardware-software co-design exercises</li>
+											<li>Digital signal processing labs</li>
+											<li>PCB design fundamentals</li>
+										</ul>
+									</div>
+									<div class="pd-section">
+										<h3 class="pd-section-h">Technologies</h3>
+										<div class="pd-stack"><span>Cybersecurity</span><span>Embedded</span><span>STM32</span><span>FreeRTOS</span><span>Wireshark</span></div>
+									</div>
+								</div>
+								<div class="pd-media">
+									<div class="pd-imgs">
+										<img src="img/ci2.jpg" alt="Engineering project 1">
+										<img src="img/ci1.jpg" alt="Engineering project 2">
+										<img src="img/ci3.jpg" alt="Engineering project 3">
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- ==================== PREPARATORY ==================== -->
+						<div class="pt-det" id="pd-preparatory">
+							<div class="pd-header">
+								<div class="pd-cats">Community &middot; Social</div>
+								<h2 class="pd-title">Preparatory Cycle Project</h2>
+							</div>
+							<div class="pd-layout">
+								<div class="pd-main">
+									<div class="pd-section">
+										<h3 class="pd-section-h">Overview</h3>
+										<p>Community social project completed during the preparatory cycle at ENSA T&eacute;touan. In a team of five, we renovated an orphanage study room, organized regular tutoring and meal-sharing events, and raised approximately 6,500 MAD through local fundraising and business partnerships.</p>
+									</div>
+									<div class="pd-section">
+										<h3 class="pd-section-h">Achievements</h3>
+										<ul class="pd-list">
+											<li>Full renovation of the orphanage&apos;s study room</li>
+											<li>Regular meal-sharing events for children</li>
+											<li>Tutoring sessions in mathematics and sciences</li>
+											<li>6,500 MAD raised through fundraising campaigns</li>
+											<li>Partnerships with local businesses for supplies</li>
+										</ul>
+									</div>
+									<div class="pd-section">
+										<h3 class="pd-section-h">Skills</h3>
+										<div class="pd-stack"><span>Teamwork</span><span>Community</span><span>Leadership</span><span>Fundraising</span></div>
+									</div>
+								</div>
+								<div class="pd-media">
+									<div class="pd-imgs">
+										<img src="img/prepa1.jpg" alt="Preparatory project 1">
+										<img src="img/prepa2.jpg" alt="Preparatory project 2">
+										<img src="img/prepa3.jpg" alt="Preparatory project 3">
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div><!-- /.pt-detail -->
+				</div><!-- /pt-section -->
 			</div>
-			<button class="seeMoreButton norwester">↓ SEE MORE ↓</button>
 		</div>
-		<footer id="pageContact" class="sections div">		<!-- div10 -->
+		<footer id="pageContact" class="sections div">
 			<div class="espaceNoir"></div>
-			<div>
-				<img class="img5 remove" src="img/img5.svg" width="320" alt="section tiltle support">
-				<h2 class="section norwester"><strong>Contacts</strong></h2>
-			</div>
-			<img class="remove remove1000" src="img/contactdiv.svg" height="101%" alt="image of navigation"><!-- svg -->
-			<div class="div3 ecart overflow">
-				<div class="div9">
-					<h2 class="nom2 norwester">Taobata Simporé</h2>
-					<address>
-						<img class="img24" src="img/img24.svg" width="60%" alt="phone call logo"><div class="separateur"></div><!-- svg -->
-						<p class="ecole"><strong>+212 705 146 842</strong></p>
-						<img class="img24 img25" src="img/img25.svg" width="90%" alt="e-mail logo"><div class="separateur"></div><!-- svg -->
-						<p class="ecole"><a class="address adec" href="mailto:simporetaobata@gmail.com"><strong>simporetaobata@gmail.com</strong></a></p>
-						<img class="img24" src="img/in.svg" width="60%" alt="linked in logo"><div class="separateur"></div>
-						<p class="ecole"><a class="address adec" href="https://linkedin.com/in/taobata-simpore-21b255272" target="_blank"><strong>LinkedIn Profile</strong></a></p>
-						<img class="img24" src="img/facebook.svg" width="70%" alt="facebook logo"><div class="separateur"></div><!-- svg -->
-						<p class="ecole"><a class="address adec" href="https://www.facebook.com/pro.simpo.3?mibextid=ZbWKwL" target="_blank"><strong>Facebook Profile</strong></a></p>
-						<img class="img24" src="img/github.svg" width="70%" alt="github logo"><div class="separateur"></div><!-- svg -->
-						<p class="ecole"><a class="address adec" href="https://github.com/Pro-simpo" target="_blank"><strong>Github</strong></a></p>
-					</address>
+			<canvas id="ctCanvas"></canvas>
+			<div class="ct-container">
+				<div class="ct-header">
+					<span class="ct-eyebrow">Contact</span>
+					<h2 class="ct-title" data-i18n="ct-title">Let's work together</h2>
+				</div>
+				<div class="contact-grid">
+					<div class="ct-info">
+						<p class="ct-lead" data-i18n="ct-lead">An opportunity, an internship, a collaboration? I'm open to projects in cybersecurity, embedded systems, QA testing and web development.</p>
+						<div class="ct-list">
+							<a class="ct-item" href="mailto:simporetaobata@gmail.com">
+								<span class="ct-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span>
+								<span><span class="ct-k">Email</span><span class="ct-v">simporetaobata@gmail.com</span></span>
+							</a>
+							<a class="ct-item" href="tel:+212705146842">
+								<span class="ct-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3-8.6A2 2 0 014.1 2h3a2 2 0 012 1.7c.1.9.3 1.8.6 2.7a2 2 0 01-.5 2.1L8.1 9.7a16 16 0 006 6l1.2-1.1a2 2 0 012.1-.5c.9.3 1.8.5 2.7.6a2 2 0 011.7 2z"/></svg></span>
+								<span><span class="ct-k" data-i18n="ct-phone">Phone</span><span class="ct-v">+212 705 146 842</span></span>
+							</a>
+							<a class="ct-item" href="https://linkedin.com/in/taobata-simpore-21b255272" target="_blank" rel="noopener">
+								<span class="ct-ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3zM10 9h3.8v1.6h.1c.5-1 1.8-2 3.7-2 4 0 4.7 2.6 4.7 6V21h-4v-5.3c0-1.3 0-2.9-1.8-2.9s-2 1.4-2 2.8V21h-4z"/></svg></span>
+								<span><span class="ct-k">LinkedIn</span><span class="ct-v">taobata-simpore</span></span>
+							</a>
+							<a class="ct-item" href="https://github.com/Pro-simpo" target="_blank" rel="noopener">
+								<span class="ct-ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.4-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.6 2.4 1.1 3 .9.1-.7.3-1.1.6-1.4-2.2-.3-4.6-1.1-4.6-5a4 4 0 011-2.7c-.1-.3-.5-1.3.1-2.7 0 0 .8-.3 2.7 1a9.4 9.4 0 015 0c1.9-1.3 2.7-1 2.7-1 .6 1.4.2 2.4.1 2.7a4 4 0 011 2.7c0 3.9-2.3 4.7-4.6 5 .4.3.7.9.7 1.8v2.6c0 .3.2.6.7.5A10 10 0 0012 2z"/></svg></span>
+								<span><span class="ct-k">GitHub</span><span class="ct-v">Pro-simpo</span></span>
+							</a>
+							<a class="ct-item" href="https://www.facebook.com/pro.simpo.3?mibextid=ZbWKwL" target="_blank" rel="noopener">
+								<span class="ct-ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 10-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.3v7A10 10 0 0022 12z"/></svg></span>
+								<span><span class="ct-k">Facebook</span><span class="ct-v">Taobata Simporé</span></span>
+							</a>
+						</div>
+						<div class="ct-cvs">
+							<a href="certificates/Taobata_SIMPORE_CV_FR.pdf" target="_blank" rel="noopener" class="ct-btn ct-btn-pri">
+								<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l4-4m-4 4l-4-4M5 21h14"/></svg>
+								CV Français
+							</a>
+							<a href="certificates/Taobata_SIMPORE_CV_EN.pdf" target="_blank" rel="noopener" class="ct-btn ct-btn-ghost">
+								<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l4-4m-4 4l-4-4M5 21h14"/></svg>
+								CV English
+							</a>
+						</div>
+					</div>
+					<form class="ct-form" id="contactForm" action="https://formspree.io/f/xpqgdzod" method="POST">
+						<div class="ct-row">
+							<label class="ct-label" data-i18n="ct-label-name">Full name</label>
+							<input class="ct-input" type="text" name="nom" required placeholder="Your name" data-i18n-ph="ct-ph-name">
+						</div>
+						<div class="ct-row">
+							<label class="ct-label" data-i18n="ct-label-email">Email</label>
+							<input class="ct-input" type="email" name="email" required placeholder="you@example.com" data-i18n-ph="ct-ph-email">
+						</div>
+						<div class="ct-row">
+							<label class="ct-label" data-i18n="ct-label-subject">Subject</label>
+							<input class="ct-input" type="text" name="sujet" placeholder="Message subject" data-i18n-ph="ct-ph-subject">
+						</div>
+						<div class="ct-row">
+							<label class="ct-label" data-i18n="ct-label-message">Message</label>
+							<textarea class="ct-input ct-textarea" name="message" rows="5" required placeholder="Your message…" data-i18n-ph="ct-ph-message"></textarea>
+						</div>
+						<button type="submit" class="ct-btn ct-btn-pri ct-btn-full">
+							<span data-i18n="ct-submit">Send message</span>
+							<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/></svg>
+						</button>
+						<span class="ct-form-status" id="ctFormStatus"></span>
+					</form>
 				</div>
 			</div>
 		</footer>
 	</section>
-<map name="pageAboutme">
-	<area class="area" shape="circle" coords="105,214,33" href="#pageAboutme">
-	<area class="area" shape="circle" coords="105,277,18" href="#pageEducation">
-	<area class="area" shape="circle" coords="105,324,18" href="#pageSkills">
-	<area class="area" shape="circle" coords="105,370,18" href="#pageCertificates">
-	<area class="area" shape="circle" coords="105,415,18" href="#pageExperience">
-	<area class="area" shape="circle" coords="105,460,18" href="#pageServices">
-	<area class="area" shape="circle" coords="105,506,18" href="#pagePortfolio">
-</map>
-<map name="pageEducation">
-	<area class="area" shape="circle" coords="105,197,18" href="#pageAboutme">
-	<area class="area" shape="circle" coords="105,260,33" href="#pageEducation">
-	<area class="area" shape="circle" coords="105,324,18" href="#pageSkills">
-	<area class="area" shape="circle" coords="105,370,18" href="#pageCertificates">
-	<area class="area" shape="circle" coords="105,415,18" href="#pageExperience">
-	<area class="area" shape="circle" coords="105,460,18" href="#pageServices">
-	<area class="area" shape="circle" coords="105,506,18" href="#pagePortfolio">
-</map>
-<map name="pageSkills">
-	<area class="area" shape="circle" coords="105,197,18" href="#pageAboutme">
-	<area class="area" shape="circle" coords="105,242,18" href="#pageEducation">
-	<area class="area" shape="circle" coords="105,306,33" href="#pageSkills">
-	<area class="area" shape="circle" coords="105,370,18" href="#pageCertificates">
-	<area class="area" shape="circle" coords="105,415,18" href="#pageExperience">
-	<area class="area" shape="circle" coords="105,460,18" href="#pageServices">
-	<area class="area" shape="circle" coords="105,506,18" href="#pagePortfolio">
-</map>
-<map name="pageCertificates">
-	<area class="area" shape="circle" coords="105,197,18" href="#pageAboutme">
-	<area class="area" shape="circle" coords="105,242,18" href="#pageEducation">
-	<area class="area" shape="circle" coords="105,288,18" href="#pageSkills">
-	<area class="area" shape="circle" coords="105,352,33" href="#pageCertificates">
-	<area class="area" shape="circle" coords="105,415,18" href="#pageExperience">
-	<area class="area" shape="circle" coords="105,460,18" href="#pageServices">
-	<area class="area" shape="circle" coords="105,506,18" href="#pagePortfolio">
-</map>
-<map name="pageExperience">
-	<area class="area" shape="circle" coords="105,197,18" href="#pageAboutme">
-	<area class="area" shape="circle" coords="105,242,18" href="#pageEducation">
-	<area class="area" shape="circle" coords="105,288,18" href="#pageSkills">
-	<area class="area" shape="circle" coords="105,334,18" href="#pageCertificates">
-	<area class="area" shape="circle" coords="105,398,33" href="#pageExperience">
-	<area class="area" shape="circle" coords="105,460,18" href="#pageServices">
-	<area class="area" shape="circle" coords="105,506,18" href="#pagePortfolio">
-</map>
-<map name="pageServices">
-	<area class="area" shape="circle" coords="105,197,18" href="#pageAboutme">
-	<area class="area" shape="circle" coords="105,242,18" href="#pageEducation">
-	<area class="area" shape="circle" coords="105,288,18" href="#pageSkills">
-	<area class="area" shape="circle" coords="105,334,18" href="#pageCertificates">
-	<area class="area" shape="circle" coords="105,380,18" href="#pageExperience">
-	<area class="area" shape="circle" coords="105,443,33" href="#pageServices">
-	<area class="area" shape="circle" coords="105,506,18" href="#pagePortfolio">
-</map>
-<map name="pagePortfolio">
-	<area class="area" shape="circle" coords="105,197,18" href="#pageAboutme">
-	<area class="area" shape="circle" coords="105,242,18" href="#pageEducation">
-	<area class="area" shape="circle" coords="105,288,18" href="#pageSkills">
-	<area class="area" shape="circle" coords="105,334,18" href="#pageCertificates">
-	<area class="area" shape="circle" coords="105,380,18" href="#pageExperience">
-	<area class="area" shape="circle" coords="105,427,18" href="#pageServices">
-	<area class="area" shape="circle" coords="105,490,33" href="#pagePortfolio">
-</map>
 </div>
 <script type="text/javascript" src="portfolio.js"></script>
 </body>
