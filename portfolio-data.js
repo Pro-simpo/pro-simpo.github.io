@@ -10,7 +10,7 @@ window.PORTFOLIO_DATA = {
       logoAlt: "L3M logo",
       org: "L3M",
       en: { when: "Jun 2026 - Present", role: "Internship – QA Tester Web/Mobile", det: "Functional, regression and security testing on web and mobile applications. Writing test plans, test cases and bug reports; collaboration with development teams in an agile cycle." },
-      fr: { when: "2026", role: "Stage – Testeur QA Web/Mobile", det: "Réalisation de tests fonctionnels, de régression et de sécurité sur des applications web et mobiles. Rédaction de plans et cas de test et rapports de bugs ; collaboration avec les équipes de développement en cycle agile." }
+      fr: { when: "Juin 2026 - Présent", role: "Stage – Testeur QA Web/Mobile", det: "Réalisation de tests fonctionnels, de régression et de sécurité sur des applications web et mobiles. Rédaction de plans et cas de test et rapports de bugs ; collaboration avec les équipes de développement en cycle agile." }
     },
     {
       id: "exp2",
