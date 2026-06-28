@@ -1,3 +1,99 @@
+/* ===================== DATA-DRIVEN SECTION RENDERERS =====================
+ * Runs synchronously at script load — fills sections from PORTFOLIO_DATA.
+ * portfolio-data.js must be loaded BEFORE portfolio.js.
+ */
+(function() {
+    if (!window.PORTFOLIO_DATA) return;
+    var D = window.PORTFOLIO_DATA;
+
+    var GITHUB_ICON = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>';
+
+    function _renderExperience(lang) {
+        var el = document.querySelector('.ex-tl');
+        if (!el || !D.experience) return;
+        el.innerHTML = D.experience.map(function(e) {
+            var l = e[lang] || e.en;
+            return '<div class="ex-tl-item"><div class="ex-tl-card">'
+                + (e.logo ? '<img class="ex-tl-logo" src="' + e.logo + '" alt="' + (e.logoAlt || '') + '">' : '')
+                + '<span class="ex-when" data-i18n="' + e.id + '-when">' + l.when + '</span>'
+                + '<h3 class="ex-role" data-i18n="' + e.id + '-role">' + l.role + '</h3>'
+                + '<div class="ex-org">' + e.org + '</div>'
+                + '<p class="ex-det" data-i18n="' + e.id + '-det">' + l.det + '</p>'
+                + '</div></div>';
+        }).join('');
+    }
+
+    function _renderServices(lang) {
+        var el = document.querySelector('.sv-grid');
+        if (!el || !D.services) return;
+        el.innerHTML = D.services.map(function(s) {
+            var l = s[lang] || s.en;
+            return '<div class="sv-card" data-clr="' + s.color + '">'
+                + '<div class="sv-icon-wrap"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">' + s.iconSvg + '</svg></div>'
+                + '<h3 class="sv-title" data-i18n="' + s.id + '-title">' + l.title + '</h3>'
+                + '<p class="sv-desc" data-i18n="' + s.id + '-desc">' + l.desc + '</p>'
+                + '<div class="sv-tags">' + s.tags.map(function(t) { return '<span>' + t + '</span>'; }).join('') + '</div>'
+                + '<a href="#pageContact" class="sv-cta" data-i18n="sv-cta">' + (lang === 'fr' ? 'Me contacter' : 'Contact me') + '</a>'
+                + '</div>';
+        }).join('');
+    }
+
+    function _renderProjects(lang) {
+        var el = document.querySelector('.pt-grid');
+        if (!el || !D.projects) return;
+        el.innerHTML = D.projects.map(function(p) {
+            var l = p[lang] || p.en;
+            return '<article class="pt-card" data-cat="' + p.category + '" data-det="' + p.detId + '">'
+                + '<div class="pt-glare"></div>'
+                + '<div class="pt-thumb"><img src="' + p.thumbnail + '" alt="' + p.thumbAlt + '"></div>'
+                + '<div class="pt-body">'
+                + '<div class="pt-cats" data-i18n="pt-' + p.id + '-cats">' + l.cats + '</div>'
+                + '<h3 class="pt-title">' + p.title + '</h3>'
+                + '<p class="pt-desc" data-i18n="pt-' + p.id + '-desc">' + l.desc + '</p>'
+                + '<div class="pt-stack">' + p.stack.map(function(t) { return '<span>' + t + '</span>'; }).join('') + '</div>'
+                + '<a class="pt-link" href="' + p.github + '" target="_blank" rel="noopener">GitHub ' + GITHUB_ICON + '</a>'
+                + '</div></article>';
+        }).join('');
+    }
+
+    function _renderCertificates() {
+        var el = document.querySelector('.ce-grid');
+        if (!el || !D.certificates) return;
+        el.innerHTML = D.certificates.map(function(c) {
+            return '<a class="ce-card" href="' + c.pdf + '" target="_blank" rel="noopener">'
+                + '<div class="ce-thumb"><img src="' + c.thumb + '" alt="' + c.thumbAlt + '"></div>'
+                + '<div class="ce-body">'
+                + '<span class="ce-code">' + c.code + '</span>'
+                + '<h4 class="ce-title">' + c.title + '</h4>'
+                + '<div class="ce-iss">' + c.issuer + '</div>'
+                + '</div></a>';
+        }).join('');
+    }
+
+    function _renderSkills() {
+        var root = document.querySelector('.div3skillphoto');
+        if (!root || !D.skills) return;
+        D.skills.forEach(function(cat) {
+            var container = root.querySelector('.' + cat.containerClass + ' .skills-container');
+            if (!container) return;
+            container.innerHTML = cat.items.map(function(s) {
+                return '<span class="skill-badge" data-skill="' + s.name + '">'
+                    + '<div class="skillImage"><i class="' + s.iconClass + '"></i></div>'
+                    + s.name + '</span>';
+            }).join('');
+        });
+    }
+
+    /* Initial render at script load time */
+    var _initLang = localStorage.getItem('lang') || 'en';
+    _renderExperience(_initLang);
+    _renderServices(_initLang);
+    _renderProjects(_initLang);
+    _renderCertificates();
+    _renderSkills();
+    /* Language switching is handled by applyLang() via data-i18n attributes on the generated elements. */
+})();
+
 // apparition progressive des sections au scroll
 window.addEventListener('scroll', function() {
     var windowHeight = window.innerHeight;
@@ -867,7 +963,9 @@ document.addEventListener('DOMContentLoaded', function() {
     var SV_TILT = 10;
     var SV_Z    = 14;
 
-    document.querySelectorAll('.sv-card').forEach(function(card) {
+    function _initSvTilt() {
+        document.querySelectorAll('.sv-card:not([data-tilt])').forEach(function(card) {
+            card.setAttribute('data-tilt', '1');
         /* Create glare dynamically */
         var glare = document.createElement('div');
         glare.className = 'sv-glare';
@@ -890,7 +988,11 @@ document.addEventListener('DOMContentLoaded', function() {
             card.style.transition = 'transform 0.5s cubic-bezier(0.34, 1.4, 0.64, 1), border-color 0.25s, box-shadow 0.3s';
             card.style.transform = 'perspective(700px) rotateX(0deg) rotateY(0deg) translateZ(0)';
         });
-    });
+        });
+    }
+
+    _initSvTilt();
+    window._initSvTilt = _initSvTilt;
 })();
 
 /* ===================== i18n — EN / FR ===================== */
@@ -1090,6 +1192,23 @@ document.addEventListener('DOMContentLoaded', function() {
             'ct-submit':'Envoyer le message'
         }
     };
+
+    /* Merge PORTFOLIO_DATA translations so admin edits override hardcoded values */
+    if (window.PORTFOLIO_DATA) {
+        var _pd = window.PORTFOLIO_DATA;
+        if (_pd.experience) _pd.experience.forEach(function(e) {
+            if (e.en) { t.en[e.id+'-when']=e.en.when; t.en[e.id+'-role']=e.en.role; t.en[e.id+'-det']=e.en.det; }
+            if (e.fr) { t.fr[e.id+'-when']=e.fr.when; t.fr[e.id+'-role']=e.fr.role; t.fr[e.id+'-det']=e.fr.det; }
+        });
+        if (_pd.services) _pd.services.forEach(function(s) {
+            if (s.en) { t.en[s.id+'-title']=s.en.title; t.en[s.id+'-desc']=s.en.desc; }
+            if (s.fr) { t.fr[s.id+'-title']=s.fr.title; t.fr[s.id+'-desc']=s.fr.desc; }
+        });
+        if (_pd.projects) _pd.projects.forEach(function(p) {
+            if (p.en) { t.en['pt-'+p.id+'-cats']=p.en.cats; t.en['pt-'+p.id+'-desc']=p.en.desc; }
+            if (p.fr) { t.fr['pt-'+p.id+'-cats']=p.fr.cats; t.fr['pt-'+p.id+'-desc']=p.fr.desc; }
+        });
+    }
 
     function applyLang(lang) {
         window._currentLang = lang;
