@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio Admin — Taobata Simporé</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0d1117;--bg2:#161b22;--bg3:#21262d;
+  --border:#30363d;--border2:#484f58;
+  --text:#e6edf3;--muted:#8b949e;--muted2:#6e7681;
+  --accent:#0288d1;--accent2:#0ea5e9;
+  --danger:#f85149;--success:#3fb950;--warn:#d29922;
+  --radius:8px;--radius2:12px;
+  --sidebar:220px;
+  font-size:14px;
+}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.5;min-height:100vh;}
+
+/* ── AUTH GATE ── */
+#authOverlay{position:fixed;inset:0;background:var(--bg);z-index:999;display:flex;align-items:center;justify-content:center;}
+.auth-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius2);padding:40px;width:360px;text-align:center;}
+.auth-box svg{display:block;margin:0 auto 20px;}
+.auth-box h1{font-size:1.4rem;margin-bottom:6px;color:var(--text);}
+.auth-box p{color:var(--muted);margin-bottom:24px;font-size:.875rem;}
+.auth-box input{width:100%;padding:10px 14px;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--radius);color:var(--text);font-size:1rem;margin-bottom:12px;outline:none;transition:border-color .2s;}
+.auth-box input:focus{border-color:var(--accent);}
+.auth-box button{width:100%;padding:11px;background:var(--accent);border:none;border-radius:var(--radius);color:#fff;font-size:.95rem;font-weight:600;cursor:pointer;transition:background .2s;}
+.auth-box button:hover{background:var(--accent2);}
+.auth-error{color:var(--danger);font-size:.8rem;margin-top:8px;min-height:18px;}
+
+/* ── SHELL ── */
+#adminShell{display:none;height:100vh;overflow:hidden;}
+#adminShell.visible{display:flex;}
+
+/* ── SIDEBAR ── */
+#sidebar{width:var(--sidebar);background:var(--bg2);border-right:1px solid var(--border);display:flex;flex-direction:column;flex-shrink:0;overflow-y:auto;}
+.sb-logo{padding:20px 16px 12px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--border);flex-shrink:0;}
+.sb-logo-icon{width:32px;height:32px;background:var(--accent);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;}
+.sb-logo-text{font-weight:700;font-size:.9rem;line-height:1.1;}
+.sb-logo-sub{color:var(--muted);font-size:.7rem;}
+.sb-nav{padding:12px 8px;flex:1;}
+.sb-section-label{font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted2);padding:10px 8px 4px;}
+.sb-btn{display:flex;align-items:center;gap:10px;width:100%;padding:9px 10px;border:none;background:transparent;color:var(--muted);border-radius:6px;cursor:pointer;font-size:.85rem;text-align:left;transition:background .15s,color .15s;}
+.sb-btn svg{flex-shrink:0;opacity:.7;}
+.sb-btn:hover{background:var(--bg3);color:var(--text);}
+.sb-btn.active{background:rgba(2,136,209,.15);color:var(--accent2);}
+.sb-btn.active svg{opacity:1;}
+.sb-count{margin-left:auto;background:var(--bg3);color:var(--muted);font-size:.7rem;padding:1px 7px;border-radius:20px;}
+.sb-btn.active .sb-count{background:rgba(2,136,209,.2);color:var(--accent2);}
+.sb-footer{padding:12px 8px 16px;border-top:1px solid var(--border);}
+.sb-footer-btn{display:flex;align-items:center;gap:8px;width:100%;padding:9px 10px;border:none;background:transparent;color:var(--muted);border-radius:6px;cursor:pointer;font-size:.85rem;text-align:left;transition:background .15s,color .15s;margin-bottom:4px;}
+.sb-footer-btn:hover{background:var(--bg3);color:var(--text);}
+.sb-footer-btn.export{color:var(--success);}
+.sb-footer-btn.export:hover{background:rgba(63,185,80,.1);}
+.sb-footer-btn.danger:hover{background:rgba(248,81,73,.1);color:var(--danger);}
+#pwdOverlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:200;align-items:center;justify-content:center;padding:20px;}
+#pwdOverlay.visible{display:flex;}
+.pwd-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius2);width:100%;max-width:400px;}
+.sb-preview{display:flex;align-items:center;gap:8px;width:100%;padding:9px 10px;text-decoration:none;color:var(--muted);border-radius:6px;font-size:.85rem;transition:background .15s,color .15s;margin-bottom:4px;}
+.sb-preview:hover{background:var(--bg3);color:var(--text);}
+
+/* ── MAIN ── */
+#mainContent{flex:1;overflow-y:auto;background:var(--bg);}
+.page-header{padding:24px 28px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:var(--bg);z-index:10;}
+.page-header h1{font-size:1.2rem;display:flex;align-items:center;gap:10px;}
+.page-header h1 svg{color:var(--accent);}
+.page-header .hdr-actions{display:flex;gap:8px;}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border:none;border-radius:var(--radius);font-size:.82rem;font-weight:600;cursor:pointer;transition:all .2s;white-space:nowrap;}
+.btn-primary{background:var(--accent);color:#fff;}
+.btn-primary:hover{background:var(--accent2);}
+.btn-ghost{background:transparent;color:var(--text);border:1px solid var(--border2);}
+.btn-ghost:hover{background:var(--bg3);}
+.btn-danger{background:transparent;color:var(--danger);border:1px solid var(--danger);}
+.btn-danger:hover{background:rgba(248,81,73,.1);}
+.btn-sm{padding:5px 10px;font-size:.78rem;}
+
+/* ── TABLE ── */
+.table-wrap{padding:20px 28px;}
+.table-controls{display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+.search-box{flex:1;max-width:320px;position:relative;}
+.search-box input{width:100%;padding:8px 12px 8px 34px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);color:var(--text);font-size:.85rem;outline:none;transition:border-color .2s;}
+.search-box input:focus{border-color:var(--accent);}
+.search-box svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--muted);}
+.data-table{width:100%;border-collapse:collapse;}
+.data-table th{text-align:left;padding:10px 14px;font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);border-bottom:1px solid var(--border);background:var(--bg2);}
+.data-table th:first-child{border-radius:8px 0 0 0;}
+.data-table th:last-child{border-radius:0 8px 0 0;}
+.data-table td{padding:12px 14px;border-bottom:1px solid var(--border);font-size:.85rem;vertical-align:middle;}
+.data-table tr:hover td{background:var(--bg2);}
+.data-table .td-actions{text-align:right;white-space:nowrap;vertical-align:middle;}
+.data-table .td-actions .btn+.btn{margin-left:6px;}
+.badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:.72rem;font-weight:600;letter-spacing:.02em;}
+.badge-cyber{background:rgba(248,81,73,.15);color:#ff8080;}
+.badge-iot{background:rgba(63,185,80,.15);color:#7ee787;}
+.badge-web{background:rgba(2,136,209,.15);color:#79c0ff;}
+.badge-java{background:rgba(210,153,34,.15);color:#f0c050;}
+.badge-fpga{background:rgba(188,82,210,.15);color:#d2a8ff;}
+.badge-autre{background:rgba(139,148,158,.15);color:#8b949e;}
+.tag-chip{display:inline-block;padding:2px 8px;background:var(--bg3);border:1px solid var(--border);border-radius:20px;font-size:.72rem;color:var(--muted);}
+.logo-thumb{width:32px;height:32px;border-radius:6px;object-fit:cover;background:var(--bg3);}
+.logo-placeholder{width:32px;height:32px;border-radius:6px;background:var(--bg3);display:inline-flex;align-items:center;justify-content:center;color:var(--muted);}
+.drag-handle{cursor:grab;color:var(--muted2);padding-right:6px;}
+.drag-handle:active{cursor:grabbing;}
+.reorder-hint{color:var(--muted);font-size:.75rem;display:flex;align-items:center;gap:6px;}
+
+/* ── MODAL ── */
+#modalOverlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:100;align-items:center;justify-content:center;padding:20px;}
+#modalOverlay.visible{display:flex;}
+.modal-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius2);width:100%;max-width:680px;max-height:90vh;display:flex;flex-direction:column;}
+.modal-header{padding:18px 22px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
+.modal-header h2{font-size:1rem;}
+.modal-close{background:transparent;border:none;color:var(--muted);cursor:pointer;padding:4px;border-radius:4px;}
+.modal-close:hover{color:var(--text);}
+.modal-body{padding:22px;overflow-y:auto;flex:1;}
+.modal-footer{padding:16px 22px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:8px;flex-shrink:0;}
+
+/* ── FORM ── */
+.form-group{margin-bottom:16px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.form-label{display:block;font-size:.78rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px;}
+.form-label span{font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted2);}
+.form-input,.form-select,.form-textarea{width:100%;padding:9px 12px;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--radius);color:var(--text);font-size:.87rem;outline:none;transition:border-color .2s;font-family:inherit;}
+.form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--accent);}
+.form-textarea{resize:vertical;min-height:80px;line-height:1.5;}
+.form-select option{background:var(--bg2);}
+.form-hint{font-size:.75rem;color:var(--muted2);margin-top:4px;}
+.lang-tabs{display:flex;gap:4px;margin-bottom:12px;}
+.lang-tab{padding:5px 14px;border:1px solid var(--border2);border-radius:6px;background:transparent;color:var(--muted);cursor:pointer;font-size:.82rem;font-weight:600;}
+.lang-tab.active{background:rgba(2,136,209,.15);border-color:var(--accent);color:var(--accent2);}
+.lang-pane{display:none;}
+.lang-pane.active{display:block;}
+.tags-editor{display:flex;flex-wrap:wrap;gap:6px;padding:8px;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--radius);}
+.tags-editor input{flex:1;min-width:100px;padding:3px 6px;background:transparent;border:none;color:var(--text);font-size:.87rem;outline:none;}
+.tag-item{display:inline-flex;align-items:center;gap:4px;padding:3px 8px;background:var(--bg2);border:1px solid var(--border);border-radius:20px;font-size:.78rem;}
+.tag-remove{background:transparent;border:none;color:var(--muted);cursor:pointer;font-size:1rem;line-height:1;padding:0 2px;}
+.tag-remove:hover{color:var(--danger);}
+.icon-preview{display:flex;align-items:center;gap:12px;margin-top:8px;}
+.icon-preview svg{color:var(--text);}
+.icon-preview span{font-size:.75rem;color:var(--muted);}
+.color-select-grid{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;}
+.color-opt{width:32px;height:32px;border-radius:6px;border:2px solid transparent;cursor:pointer;transition:transform .15s;position:relative;}
+.color-opt:hover{transform:scale(1.1);}
+.color-opt.selected::after{content:'✓';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1rem;font-weight:700;}
+.color-opt[data-clr=red]{background:#7f1d1d;}
+.color-opt[data-clr=blue]{background:#1e3a5f;}
+.color-opt[data-clr=purple]{background:#4c1d95;}
+.color-opt[data-clr=green]{background:#14532d;}
+.color-opt[data-clr=orange]{background:#7c2d12;}
+.color-opt[data-clr=amber]{background:#78350f;}
+.color-opt[data-clr=sky]{background:#0c4a6e;}
+.color-opt[data-clr=violet]{background:#4a1d96;}
+.color-opt.selected{border-color:#fff;transform:scale(1.1);}
+
+/* ── TOAST ── */
+#toast{position:fixed;bottom:24px;right:24px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:12px 18px;font-size:.85rem;z-index:999;display:flex;align-items:center;gap:8px;transform:translateY(80px);opacity:0;transition:all .3s;max-width:320px;}
+#toast.show{transform:translateY(0);opacity:1;}
+#toast.success{border-color:var(--success);color:var(--success);}
+#toast.error{border-color:var(--danger);color:var(--danger);}
+
+/* ── UNSAVED BANNER ── */
+#unsavedBanner{display:none;position:sticky;top:0;background:rgba(210,153,34,.12);border-bottom:1px solid var(--warn);padding:8px 28px;font-size:.82rem;color:var(--warn);z-index:9;align-items:center;gap:10px;}
+#unsavedBanner.show{display:flex;}
+
+/* ── EMPTY STATE ── */
+.empty-state{text-align:center;padding:60px 20px;color:var(--muted);}
+.empty-state svg{display:block;margin:0 auto 16px;opacity:.4;}
+.empty-state h3{font-size:1rem;color:var(--text);margin-bottom:6px;}
+
+/* ── CERT GRID PREVIEW ── */
+.cert-thumb-preview{width:40px;height:28px;object-fit:cover;border-radius:4px;background:var(--bg3);}
+
+/* ── SKILLS ── */
+.sk-cat-panel{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:16px;}
+.sk-cat-header{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;cursor:pointer;user-select:none;}
+.sk-cat-header:hover{background:var(--bg3);border-radius:var(--radius) var(--radius) 0 0;}
+.sk-cat-title{font-weight:700;font-size:.92rem;display:flex;align-items:center;gap:8px;}
+.sk-cat-count{color:var(--muted);font-weight:400;font-size:.8rem;}
+.sk-cat-body{padding:0 16px 16px;display:none;}
+.sk-cat-body.open{display:block;}
+.sk-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;min-height:32px;}
+.sk-chip{display:inline-flex;align-items:center;gap:6px;padding:5px 10px 5px 8px;background:var(--bg3);border:1px solid var(--border);border-radius:20px;font-size:.8rem;}
+.sk-chip .sk-icon{font-size:.7rem;color:var(--muted);}
+.sk-chip-del{background:transparent;border:none;color:var(--muted);cursor:pointer;font-size:.9rem;padding:0 0 0 2px;line-height:1;}
+.sk-chip-del:hover{color:var(--danger);}
+.sk-chip-edit{background:transparent;border:none;color:var(--muted);cursor:pointer;font-size:.75rem;padding:0;opacity:.6;}
+.sk-chip-edit:hover{opacity:1;color:var(--accent2);}
+.sk-add-row{display:flex;gap:8px;align-items:center;margin-top:8px;}
+.sk-add-row input{flex:1;padding:7px 10px;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--radius);color:var(--text);font-size:.82rem;outline:none;}
+.sk-add-row input:focus{border-color:var(--accent);}
+.sk-add-row input::placeholder{color:var(--muted2);}
+</style>
+</head>
+<body>
+
+<!-- AUTH GATE -->
+<div id="authOverlay">
+  <div class="auth-box">
+    <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#0288d1" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+    <h1>Portfolio Admin</h1>
+    <p>Taobata Simporé — Access restricted</p>
+    <input type="password" id="passInput" placeholder="Password" autocomplete="current-password">
+    <button id="loginBtn">Sign in</button>
+    <div class="auth-error" id="authError"></div>
+  </div>
+</div>
+
+<!-- ADMIN SHELL -->
+<div id="adminShell">
+  <!-- Sidebar -->
+  <aside id="sidebar">
+    <div class="sb-logo">
+      <div class="sb-logo-icon">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div>
+        <div class="sb-logo-text">Portfolio Admin</div>
+        <div class="sb-logo-sub">pro-simpo.github.io</div>
+      </div>
+    </div>
+
+    <nav class="sb-nav">
+      <div class="sb-section-label">Sections</div>
+      <button class="sb-btn active" data-section="experience">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
+        Experience
+        <span class="sb-count" id="cnt-experience">0</span>
+      </button>
+      <button class="sb-btn" data-section="projects">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        Projects
+        <span class="sb-count" id="cnt-projects">0</span>
+      </button>
+      <button class="sb-btn" data-section="services">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+        Services
+        <span class="sb-count" id="cnt-services">0</span>
+      </button>
+      <button class="sb-btn" data-section="certificates">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+        Certificates
+        <span class="sb-count" id="cnt-certificates">0</span>
+      </button>
+      <button class="sb-btn" data-section="skills">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        Skills
+        <span class="sb-count" id="cnt-skills">0</span>
+      </button>
+    </nav>
+
+    <div class="sb-footer">
+      <a href="../index.html" target="_blank" class="sb-preview">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        Preview site
+      </a>
+      <button class="sb-footer-btn export" id="btnExport">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l4-4m-4 4l-4-4M5 21h14"/></svg>
+        Export portfolio-data.js
+      </button>
+      <button class="sb-footer-btn" id="btnChangePwd">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+        Change password
+      </button>
+      <button class="sb-footer-btn danger" id="btnLogout">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9"/></svg>
+        Logout
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main content -->
+  <main id="mainContent">
+    <div id="unsavedBanner">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      Unsaved changes — click <strong style="margin:0 4px">Export</strong> to download the updated portfolio-data.js
+    </div>
+    <div id="sectionContent"></div>
+  </main>
+</div>
+
+<!-- MODAL -->
+<div id="modalOverlay">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h2 id="modalTitle">Edit</h2>
+      <button class="modal-close" id="btnModalClose">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" id="btnModalCancel">Cancel</button>
+      <button class="btn btn-primary" id="btnModalSave">Save changes</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div id="toast"></div>
+
+<!-- CHANGE PASSWORD MODAL -->
+<div id="pwdOverlay">
+  <div class="pwd-box">
+    <div class="modal-header">
+      <h2>Change password</h2>
+      <button class="modal-close" id="btnPwdClose">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label class="form-label">Current password</label>
+        <input type="password" id="pwdCurrent" class="form-input" autocomplete="current-password" placeholder="Current password">
+      </div>
+      <div class="form-group">
+        <label class="form-label">New password</label>
+        <input type="password" id="pwdNew" class="form-input" autocomplete="new-password" placeholder="New password">
+      </div>
+      <div class="form-group" style="margin-bottom:0">
+        <label class="form-label">Confirm new password</label>
+        <input type="password" id="pwdConfirm" class="form-input" autocomplete="new-password" placeholder="Confirm new password">
+      </div>
+      <p id="pwdMsg" style="font-size:.82rem;margin-top:10px;display:none;"></p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" id="btnPwdCancel">Cancel</button>
+      <button class="btn btn-primary" id="btnPwdSave">Update password</button>
+    </div>
+  </div>
+</div>
+
+<!-- Load portfolio data -->
+<script src="../portfolio-data.js"></script>
+
+<script>
+/* =====================================================================
+   PORTFOLIO ADMIN — CORE
+   ===================================================================== */
+
+/* ── CONFIG ── */
+const ADMIN_PASSWORD = 'ProSimpo2026';
+const LS_KEY = 'portfolio_admin_data';
+const LS_META = 'portfolio_admin_meta';
+const LS_PWD  = 'portfolio_admin_pwd';
+
+/* ── STATE ── */
+let adminData = null;       // working copy
+let currentSection = 'experience';
+let editingId = null;       // id of item being edited (null = new)
+let editingSection = null;
+let isDirty = false;
+
+/* ── HELPERS ── */
+function deepClone(obj) { return JSON.parse(JSON.stringify(obj)); }
+
+function toast(msg, type = 'success', dur = 3000) {
+  const el = document.getElementById('toast');
+  el.innerHTML = (type === 'success'
+    ? '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>'
+    : '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>') + msg;
+  el.className = 'show ' + type;
+  clearTimeout(el._t);
+  el._t = setTimeout(() => { el.className = ''; }, dur);
+}
+
+function escape(s) {
+  if (!s) return '';
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function markDirty() {
+  isDirty = true;
+  document.getElementById('unsavedBanner').classList.add('show');
+}
+
+function updateCounts() {
+  ['experience','projects','services','certificates'].forEach(s => {
+    const el = document.getElementById('cnt-'+s);
+    if (el && adminData && adminData[s]) el.textContent = adminData[s].length;
+  });
+  const skEl = document.getElementById('cnt-skills');
+  if (skEl && adminData && adminData.skills) {
+    const total = adminData.skills.reduce((n, cat) => n + (cat.items||[]).length, 0);
+    skEl.textContent = total;
+  }
+}
+
+/* ── AUTH ── */
+document.getElementById('loginBtn').addEventListener('click', tryLogin);
+document.getElementById('passInput').addEventListener('keydown', e => { if (e.key === 'Enter') tryLogin(); });
+
+function tryLogin() {
+  const val = document.getElementById('passInput').value;
+  const err = document.getElementById('authError');
+  if (val === (localStorage.getItem(LS_PWD) || ADMIN_PASSWORD)) {
+    document.getElementById('authOverlay').style.display = 'none';
+    document.getElementById('adminShell').classList.add('visible');
+    initAdmin();
+  } else {
+    err.textContent = 'Incorrect password.';
+    document.getElementById('passInput').value = '';
+    document.getElementById('passInput').focus();
+  }
+}
+
+/* ── INIT ── */
+function initAdmin() {
+  // Load data: localStorage first (unsaved edits), then PORTFOLIO_DATA
+  let saved = null;
+  try { saved = JSON.parse(localStorage.getItem(LS_KEY)); } catch(e){}
+  if (saved && saved.experience && saved.projects) {
+    adminData = saved;
+    isDirty = true;
+    document.getElementById('unsavedBanner').classList.add('show');
+  } else if (window.PORTFOLIO_DATA) {
+    adminData = deepClone(window.PORTFOLIO_DATA);
+  } else {
+    adminData = { experience:[], services:[], projects:[], skills:[], certificates:[] };
+  }
+  /* Ensure skills array exists even on old data */
+  if (!adminData.skills) adminData.skills = [];
+  updateCounts();
+  renderSection('experience');
+  setupSidebarNav();
+  setupModalListeners();
+  document.getElementById('btnExport').addEventListener('click', exportData);
+  document.getElementById('btnLogout').addEventListener('click', () => {
+    localStorage.removeItem(LS_KEY);
+    location.reload();
+  });
+  setupPwdModal();
+}
+
+/* ── SIDEBAR NAV ── */
+function setupSidebarNav() {
+  document.querySelectorAll('.sb-btn[data-section]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.sb-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderSection(btn.dataset.section);
+    });
+  });
+}
+
+/* ── SECTION RENDERERS ── */
+function renderSection(section) {
+  currentSection = section;
+  const el = document.getElementById('sectionContent');
+  switch(section) {
+    case 'experience':    el.innerHTML = renderExperience(); break;
+    case 'projects':      el.innerHTML = renderProjects(); break;
+    case 'services':      el.innerHTML = renderServices(); break;
+    case 'certificates':  el.innerHTML = renderCertificates(); break;
+    case 'skills':        el.innerHTML = renderSkills(); break;
+  }
+  attachSectionEvents(section);
+}
+
+/* ─ EXPERIENCE ─ */
+function renderExperience() {
+  const items = adminData.experience || [];
+  return `
+  <div class="page-header">
+    <h1>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
+      Experience <span style="color:var(--muted);font-weight:400;font-size:.85rem;margin-left:6px">${items.length} entries</span>
+    </h1>
+    <div class="hdr-actions">
+      <button class="btn btn-primary" id="btnAddItem">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        Add experience
+      </button>
+    </div>
+  </div>
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead><tr>
+        <th style="width:36px"></th>
+        <th style="width:44px">Logo</th>
+        <th>Role (EN)</th>
+        <th>Organisation</th>
+        <th>Period</th>
+        <th style="width:100px;text-align:right">Actions</th>
+      </tr></thead>
+      <tbody>
+        ${items.length === 0 ? `<tr><td colspan="6"><div class="empty-state"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg><h3>No experience entries</h3></div></td></tr>` :
+        items.map((e, i) => `
+          <tr data-id="${escape(e.id)}">
+            <td class="drag-handle" draggable="true" data-idx="${i}">⠿</td>
+            <td>${e.logo ? `<img class="logo-thumb" src="../${escape(e.logo)}" alt="">` : `<div class="logo-placeholder"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>`}</td>
+            <td><strong>${escape(e.en && e.en.role || '')}</strong>${e.fr && e.fr.role ? `<br><small style="color:var(--muted)">${escape(e.fr.role)}</small>` : ''}</td>
+            <td>${escape(e.org)}</td>
+            <td style="color:var(--muted)">${escape(e.en && e.en.when || '')}</td>
+            <td class="td-actions">
+              <button class="btn btn-ghost btn-sm" data-action="edit" data-idx="${i}">Edit</button>
+              <button class="btn btn-danger btn-sm" data-action="delete" data-idx="${i}">Del</button>
+            </td>
+          </tr>`).join('')}
+      </tbody>
+    </table>
+    <div class="reorder-hint" style="margin-top:12px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/></svg> Drag rows to reorder</div>
+  </div>`;
+}
+
+/* ─ SERVICES ─ */
+function renderServices() {
+  const items = adminData.services || [];
+  const clrLabel = {red:'Red',blue:'Blue',purple:'Purple',green:'Green',orange:'Orange',amber:'Amber',sky:'Sky',violet:'Violet'};
+  return `
+  <div class="page-header">
+    <h1>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+      Services <span style="color:var(--muted);font-weight:400;font-size:.85rem;margin-left:6px">${items.length} entries</span>
+    </h1>
+    <div class="hdr-actions">
+      <button class="btn btn-primary" id="btnAddItem">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        Add service
+      </button>
+    </div>
+  </div>
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead><tr>
+        <th style="width:36px"></th>
+        <th style="width:40px">Color</th>
+        <th>Title (EN)</th>
+        <th>Title (FR)</th>
+        <th>Tags</th>
+        <th style="width:100px;text-align:right">Actions</th>
+      </tr></thead>
+      <tbody>
+        ${items.length === 0 ? `<tr><td colspan="6"><div class="empty-state"><h3>No services</h3></div></td></tr>` :
+        items.map((s, i) => `
+          <tr data-id="${escape(s.id)}">
+            <td class="drag-handle" draggable="true" data-idx="${i}">⠿</td>
+            <td><div class="color-opt selected" data-clr="${escape(s.color)}" style="width:24px;height:24px;pointer-events:none;border:none;"></div></td>
+            <td><strong>${escape(s.en && s.en.title || '')}</strong></td>
+            <td style="color:var(--muted)">${escape(s.fr && s.fr.title || '')}</td>
+            <td>${(s.tags||[]).slice(0,3).map(t=>`<span class="tag-chip">${escape(t)}</span>`).join(' ')}${(s.tags||[]).length > 3 ? `<span style="color:var(--muted);font-size:.75rem"> +${s.tags.length-3}</span>` : ''}</td>
+            <td class="td-actions">
+              <button class="btn btn-ghost btn-sm" data-action="edit" data-idx="${i}">Edit</button>
+              <button class="btn btn-danger btn-sm" data-action="delete" data-idx="${i}">Del</button>
+            </td>
+          </tr>`).join('')}
+      </tbody>
+    </table>
+    <div class="reorder-hint" style="margin-top:12px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/></svg> Drag rows to reorder</div>
+  </div>`;
+}
+
+/* ─ PROJECTS ─ */
+function renderProjects() {
+  const items = adminData.projects || [];
+  const catBadge = (c) => `<span class="badge badge-${c}">${c}</span>`;
+  return `
+  <div class="page-header">
+    <h1>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+      Projects <span style="color:var(--muted);font-weight:400;font-size:.85rem;margin-left:6px">${items.length} entries</span>
+    </h1>
+    <div class="hdr-actions">
+      <button class="btn btn-primary" id="btnAddItem">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        Add project
+      </button>
+    </div>
+  </div>
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead><tr>
+        <th style="width:36px"></th>
+        <th style="width:52px">Thumb</th>
+        <th>Title</th>
+        <th style="width:90px">Category</th>
+        <th>Stack</th>
+        <th style="width:100px;text-align:right">Actions</th>
+      </tr></thead>
+      <tbody>
+        ${items.length === 0 ? `<tr><td colspan="6"><div class="empty-state"><h3>No projects</h3></div></td></tr>` :
+        items.map((p, i) => `
+          <tr data-id="${escape(p.id)}">
+            <td class="drag-handle" draggable="true" data-idx="${i}">⠿</td>
+            <td><img class="cert-thumb-preview" src="../${escape(p.thumbnail)}" alt="" onerror="this.style.display='none'"></td>
+            <td><strong>${escape(p.title)}</strong></td>
+            <td>${catBadge(p.category)}</td>
+            <td>${(p.stack||[]).slice(0,3).map(t=>`<span class="tag-chip">${escape(t)}</span>`).join(' ')}${(p.stack||[]).length > 3 ? `<span style="color:var(--muted);font-size:.75rem"> +${p.stack.length-3}</span>` : ''}</td>
+            <td class="td-actions">
+              <button class="btn btn-ghost btn-sm" data-action="edit" data-idx="${i}">Edit</button>
+              <button class="btn btn-danger btn-sm" data-action="delete" data-idx="${i}">Del</button>
+            </td>
+          </tr>`).join('')}
+      </tbody>
+    </table>
+    <div class="reorder-hint" style="margin-top:12px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/></svg> Drag rows to reorder</div>
+  </div>`;
+}
+
+/* ─ SKILLS ─ */
+const CAT_LABELS = { cat1:'Cybersecurity', cat2:'Embedded Systems', cat3:'Web & Software Dev', cat4:'Other Skills' };
+const CAT_COLORS = { cat1:'#f85149', cat2:'#3fb950', cat3:'#0288d1', cat4:'#d29922' };
+
+function renderSkills() {
+  const cats = adminData.skills || [];
+  const totalSkills = cats.reduce((n, c) => n + (c.items||[]).length, 0);
+  return `
+  <div class="page-header">
+    <h1>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      Skills <span style="color:var(--muted);font-weight:400;font-size:.85rem;margin-left:6px">${totalSkills} skills across ${cats.length} categories</span>
+    </h1>
+  </div>
+  <div class="table-wrap">
+    ${cats.map((cat, ci) => `
+    <div class="sk-cat-panel" data-catidx="${ci}">
+      <div class="sk-cat-header" onclick="toggleSkCat(${ci})">
+        <div class="sk-cat-title">
+          <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${CAT_COLORS[cat.id]||'var(--accent)'}"></span>
+          ${CAT_LABELS[cat.id] || cat.id}
+          <span class="sk-cat-count">${(cat.items||[]).length} skills</span>
+        </div>
+        <svg id="sk-chevron-${ci}" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="transition:transform .2s"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="sk-cat-body open" id="sk-body-${ci}">
+        <div class="sk-chips" id="sk-chips-${ci}">
+          ${(cat.items||[]).map((s, si) => `
+          <span class="sk-chip" data-catidx="${ci}" data-si="${si}">
+            <span class="sk-icon"><i class="${escape(s.iconClass)}"></i></span>
+            ${escape(s.name)}
+            <button class="sk-chip-edit" title="Edit" onclick="editSkill(${ci},${si})">✎</button>
+            <button class="sk-chip-del" title="Remove" onclick="deleteSkill(${ci},${si})">×</button>
+          </span>`).join('')}
+        </div>
+        <div class="sk-add-row" id="sk-add-${ci}">
+          <input id="sk-name-${ci}" placeholder="Skill name (e.g. Docker)" onkeydown="if(event.key==='Enter')addSkill(${ci})">
+          <input id="sk-icon-${ci}" placeholder="FA icon class (e.g. fa-brands fa-docker ibadge)" style="flex:2" onkeydown="if(event.key==='Enter')addSkill(${ci})">
+          <button class="btn btn-primary btn-sm" onclick="addSkill(${ci})">Add</button>
+        </div>
+      </div>
+    </div>`).join('')}
+  </div>`;
+}
+
+window.toggleSkCat = function(ci) {
+  const body = document.getElementById('sk-body-'+ci);
+  const chev = document.getElementById('sk-chevron-'+ci);
+  if (!body) return;
+  body.classList.toggle('open');
+  if (chev) chev.style.transform = body.classList.contains('open') ? '' : 'rotate(-90deg)';
+};
+
+window.addSkill = function(ci) {
+  const nameEl = document.getElementById('sk-name-'+ci);
+  const iconEl = document.getElementById('sk-icon-'+ci);
+  if (!nameEl) return;
+  const name = nameEl.value.trim();
+  if (!name) { toast('Skill name required', 'error'); return; }
+  const iconClass = (iconEl && iconEl.value.trim()) || 'fa-solid fa-star ibadge';
+  if (!adminData.skills[ci]) return;
+  adminData.skills[ci].items.push({ name, iconClass });
+  saveToLocalStorage(); markDirty(); updateCounts();
+  renderSection('skills');
+  setTimeout(() => { const b = document.getElementById('sk-body-'+ci); if (b) b.classList.add('open'); }, 0);
+  toast('Skill added');
+};
+
+window.deleteSkill = function(ci, si) {
+  if (!confirm('Remove this skill?')) return;
+  adminData.skills[ci].items.splice(si, 1);
+  saveToLocalStorage(); markDirty(); updateCounts();
+  renderSection('skills');
+};
+
+window.editSkill = function(ci, si) {
+  const item = adminData.skills[ci].items[si];
+  if (!item) return;
+  const newName = prompt('Skill name:', item.name);
+  if (newName === null) return;
+  const newIcon = prompt('FA icon class:', item.iconClass);
+  if (newIcon === null) return;
+  adminData.skills[ci].items[si] = { name: newName.trim() || item.name, iconClass: newIcon.trim() || item.iconClass };
+  saveToLocalStorage(); markDirty();
+  renderSection('skills');
+};
+
+/* ─ CERTIFICATES ─ */
+function renderCertificates() {
+  const items = adminData.certificates || [];
+  return `
+  <div class="page-header">
+    <h1>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+      Certificates <span style="color:var(--muted);font-weight:400;font-size:.85rem;margin-left:6px">${items.length} entries</span>
+    </h1>
+    <div class="hdr-actions">
+      <button class="btn btn-primary" id="btnAddItem">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        Add certificate
+      </button>
+    </div>
+  </div>
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead><tr>
+        <th style="width:36px"></th>
+        <th style="width:60px">Preview</th>
+        <th>Title</th>
+        <th>Code badge</th>
+        <th>Issuer</th>
+        <th style="width:100px;text-align:right">Actions</th>
+      </tr></thead>
+      <tbody>
+        ${items.length === 0 ? `<tr><td colspan="6"><div class="empty-state"><h3>No certificates</h3></div></td></tr>` :
+        items.map((c, i) => `
+          <tr data-id="${escape(c.id)}">
+            <td class="drag-handle" draggable="true" data-idx="${i}">⠿</td>
+            <td><img class="cert-thumb-preview" src="../${escape(c.thumb)}" alt="" onerror="this.style.display='none'"></td>
+            <td>${escape(c.title)}</td>
+            <td><span class="tag-chip">${escape(c.code)}</span></td>
+            <td style="color:var(--muted)">${escape(c.issuer)}</td>
+            <td class="td-actions">
+              <button class="btn btn-ghost btn-sm" data-action="edit" data-idx="${i}">Edit</button>
+              <button class="btn btn-danger btn-sm" data-action="delete" data-idx="${i}">Del</button>
+            </td>
+          </tr>`).join('')}
+      </tbody>
+    </table>
+    <div class="reorder-hint" style="margin-top:12px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/></svg> Drag rows to reorder</div>
+  </div>`;
+}
+
+/* ── SECTION EVENT DELEGATION ── */
+function attachSectionEvents(section) {
+  if (section === 'skills') return; // skills uses inline editing, no modal
+
+  const wrap = document.getElementById('sectionContent');
+
+  /* Add button */
+  const addBtn = document.getElementById('btnAddItem');
+  if (addBtn) addBtn.addEventListener('click', () => openModal(section, null));
+
+  /* Edit / Delete buttons */
+  wrap.addEventListener('click', (e) => {
+    const btn = e.target.closest('[data-action]');
+    if (!btn) return;
+    const idx = parseInt(btn.dataset.idx);
+    if (btn.dataset.action === 'edit') openModal(section, idx);
+    if (btn.dataset.action === 'delete') deleteItem(section, idx);
+  });
+
+  /* Drag and drop reorder */
+  setupDragDrop(section);
+}
+
+/* ── DRAG & DROP ── */
+function setupDragDrop(section) {
+  const tbody = document.querySelector('.data-table tbody');
+  if (!tbody) return;
+  let dragSrc = null;
+
+  tbody.addEventListener('dragstart', e => {
+    dragSrc = e.target.closest('tr');
+    if (dragSrc) { dragSrc.style.opacity = '.5'; e.dataTransfer.effectAllowed = 'move'; }
+  });
+  tbody.addEventListener('dragover', e => {
+    e.preventDefault(); e.dataTransfer.dropEffect = 'move';
+    const row = e.target.closest('tr');
+    if (row && row !== dragSrc) row.classList.add('bg-hover');
+  });
+  tbody.addEventListener('dragleave', e => {
+    const row = e.target.closest('tr');
+    if (row) row.classList.remove('bg-hover');
+  });
+  tbody.addEventListener('drop', e => {
+    e.preventDefault();
+    const target = e.target.closest('tr');
+    if (!target || !dragSrc || target === dragSrc) return;
+    const from = parseInt(dragSrc.querySelector('[data-idx]').dataset.idx);
+    const to   = parseInt(target.querySelector('[data-idx]').dataset.idx);
+    const arr = adminData[section];
+    const [item] = arr.splice(from, 1);
+    arr.splice(to, 0, item);
+    saveToLocalStorage();
+    markDirty();
+    updateCounts();
+    renderSection(section);
+  });
+  tbody.addEventListener('dragend', e => {
+    if (dragSrc) { dragSrc.style.opacity = ''; dragSrc = null; }
+    document.querySelectorAll('.bg-hover').forEach(r => r.classList.remove('bg-hover'));
+  });
+}
+
+/* ── DELETE ── */
+function deleteItem(section, idx) {
+  if (!confirm('Delete this item?')) return;
+  adminData[section].splice(idx, 1);
+  saveToLocalStorage();
+  markDirty();
+  updateCounts();
+  renderSection(section);
+  toast('Item deleted', 'success');
+}
+
+/* ── MODAL ── */
+function setupModalListeners() {
+  document.getElementById('btnModalClose').addEventListener('click', closeModal);
+  document.getElementById('btnModalCancel').addEventListener('click', closeModal);
+  document.getElementById('modalOverlay').addEventListener('click', e => {
+    if (e.target === document.getElementById('modalOverlay')) closeModal();
+  });
+  document.getElementById('btnModalSave').addEventListener('click', saveModal);
+}
+
+function openModal(section, idx) {
+  editingSection = section;
+  editingId = idx;
+  const isNew = idx === null;
+  document.getElementById('modalTitle').textContent = (isNew ? 'Add ' : 'Edit ') + section.slice(0,-1);
+  document.getElementById('modalBody').innerHTML = buildForm(section, isNew ? null : adminData[section][idx]);
+  document.getElementById('modalOverlay').classList.add('visible');
+  initFormWidgets();
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('visible');
+  editingSection = null;
+  editingId = null;
+}
+
+function saveModal() {
+  const data = readForm(editingSection);
+  if (!data) return;
+  if (editingId === null) {
+    adminData[editingSection].push(data);
+  } else {
+    adminData[editingSection][editingId] = data;
+  }
+  saveToLocalStorage();
+  markDirty();
+  updateCounts();
+  renderSection(editingSection);
+  closeModal();
+  toast('Saved successfully');
+}
+
+/* ── FORM BUILDERS ── */
+function buildForm(section, item) {
+  switch(section) {
+    case 'experience':   return buildExpForm(item);
+    case 'services':     return buildSvForm(item);
+    case 'projects':     return buildPtForm(item);
+    case 'certificates': return buildCeForm(item);
+    default: return '';
+  }
+}
+
+function buildExpForm(e) {
+  const v = e || { id:'', logo:'', logoAlt:'', org:'', en:{when:'',role:'',det:''}, fr:{when:'',role:'',det:''} };
+  return `
+  <div class="form-group">
+    <label class="form-label">ID <span>(auto-generated, unique)</span></label>
+    <input class="form-input" id="f-id" value="${escape(v.id)}" placeholder="exp7" ${e ? 'readonly style="opacity:.5"':''}>
+    ${!e ? '<div class="form-hint">Use short slug: exp7, exp8 etc.</div>' : ''}
+  </div>
+  <div class="form-row">
+    <div class="form-group">
+      <label class="form-label">Logo image path</label>
+      <input class="form-input" id="f-logo" value="${escape(v.logo)}" placeholder="img/logo.jpg">
+      <div class="form-hint">Relative to repo root. Leave empty for no logo.</div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Logo alt text</label>
+      <input class="form-input" id="f-logoAlt" value="${escape(v.logoAlt)}" placeholder="Company logo">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="form-label">Organisation</label>
+    <input class="form-input" id="f-org" value="${escape(v.org)}" placeholder="Company name" required>
+  </div>
+  <div class="lang-tabs"><button class="lang-tab active" data-lang="en">🇬🇧 English</button><button class="lang-tab" data-lang="fr">🇫🇷 Français</button></div>
+  <div class="lang-pane active" id="pane-en">
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">Period (EN)</label><input class="form-input" id="f-en-when" value="${escape(v.en.when)}" placeholder="Jan. 2025 – Present"></div>
+      <div class="form-group"><label class="form-label">Role (EN)</label><input class="form-input" id="f-en-role" value="${escape(v.en.role)}" placeholder="Software Engineer" required></div>
+    </div>
+    <div class="form-group"><label class="form-label">Description (EN)</label><textarea class="form-textarea" id="f-en-det" rows="4">${escape(v.en.det)}</textarea></div>
+  </div>
+  <div class="lang-pane" id="pane-fr">
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">Période (FR)</label><input class="form-input" id="f-fr-when" value="${escape(v.fr.when)}" placeholder="Janv. 2025 – Présent"></div>
+      <div class="form-group"><label class="form-label">Rôle (FR)</label><input class="form-input" id="f-fr-role" value="${escape(v.fr.role)}" placeholder="Ingénieur logiciel"></div>
+    </div>
+    <div class="form-group"><label class="form-label">Description (FR)</label><textarea class="form-textarea" id="f-fr-det" rows="4">${escape(v.fr.det)}</textarea></div>
+  </div>`;
+}
+
+function buildSvForm(s) {
+  const v = s || { id:'', color:'blue', iconSvg:'', tags:[], en:{title:'',desc:''}, fr:{title:'',desc:''} };
+  const colors = ['red','blue','purple','green','orange','amber','sky','violet'];
+  const colorLabels = {red:'Red',blue:'Blue',purple:'Purple',green:'Green',orange:'Orange',amber:'Amber',sky:'Sky',violet:'Violet'};
+  return `
+  <div class="form-group">
+    <label class="form-label">ID <span>(auto-generated)</span></label>
+    <input class="form-input" id="f-id" value="${escape(v.id)}" placeholder="sv9" ${s ? 'readonly style="opacity:.5"':''}>
+    ${!s ? '<div class="form-hint">Use sv1–sv9, sv10 etc.</div>' : ''}
+  </div>
+  <div class="form-group">
+    <label class="form-label">Accent Color</label>
+    <div class="color-select-grid">
+      ${colors.map(c => `<div class="color-opt${v.color===c?' selected':''}" data-clr="${c}" title="${colorLabels[c]}" onclick="selectColor('${c}')"></div>`).join('')}
+    </div>
+    <input type="hidden" id="f-color" value="${escape(v.color)}">
+  </div>
+  <div class="form-group">
+    <label class="form-label">Icon SVG <span>(inner content of &lt;svg&gt; only)</span></label>
+    <textarea class="form-textarea" id="f-iconSvg" rows="3" placeholder='<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>'>${escape(v.iconSvg)}</textarea>
+    <div class="icon-preview"><svg id="iconPreview" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">${v.iconSvg}</svg><span>Live preview</span></div>
+  </div>
+  <div class="form-group">
+    <label class="form-label">Tags <span>(press Enter or comma to add)</span></label>
+    <div class="tags-editor" id="tagsEditor">
+      ${(v.tags||[]).map(t=>`<span class="tag-item">${escape(t)}<button class="tag-remove" data-tag="${escape(t)}" onclick="removeTag(this)">×</button></span>`).join('')}
+      <input id="tagInput" placeholder="Add tag…">
+    </div>
+    <input type="hidden" id="f-tags" value="${escape((v.tags||[]).join(','))}">
+  </div>
+  <div class="lang-tabs"><button class="lang-tab active" data-lang="en">🇬🇧 English</button><button class="lang-tab" data-lang="fr">🇫🇷 Français</button></div>
+  <div class="lang-pane active" id="pane-en">
+    <div class="form-group"><label class="form-label">Title (EN)</label><input class="form-input" id="f-en-title" value="${escape(v.en.title)}" required></div>
+    <div class="form-group"><label class="form-label">Description (EN)</label><textarea class="form-textarea" id="f-en-desc" rows="3">${escape(v.en.desc)}</textarea></div>
+  </div>
+  <div class="lang-pane" id="pane-fr">
+    <div class="form-group"><label class="form-label">Titre (FR)</label><input class="form-input" id="f-fr-title" value="${escape(v.fr.title)}"></div>
+    <div class="form-group"><label class="form-label">Description (FR)</label><textarea class="form-textarea" id="f-fr-desc" rows="3">${escape(v.fr.desc)}</textarea></div>
+  </div>`;
+}
+
+function buildPtForm(p) {
+  const v = p || { id:'', category:'web', detId:'', title:'', thumbnail:'', thumbAlt:'', stack:[], github:'', en:{cats:'',desc:''}, fr:{cats:'',desc:''} };
+  const cats = ['cyber','iot','java','fpga','web','autre'];
+  return `
+  <div class="form-row">
+    <div class="form-group">
+      <label class="form-label">ID <span>(unique slug)</span></label>
+      <input class="form-input" id="f-id" value="${escape(v.id)}" placeholder="myproject" ${p ? 'readonly style="opacity:.5"':''}>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Category</label>
+      <select class="form-select" id="f-category">
+        ${cats.map(c=>`<option value="${c}"${v.category===c?' selected':''}>${c}</option>`).join('')}
+      </select>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group">
+      <label class="form-label">Title</label>
+      <input class="form-input" id="f-title" value="${escape(v.title)}" required>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Detail panel ID <span>(id of pt-det in HTML, or leave empty)</span></label>
+      <input class="form-input" id="f-detId" value="${escape(v.detId)}" placeholder="shadow">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group">
+      <label class="form-label">Thumbnail path</label>
+      <input class="form-input" id="f-thumbnail" value="${escape(v.thumbnail)}" placeholder="img/project.jpg">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Thumbnail alt text</label>
+      <input class="form-input" id="f-thumbAlt" value="${escape(v.thumbAlt)}">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="form-label">GitHub / Project link</label>
+    <input class="form-input" id="f-github" value="${escape(v.github)}" placeholder="https://github.com/...">
+  </div>
+  <div class="form-group">
+    <label class="form-label">Stack <span>(press Enter or comma to add)</span></label>
+    <div class="tags-editor" id="tagsEditor">
+      ${(v.stack||[]).map(t=>`<span class="tag-item">${escape(t)}<button class="tag-remove" onclick="removeTag(this)">×</button></span>`).join('')}
+      <input id="tagInput" placeholder="Add technology…">
+    </div>
+    <input type="hidden" id="f-tags" value="${escape((v.stack||[]).join(','))}">
+  </div>
+  <div class="lang-tabs"><button class="lang-tab active" data-lang="en">🇬🇧 English</button><button class="lang-tab" data-lang="fr">🇫🇷 Français</button></div>
+  <div class="lang-pane active" id="pane-en">
+    <div class="form-group"><label class="form-label">Categories label (EN) <span>(displayed below title)</span></label><input class="form-input" id="f-en-cats" value="${escape(v.en.cats)}" placeholder="Cybersecurity &middot; Python &middot; ML"></div>
+    <div class="form-group"><label class="form-label">Short description (EN)</label><textarea class="form-textarea" id="f-en-desc" rows="3">${escape(v.en.desc)}</textarea></div>
+  </div>
+  <div class="lang-pane" id="pane-fr">
+    <div class="form-group"><label class="form-label">Catégories (FR)</label><input class="form-input" id="f-fr-cats" value="${escape(v.fr.cats)}"></div>
+    <div class="form-group"><label class="form-label">Description courte (FR)</label><textarea class="form-textarea" id="f-fr-desc" rows="3">${escape(v.fr.desc)}</textarea></div>
+  </div>`;
+}
+
+function buildCeForm(c) {
+  const v = c || { id:'', pdf:'', thumb:'', thumbAlt:'', code:'', title:'', issuer:'' };
+  return `
+  <div class="form-group">
+    <label class="form-label">ID <span>(unique)</span></label>
+    <input class="form-input" id="f-id" value="${escape(v.id)}" placeholder="cert-new" ${c ? 'readonly style="opacity:.5"':''}>
+  </div>
+  <div class="form-row">
+    <div class="form-group">
+      <label class="form-label">PDF file path</label>
+      <input class="form-input" id="f-pdf" value="${escape(v.pdf)}" placeholder="certificates/MyCert.pdf">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Code badge <span>(top of card)</span></label>
+      <input class="form-input" id="f-code" value="${escape(v.code)}" placeholder="ISC² · CC">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group">
+      <label class="form-label">Thumbnail path</label>
+      <input class="form-input" id="f-thumb" value="${escape(v.thumb)}" placeholder="img/cert.jpg">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Thumbnail alt text</label>
+      <input class="form-input" id="f-thumbAlt" value="${escape(v.thumbAlt)}">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group">
+      <label class="form-label">Title</label>
+      <input class="form-input" id="f-title" value="${escape(v.title)}" required placeholder="Certified in Cybersecurity">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Issuer</label>
+      <input class="form-input" id="f-issuer" value="${escape(v.issuer)}" placeholder="ISC²">
+    </div>
+  </div>`;
+}
+
+/* ── FORM WIDGETS ── */
+function initFormWidgets() {
+  /* Language tabs */
+  document.querySelectorAll('.lang-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.lang-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.lang-pane').forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      const pane = document.getElementById('pane-' + tab.dataset.lang);
+      if (pane) pane.classList.add('active');
+    });
+  });
+
+  /* Tags editor */
+  const tagInput = document.getElementById('tagInput');
+  if (tagInput) {
+    tagInput.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ',') { e.preventDefault(); addTag(tagInput.value.trim()); tagInput.value = ''; }
+    });
+    tagInput.addEventListener('blur', () => { if (tagInput.value.trim()) { addTag(tagInput.value.trim()); tagInput.value = ''; } });
+  }
+
+  /* Icon SVG live preview */
+  const iconInput = document.getElementById('f-iconSvg');
+  if (iconInput) {
+    iconInput.addEventListener('input', () => {
+      const prev = document.getElementById('iconPreview');
+      if (prev) prev.innerHTML = iconInput.value;
+    });
+  }
+}
+
+function addTag(val) {
+  if (!val) return;
+  const editor = document.getElementById('tagsEditor');
+  const hiddenInput = document.getElementById('f-tags');
+  if (!editor || !hiddenInput) return;
+  const span = document.createElement('span');
+  span.className = 'tag-item';
+  span.innerHTML = `${escape(val)}<button class="tag-remove" onclick="removeTag(this)">×</button>`;
+  const tagInput = document.getElementById('tagInput');
+  editor.insertBefore(span, tagInput);
+  const tags = getTags();
+  if (!tags.includes(val)) { tags.push(val); hiddenInput.value = tags.join(','); }
+}
+
+function removeTag(btn) {
+  const span = btn.parentElement;
+  const tag = span.textContent.slice(0, -1); // remove ×
+  span.remove();
+  const hiddenInput = document.getElementById('f-tags');
+  if (hiddenInput) hiddenInput.value = getTags().filter(t => t !== tag).join(',');
+}
+
+window.removeTag = removeTag; // expose globally for onclick
+
+function getTags() {
+  const h = document.getElementById('f-tags');
+  return h && h.value ? h.value.split(',').filter(Boolean) : [];
+}
+
+function selectColor(clr) {
+  document.querySelectorAll('.color-opt').forEach(o => o.classList.toggle('selected', o.dataset.clr === clr));
+  const h = document.getElementById('f-color');
+  if (h) h.value = clr;
+}
+window.selectColor = selectColor;
+
+/* ── FORM READERS ── */
+function readForm(section) {
+  switch(section) {
+    case 'experience':   return readExpForm();
+    case 'services':     return readSvForm();
+    case 'projects':     return readPtForm();
+    case 'certificates': return readCeForm();
+  }
+}
+
+function readExpForm() {
+  const id = document.getElementById('f-id').value.trim();
+  const org = document.getElementById('f-org').value.trim();
+  if (!id || !org) { toast('ID and Organisation are required', 'error'); return null; }
+  const enRole = document.getElementById('f-en-role').value.trim();
+  if (!enRole) { toast('EN Role is required', 'error'); return null; }
+  return {
+    id,
+    logo: document.getElementById('f-logo').value.trim(),
+    logoAlt: document.getElementById('f-logoAlt').value.trim(),
+    org,
+    en: { when: document.getElementById('f-en-when').value.trim(), role: enRole, det: document.getElementById('f-en-det').value.trim() },
+    fr: { when: document.getElementById('f-fr-when').value.trim(), role: document.getElementById('f-fr-role').value.trim(), det: document.getElementById('f-fr-det').value.trim() }
+  };
+}
+
+function readSvForm() {
+  const id = document.getElementById('f-id').value.trim();
+  const enTitle = document.getElementById('f-en-title').value.trim();
+  if (!id || !enTitle) { toast('ID and EN Title are required', 'error'); return null; }
+  return {
+    id,
+    color: document.getElementById('f-color').value,
+    iconSvg: document.getElementById('f-iconSvg').value.trim(),
+    tags: getTags(),
+    en: { title: enTitle, desc: document.getElementById('f-en-desc').value.trim() },
+    fr: { title: document.getElementById('f-fr-title').value.trim(), desc: document.getElementById('f-fr-desc').value.trim() }
+  };
+}
+
+function readPtForm() {
+  const id = document.getElementById('f-id').value.trim();
+  const title = document.getElementById('f-title').value.trim();
+  if (!id || !title) { toast('ID and Title are required', 'error'); return null; }
+  return {
+    id,
+    category: document.getElementById('f-category').value,
+    detId: document.getElementById('f-detId').value.trim(),
+    title,
+    thumbnail: document.getElementById('f-thumbnail').value.trim(),
+    thumbAlt: document.getElementById('f-thumbAlt').value.trim(),
+    stack: getTags(),
+    github: document.getElementById('f-github').value.trim(),
+    en: { cats: document.getElementById('f-en-cats').value.trim(), desc: document.getElementById('f-en-desc').value.trim() },
+    fr: { cats: document.getElementById('f-fr-cats').value.trim(), desc: document.getElementById('f-fr-desc').value.trim() }
+  };
+}
+
+function readCeForm() {
+  const id = document.getElementById('f-id').value.trim();
+  const title = document.getElementById('f-title').value.trim();
+  if (!id || !title) { toast('ID and Title are required', 'error'); return null; }
+  return {
+    id,
+    pdf: document.getElementById('f-pdf').value.trim(),
+    thumb: document.getElementById('f-thumb').value.trim(),
+    thumbAlt: document.getElementById('f-thumbAlt').value.trim(),
+    code: document.getElementById('f-code').value.trim(),
+    title,
+    issuer: document.getElementById('f-issuer').value.trim()
+  };
+}
+
+/* ── LOCAL STORAGE ── */
+function saveToLocalStorage() {
+  try { localStorage.setItem(LS_KEY, JSON.stringify(adminData)); } catch(e) { console.error('LS write failed', e); }
+}
+
+/* ── EXPORT ── */
+function exportData() {
+  const js = generatePortfolioDataJs(adminData);
+  const blob = new Blob([js], { type: 'text/javascript' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'portfolio-data.js';
+  a.click();
+  URL.revokeObjectURL(url);
+  isDirty = false;
+  document.getElementById('unsavedBanner').classList.remove('show');
+  localStorage.removeItem(LS_KEY);
+  toast('portfolio-data.js downloaded! Replace the file in your repo and push.', 'success', 5000);
+}
+
+function generatePortfolioDataJs(data) {
+  const j = (v) => JSON.stringify(v, null, 2);
+
+  const expStr = (data.experience || []).map(e => `    {
+      id: ${j(e.id)},
+      logo: ${j(e.logo || '')},
+      logoAlt: ${j(e.logoAlt || '')},
+      org: ${j(e.org)},
+      en: { when: ${j(e.en.when)}, role: ${j(e.en.role)}, det: ${j(e.en.det)} },
+      fr: { when: ${j(e.fr.when)}, role: ${j(e.fr.role)}, det: ${j(e.fr.det)} }
+    }`).join(',\n');
+
+  const svStr = (data.services || []).map(s => `    {
+      id: ${j(s.id)},
+      color: ${j(s.color)},
+      iconSvg: ${j(s.iconSvg)},
+      tags: ${j(s.tags)},
+      en: { title: ${j(s.en.title)}, desc: ${j(s.en.desc)} },
+      fr: { title: ${j(s.fr.title)}, desc: ${j(s.fr.desc)} }
+    }`).join(',\n');
+
+  const ptStr = (data.projects || []).map(p => `    {
+      id: ${j(p.id)},
+      category: ${j(p.category)},
+      detId: ${j(p.detId)},
+      title: ${j(p.title)},
+      thumbnail: ${j(p.thumbnail)},
+      thumbAlt: ${j(p.thumbAlt || '')},
+      stack: ${j(p.stack)},
+      github: ${j(p.github)},
+      en: { cats: ${j(p.en.cats)}, desc: ${j(p.en.desc)} },
+      fr: { cats: ${j(p.fr.cats)}, desc: ${j(p.fr.desc)} }
+    }`).join(',\n');
+
+  const ceStr = (data.certificates || []).map(c => `    { id: ${j(c.id)}, pdf: ${j(c.pdf)}, thumb: ${j(c.thumb)}, thumbAlt: ${j(c.thumbAlt || '')}, code: ${j(c.code)}, title: ${j(c.title)}, issuer: ${j(c.issuer)} }`).join(',\n');
+
+  const skStr = (data.skills || []).map(cat => `    {
+      id: ${j(cat.id)},
+      containerClass: ${j(cat.containerClass)},
+      i18nKey: ${j(cat.i18nKey)},
+      items: [
+        ${(cat.items||[]).map(s => `{ name: ${j(s.name)}, iconClass: ${j(s.iconClass)} }`).join(',\n        ')}
+      ]
+    }`).join(',\n');
+
+  return `/* portfolio-data.js — generated by Portfolio Admin on ${new Date().toLocaleDateString('en-GB')}
+ * Edit via admin/index.html → Export → replace this file → commit & push
+ */
+window.PORTFOLIO_DATA = {
+
+  experience: [
+${expStr}
+  ],
+
+  services: [
+${svStr}
+  ],
+
+  projects: [
+${ptStr}
+  ],
+
+  skills: [
+${skStr}
+  ],
+
+  certificates: [
+${ceStr}
+  ]
+
+};
+`;
+}
+/* ── CHANGE PASSWORD ── */
+function setupPwdModal() {
+  const overlay = document.getElementById('pwdOverlay');
+  const msg = document.getElementById('pwdMsg');
+
+  function openPwd() {
+    document.getElementById('pwdCurrent').value = '';
+    document.getElementById('pwdNew').value = '';
+    document.getElementById('pwdConfirm').value = '';
+    msg.style.display = 'none';
+    overlay.classList.add('visible');
+    document.getElementById('pwdCurrent').focus();
+  }
+  function closePwd() { overlay.classList.remove('visible'); }
+
+  function showMsg(text, isError) {
+    msg.textContent = text;
+    msg.style.color = isError ? 'var(--danger)' : 'var(--success)';
+    msg.style.display = 'block';
+  }
+
+  document.getElementById('btnChangePwd').addEventListener('click', openPwd);
+  document.getElementById('btnPwdClose').addEventListener('click', closePwd);
+  document.getElementById('btnPwdCancel').addEventListener('click', closePwd);
+  overlay.addEventListener('click', e => { if (e.target === overlay) closePwd(); });
+
+  document.getElementById('btnPwdSave').addEventListener('click', () => {
+    const current  = document.getElementById('pwdCurrent').value;
+    const newPwd   = document.getElementById('pwdNew').value.trim();
+    const confirm  = document.getElementById('pwdConfirm').value;
+    const active   = localStorage.getItem(LS_PWD) || ADMIN_PASSWORD;
+
+    if (current !== active)       return showMsg('Incorrect current password.', true);
+    if (newPwd.length < 6)        return showMsg('New password must be at least 6 characters.', true);
+    if (newPwd !== confirm)       return showMsg('Passwords do not match.', true);
+
+    localStorage.setItem(LS_PWD, newPwd);
+    showMsg('Password updated successfully.', false);
+    setTimeout(closePwd, 1200);
+  });
+
+  document.getElementById('pwdOverlay').addEventListener('keydown', e => {
+    if (e.key === 'Escape') closePwd();
+    if (e.key === 'Enter')  document.getElementById('btnPwdSave').click();
+  });
+}
+</script>
+</body>
+</html>
