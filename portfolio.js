@@ -815,6 +815,11 @@ document.addEventListener('DOMContentLoaded', function() {
             var detId = card.getAttribute('data-det');
             if (!detId || !ptList || !ptDetail) return;
             var detDiv = document.getElementById('pd-' + detId);
+            if (!detDiv) {
+                var pd = window.PORTFOLIO_DATA && window.PORTFOLIO_DATA.projects;
+                var proj = pd && pd.find(function(p) { return (p.detId || p.id) === detId; });
+                if (proj && proj.detail) detDiv = ptBuildDetDiv(proj, ptDetail, ptBack);
+            }
             if (!detDiv) return;
             document.querySelectorAll('.pt-det').forEach(function(d) { d.style.display = 'none'; });
             detDiv.style.display = 'block';
@@ -833,6 +838,60 @@ document.addEventListener('DOMContentLoaded', function() {
             ptList.style.display = 'block';
         });
     }
+
+    /* --- Build detail div from portfolio-data detail field --- */
+    function ptBuildDetDiv(proj, container, anchor) {
+        var d = proj.detail;
+        var ghSvg = '<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.4-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.6 2.4 1.1 3 .9.1-.7.3-1.1.6-1.4-2.2-.3-4.6-1.1-4.6-5a4 4 0 011-2.7c-.1-.3-.5-1.3.1-2.7 0 0 .8-.3 2.7 1a9.4 9.4 0 015 0c1.9-1.3 2.7-1 2.7-1 .6 1.4.2 2.4.1 2.7a4 4 0 011 2.7c0 3.9-2.3 4.7-4.6 5 .4.3.7.9.7 1.8v2.6c0 .3.2.6.7.5A10 10 0 0012 2z"/></svg>';
+        var featsHtml = (d.features || []).map(function(f) { return '<li>' + f + '</li>'; }).join('');
+        var stackHtml = (proj.stack || []).map(function(s) { return '<span>' + s + '</span>'; }).join('');
+        var mediaHtml = d.media && d.media.src
+            ? (d.media.isVideo
+                ? '<div class="pd-video-wrap" data-src="' + d.media.src + '"><img src="' + (proj.thumbnail || d.media.src) + '" alt="' + (d.media.alt || '') + '"><div class="pd-play"><svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg><span>Watch demo</span></div></div>'
+                : '<img src="' + d.media.src + '" alt="' + (d.media.alt || '') + '">')
+            : '<img src="' + (proj.thumbnail || 'img/img19.png') + '" alt="' + proj.title + '">';
+        var teamHtml = d.team ? '<div class="pd-team"><span class="pd-team-label">' + (d.teamLabel || 'Team') + '</span> ' + d.team + '</div>' : '';
+        var ghHtml = proj.github ? '<a class="pd-link-btn" href="' + proj.github + '" target="_blank" rel="noopener">' + ghSvg + ' GitHub</a>' : '';
+        var el = document.createElement('div');
+        el.className = 'pt-det';
+        el.id = 'pd-' + (proj.detId || proj.id);
+        el.innerHTML =
+            '<div class="pd-header"><div class="pd-cats">' + (d.cats || proj.en.cats || '') + '</div><h2 class="pd-title">' + proj.title + '</h2></div>' +
+            '<div class="pd-layout"><div class="pd-main">' +
+            (d.overview ? '<div class="pd-section"><h3 class="pd-section-h">Overview</h3><p>' + d.overview + '</p></div>' : '') +
+            (featsHtml ? '<div class="pd-section"><h3 class="pd-section-h">Key Features</h3><ul class="pd-list">' + featsHtml + '</ul></div>' : '') +
+            (stackHtml ? '<div class="pd-section"><h3 class="pd-section-h">Technologies</h3><div class="pd-stack">' + stackHtml + '</div></div>' : '') +
+            (ghHtml ? '<div class="pd-meta">' + ghHtml + '</div>' : '') +
+            teamHtml +
+            '</div><div class="pd-media">' + mediaHtml + '</div></div>';
+        container.insertBefore(el, anchor ? anchor.nextSibling : container.firstChild);
+        return el;
+    }
+
+    /* --- Deep-link: open a specific project via #pd-<id> (used by CV / external links) --- */
+    function ptOpenById(detId) {
+        if (!detId) return;
+        var detDiv = document.getElementById('pd-' + detId);
+        if (!detDiv) {
+            var pd = window.PORTFOLIO_DATA && window.PORTFOLIO_DATA.projects;
+            var proj = pd && pd.find(function(p) { return (p.detId || p.id) === detId; });
+            if (proj && proj.detail) detDiv = ptBuildDetDiv(proj, ptDetail, ptBack);
+        }
+        if (detDiv && ptList && ptDetail) {
+            document.querySelectorAll('.pt-det').forEach(function(d) { d.style.display = 'none'; });
+            detDiv.style.display = 'block';
+            ptList.style.display = 'none';
+            ptDetail.style.display = 'block';
+        }
+        var sec = document.getElementById('pagePortfolio');
+        if (sec) sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    function ptHandleHash() {
+        var m = (location.hash || '').match(/^#pd-([\w-]+)$/);
+        if (m) ptOpenById(m[1]);
+    }
+    window.addEventListener('hashchange', ptHandleHash);
+    setTimeout(ptHandleHash, 300);
 
     /* --- Video players in detail view --- */
     document.querySelectorAll('.pd-video-wrap').forEach(function(wrap) {
