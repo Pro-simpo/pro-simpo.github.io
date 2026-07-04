@@ -479,14 +479,14 @@ window.PORTFOLIO_DATA = {
   certificates: [
     { id: "cert-cc", pdf: "certificates/CC.pdf", thumb: "img/CC.jpg", thumbAlt: "ISC2 CC", code: "ISC² · CC", title: "Certified in Cybersecurity", issuer: "ISC²" },
     { id: "cert-cisco", pdf: "certificates/cisco_ethical_hacker.pdf", thumb: "img/cisco_ethical_hacker.jpeg", thumbAlt: "Cisco Ethical Hacker", code: "CISCO · EH", title: "Ethical Hacker", issuer: "Cisco" },
-    { id: "cert-alison", pdf: "certificates/Alison_certificate_cyber_security__understand_threats_and_prevent_attacks.pdf", thumb: "img/cybersecurity.png", thumbAlt: "Cybersecurity", code: "ALISON · CYBER", title: "Cybersecurity: Understand Threats &amp; Prevent Attacks", issuer: "Alison" },
+    { id: "cert-forcen_cyber", pdf: "certificates/Taobata_forcen_cybersecurity.pdf", thumb: "img/forcen_cyber.jpg", thumbAlt: "Analyste Junior en Cybersecutité par Forcen Sénégal", code: "Forcen · Cybersecurity", title: "Analyste Junior en Cybersecutité", issuer: "Forcen Sénégal" },
     { id: "cert-ia", pdf: "certificates/Certificat en Intelligence Artificielle.pdf", thumb: "img/intelligence artificielle.png", thumbAlt: "Intelligence Artificielle", code: "IA · CERT", title: "Artificial Intelligence Certificate", issuer: "Formation IA" },
-    { id: "cert-html", pdf: "certificates/Learner-Verification-HTML5_CSS3_JS.pdf", thumb: "img/HTML5_CSS3_JS.pdf.png", thumbAlt: "Web Development", code: "WEB · DEV", title: "HTML5 · CSS3 · JavaScript", issuer: "Learner Verification" },
+    { id: "cert-alison", pdf: "certificates/Alison_certificate_cyber_security__understand_threats_and_prevent_attacks.pdf", thumb: "img/cybersecurity.png", thumbAlt: "Cybersecurity", code: "ALISON · CYBER", title: "Cybersecurity: Understand Threats &amp; Prevent Attacks", issuer: "Alison" },
     { id: "cert-hack", pdf: "certificates/Ethical_Hacking.pdf", thumb: "img/hacking.png", thumbAlt: "Ethical Hacking", code: "SEC · HACK", title: "Ethical Hacking", issuer: "Certification" },
+    { id: "cert-html", pdf: "certificates/Learner-Verification-HTML5_CSS3_JS.pdf", thumb: "img/HTML5_CSS3_JS.pdf.png", thumbAlt: "Web Development", code: "WEB · DEV", title: "HTML5 · CSS3 · JavaScript", issuer: "Learner Verification" },
     { id: "cert-google", pdf: "certificates/Cours sur la citoyenneté numérique et la sécurité _ Google.pdf", thumb: "img/citoyennete.png", thumbAlt: "Google Digital Citizenship", code: "GOOGLE · DIGITAL", title: "Digital Citizenship &amp; Security", issuer: "Google" },
     { id: "cert-ml", pdf: "certificates/certificate machine learning.pdf", thumb: "img/machine.png", thumbAlt: "Machine Learning", code: "ML · CERT", title: "Machine Learning", issuer: "Certification" },
-    { id: "cert-canva", pdf: "certificates/Alison_certificate_how_to_design_with_canva.pdf", thumb: "img/design.png", thumbAlt: "Design with Canva", code: "ALISON · DESIGN", title: "How to Design with Canva", issuer: "Alison" },
-    { id: "cert-forcen_cyber", pdf: "certificates/Taobata_forcen_cybersecurity.pdf", thumb: "img/forcen_cyber.jpg", thumbAlt: "Analyste Junior en Cybersecutité par Forcen Sénégal", code: "Forcen · Cybersecurity", title: "Analyste Junior en Cybersecutité", issuer: "Forcen Sénégal" }
+    { id: "cert-canva", pdf: "certificates/Alison_certificate_how_to_design_with_canva.pdf", thumb: "img/design.png", thumbAlt: "Design with Canva", code: "ALISON · DESIGN", title: "How to Design with Canva", issuer: "Alison" }
   ]
 
 };
