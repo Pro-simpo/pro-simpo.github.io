@@ -33,7 +33,6 @@
                 + '<h3 class="sv-title" data-i18n="' + s.id + '-title">' + l.title + '</h3>'
                 + '<p class="sv-desc" data-i18n="' + s.id + '-desc">' + l.desc + '</p>'
                 + '<div class="sv-tags">' + s.tags.map(function(t) { return '<span>' + t + '</span>'; }).join('') + '</div>'
-                + '<a href="#pageContact" class="sv-cta" data-i18n="sv-cta">' + (lang === 'fr' ? 'Me contacter' : 'Contact me') + '</a>'
                 + '</div>';
         }).join('');
     }
@@ -51,9 +50,61 @@
                 + '<h3 class="pt-title">' + p.title + '</h3>'
                 + '<p class="pt-desc" data-i18n="pt-' + p.id + '-desc">' + l.desc + '</p>'
                 + '<div class="pt-stack">' + p.stack.map(function(t) { return '<span>' + t + '</span>'; }).join('') + '</div>'
-                + '<a class="pt-link" href="' + p.github + '" target="_blank" rel="noopener">GitHub ' + GITHUB_ICON + '</a>'
+                + '<a class="pt-link" href="' + p.github + '" target="_blank" rel="noopener">' + (p.linkLabel ? '<span data-i18n="pt-' + p.id + '-link">' + (p.linkLabel[lang] || p.linkLabel.en) + '</span>' : 'GitHub') + ' ' + GITHUB_ICON + '</a>'
                 + '</div></article>';
         }).join('');
+    }
+
+    var PD_ICONS = {"github": "<svg width=\"15\" height=\"15\" viewBox=\"0 0 24 24\" fill=\"currentColor\"><path d=\"M12 2a10 10 0 00-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.4-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.6 2.4 1.1 3 .9.1-.7.3-1.1.6-1.4-2.2-.3-4.6-1.1-4.6-5a4 4 0 011-2.7c-.1-.3-.5-1.3.1-2.7 0 0 .8-.3 2.7 1a9.4 9.4 0 015 0c1.9-1.3 2.7-1 2.7-1 .6 1.4.2 2.4.1 2.7a4 4 0 011 2.7c0 3.9-2.3 4.7-4.6 5 .4.3.7.9.7 1.8v2.6c0 .3.2.6.7.5A10 10 0 0012 2z\"/></svg>", "pdf": "<svg width=\"15\" height=\"15\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z\"/><polyline points=\"14,2 14,8 20,8\"/><line x1=\"16\" y1=\"13\" x2=\"8\" y2=\"13\"/><line x1=\"16\" y1=\"17\" x2=\"8\" y2=\"17\"/><polyline points=\"10,9 9,9 8,9\"/></svg>", "link": "<svg width=\"15\" height=\"15\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"M2 12h20\"/><path d=\"M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z\"/></svg>"};
+
+    function _pdMain(det, lang) {
+        var l = det[lang] || det.en;
+        var html = '<div class="pd-main lang-' + lang + '">';
+        (l.sections || []).forEach(function(sec) {
+            html += '<div class="pd-section"><h3 class="pd-section-h">' + sec.title + '</h3>';
+            if (sec.type === 'list') html += '<ul class="pd-list">' + (sec.items || []).map(function(x) { return '<li>' + x + '</li>'; }).join('') + '</ul>';
+            else if (sec.type === 'stack') html += '<div class="pd-stack">' + (sec.items || []).map(function(x) { return '<span>' + x + '</span>'; }).join('') + '</div>';
+            else html += '<p>' + (sec.text || '') + '</p>';
+            html += '</div>';
+        });
+        if (l.links && l.links.length) {
+            html += '<div class="pd-meta">' + l.links.map(function(a) {
+                return '<a class="pd-link-btn' + (a.ghost ? ' pd-link-ghost' : '') + '" href="' + a.url + '" target="_blank" rel="noopener">' + (PD_ICONS[a.icon] || PD_ICONS.link) + ' ' + a.label + '</a>';
+            }).join('') + '</div>';
+        }
+        if (l.team && (l.team.label || l.team.text)) {
+            html += '<div class="pd-team"><span class="pd-team-label">' + (l.team.label || '') + '</span> ' + (l.team.text || '') + '</div>';
+        }
+        return html + '</div>';
+    }
+
+    function _pdMedia(det) {
+        var play = '<div class="pd-play"><svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg><span data-i18n="pd-watch-demo">Watch demo</span></div>';
+        return '<div class="pd-media">' + (det.media || []).map(function(m) {
+            var st = m.style ? ' style="' + m.style + '"' : '';
+            if (m.type === 'label') return '<div class="pd-media-label"' + st + '>' + m.text + '</div>';
+            if (m.type === 'video') return '<div class="pd-video-wrap" data-src="' + m.src + '"><img src="' + (m.poster || '') + '" alt="' + (m.alt || '') + '">' + play + '</div>';
+            if (m.type === 'gallery') return '<div class="pd-imgs">' + (m.images || []).map(function(im) { return '<img src="' + im.src + '" alt="' + (im.alt || '') + '">'; }).join('') + '</div>';
+            return '<img' + (m.overview ? ' class="pd-overview-img"' : '') + ' src="' + m.src + '" alt="' + (m.alt || '') + '"' + st + '>';
+        }).join('') + '</div>';
+    }
+
+    function _renderDetails() {
+        var box = document.getElementById('pt-detail');
+        if (!box || !D.projects) return;
+        box.querySelectorAll('.pt-det').forEach(function(n) { n.parentNode.removeChild(n); });
+        D.projects.forEach(function(p) {
+            var det = p.detail;
+            if (!det) return;
+            var el = document.createElement('div');
+            el.className = 'pt-det';
+            el.id = 'pd-' + (p.detId || p.id);
+            el.innerHTML = ['en', 'fr'].map(function(L) {
+                var l = det[L] || det.en;
+                return '<div class="pd-header lang-' + L + '"><div class="pd-cats">' + (l.cats || '') + '</div><h2 class="pd-title">' + (l.title || p.title) + '</h2></div>';
+            }).join('') + '<div class="pd-layout">' + _pdMain(det, 'en') + _pdMain(det, 'fr') + _pdMedia(det) + '</div>';
+            box.appendChild(el);
+        });
     }
 
     function _renderCertificates() {
@@ -91,6 +142,7 @@
     _renderProjects(_initLang);
     _renderCertificates();
     _renderSkills();
+    _renderDetails();
     /* Language switching is handled by applyLang() via data-i18n attributes on the generated elements. */
 })();
 
@@ -785,8 +837,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     /* --- Glare + tilt 3D + view-switch click --- */
-    var PT_TILT = 12;
-    var PT_Z    = 18;
+    var PT_TILT = 4;
+    var PT_Z    = 6;
 
     cards.forEach(function(card) {
         var glare = card.querySelector('.pt-glare');
@@ -802,12 +854,12 @@ document.addEventListener('DOMContentLoaded', function() {
             var dy = (e.clientY - (rect.top  + rect.height / 2)) / (rect.height / 2);
             card.style.setProperty('--mx', ((e.clientX - rect.left) / rect.width  * 100).toFixed(1) + '%');
             card.style.setProperty('--my', ((e.clientY - rect.top)  / rect.height * 100).toFixed(1) + '%');
-            card.style.transform = 'perspective(700px) rotateX(' + (-dy * PT_TILT).toFixed(2) + 'deg) rotateY(' + (dx * PT_TILT).toFixed(2) + 'deg) translateZ(' + PT_Z + 'px)';
+            card.style.transform = 'perspective(1000px) rotateX(' + (-dy * PT_TILT).toFixed(2) + 'deg) rotateY(' + (dx * PT_TILT).toFixed(2) + 'deg) translateZ(' + PT_Z + 'px)';
         });
 
         card.addEventListener('mouseleave', function() {
-            card.style.transition = 'transform 0.5s cubic-bezier(0.34, 1.4, 0.64, 1), border-color 0.3s, box-shadow 0.35s';
-            card.style.transform = 'perspective(700px) rotateX(0deg) rotateY(0deg) translateZ(0)';
+            card.style.transition = 'transform 0.4s ease, border-color 0.25s, box-shadow 0.3s';
+            card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0)';
         });
 
         card.addEventListener('click', function(e) {
@@ -815,11 +867,6 @@ document.addEventListener('DOMContentLoaded', function() {
             var detId = card.getAttribute('data-det');
             if (!detId || !ptList || !ptDetail) return;
             var detDiv = document.getElementById('pd-' + detId);
-            if (!detDiv) {
-                var pd = window.PORTFOLIO_DATA && window.PORTFOLIO_DATA.projects;
-                var proj = pd && pd.find(function(p) { return (p.detId || p.id) === detId; });
-                if (proj && proj.detail) detDiv = ptBuildDetDiv(proj, ptDetail, ptBack);
-            }
             if (!detDiv) return;
             document.querySelectorAll('.pt-det').forEach(function(d) { d.style.display = 'none'; });
             detDiv.style.display = 'block';
@@ -839,44 +886,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    /* --- Build detail div from portfolio-data detail field --- */
-    function ptBuildDetDiv(proj, container, anchor) {
-        var d = proj.detail;
-        var ghSvg = '<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.4-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.6 2.4 1.1 3 .9.1-.7.3-1.1.6-1.4-2.2-.3-4.6-1.1-4.6-5a4 4 0 011-2.7c-.1-.3-.5-1.3.1-2.7 0 0 .8-.3 2.7 1a9.4 9.4 0 015 0c1.9-1.3 2.7-1 2.7-1 .6 1.4.2 2.4.1 2.7a4 4 0 011 2.7c0 3.9-2.3 4.7-4.6 5 .4.3.7.9.7 1.8v2.6c0 .3.2.6.7.5A10 10 0 0012 2z"/></svg>';
-        var featsHtml = (d.features || []).map(function(f) { return '<li>' + f + '</li>'; }).join('');
-        var stackHtml = (proj.stack || []).map(function(s) { return '<span>' + s + '</span>'; }).join('');
-        var mediaHtml = d.media && d.media.src
-            ? (d.media.isVideo
-                ? '<div class="pd-video-wrap" data-src="' + d.media.src + '"><img src="' + (proj.thumbnail || d.media.src) + '" alt="' + (d.media.alt || '') + '"><div class="pd-play"><svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg><span>Watch demo</span></div></div>'
-                : '<img src="' + d.media.src + '" alt="' + (d.media.alt || '') + '">')
-            : '<img src="' + (proj.thumbnail || 'img/img19.png') + '" alt="' + proj.title + '">';
-        var teamHtml = d.team ? '<div class="pd-team"><span class="pd-team-label">' + (d.teamLabel || 'Team') + '</span> ' + d.team + '</div>' : '';
-        var ghHtml = proj.github ? '<a class="pd-link-btn" href="' + proj.github + '" target="_blank" rel="noopener">' + ghSvg + ' GitHub</a>' : '';
-        var el = document.createElement('div');
-        el.className = 'pt-det';
-        el.id = 'pd-' + (proj.detId || proj.id);
-        el.innerHTML =
-            '<div class="pd-header"><div class="pd-cats">' + (d.cats || proj.en.cats || '') + '</div><h2 class="pd-title">' + proj.title + '</h2></div>' +
-            '<div class="pd-layout"><div class="pd-main">' +
-            (d.overview ? '<div class="pd-section"><h3 class="pd-section-h">Overview</h3><p>' + d.overview + '</p></div>' : '') +
-            (featsHtml ? '<div class="pd-section"><h3 class="pd-section-h">Key Features</h3><ul class="pd-list">' + featsHtml + '</ul></div>' : '') +
-            (stackHtml ? '<div class="pd-section"><h3 class="pd-section-h">Technologies</h3><div class="pd-stack">' + stackHtml + '</div></div>' : '') +
-            (ghHtml ? '<div class="pd-meta">' + ghHtml + '</div>' : '') +
-            teamHtml +
-            '</div><div class="pd-media">' + mediaHtml + '</div></div>';
-        container.insertBefore(el, anchor ? anchor.nextSibling : container.firstChild);
-        return el;
-    }
-
     /* --- Deep-link: open a specific project via #pd-<id> (used by CV / external links) --- */
     function ptOpenById(detId) {
         if (!detId) return;
         var detDiv = document.getElementById('pd-' + detId);
-        if (!detDiv) {
-            var pd = window.PORTFOLIO_DATA && window.PORTFOLIO_DATA.projects;
-            var proj = pd && pd.find(function(p) { return (p.detId || p.id) === detId; });
-            if (proj && proj.detail) detDiv = ptBuildDetDiv(proj, ptDetail, ptBack);
-        }
         if (detDiv && ptList && ptDetail) {
             document.querySelectorAll('.pt-det').forEach(function(d) { d.style.display = 'none'; });
             detDiv.style.display = 'block';
@@ -907,8 +920,8 @@ document.addEventListener('DOMContentLoaded', function() {
 (function() {
     var ceCards = document.querySelectorAll('.ce-card');
     if (!ceCards.length) return;
-    var CE_TILT = 9;
-    var CE_Z    = 12;
+    var CE_TILT = 4;
+    var CE_Z    = 6;
 
     ceCards.forEach(function(card) {
         card.addEventListener('mouseenter', function() {
@@ -919,22 +932,25 @@ document.addEventListener('DOMContentLoaded', function() {
             var rect = card.getBoundingClientRect();
             var dx = (e.clientX - (rect.left + rect.width  / 2)) / (rect.width  / 2);
             var dy = (e.clientY - (rect.top  + rect.height / 2)) / (rect.height / 2);
-            card.style.transform = 'perspective(700px) rotateX(' + (-dy * CE_TILT).toFixed(2) + 'deg) rotateY(' + (dx * CE_TILT).toFixed(2) + 'deg) translateZ(' + CE_Z + 'px)';
+            card.style.transform = 'perspective(1000px) rotateX(' + (-dy * CE_TILT).toFixed(2) + 'deg) rotateY(' + (dx * CE_TILT).toFixed(2) + 'deg) translateZ(' + CE_Z + 'px)';
         });
 
         card.addEventListener('mouseleave', function() {
-            card.style.transition = 'transform 0.5s cubic-bezier(0.34, 1.4, 0.64, 1), border-color 0.3s, box-shadow 0.35s, background 0.3s';
-            card.style.transform = 'perspective(700px) rotateX(0deg) rotateY(0deg) translateZ(0)';
+            card.style.transition = 'transform 0.4s ease, border-color 0.3s, box-shadow 0.35s, background 0.3s';
+            card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0)';
         });
     });
 })();
 (function() {
     var el = document.getElementById('typedRole');
     if (!el) return;
-    var rolesMap = {
-        en: ['Cybersecurity Engineer', 'QA Tester', 'Embedded Systems Dev'],
-        fr: ['Ingénieur Cybersécurité', 'QA Tester', 'Systèmes Embarqués']
-    };
+    var _tx = (window.PORTFOLIO_DATA && window.PORTFOLIO_DATA.texts) || {};
+    function _roles(L) {
+        var v = (_tx[L] && _tx[L]['hero-roles']) || (_tx.en && _tx.en['hero-roles']) || '';
+        return v.split('|').map(function(r) { return r.trim(); }).filter(Boolean);
+    }
+    var rolesMap = { en: _roles('en'), fr: _roles('fr') };
+    if (!rolesMap.en.length) rolesMap.en = [''];
     var ri = 0, ci = 0, del = false, timer = null;
     function getRoles() { return rolesMap[window._currentLang || 'en'] || rolesMap.en; }
     function tick() {
@@ -1019,8 +1035,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 /* ===================== SERVICES CARDS — TILT 3D + GLARE ===================== */
 (function() {
-    var SV_TILT = 10;
-    var SV_Z    = 14;
+    var SV_TILT = 4;
+    var SV_Z    = 6;
 
     function _initSvTilt() {
         document.querySelectorAll('.sv-card:not([data-tilt])').forEach(function(card) {
@@ -1040,12 +1056,12 @@ document.addEventListener('DOMContentLoaded', function() {
             var dy = (e.clientY - (rect.top  + rect.height / 2)) / (rect.height / 2);
             card.style.setProperty('--mx', ((e.clientX - rect.left) / rect.width  * 100).toFixed(1) + '%');
             card.style.setProperty('--my', ((e.clientY - rect.top)  / rect.height * 100).toFixed(1) + '%');
-            card.style.transform = 'perspective(700px) rotateX(' + (-dy * SV_TILT).toFixed(2) + 'deg) rotateY(' + (dx * SV_TILT).toFixed(2) + 'deg) translateZ(' + SV_Z + 'px)';
+            card.style.transform = 'perspective(1000px) rotateX(' + (-dy * SV_TILT).toFixed(2) + 'deg) rotateY(' + (dx * SV_TILT).toFixed(2) + 'deg) translateZ(' + SV_Z + 'px)';
         });
 
         card.addEventListener('mouseleave', function() {
-            card.style.transition = 'transform 0.5s cubic-bezier(0.34, 1.4, 0.64, 1), border-color 0.25s, box-shadow 0.3s';
-            card.style.transform = 'perspective(700px) rotateX(0deg) rotateY(0deg) translateZ(0)';
+            card.style.transition = 'transform 0.4s ease, border-color 0.25s, box-shadow 0.3s';
+            card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0)';
         });
         });
     }
@@ -1059,198 +1075,14 @@ document.addEventListener('DOMContentLoaded', function() {
     var SAVED = localStorage.getItem('lang') || 'en';
     window._currentLang = SAVED;
 
-    var t = {
-        en: {
-            'nav-home':'Home','nav-education':'Education','nav-skills':'Skills',
-            'nav-certs':'Certificates','nav-experience':'Experience',
-            'nav-services':'Services','nav-portfolio':'Portfolio','nav-contacts':'Contacts',
-            'hero-status':'AVAILABLE &middot; ENSA T&Eacute;TOUAN',
-            'hero-intro':'// Hi, I\'m',
-            'hero-bio':'23-year-old engineering student from Burkina&nbsp;Faso, based in Morocco. I bridge <strong>cybersecurity</strong> and <strong>embedded systems</strong> &mdash; deploying SOC infrastructures, cloud IDS/IPS and IoT solutions that are resilient by design.',
-            'hero-badge1':'&#9702; ENSA T&eacute;touan',
-            'hero-badge2':'&#9702; Cybersecurity &amp; Embedded',
-            'hero-badge3':'&#9702; Open to opportunities',
-            'hero-cta-pri':'View my projects',
-            'hero-cta-ghost':'Contact me',
-            'edu1-title':'ENSA - TETOUAN | 2024 - Currently | Engineering Cycle',
-            'edu1-desc':'A cycle of three years studies in cybersecurity and embedded systems.<br>More information on <a class="sites" href="https://ensate.uae.ac.ma/" target="_blank">the official site of ENSATE.</a>',
-            'edu2-title':'ENSA - TETOUAN | 2022 - 2024 | Preparatory Cycle',
-            'edu2-desc':'Two years of <strong>preparatory studies for the Engineering Cycle</strong>.<br>More information on <a class="sites" href="https://ensa-tetouan.ac.ma/" target="_blank">the official site of ENSATE.</a>',
-            'edu3-title':'LYCÉE SCIENTIFIQUE NATIONAL DE OUAGADOUGOU | 2019 - 2022 | High School Degree',
-            'edu3-desc':'<strong>Scientific High School Degree</strong> (C) obtained in Burkina Faso with honors (BIEN).<br>More information on <a class="sites" href="https://lsno-bf.org/" target="_blank">the official site of LSNO.</a>',
-            'skills-cat1':'Cybersecurity',
-            'skills-cat2':'Embedded systems',
-            'skills-cat3':'Web and Software Development',
-            'skills-cat4':'Other skills',
-            'exp1-when':'2026',
-            'exp1-role':'Internship – QA Tester Web/Mobile',
-            'exp1-det':'Functional, regression and security testing on web and mobile applications. Writing test plans, test cases and bug reports; collaboration with development teams in an agile cycle.',
-            'exp2-when':'Feb. 2026 – Present',
-            'exp2-role':'Secretary General',
-            'exp2-det':'Managing administrative operations, communication and logistics for major events of the international student association at ENSA Tétouan.',
-            'exp3-when':'02/2025 – 07/2025',
-            'exp3-role':'EP Manager – OGX-OGT',
-            'exp3-det':'AIESEC is a global youth-led organization focused on leadership development through international exchanges. As an Experience Participant (EP) Manager for Outgoing Global Talent, I managed and coordinated international internship programs, helping young professionals secure impactful opportunities abroad.',
-            'exp4-when':'Apr. – May 2025',
-            'exp4-role':'Internship – Cybersecurity &amp; ML',
-            'exp4-det':'Built a Phishing URL Scanner (Python, Flask, Scikit-learn) classifying URLs in real time, and a Password Strength Checker (Python, Streamlit) with visual feedback and improvement suggestions.',
-            'exp5-when':'01/2025 – 05/2025',
-            'exp5-role':'Club CoderSphere',
-            'exp5-det':'CoderSphere is a technology hub dedicated to robotics, embedded systems, and cybersecurity. Through hands-on projects, I deepened my expertise in electronics and hardware design while strengthening my technical problem-solving and teamwork skills in a collaborative environment.',
-            'exp6-when':'10/2023 – 10/2024',
-            'exp6-role':'Deputy Secretary General',
-            'exp6-det':'The AEBM supports Burkinaé students in Morocco through integration and guidance. During my tenure as Deputy Secretary General, I oversaw administrative tasks and coordinated community projects, significantly enhancing my leadership, organizational, and cross-cultural communication abilities.',
-            'sv1-title':'Penetration Testing',
-            'sv1-desc':'Real-world attack simulation on your systems to uncover vulnerabilities before malicious actors can exploit them.',
-            'sv2-title':'SOC &amp; Blue Team',
-            'sv2-desc':'Full SOC infrastructure deployment (SIEM, SOAR, incident management) to detect and respond to threats in real time.',
-            'sv3-title':'Security &amp; Web/Mobile Testing',
-            'sv3-desc':'Functional, regression and security testing on your web and mobile apps, with structured bug reports in an agile cycle.',
-            'sv4-title':'Front-End Development',
-            'sv4-desc':'Modern, responsive and animated web interfaces — from mockup to deployment, with a strong focus on UX quality.',
-            'sv5-title':'Java Desktop Apps',
-            'sv5-desc':'Full-featured desktop applications for client management, reservations or business workflows, connected to a database.',
-            'sv6-title':'IoT &amp; Embedded Systems',
-            'sv6-desc':'Design of intelligent embedded systems: data acquisition, automation and IoT/cloud connectivity.',
-            'sv7-title':'Cloud Security &amp; IDS/IPS',
-            'sv7-desc':'Deployment and hardening of cloud infrastructures with active intrusion detection and prevention systems.',
-            'sv8-title':'AI &amp; Machine Learning',
-            'sv8-desc':'ML models for classification, anomaly detection and predictive analytics applied to real-world problems.',
-            'sv-cta':'Contact me',
-            'pt-back':'&#8592; All projects',
-            'pt-filter-all':'All','pt-filter-iot':'IoT / Embedded','pt-filter-cyber':'Cybersecurity',
-            'pt-filter-web':'Web','pt-filter-java':'Java','pt-filter-fpga':'FPGA','pt-filter-other':'Other',
-            'pt-shadow-cats':'Cybersecurity &middot; SOC &middot; Cloud &middot; R&amp;D',
-            'pt-shadow-desc':'Full SOC infrastructure (Wazuh, TheHive 5, Shuffle SOAR) on OCI monitoring a simulated IT/OT industrial environment. 15 detection rules, automated SOAR workflow (detect → block IP → TheHive incident).',
-            'pt-ids-cats':'Cybersecurity &middot; IDS/IPS &middot; Azure',
-            'pt-ids-desc':'Suricata 8.0.4 deployment on Azure with custom VNet segmentation and NSG rules. 50,000+ active signatures and 4 custom detection rules for intrusion prevention.',
-            'pt-fire-cats':'IoT &middot; Embedded &middot; ML',
-            'pt-fire-desc':'End-to-end IoT solution combining ESP32 sensors, Random Forest ML, and a real-time web dashboard for early forest fire detection.',
-            'pt-solar-cats':'IoT &middot; AI &middot; Embedded',
-            'pt-solar-desc':'Embedded system with ESP32 and AI algorithms that automatically adjusts solar panel orientation to maximize energy production.',
-            'pt-hepras-cats':'Java &middot; Database',
-            'pt-hepras-desc':'Database management app for medical practices — patient records, appointments, billing, and role-based access control with SHA-256.',
-            'pt-fpga-cats':'FPGA &middot; VHDL &middot; Digital Design',
-            'pt-fpga-desc':'FPGA-based parking management with automated barrier control, real-time occupancy display, and FSM logic deployed in VHDL.',
-            'pt-job-cats':'Web &middot; React',
-            'pt-job-desc':'React app to manage job applications with an analytics dashboard, advanced search/filter, and JSON import/export features.',
-            'pt-brainwave-cats':'Cybersecurity &middot; Python &middot; ML',
-            'pt-brainwave-desc':'Two security tools built during internship: a Phishing URL Scanner with ML classification and a Password Strength Checker following OWASP standards.',
-            'pt-agency-cats':'Java &middot; JavaFX &middot; Database',
-            'pt-agency-desc':'Desktop app for managing clients, reservations, itineraries, and payments — with admin dashboard and WhatsApp integration.',
-            'pt-portfolio-cats':'Web &middot; Front-end',
-            'pt-portfolio-desc':'This portfolio — built from scratch with vanilla HTML, CSS, and JavaScript. Dark/light themes, canvas animations, and fully responsive.',
-            'pt-odace-cats':'IoT &middot; Electronics &middot; Arduino',
-            'pt-odace-desc':'Hands-on Arduino and electronics projects in the O\'dace club — components, circuits, and applied embedded systems theory.',
-            'pt-marathon-cats':'Web &middot; HTML &middot; CSS',
-            'pt-marathon-desc':'Two timed front-end coding challenges. Won Marathon 1 by delivering a complete website in 5 hours. Placed 3rd in Marathon 2.',
-            'pt-engineering-cats':'Academic &middot; Engineering',
-            'pt-engineering-desc':'Academic projects from the engineering cycle at ENSA Tetouan combining cybersecurity and embedded systems across various modules.',
-            'pt-preparatory-cats':'Community &middot; Social',
-            'pt-preparatory-desc':'Team social project: renovated an orphanage study room, organized tutoring sessions, and raised 6,500 MAD in community funding.',
-            'ct-title':'Let\'s work together',
-            'ct-lead':'An opportunity, an internship, a collaboration? I\'m open to projects in cybersecurity, embedded systems, QA testing and web development.',
-            'ct-phone':'Phone',
-            'ct-label-name':'Full name','ct-label-email':'Email','ct-label-subject':'Subject','ct-label-message':'Message',
-            'ct-ph-name':'Your name','ct-ph-email':'you@example.com','ct-ph-subject':'Message subject','ct-ph-message':'Your message…',
-            'ct-submit':'Send message'
-        },
-        fr: {
-            'nav-home':'Accueil','nav-education':'Formation','nav-skills':'Compétences',
-            'nav-certs':'Certifications','nav-experience':'Expérience',
-            'nav-services':'Services','nav-portfolio':'Portfolio','nav-contacts':'Contacts',
-            'hero-status':'DISPONIBLE &middot; ENSA T&Eacute;TOUAN',
-            'hero-intro':'// Bonjour, je suis',
-            'hero-bio':'Étudiant ingénieur de 23 ans originaire du Burkina&nbsp;Faso, basé au Maroc. Je relie la <strong>cybersécurité</strong> et les <strong>systèmes embarqués</strong> &mdash; déployant des infrastructures SOC, des IDS/IPS cloud et des solutions IoT résilientes.',
-            'hero-badge1':'&#9702; ENSA T&eacute;touan',
-            'hero-badge2':'&#9702; Cybersécurité &amp; Embarqué',
-            'hero-badge3':'&#9702; Ouvert aux opportunités',
-            'hero-cta-pri':'Voir mes projets',
-            'hero-cta-ghost':'Me contacter',
-            'edu1-title':'ENSA - TÉTOUAN | 2024 - En cours | Cycle Ingénieur',
-            'edu1-desc':'Un cycle de trois ans en cybersécurité et systèmes embarqués.<br>Plus d\'informations sur <a class="sites" href="https://ensate.uae.ac.ma/" target="_blank">le site officiel de l\'ENSATE.</a>',
-            'edu2-title':'ENSA - TÉTOUAN | 2022 - 2024 | Cycle Préparatoire',
-            'edu2-desc':'Deux ans de <strong>classes préparatoires pour le Cycle Ingénieur</strong>.<br>Plus d\'informations sur <a class="sites" href="https://ensa-tetouan.ac.ma/" target="_blank">le site officiel de l\'ENSATE.</a>',
-            'edu3-title':'LYCÉE SCIENTIFIQUE NATIONAL DE OUAGADOUGOU | 2019 - 2022 | Baccalauréat',
-            'edu3-desc':'<strong>Baccalauréat Scientifique</strong> (C) obtenu au Burkina Faso avec mention Bien.<br>Plus d\'informations sur <a class="sites" href="https://lsno-bf.org/" target="_blank">le site officiel du LSNO.</a>',
-            'skills-cat1':'Cybersécurité',
-            'skills-cat2':'Systèmes embarqués',
-            'skills-cat3':'Web et Développement logiciel',
-            'skills-cat4':'Autres compétences',
-            'exp1-when':'2026',
-            'exp1-role':'Stage – Testeur QA Web/Mobile',
-            'exp1-det':'Réalisation de tests fonctionnels, de régression et de sécurité sur des applications web et mobiles. Rédaction de plans et cas de test et rapports de bugs ; collaboration avec les équipes de développement en cycle agile.',
-            'exp2-when':'Fév. 2026 – Présent',
-            'exp2-role':'Secrétaire Général',
-            'exp2-det':'Gestion des opérations administratives, de la communication et de la logistique pour les événements majeurs de l\'association internationale d\'étudiants de l\'ENSA Tétouan.',
-            'exp3-when':'02/2025 – 07/2025',
-            'exp3-role':'Responsable EP – OGX-OGT',
-            'exp3-det':'L\'AIESEC est une organisation mondiale dirigée par des jeunes axée sur le développement du leadership par des échanges internationaux. En tant que Responsable EP pour les Talents Mondiaux Sortants, j\'ai géré et coordonné des programmes de stages internationaux, aidant de jeunes professionnels à décrocher des opportunités impactantes à l\'étranger.',
-            'exp4-when':'Avr. – Mai 2025',
-            'exp4-role':'Stage – Cybersécurité &amp; ML',
-            'exp4-det':'Développement d\'un Scanner d\'URLs de Phishing (Python, Flask, Scikit-learn) classifiant les URLs en temps réel, et d\'un Vérificateur de Force de Mot de Passe (Python, Streamlit) avec retour visuel et suggestions d\'amélioration.',
-            'exp5-when':'01/2025 – 05/2025',
-            'exp5-role':'Club CoderSphere',
-            'exp5-det':'CoderSphere est un hub technologique dédié à la robotique, aux systèmes embarqués et à la cybersécurité. À travers des projets pratiques, j\'ai approfondi mon expertise en électronique et en conception matérielle tout en renforçant mes compétences en résolution de problèmes techniques dans un environnement collaboratif.',
-            'exp6-when':'10/2023 – 10/2024',
-            'exp6-role':'Secrétaire Général Adjoint',
-            'exp6-det':'L\'AEBM soutient les étudiants Burkinabés au Maroc à travers l\'intégration et l\'orientation. En tant que Secrétaire Général Adjoint, j\'ai supervisé les tâches administratives et coordonné des projets communautaires, renforçant mes capacités de leadership, d\'organisation et de communication interculturelle.',
-            'sv1-title':'Test de Pénétration',
-            'sv1-desc':'Simulation d\'attaques réelles sur vos systèmes pour identifier les vulnérabilités avant les acteurs malveillants.',
-            'sv2-title':'SOC &amp; Blue Team',
-            'sv2-desc':'Déploiement d\'infrastructure SOC complète (SIEM, SOAR, gestion d\'incidents) pour détecter et répondre aux menaces en temps réel.',
-            'sv3-title':'Sécurité &amp; Tests Web/Mobile',
-            'sv3-desc':'Tests fonctionnels, de régression et de sécurité sur vos applications web et mobiles, avec rapports de bugs en cycle agile.',
-            'sv4-title':'Développement Front-End',
-            'sv4-desc':'Interfaces web modernes, responsives et animées — de la maquette au déploiement, avec une attention particulière à l\'UX.',
-            'sv5-title':'Applications Desktop Java',
-            'sv5-desc':'Applications bureau complètes pour la gestion de clients, réservations ou workflows métier, connectées à une base de données.',
-            'sv6-title':'IoT &amp; Systèmes Embarqués',
-            'sv6-desc':'Conception de systèmes embarqués intelligents : acquisition de données, automatisation et connectivité IoT/cloud.',
-            'sv7-title':'Sécurité Cloud &amp; IDS/IPS',
-            'sv7-desc':'Déploiement et sécurisation d\'infrastructures cloud avec systèmes de détection et prévention d\'intrusions actifs.',
-            'sv8-title':'IA &amp; Machine Learning',
-            'sv8-desc':'Modèles ML pour la classification, la détection d\'anomalies et l\'analyse prédictive appliquée à des problèmes concrets.',
-            'sv-cta':'Me contacter',
-            'pt-back':'&#8592; Tous les projets',
-            'pt-filter-all':'Tous','pt-filter-iot':'IoT / Embarqué','pt-filter-cyber':'Cybersécurité',
-            'pt-filter-web':'Web','pt-filter-java':'Java','pt-filter-fpga':'FPGA','pt-filter-other':'Autre',
-            'pt-shadow-cats':'Cybersécurité &middot; SOC &middot; Cloud &middot; R&amp;D',
-            'pt-shadow-desc':'Infrastructure SOC complète (Wazuh, TheHive 5, Shuffle SOAR) sur OCI pour surveiller un environnement IT/OT simulant un site industriel. 15 règles de détection, workflow SOAR automatisé (détection → blocage IP → incident TheHive).',
-            'pt-ids-cats':'Cybersécurité &middot; IDS/IPS &middot; Azure',
-            'pt-ids-desc':'Déploiement de Suricata 8.0.4 sur Azure avec segmentation VNet personnalisée et règles NSG. Plus de 50 000 signatures actives et 4 règles de détection sur mesure pour la prévention d\'intrusions.',
-            'pt-fire-cats':'IoT &middot; Embarqué &middot; ML',
-            'pt-fire-desc':'Solution IoT complète combinant des capteurs ESP32, un classificateur Random Forest et un tableau de bord web en temps réel pour la détection précoce des feux de forêt.',
-            'pt-solar-cats':'IoT &middot; IA &middot; Embarqué',
-            'pt-solar-desc':'Système embarqué avec ESP32 et algorithmes IA qui ajuste automatiquement l\'orientation des panneaux solaires pour maximiser la production d\'énergie.',
-            'pt-hepras-cats':'Java &middot; Base de données',
-            'pt-hepras-desc':'Application de gestion médicale — dossiers patients, rendez-vous, facturation et contrôle d\'accès basé sur les rôles avec SHA-256.',
-            'pt-fpga-cats':'FPGA &middot; VHDL &middot; Conception numérique',
-            'pt-fpga-desc':'Gestion de parking à base de FPGA avec contrôle automatique des barrières, affichage de l\'occupation en temps réel et logique FSM déployée en VHDL.',
-            'pt-job-cats':'Web &middot; React',
-            'pt-job-desc':'Application React pour gérer les candidatures d\'emploi avec tableau de bord analytique, recherche/filtre avancé et fonctionnalités d\'import/export JSON.',
-            'pt-brainwave-cats':'Cybersécurité &middot; Python &middot; ML',
-            'pt-brainwave-desc':'Deux outils de sécurité développés lors du stage : un Scanner d\'URLs de Phishing avec classification ML et un Vérificateur de Force de Mot de Passe selon les normes OWASP.',
-            'pt-agency-cats':'Java &middot; JavaFX &middot; Base de données',
-            'pt-agency-desc':'Application bureau pour la gestion des clients, réservations, itinéraires et paiements — avec tableau de bord admin et intégration WhatsApp.',
-            'pt-portfolio-cats':'Web &middot; Front-end',
-            'pt-portfolio-desc':'Ce portfolio — construit de zéro avec HTML, CSS et JavaScript vanilla. Thèmes sombre/clair, animations canvas et entièrement responsive.',
-            'pt-odace-cats':'IoT &middot; Électronique &middot; Arduino',
-            'pt-odace-desc':'Projets Arduino et électronique pratiques au club O\'dace — composants, circuits et théorie des systèmes embarqués appliquée.',
-            'pt-marathon-cats':'Web &middot; HTML &middot; CSS',
-            'pt-marathon-desc':'Deux défis de programmation front-end chronométrés. Marathon 1 remporté en livrant un site complet en 5 heures. 3ème place au Marathon 2.',
-            'pt-engineering-cats':'Académique &middot; Ingénierie',
-            'pt-engineering-desc':'Projets académiques du cycle ingénieur à l\'ENSA Tétouan combinant cybersécurité et systèmes embarqués à travers différents modules.',
-            'pt-preparatory-cats':'Communauté &middot; Social',
-            'pt-preparatory-desc':'Projet social en équipe : rénovation d\'une salle d\'étude dans un orphelinat, sessions de tutorat et collecte de 6 500 MAD.',
-            'ct-title':'Travaillons ensemble',
-            'ct-lead':'Une opportunité, un stage, une collaboration ? Je suis ouvert aux projets en cybersécurité, systèmes embarqués, tests QA et développement web.',
-            'ct-phone':'Téléphone',
-            'ct-label-name':'Nom complet','ct-label-email':'Email','ct-label-subject':'Sujet','ct-label-message':'Message',
-            'ct-ph-name':'Votre nom','ct-ph-email':'vous@exemple.com','ct-ph-subject':'Objet du message','ct-ph-message':'Votre message…',
-            'ct-submit':'Envoyer le message'
-        }
-    };
+    /* UI texts come from PORTFOLIO_DATA.texts (editable in the admin) */
+    var t = { en: {}, fr: {} };
+    if (window.PORTFOLIO_DATA && window.PORTFOLIO_DATA.texts) {
+        ['en', 'fr'].forEach(function(L) {
+            var src = window.PORTFOLIO_DATA.texts[L] || {};
+            Object.keys(src).forEach(function(k) { t[L][k] = src[k]; });
+        });
+    }
 
     /* Merge PORTFOLIO_DATA translations so admin edits override hardcoded values */
     if (window.PORTFOLIO_DATA) {
@@ -1266,6 +1098,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (_pd.projects) _pd.projects.forEach(function(p) {
             if (p.en) { t.en['pt-'+p.id+'-cats']=p.en.cats; t.en['pt-'+p.id+'-desc']=p.en.desc; }
             if (p.fr) { t.fr['pt-'+p.id+'-cats']=p.fr.cats; t.fr['pt-'+p.id+'-desc']=p.fr.desc; }
+            if (p.linkLabel) { t.en['pt-'+p.id+'-link']=p.linkLabel.en; t.fr['pt-'+p.id+'-link']=p.linkLabel.fr || p.linkLabel.en; }
         });
     }
 
