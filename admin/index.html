@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portfolio Admin — Taobata Simporé</title>
+<meta name="robots" content="noindex, nofollow">
+<title>Admin du portfolio</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -12,1309 +14,1306 @@
   --text:#e6edf3;--muted:#8b949e;--muted2:#6e7681;
   --accent:#0288d1;--accent2:#0ea5e9;
   --danger:#f85149;--success:#3fb950;--warn:#d29922;
-  --radius:8px;--radius2:12px;
-  --sidebar:220px;
+  --radius:6px;--sidebar:230px;
   font-size:14px;
 }
 body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.5;min-height:100vh;}
+a{color:var(--accent2);}
+button{font-family:inherit;}
 
-/* ── AUTH GATE ── */
-#authOverlay{position:fixed;inset:0;background:var(--bg);z-index:999;display:flex;align-items:center;justify-content:center;}
-.auth-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius2);padding:40px;width:360px;text-align:center;}
-.auth-box svg{display:block;margin:0 auto 20px;}
-.auth-box h1{font-size:1.4rem;margin-bottom:6px;color:var(--text);}
-.auth-box p{color:var(--muted);margin-bottom:24px;font-size:.875rem;}
-.auth-box input{width:100%;padding:10px 14px;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--radius);color:var(--text);font-size:1rem;margin-bottom:12px;outline:none;transition:border-color .2s;}
-.auth-box input:focus{border-color:var(--accent);}
-.auth-box button{width:100%;padding:11px;background:var(--accent);border:none;border-radius:var(--radius);color:#fff;font-size:.95rem;font-weight:600;cursor:pointer;transition:background .2s;}
-.auth-box button:hover{background:var(--accent2);}
-.auth-error{color:var(--danger);font-size:.8rem;margin-top:8px;min-height:18px;}
+/* auth */
+#authOverlay{position:fixed;inset:0;background:var(--bg);z-index:999;display:flex;align-items:center;justify-content:center;padding:20px;overflow:auto;}
+.auth-box{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:32px;width:100%;max-width:460px;}
+.auth-box h1{font-size:1.3rem;margin-bottom:4px;}
+.auth-box p{color:var(--muted);font-size:.86rem;margin-bottom:18px;}
+.auth-box details{margin:14px 0 18px;font-size:.82rem;color:var(--muted);}
+.auth-box summary{cursor:pointer;color:var(--accent2);}
+.auth-box ol{margin:10px 0 0 18px;display:grid;gap:4px;}
+.auth-row{display:flex;align-items:center;gap:8px;font-size:.82rem;color:var(--muted);margin:10px 0 16px;}
+.auth-error{color:var(--danger);font-size:.82rem;margin-top:10px;min-height:18px;}
+.auth-local{display:block;margin-top:16px;text-align:center;font-size:.82rem;color:var(--muted);background:none;border:none;cursor:pointer;width:100%;}
+.auth-local:hover{color:var(--text);}
 
-/* ── SHELL ── */
+/* shell */
 #adminShell{display:none;height:100vh;overflow:hidden;}
 #adminShell.visible{display:flex;}
-
-/* ── SIDEBAR ── */
 #sidebar{width:var(--sidebar);background:var(--bg2);border-right:1px solid var(--border);display:flex;flex-direction:column;flex-shrink:0;overflow-y:auto;}
-.sb-logo{padding:20px 16px 12px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--border);flex-shrink:0;}
-.sb-logo-icon{width:32px;height:32px;background:var(--accent);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;}
-.sb-logo-text{font-weight:700;font-size:.9rem;line-height:1.1;}
-.sb-logo-sub{color:var(--muted);font-size:.7rem;}
-.sb-nav{padding:12px 8px;flex:1;}
-.sb-section-label{font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted2);padding:10px 8px 4px;}
-.sb-btn{display:flex;align-items:center;gap:10px;width:100%;padding:9px 10px;border:none;background:transparent;color:var(--muted);border-radius:6px;cursor:pointer;font-size:.85rem;text-align:left;transition:background .15s,color .15s;}
-.sb-btn svg{flex-shrink:0;opacity:.7;}
+.sb-logo{padding:18px 16px 12px;border-bottom:1px solid var(--border);}
+.sb-logo-text{font-weight:700;font-size:.92rem;}
+.sb-logo-sub{color:var(--muted);font-size:.72rem;word-break:break-all;}
+.sb-mode{display:inline-block;margin-top:6px;font-size:.68rem;padding:1px 7px;border-radius:10px;border:1px solid var(--border2);color:var(--muted);}
+.sb-mode.gh{border-color:var(--success);color:var(--success);}
+.sb-nav{padding:10px 8px;flex:1;}
+.sb-label{font-size:.64rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted2);padding:10px 8px 4px;}
+.sb-btn{display:flex;align-items:center;gap:9px;width:100%;padding:8px 10px;border:none;background:transparent;color:var(--muted);border-radius:6px;cursor:pointer;font-size:.85rem;text-align:left;}
+.sb-btn i{width:15px;text-align:center;opacity:.75;}
 .sb-btn:hover{background:var(--bg3);color:var(--text);}
 .sb-btn.active{background:rgba(2,136,209,.15);color:var(--accent2);}
-.sb-btn.active svg{opacity:1;}
-.sb-count{margin-left:auto;background:var(--bg3);color:var(--muted);font-size:.7rem;padding:1px 7px;border-radius:20px;}
-.sb-btn.active .sb-count{background:rgba(2,136,209,.2);color:var(--accent2);}
-.sb-footer{padding:12px 8px 16px;border-top:1px solid var(--border);}
-.sb-footer-btn{display:flex;align-items:center;gap:8px;width:100%;padding:9px 10px;border:none;background:transparent;color:var(--muted);border-radius:6px;cursor:pointer;font-size:.85rem;text-align:left;transition:background .15s,color .15s;margin-bottom:4px;}
-.sb-footer-btn:hover{background:var(--bg3);color:var(--text);}
-.sb-footer-btn.export{color:var(--success);}
-.sb-footer-btn.export:hover{background:rgba(63,185,80,.1);}
-.sb-footer-btn.danger:hover{background:rgba(248,81,73,.1);color:var(--danger);}
-#pwdOverlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:200;align-items:center;justify-content:center;padding:20px;}
-#pwdOverlay.visible{display:flex;}
-.pwd-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius2);width:100%;max-width:400px;}
-.sb-preview{display:flex;align-items:center;gap:8px;width:100%;padding:9px 10px;text-decoration:none;color:var(--muted);border-radius:6px;font-size:.85rem;transition:background .15s,color .15s;margin-bottom:4px;}
-.sb-preview:hover{background:var(--bg3);color:var(--text);}
+.sb-count{margin-left:auto;background:var(--bg3);color:var(--muted);font-size:.68rem;padding:0 7px;border-radius:20px;}
+.sb-count.warn{background:rgba(210,153,34,.18);color:var(--warn);}
+.sb-count.err{background:rgba(248,81,73,.18);color:var(--danger);}
+.sb-footer{padding:12px 8px 16px;border-top:1px solid var(--border);display:grid;gap:6px;}
 
-/* ── MAIN ── */
-#mainContent{flex:1;overflow-y:auto;background:var(--bg);}
-.page-header{padding:24px 28px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:var(--bg);z-index:10;}
-.page-header h1{font-size:1.2rem;display:flex;align-items:center;gap:10px;}
-.page-header h1 svg{color:var(--accent);}
-.page-header .hdr-actions{display:flex;gap:8px;}
-.btn{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border:none;border-radius:var(--radius);font-size:.82rem;font-weight:600;cursor:pointer;transition:all .2s;white-space:nowrap;}
+#mainContent{flex:1;overflow-y:auto;}
+.page-header{padding:20px 28px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:12px;position:sticky;top:0;background:var(--bg);z-index:10;}
+.page-header h1{font-size:1.15rem;}
+.page-header p{color:var(--muted);font-size:.8rem;}
+.hdr-actions{display:flex;gap:8px;flex-wrap:wrap;}
+.page-body{padding:20px 28px 60px;}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:7px 13px;border:1px solid transparent;border-radius:var(--radius);font-size:.82rem;font-weight:600;cursor:pointer;white-space:nowrap;background:transparent;color:var(--text);}
+.btn:disabled{opacity:.45;cursor:not-allowed;}
 .btn-primary{background:var(--accent);color:#fff;}
-.btn-primary:hover{background:var(--accent2);}
-.btn-ghost{background:transparent;color:var(--text);border:1px solid var(--border2);}
-.btn-ghost:hover{background:var(--bg3);}
-.btn-danger{background:transparent;color:var(--danger);border:1px solid var(--danger);}
+.btn-primary:hover:not(:disabled){background:var(--accent2);}
+.btn-success{background:#238636;color:#fff;}
+.btn-success:hover:not(:disabled){background:#2ea043;}
+.btn-ghost{border-color:var(--border2);}
+.btn-ghost:hover:not(:disabled){background:var(--bg3);}
+.btn-danger{color:var(--danger);border-color:var(--danger);}
 .btn-danger:hover{background:rgba(248,81,73,.1);}
-.btn-sm{padding:5px 10px;font-size:.78rem;}
+.btn-sm{padding:4px 9px;font-size:.76rem;}
+.btn-icon{padding:4px 7px;}
 
-/* ── TABLE ── */
-.table-wrap{padding:20px 28px;}
-.table-controls{display:flex;align-items:center;gap:12px;margin-bottom:16px;}
-.search-box{flex:1;max-width:320px;position:relative;}
-.search-box input{width:100%;padding:8px 12px 8px 34px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);color:var(--text);font-size:.85rem;outline:none;transition:border-color .2s;}
-.search-box input:focus{border-color:var(--accent);}
-.search-box svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--muted);}
+/* banners */
+.banner{display:none;padding:9px 28px;font-size:.82rem;align-items:center;gap:10px;border-bottom:1px solid;}
+.banner.show{display:flex;}
+#dirtyBanner{background:rgba(210,153,34,.1);border-color:var(--warn);color:var(--warn);}
+.banner .grow{flex:1;}
+
+/* table */
+.search{width:100%;max-width:320px;padding:7px 11px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);color:var(--text);font-size:.85rem;outline:none;margin-bottom:14px;}
+.search:focus{border-color:var(--accent);}
 .data-table{width:100%;border-collapse:collapse;}
-.data-table th{text-align:left;padding:10px 14px;font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);border-bottom:1px solid var(--border);background:var(--bg2);}
-.data-table th:first-child{border-radius:8px 0 0 0;}
-.data-table th:last-child{border-radius:0 8px 0 0;}
-.data-table td{padding:12px 14px;border-bottom:1px solid var(--border);font-size:.85rem;vertical-align:middle;}
+.data-table th{text-align:left;padding:9px 12px;font-size:.7rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);border-bottom:1px solid var(--border);background:var(--bg2);}
+.data-table td{padding:10px 12px;border-bottom:1px solid var(--border);font-size:.85rem;vertical-align:middle;}
 .data-table tr:hover td{background:var(--bg2);}
-.data-table .td-actions{text-align:right;white-space:nowrap;vertical-align:middle;}
-.data-table .td-actions .btn+.btn{margin-left:6px;}
-.badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:.72rem;font-weight:600;letter-spacing:.02em;}
-.badge-cyber{background:rgba(248,81,73,.15);color:#ff8080;}
-.badge-iot{background:rgba(63,185,80,.15);color:#7ee787;}
-.badge-web{background:rgba(2,136,209,.15);color:#79c0ff;}
-.badge-java{background:rgba(210,153,34,.15);color:#f0c050;}
-.badge-fpga{background:rgba(188,82,210,.15);color:#d2a8ff;}
-.badge-autre{background:rgba(139,148,158,.15);color:#8b949e;}
-.tag-chip{display:inline-block;padding:2px 8px;background:var(--bg3);border:1px solid var(--border);border-radius:20px;font-size:.72rem;color:var(--muted);}
-.logo-thumb{width:32px;height:32px;border-radius:6px;object-fit:cover;background:var(--bg3);}
-.logo-placeholder{width:32px;height:32px;border-radius:6px;background:var(--bg3);display:inline-flex;align-items:center;justify-content:center;color:var(--muted);}
-.drag-handle{cursor:grab;color:var(--muted2);padding-right:6px;}
-.drag-handle:active{cursor:grabbing;}
-.reorder-hint{color:var(--muted);font-size:.75rem;display:flex;align-items:center;gap:6px;}
+.td-actions{text-align:right;white-space:nowrap;}
+.td-actions .btn{margin-left:4px;}
+.muted{color:var(--muted);}
+.small{font-size:.76rem;}
+.thumb{width:44px;height:30px;object-fit:cover;border-radius:4px;background:var(--bg3);vertical-align:middle;}
+.chip{display:inline-block;padding:1px 8px;background:var(--bg3);border:1px solid var(--border);border-radius:20px;font-size:.7rem;color:var(--muted);margin:1px;}
+.flag{display:inline-block;font-size:.66rem;padding:0 6px;border-radius:4px;margin-left:6px;vertical-align:middle;}
+.flag.warn{background:rgba(210,153,34,.18);color:var(--warn);}
+.flag.err{background:rgba(248,81,73,.18);color:var(--danger);}
+.flag.ok{background:rgba(63,185,80,.15);color:var(--success);}
 
-/* ── MODAL ── */
-#modalOverlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:100;align-items:center;justify-content:center;padding:20px;}
-#modalOverlay.visible{display:flex;}
-.modal-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius2);width:100%;max-width:680px;max-height:90vh;display:flex;flex-direction:column;}
-.modal-header{padding:18px 22px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
+/* modal */
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:100;align-items:center;justify-content:center;padding:18px;}
+.overlay.visible{display:flex;}
+.modal{background:var(--bg2);border:1px solid var(--border);border-radius:10px;width:100%;max-width:1000px;max-height:92vh;display:flex;flex-direction:column;}
+.modal.narrow{max-width:520px;}
+.modal-header{padding:14px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:10px;}
 .modal-header h2{font-size:1rem;}
-.modal-close{background:transparent;border:none;color:var(--muted);cursor:pointer;padding:4px;border-radius:4px;}
-.modal-close:hover{color:var(--text);}
-.modal-body{padding:22px;overflow-y:auto;flex:1;}
-.modal-footer{padding:16px 22px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:8px;flex-shrink:0;}
+.modal-tabs{display:flex;gap:4px;}
+.modal-body{padding:18px 20px;overflow-y:auto;flex:1;}
+.modal-footer{padding:12px 20px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:8px;}
+.tab{padding:5px 12px;border:1px solid var(--border2);border-radius:6px;background:transparent;color:var(--muted);cursor:pointer;font-size:.8rem;font-weight:600;}
+.tab.active{background:rgba(2,136,209,.15);border-color:var(--accent);color:var(--accent2);}
 
-/* ── FORM ── */
-.form-group{margin-bottom:16px;}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-.form-label{display:block;font-size:.78rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px;}
-.form-label span{font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted2);}
-.form-input,.form-select,.form-textarea{width:100%;padding:9px 12px;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--radius);color:var(--text);font-size:.87rem;outline:none;transition:border-color .2s;font-family:inherit;}
-.form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--accent);}
-.form-textarea{resize:vertical;min-height:80px;line-height:1.5;}
-.form-select option{background:var(--bg2);}
-.form-hint{font-size:.75rem;color:var(--muted2);margin-top:4px;}
-.lang-tabs{display:flex;gap:4px;margin-bottom:12px;}
-.lang-tab{padding:5px 14px;border:1px solid var(--border2);border-radius:6px;background:transparent;color:var(--muted);cursor:pointer;font-size:.82rem;font-weight:600;}
-.lang-tab.active{background:rgba(2,136,209,.15);border-color:var(--accent);color:var(--accent2);}
-.lang-pane{display:none;}
-.lang-pane.active{display:block;}
-.tags-editor{display:flex;flex-wrap:wrap;gap:6px;padding:8px;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--radius);}
-.tags-editor input{flex:1;min-width:100px;padding:3px 6px;background:transparent;border:none;color:var(--text);font-size:.87rem;outline:none;}
-.tag-item{display:inline-flex;align-items:center;gap:4px;padding:3px 8px;background:var(--bg2);border:1px solid var(--border);border-radius:20px;font-size:.78rem;}
-.tag-remove{background:transparent;border:none;color:var(--muted);cursor:pointer;font-size:1rem;line-height:1;padding:0 2px;}
-.tag-remove:hover{color:var(--danger);}
-.icon-preview{display:flex;align-items:center;gap:12px;margin-top:8px;}
-.icon-preview svg{color:var(--text);}
-.icon-preview span{font-size:.75rem;color:var(--muted);}
-.color-select-grid{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;}
-.color-opt{width:32px;height:32px;border-radius:6px;border:2px solid transparent;cursor:pointer;transition:transform .15s;position:relative;}
-.color-opt:hover{transform:scale(1.1);}
-.color-opt.selected::after{content:'✓';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1rem;font-weight:700;}
-.color-opt[data-clr=red]{background:#7f1d1d;}
-.color-opt[data-clr=blue]{background:#1e3a5f;}
-.color-opt[data-clr=purple]{background:#4c1d95;}
-.color-opt[data-clr=green]{background:#14532d;}
-.color-opt[data-clr=orange]{background:#7c2d12;}
-.color-opt[data-clr=amber]{background:#78350f;}
-.color-opt[data-clr=sky]{background:#0c4a6e;}
-.color-opt[data-clr=violet]{background:#4a1d96;}
-.color-opt.selected{border-color:#fff;transform:scale(1.1);}
+/* form */
+.fg{margin-bottom:14px;}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+.lbl{display:block;font-size:.72rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-bottom:5px;}
+.lbl .lang{color:var(--accent2);margin-left:4px;}
+.inp,.sel,.ta{width:100%;padding:8px 10px;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--radius);color:var(--text);font-size:.86rem;outline:none;font-family:inherit;}
+.inp:focus,.sel:focus,.ta:focus{border-color:var(--accent);}
+.ta{resize:vertical;min-height:70px;line-height:1.5;}
+.ta.code{font-family:Consolas,monospace;font-size:.78rem;}
+.hint{font-size:.72rem;color:var(--muted2);margin-top:4px;}
+.inp.missing,.ta.missing{border-color:var(--warn);}
+.file-row{display:flex;gap:6px;align-items:center;}
+.file-row .inp{flex:1;}
+.file-prev{height:34px;max-width:60px;object-fit:cover;border-radius:4px;background:var(--bg3);}
+.icon-prev{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border:1px solid var(--border);border-radius:6px;color:var(--text);}
+.box{border:1px solid var(--border);border-radius:8px;padding:12px 14px;margin-bottom:12px;background:var(--bg);}
+.box-head{display:flex;align-items:center;gap:8px;margin-bottom:10px;}
+.box-head .grow{flex:1;font-weight:600;font-size:.84rem;}
+.section-title{font-size:.8rem;font-weight:700;margin:18px 0 10px;color:var(--text);text-transform:uppercase;letter-spacing:.05em;}
+.section-title:first-child{margin-top:0;}
 
-/* ── TOAST ── */
-#toast{position:fixed;bottom:24px;right:24px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:12px 18px;font-size:.85rem;z-index:999;display:flex;align-items:center;gap:8px;transform:translateY(80px);opacity:0;transition:all .3s;max-width:320px;}
+/* skills */
+.sk-item{display:grid;grid-template-columns:34px 1fr 1fr auto;gap:8px;align-items:center;margin-bottom:6px;}
+
+/* texts */
+.tx-group{margin-bottom:26px;}
+.tx-group h3{font-size:.8rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:8px;}
+.tx-row{display:grid;grid-template-columns:170px 1fr 1fr;gap:10px;align-items:start;padding:8px 0;border-bottom:1px solid var(--border);}
+.tx-key{font-family:Consolas,monospace;font-size:.74rem;color:var(--muted);padding-top:8px;word-break:break-all;}
+.tx-row .ta{min-height:38px;}
+
+/* checks */
+.check{display:flex;gap:10px;padding:9px 12px;border:1px solid var(--border);border-radius:6px;margin-bottom:6px;font-size:.84rem;align-items:flex-start;}
+.check.err{border-color:rgba(248,81,73,.5);}
+.check.warn{border-color:rgba(210,153,34,.45);}
+.check i{margin-top:3px;}
+.check.err i{color:var(--danger);}
+.check.warn i{color:var(--warn);}
+.check .where{color:var(--muted);font-size:.76rem;}
+
+/* preview */
+.pv-bar{display:flex;gap:8px;align-items:center;margin-bottom:12px;flex-wrap:wrap;}
+.pv-frame-wrap{border:1px solid var(--border);border-radius:8px;overflow:hidden;background:#fff;height:calc(100vh - 190px);display:flex;justify-content:center;}
+.pv-frame-wrap iframe{border:0;width:100%;height:100%;background:#fff;}
+.pv-frame-wrap.mobile iframe{width:390px;border-left:1px solid #ccc;border-right:1px solid #ccc;}
+
+/* media */
+.up-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;}
+.up-card{border:1px solid var(--border);border-radius:8px;overflow:hidden;background:var(--bg2);}
+.up-card img{width:100%;height:110px;object-fit:cover;display:block;background:var(--bg3);}
+.up-card .up-ph{height:110px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:1.6rem;}
+.up-card div.meta{padding:8px 10px;font-size:.74rem;word-break:break-all;}
+.dropzone{border:2px dashed var(--border2);border-radius:10px;padding:26px;text-align:center;color:var(--muted);margin-bottom:18px;cursor:pointer;}
+.dropzone.over{border-color:var(--accent);color:var(--text);}
+
+/* history */
+.hist{display:flex;gap:12px;align-items:center;padding:10px 12px;border-bottom:1px solid var(--border);}
+.hist .grow{flex:1;}
+.hist code{font-size:.74rem;color:var(--muted);}
+
+#toast{position:fixed;bottom:22px;right:22px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:11px 16px;font-size:.85rem;z-index:1000;transform:translateY(90px);opacity:0;transition:all .3s;max-width:380px;}
 #toast.show{transform:translateY(0);opacity:1;}
-#toast.success{border-color:var(--success);color:var(--success);}
-#toast.error{border-color:var(--danger);color:var(--danger);}
-
-/* ── UNSAVED BANNER ── */
-#unsavedBanner{display:none;position:sticky;top:0;background:rgba(210,153,34,.12);border-bottom:1px solid var(--warn);padding:8px 28px;font-size:.82rem;color:var(--warn);z-index:9;align-items:center;gap:10px;}
-#unsavedBanner.show{display:flex;}
-
-/* ── EMPTY STATE ── */
-.empty-state{text-align:center;padding:60px 20px;color:var(--muted);}
-.empty-state svg{display:block;margin:0 auto 16px;opacity:.4;}
-.empty-state h3{font-size:1rem;color:var(--text);margin-bottom:6px;}
-
-/* ── CERT GRID PREVIEW ── */
-.cert-thumb-preview{width:40px;height:28px;object-fit:cover;border-radius:4px;background:var(--bg3);}
-
-/* ── SKILLS ── */
-.sk-cat-panel{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:16px;}
-.sk-cat-header{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;cursor:pointer;user-select:none;}
-.sk-cat-header:hover{background:var(--bg3);border-radius:var(--radius) var(--radius) 0 0;}
-.sk-cat-title{font-weight:700;font-size:.92rem;display:flex;align-items:center;gap:8px;}
-.sk-cat-count{color:var(--muted);font-weight:400;font-size:.8rem;}
-.sk-cat-body{padding:0 16px 16px;display:none;}
-.sk-cat-body.open{display:block;}
-.sk-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;min-height:32px;}
-.sk-chip{display:inline-flex;align-items:center;gap:6px;padding:5px 10px 5px 8px;background:var(--bg3);border:1px solid var(--border);border-radius:20px;font-size:.8rem;}
-.sk-chip .sk-icon{font-size:.7rem;color:var(--muted);}
-.sk-chip-del{background:transparent;border:none;color:var(--muted);cursor:pointer;font-size:.9rem;padding:0 0 0 2px;line-height:1;}
-.sk-chip-del:hover{color:var(--danger);}
-.sk-chip-edit{background:transparent;border:none;color:var(--muted);cursor:pointer;font-size:.75rem;padding:0;opacity:.6;}
-.sk-chip-edit:hover{opacity:1;color:var(--accent2);}
-.sk-add-row{display:flex;gap:8px;align-items:center;margin-top:8px;}
-.sk-add-row input{flex:1;padding:7px 10px;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--radius);color:var(--text);font-size:.82rem;outline:none;}
-.sk-add-row input:focus{border-color:var(--accent);}
-.sk-add-row input::placeholder{color:var(--muted2);}
+#toast.success{border-color:var(--success);}
+#toast.error{border-color:var(--danger);color:#ffb3ad;}
+.empty{text-align:center;padding:50px 20px;color:var(--muted);}
+@media (max-width:900px){.grid2,.grid3{grid-template-columns:1fr;}.tx-row{grid-template-columns:1fr;}#sidebar{width:190px;}}
 </style>
 </head>
 <body>
 
-<!-- AUTH GATE -->
+<!-- ============ AUTH ============ -->
 <div id="authOverlay">
   <div class="auth-box">
-    <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#0288d1" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
-    <h1>Portfolio Admin</h1>
-    <p>Taobata Simporé — Access restricted</p>
-    <input type="password" id="passInput" placeholder="Password" autocomplete="current-password">
-    <button id="loginBtn">Sign in</button>
+    <h1>Admin du portfolio</h1>
+    <p>Connecte-toi avec un jeton GitHub pour modifier et publier le site directement. Le jeton reste dans ce navigateur et n’est envoyé qu’à GitHub.</p>
+    <label class="lbl" for="tokenInput">Jeton GitHub</label>
+    <input class="inp" type="password" id="tokenInput" placeholder="github_pat_..." autocomplete="off" spellcheck="false">
+    <label class="auth-row"><input type="checkbox" id="rememberToken"> Se souvenir sur cet appareil (sinon il est oublié à la fermeture de l’onglet)</label>
+    <button class="btn btn-primary" id="connectBtn" style="width:100%">Se connecter</button>
     <div class="auth-error" id="authError"></div>
+    <details>
+      <summary>Créer le jeton (2 minutes)</summary>
+      <ol>
+        <li>Ouvre <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">GitHub › Settings › Fine-grained tokens › Generate new token</a>.</li>
+        <li>Expiration : 90 jours. Resource owner : ton compte.</li>
+        <li>Repository access : <b>Only select repositories</b> › <code id="repoName"></code>.</li>
+        <li>Permissions › Repository › <b>Contents : Read and write</b> (Metadata : read est ajouté automatiquement).</li>
+        <li>Clique sur Generate, copie le jeton et colle-le ici.</li>
+      </ol>
+    </details>
+    <button class="auth-local" id="localModeBtn">Continuer sans GitHub (modification, aperçu et export uniquement)</button>
   </div>
 </div>
 
-<!-- ADMIN SHELL -->
+<!-- ============ SHELL ============ -->
 <div id="adminShell">
-  <!-- Sidebar -->
   <aside id="sidebar">
     <div class="sb-logo">
-      <div class="sb-logo-icon">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      </div>
-      <div>
-        <div class="sb-logo-text">Portfolio Admin</div>
-        <div class="sb-logo-sub">pro-simpo.github.io</div>
-      </div>
+      <div class="sb-logo-text">Admin du portfolio</div>
+      <div class="sb-logo-sub" id="sbRepo"></div>
+      <span class="sb-mode" id="sbMode"></span>
     </div>
-
-    <nav class="sb-nav">
-      <div class="sb-section-label">Sections</div>
-      <button class="sb-btn active" data-section="experience">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
-        Experience
-        <span class="sb-count" id="cnt-experience">0</span>
-      </button>
-      <button class="sb-btn" data-section="projects">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-        Projects
-        <span class="sb-count" id="cnt-projects">0</span>
-      </button>
-      <button class="sb-btn" data-section="services">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
-        Services
-        <span class="sb-count" id="cnt-services">0</span>
-      </button>
-      <button class="sb-btn" data-section="certificates">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
-        Certificates
-        <span class="sb-count" id="cnt-certificates">0</span>
-      </button>
-      <button class="sb-btn" data-section="skills">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        Skills
-        <span class="sb-count" id="cnt-skills">0</span>
-      </button>
+    <nav class="sb-nav" id="sbNav">
+      <div class="sb-label">Contenu</div>
+      <button class="sb-btn" data-section="experience"><i class="fa-solid fa-briefcase"></i>Expériences<span class="sb-count" id="cnt-experience"></span></button>
+      <button class="sb-btn" data-section="projects"><i class="fa-solid fa-code"></i>Projets<span class="sb-count" id="cnt-projects"></span></button>
+      <button class="sb-btn" data-section="services"><i class="fa-solid fa-layer-group"></i>Services<span class="sb-count" id="cnt-services"></span></button>
+      <button class="sb-btn" data-section="certificates"><i class="fa-solid fa-award"></i>Certificats<span class="sb-count" id="cnt-certificates"></span></button>
+      <button class="sb-btn" data-section="skills"><i class="fa-solid fa-star"></i>Compétences<span class="sb-count" id="cnt-skills"></span></button>
+      <button class="sb-btn" data-section="texts"><i class="fa-solid fa-language"></i>Textes du site<span class="sb-count" id="cnt-texts"></span></button>
+      <div class="sb-label">Outils</div>
+      <button class="sb-btn" data-section="media"><i class="fa-solid fa-image"></i>Fichiers<span class="sb-count" id="cnt-media"></span></button>
+      <button class="sb-btn" data-section="checks"><i class="fa-solid fa-list-check"></i>Contrôles<span class="sb-count" id="cnt-checks"></span></button>
+      <button class="sb-btn" data-section="preview"><i class="fa-solid fa-eye"></i>Aperçu</button>
+      <button class="sb-btn" data-section="history"><i class="fa-solid fa-clock-rotate-left"></i>Historique</button>
     </nav>
-
     <div class="sb-footer">
-      <a href="../index.html" target="_blank" class="sb-preview">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-        Preview site
-      </a>
-      <button class="sb-footer-btn export" id="btnExport">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l4-4m-4 4l-4-4M5 21h14"/></svg>
-        Export portfolio-data.js
-      </button>
-      <button class="sb-footer-btn" id="btnChangePwd">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
-        Change password
-      </button>
-      <button class="sb-footer-btn danger" id="btnLogout">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9"/></svg>
-        Logout
-      </button>
+      <button class="btn btn-success" id="btnPublish"><i class="fa-solid fa-cloud-arrow-up"></i>Publier</button>
+      <button class="btn btn-ghost btn-sm" id="btnExport"><i class="fa-solid fa-download"></i>Exporter portfolio-data.js</button>
+      <button class="btn btn-ghost btn-sm" id="btnDiscard"><i class="fa-solid fa-rotate-left"></i>Jeter le brouillon</button>
+      <button class="btn btn-ghost btn-sm" id="btnLogout"><i class="fa-solid fa-right-from-bracket"></i>Se déconnecter</button>
     </div>
   </aside>
-
-  <!-- Main content -->
   <main id="mainContent">
-    <div id="unsavedBanner">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-      Unsaved changes — click <strong style="margin:0 4px">Export</strong> to download the updated portfolio-data.js
-    </div>
+    <div class="banner" id="dirtyBanner"><i class="fa-solid fa-pen"></i><span class="grow" id="dirtyText">Brouillon enregistré dans ce navigateur, pas encore publié.</span></div>
     <div id="sectionContent"></div>
   </main>
 </div>
 
-<!-- MODAL -->
-<div id="modalOverlay">
-  <div class="modal-box">
-    <div class="modal-header">
-      <h2 id="modalTitle">Edit</h2>
-      <button class="modal-close" id="btnModalClose">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-      </button>
-    </div>
+<!-- ============ MODALS ============ -->
+<div class="overlay" id="modalOverlay">
+  <div class="modal" id="modalBox">
+    <div class="modal-header"><h2 id="modalTitle"></h2><div class="modal-tabs" id="modalTabs"></div><button class="btn btn-ghost btn-icon" data-close><i class="fa-solid fa-xmark"></i></button></div>
     <div class="modal-body" id="modalBody"></div>
-    <div class="modal-footer">
-      <button class="btn btn-ghost" id="btnModalCancel">Cancel</button>
-      <button class="btn btn-primary" id="btnModalSave">Save changes</button>
-    </div>
+    <div class="modal-footer" id="modalFooter"></div>
   </div>
 </div>
-
-<!-- TOAST -->
+<div class="overlay" id="dialogOverlay">
+  <div class="modal narrow">
+    <div class="modal-header"><h2 id="dialogTitle"></h2></div>
+    <div class="modal-body" id="dialogBody"></div>
+    <div class="modal-footer" id="dialogFooter"></div>
+  </div>
+</div>
 <div id="toast"></div>
-
-<!-- CHANGE PASSWORD MODAL -->
-<div id="pwdOverlay">
-  <div class="pwd-box">
-    <div class="modal-header">
-      <h2>Change password</h2>
-      <button class="modal-close" id="btnPwdClose">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-      </button>
-    </div>
-    <div class="modal-body">
-      <div class="form-group">
-        <label class="form-label">Current password</label>
-        <input type="password" id="pwdCurrent" class="form-input" autocomplete="current-password" placeholder="Current password">
-      </div>
-      <div class="form-group">
-        <label class="form-label">New password</label>
-        <input type="password" id="pwdNew" class="form-input" autocomplete="new-password" placeholder="New password">
-      </div>
-      <div class="form-group" style="margin-bottom:0">
-        <label class="form-label">Confirm new password</label>
-        <input type="password" id="pwdConfirm" class="form-input" autocomplete="new-password" placeholder="Confirm new password">
-      </div>
-      <p id="pwdMsg" style="font-size:.82rem;margin-top:10px;display:none;"></p>
-    </div>
-    <div class="modal-footer">
-      <button class="btn btn-ghost" id="btnPwdCancel">Cancel</button>
-      <button class="btn btn-primary" id="btnPwdSave">Update password</button>
-    </div>
-  </div>
-</div>
-
-<!-- Load portfolio data -->
-<script src="../portfolio-data.js"></script>
+<input type="file" id="filePicker" hidden>
 
 <script>
+'use strict';
 /* =====================================================================
-   PORTFOLIO ADMIN — CORE
+   CONFIG
    ===================================================================== */
+const OWNER = 'Pro-simpo';
+const REPO = 'pro-simpo.github.io';
+const BRANCH = 'main';
+const DATA_PATH = 'portfolio-data.js';
+const INDEX_PATH = 'index.html';
+const DRAFT_KEY = 'portfolio_admin_draft';
+const LEGACY_KEY = 'portfolio_admin_data';
+const TOKEN_KEY = 'portfolio_admin_token';
+const IS_LOCAL = ['localhost', '127.0.0.1'].includes(location.hostname);
+/* API override only for local testing (never honoured on the live site) */
+const API = (IS_LOCAL && localStorage.getItem('portfolio_admin_api')) || 'https://api.github.com';
+const CATEGORIES = [['cyber', 'Cybersécurité'], ['iot', 'IoT / Embarqué'], ['web', 'Web'], ['java', 'Java'], ['fpga', 'FPGA'], ['autre', 'Autre']];
+const FALLBACK_TARGETS = [
+  ['.ex-tl', '<div class="ex-tl">'], ['.pt-grid', '<div class="pt-grid">'], ['.ce-grid', '<div class="ce-grid">'],
+  ['.sv-grid', '<div class="sv-grid">'], ['.skills-container', '<div class="skills-container">'],
+  ['#pt-detail', '<div class="pt-detail" id="pt-detail">']
+];
 
-/* ── CONFIG ── */
-const ADMIN_PASSWORD = 'ProSimpo2026';
-const LS_KEY = 'portfolio_admin_data';
-const LS_META = 'portfolio_admin_meta';
-const LS_PWD  = 'portfolio_admin_pwd';
+/* =====================================================================
+   STATE
+   ===================================================================== */
+const S = {
+  mode: null,            // 'github' | 'local'
+  token: null,
+  user: null,
+  data: null,            // working copy
+  published: null,       // JSON string of the loaded version
+  base: { commit: null, blob: null },
+  uploads: [],           // {path, blob, size, url, isImage}
+  section: 'experience',
+  tree: null,            // Set of repo paths (github mode)
+  lastChecks: []
+};
 
-/* ── STATE ── */
-let adminData = null;       // working copy
-let currentSection = 'experience';
-let editingId = null;       // id of item being edited (null = new)
-let editingSection = null;
-let isDirty = false;
+/* =====================================================================
+   HELPERS
+   ===================================================================== */
+const $ = (sel, root = document) => root.querySelector(sel);
+const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
+const clone = o => JSON.parse(JSON.stringify(o));
+function esc(s) {
+  return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+function stripTags(s) { return new DOMParser().parseFromString(String(s || ''), 'text/html').body.textContent.trim(); }
+function toast(msg, type = 'success', dur = 3500) {
+  const el = $('#toast');
+  el.innerHTML = msg; el.className = 'show ' + type;
+  clearTimeout(el._t); el._t = setTimeout(() => { el.className = ''; }, dur);
+}
+function debounce(fn, ms) { let t; return (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), ms); }; }
+function fmtDate(d) { return new Date(d).toLocaleString('fr-FR', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }); }
+function utf8ToB64(str) {
+  const bytes = new TextEncoder().encode(str); let bin = '';
+  for (let i = 0; i < bytes.length; i += 0x8000) bin += String.fromCharCode.apply(null, bytes.subarray(i, i + 0x8000));
+  return btoa(bin);
+}
+function b64ToUtf8(b64) {
+  const bin = atob(b64.replace(/\s/g, '')); const bytes = new Uint8Array(bin.length);
+  for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+  return new TextDecoder().decode(bytes);
+}
+function blobToB64(blob) {
+  return new Promise((res, rej) => { const r = new FileReader(); r.onload = () => res(String(r.result).split(',')[1]); r.onerror = rej; r.readAsDataURL(blob); });
+}
+function slug(name) {
+  const dot = name.lastIndexOf('.'); const ext = dot > 0 ? name.slice(dot).toLowerCase() : '';
+  const base = (dot > 0 ? name.slice(0, dot) : name).normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^A-Za-z0-9_-]+/g, '-').replace(/^-+|-+$/g, '') || 'file';
+  return base + ext;
+}
+function getPath(obj, path) { return path.split('.').reduce((o, k) => (o == null ? undefined : o[k]), obj); }
+function setPath(obj, path, val) {
+  const ks = path.split('.'); let o = obj;
+  ks.slice(0, -1).forEach(k => { if (o[k] == null || typeof o[k] !== 'object') o[k] = {}; o = o[k]; });
+  o[ks[ks.length - 1]] = val;
+}
+function isLocalRef(u) { return u && !/^(https?:|mailto:|tel:|#|data:|\/\/)/i.test(u); }
+function normPath(u) { let p = u.split('#')[0].split('?')[0]; try { p = decodeURIComponent(p); } catch (e) {} return p.replace(/^\.?\//, '').normalize('NFC'); }
 
-/* ── HELPERS ── */
-function deepClone(obj) { return JSON.parse(JSON.stringify(obj)); }
-
-function toast(msg, type = 'success', dur = 3000) {
-  const el = document.getElementById('toast');
-  el.innerHTML = (type === 'success'
-    ? '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>'
-    : '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>') + msg;
-  el.className = 'show ' + type;
-  clearTimeout(el._t);
-  el._t = setTimeout(() => { el.className = ''; }, dur);
+/* =====================================================================
+   DATA FILE (parse / serialize)
+   ===================================================================== */
+function parseDataFile(src) {
+  const i = src.indexOf('window.PORTFOLIO_DATA');
+  if (i < 0) throw new Error('portfolio-data.js: PORTFOLIO_DATA not found');
+  const body = src.slice(src.indexOf('=', i) + 1).trim().replace(/;\s*$/, '');
+  try { return JSON.parse(body); }
+  catch (e) { const w = {}; new Function('window', src)(w); return w.PORTFOLIO_DATA; }  // old JS-literal format
+}
+function serializeData(d) {
+  return '/* portfolio-data.js : site content, edited with admin/index.html (JSON inside) */\nwindow.PORTFOLIO_DATA = ' + JSON.stringify(d, null, 2) + ';\n';
+}
+function normalizeData(d) {
+  ['experience', 'services', 'projects', 'skills', 'certificates'].forEach(k => { if (!Array.isArray(d[k])) d[k] = []; });
+  if (!d.texts) d.texts = { en: {}, fr: {} };
+  d.texts.en = d.texts.en || {}; d.texts.fr = d.texts.fr || {};
+  return d;
 }
 
-function escape(s) {
-  if (!s) return '';
-  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+/* =====================================================================
+   GITHUB API
+   ===================================================================== */
+async function gh(method, path, body) {
+  const r = await fetch(API + path, {
+    method,
+    headers: Object.assign({ 'Accept': 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28', 'Authorization': 'Bearer ' + S.token },
+      body ? { 'Content-Type': 'application/json' } : {}),
+    body: body ? JSON.stringify(body) : undefined,
+    cache: 'no-store'
+  });
+  if (!r.ok) {
+    let msg = r.status + ' ' + r.statusText;
+    try { const j = await r.json(); if (j.message) msg = r.status + ' ' + j.message; } catch (e) {}
+    const err = new Error(msg); err.status = r.status; throw err;
+  }
+  return r.status === 204 ? null : r.json();
+}
+const repoPath = p => '/repos/' + OWNER + '/' + REPO + p;
+async function ghHead() { return (await gh('GET', repoPath('/git/ref/heads/' + BRANCH))).object.sha; }
+async function ghFile(path, ref) {
+  const j = await gh('GET', repoPath('/contents/' + path.split('/').map(encodeURIComponent).join('/') + '?ref=' + encodeURIComponent(ref || BRANCH)));
+  let text;
+  if (j.content && j.encoding === 'base64') text = b64ToUtf8(j.content);
+  else { const b = await gh('GET', repoPath('/git/blobs/' + j.sha)); text = b64ToUtf8(b.content); }  // files > 1 MB
+  return { text, sha: j.sha };
+}
+async function ghTree(commitSha) {
+  const c = await gh('GET', repoPath('/git/commits/' + commitSha));
+  const t = await gh('GET', repoPath('/git/trees/' + c.tree.sha + '?recursive=1'));
+  return { treeSha: c.tree.sha, paths: new Set(t.tree.filter(x => x.type === 'blob').map(x => x.path.normalize('NFC'))) };
 }
 
-function markDirty() {
-  isDirty = true;
-  document.getElementById('unsavedBanner').classList.add('show');
+/* =====================================================================
+   AUTH
+   ===================================================================== */
+$('#repoName').textContent = OWNER + '/' + REPO;
+$('#connectBtn').addEventListener('click', () => connect($('#tokenInput').value.trim(), $('#rememberToken').checked));
+$('#tokenInput').addEventListener('keydown', e => { if (e.key === 'Enter') $('#connectBtn').click(); });
+$('#localModeBtn').addEventListener('click', () => start('local'));
+
+async function connect(token, remember) {
+  const err = $('#authError'); err.textContent = '';
+  if (!token) { err.textContent = 'Colle d’abord un jeton.'; return; }
+  S.token = token;
+  $('#connectBtn').disabled = true; $('#connectBtn').textContent = 'Connexion...';
+  try {
+    const repo = await gh('GET', repoPath(''));
+    if (repo.permissions && repo.permissions.push === false) throw new Error('Ce jeton ne peut pas écrire dans ' + OWNER + '/' + REPO + '.');
+    try { S.user = (await gh('GET', '/user')).login; } catch (e) { S.user = null; }
+    (remember ? localStorage : sessionStorage).setItem(TOKEN_KEY, token);
+    (remember ? sessionStorage : localStorage).removeItem(TOKEN_KEY);
+    await start('github');
+  } catch (e) {
+    S.token = null;
+    err.textContent = e.status === 401 ? 'Jeton invalide ou expiré.' : e.status === 404 ? 'Dépôt introuvable avec ce jeton (vérifie « Only select repositories »).' : e.message;
+  } finally { $('#connectBtn').disabled = false; $('#connectBtn').textContent = 'Se connecter'; }
 }
 
+(function autoLogin() {
+  const t = sessionStorage.getItem(TOKEN_KEY) || localStorage.getItem(TOKEN_KEY);
+  if (t) connect(t, !!localStorage.getItem(TOKEN_KEY));
+})();
+
+/* =====================================================================
+   START / LOAD
+   ===================================================================== */
+async function start(mode) {
+  S.mode = mode;
+  let loaded;
+  try { loaded = await loadPublished(); }
+  catch (e) { $('#authError').textContent = 'Impossible de charger les données du site : ' + e.message; return; }
+  S.data = normalizeData(loaded);
+  S.published = JSON.stringify(S.data);
+  $('#authOverlay').style.display = 'none';
+  $('#adminShell').classList.add('visible');
+  $('#sbRepo').textContent = OWNER + '/' + REPO;
+  $('#sbMode').textContent = mode === 'github' ? 'GitHub' + (S.user ? ' · ' + S.user : '') : 'Mode local';
+  $('#sbMode').className = 'sb-mode' + (mode === 'github' ? ' gh' : '');
+  $('#btnPublish').disabled = mode !== 'github';
+  $('#btnPublish').title = mode === 'github' ? '' : 'Connecte-toi avec un jeton GitHub pour publier';
+  setupShell();
+  await offerDraft();
+  refreshAll();
+  if (mode === 'github') ghTree(S.base.commit).then(t => { S.tree = t.paths; updateCounts(); }).catch(() => {});
+}
+
+async function loadPublished() {
+  if (S.mode === 'github') {
+    const head = await ghHead();
+    const f = await ghFile(DATA_PATH, head);
+    S.base = { commit: head, blob: f.sha };
+    return parseDataFile(f.text);
+  }
+  const r = await fetch('../' + DATA_PATH, { cache: 'no-store' });
+  if (!r.ok) throw new Error(r.status + ' ' + r.statusText);
+  return parseDataFile(await r.text());
+}
+
+/* =====================================================================
+   DRAFT
+   ===================================================================== */
+function readDraft() {
+  try {
+    const d = JSON.parse(localStorage.getItem(DRAFT_KEY) || 'null');
+    if (d && d.data) return d;
+    const legacy = JSON.parse(localStorage.getItem(LEGACY_KEY) || 'null');
+    if (legacy && legacy.projects) return { savedAt: null, base: null, data: legacy };
+  } catch (e) {}
+  return null;
+}
+function saveDraft() {
+  const same = JSON.stringify(S.data) === S.published;
+  if (same) localStorage.removeItem(DRAFT_KEY);
+  else {
+    try { localStorage.setItem(DRAFT_KEY, JSON.stringify({ savedAt: Date.now(), base: S.base.blob, data: S.data })); }
+    catch (e) { toast('Impossible d’enregistrer le brouillon dans ce navigateur (stockage plein ?).', 'error'); }
+  }
+  localStorage.removeItem(LEGACY_KEY);
+  updateDirty();
+}
+function isDirty() { return JSON.stringify(S.data) !== S.published || S.uploads.length > 0; }
+function updateDirty() {
+  const b = $('#dirtyBanner');
+  if (isDirty()) {
+    b.classList.add('show');
+    $('#dirtyText').textContent = S.mode === 'github'
+      ? 'Brouillon enregistré dans ce navigateur, pas encore publié' + (S.uploads.length ? ' (' + S.uploads.length + ' fichier(s) en attente d’envoi)' : '') + '.'
+      : 'Brouillon enregistré dans ce navigateur. Mode local : exporte portfolio-data.js et fais le commit toi-même.';
+  } else b.classList.remove('show');
+}
+function changed() { saveDraft(); updateCounts(); }
+
+function offerDraft() {
+  return new Promise(resolve => {
+    const d = readDraft();
+    if (!d || JSON.stringify(normalizeData(clone(d.data))) === S.published) { localStorage.removeItem(DRAFT_KEY); localStorage.removeItem(LEGACY_KEY); return resolve(); }
+    const outdated = S.mode === 'github' && d.base && d.base !== S.base.blob;
+    dialog('Brouillon non publié trouvé',
+      '<p>Un brouillon ' + (d.savedAt ? 'enregistré le <b>' + fmtDate(d.savedAt) + '</b>' : 'de l’ancienne version de l’admin') + ' existe dans ce navigateur.</p>' +
+      (outdated || !d.base ? '<p class="small" style="color:var(--warn);margin-top:10px"><i class="fa-solid fa-triangle-exclamation"></i> Le site publié a changé depuis le début de ce brouillon. Le reprendre puis publier remettrait son contenu plus ancien. Vérifie-le d’abord dans l’Aperçu.</p>' : ''),
+      [{ label: 'Jeter le brouillon', cls: 'btn-ghost', fn: () => { localStorage.removeItem(DRAFT_KEY); localStorage.removeItem(LEGACY_KEY); resolve(); } },
+       { label: 'Reprendre le brouillon', cls: 'btn-primary', fn: () => { S.data = normalizeData(d.data); saveDraft(); resolve(); } }]);
+  });
+}
+
+/* =====================================================================
+   DIALOG + MODAL
+   ===================================================================== */
+function dialog(title, html, buttons) {
+  $('#dialogTitle').textContent = title;
+  $('#dialogBody').innerHTML = html;
+  const f = $('#dialogFooter'); f.innerHTML = '';
+  buttons.forEach(b => {
+    const el = document.createElement('button'); el.className = 'btn ' + (b.cls || 'btn-ghost'); el.innerHTML = b.label;
+    el.onclick = async () => { if (b.keepOpen) { await b.fn(); return; } $('#dialogOverlay').classList.remove('visible'); b.fn && b.fn(); };
+    f.appendChild(el);
+  });
+  $('#dialogOverlay').classList.add('visible');
+}
+function confirmBox(title, html, okLabel, okCls = 'btn-danger') {
+  return new Promise(res => dialog(title, html, [{ label: 'Annuler', fn: () => res(false) }, { label: okLabel, cls: okCls, fn: () => res(true) }]));
+}
+function openModal(title, bodyHtml, { tabs, onSave, wide = true } = {}) {
+  $('#modalTitle').textContent = title;
+  $('#modalBox').classList.toggle('narrow', !wide);
+  $('#modalBody').innerHTML = bodyHtml;
+  const tb = $('#modalTabs'); tb.innerHTML = '';
+  if (tabs) {
+    tabs.forEach((t, i) => {
+      const b = document.createElement('button'); b.className = 'tab' + (i === 0 ? ' active' : ''); b.textContent = t;
+      b.onclick = () => { $$('.tab', tb).forEach(x => x.classList.remove('active')); b.classList.add('active'); $$('[data-pane]', $('#modalBody')).forEach(p => p.hidden = p.dataset.pane !== String(i)); };
+      tb.appendChild(b);
+    });
+    $$('[data-pane]', $('#modalBody')).forEach(p => p.hidden = p.dataset.pane !== '0');
+  }
+  const f = $('#modalFooter'); f.innerHTML = '';
+  const c = document.createElement('button'); c.className = 'btn btn-ghost'; c.textContent = 'Annuler'; c.onclick = closeModal; f.appendChild(c);
+  if (onSave) { const s = document.createElement('button'); s.className = 'btn btn-primary'; s.textContent = 'Enregistrer'; s.onclick = () => { if (onSave() !== false) closeModal(); }; f.appendChild(s); }
+  $('#modalOverlay').classList.add('visible');
+  wireWidgets($('#modalBody'));
+}
+function closeModal() { $('#modalOverlay').classList.remove('visible'); }
+$$('[data-close]').forEach(b => b.addEventListener('click', closeModal));
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal(); } });
+
+/* =====================================================================
+   FORM WIDGETS
+   field: {path, label, type: text|textarea|select|tags|file|svg|lines, lang, options, hint, folder, accept}
+   ===================================================================== */
+function fieldHtml(obj, f) {
+  const v = getPath(obj, f.path);
+  const id = 'f_' + f.path.replace(/\./g, '_');
+  const lab = '<label class="lbl" for="' + id + '">' + esc(f.label) + (f.lang ? '<span class="lang">' + f.lang.toUpperCase() + '</span>' : '') + '</label>';
+  const hint = f.hint ? '<div class="hint">' + f.hint + '</div>' : '';
+  const miss = f.pair && !String(v || '').trim() && String(getPath(obj, f.pair) || '').trim() ? ' missing' : '';
+  let input;
+  switch (f.type) {
+    case 'textarea': input = '<textarea class="ta' + miss + '" id="' + id + '" data-path="' + f.path + '" rows="' + (f.rows || 4) + '">' + esc(v) + '</textarea>'; break;
+    case 'svg': input = '<div class="file-row"><span class="icon-prev"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" data-svgprev>' + (v || '') + '</svg></span><textarea class="ta code" id="' + id + '" data-path="' + f.path + '" rows="2">' + esc(v) + '</textarea></div>'; break;
+    case 'select': input = '<select class="sel" id="' + id + '" data-path="' + f.path + '">' + f.options.map(o => '<option value="' + esc(o[0]) + '"' + (o[0] === v ? ' selected' : '') + '>' + esc(o[1]) + '</option>').join('') + '</select>'; break;
+    case 'tags': input = '<input class="inp" id="' + id + '" data-path="' + f.path + '" data-kind="tags" value="' + esc((v || []).join(', ')) + '">'; break;
+    case 'lines': input = '<textarea class="ta' + miss + '" id="' + id + '" data-path="' + f.path + '" data-kind="lines" rows="' + (f.rows || 5) + '">' + esc((v || []).join('\n')) + '</textarea>'; break;
+    case 'check': return '<div class="fg"><label class="auth-row" style="margin:0"><input type="checkbox" id="' + id + '" data-path="' + f.path + '" data-kind="check"' + (v ? ' checked' : '') + '> ' + esc(f.label) + '</label></div>';
+    case 'file': {
+      const isImg = !f.accept || f.accept.startsWith('image');
+      input = '<div class="file-row">' + (isImg ? '<img class="file-prev" data-prev src="' + esc(previewSrc(v)) + '" onerror="this.style.visibility=\'hidden\'" onload="this.style.visibility=\'visible\'">' : '') +
+        '<input class="inp" id="' + id + '" data-path="' + f.path + '" data-kind="file" value="' + esc(v) + '" placeholder="' + esc(f.folder || 'img') + '/...">' +
+        '<button type="button" class="btn btn-ghost btn-sm" data-upload="' + esc(f.folder || 'img') + '" data-accept="' + esc(f.accept || 'image/*') + '"' + (S.mode !== 'github' ? ' disabled title="L’envoi nécessite le mode GitHub"' : '') + '><i class="fa-solid fa-upload"></i></button></div>';
+      break;
+    }
+    default: input = '<input class="inp' + miss + '" id="' + id + '" data-path="' + f.path + '" value="' + esc(v) + '"' + (f.placeholder ? ' placeholder="' + esc(f.placeholder) + '"' : '') + '>';
+  }
+  return '<div class="fg">' + lab + input + hint + '</div>';
+}
+function previewSrc(v) {
+  if (!v) return '';
+  const up = S.uploads.find(u => u.path === normPath(v));
+  if (up) return up.url;
+  return isLocalRef(v) ? '../' + v : v;
+}
+/* renders fields; pairs of {en,fr} fields in two columns */
+function fieldsHtml(obj, fields) {
+  let html = '', i = 0;
+  while (i < fields.length) {
+    const f = fields[i];
+    if (f.row) { html += '<div class="grid' + f.row.length + '">' + f.row.map(x => fieldHtml(obj, x)).join('') + '</div>'; i++; continue; }
+    if (f.i18n) {
+      const en = Object.assign({}, f, { path: 'en.' + f.i18n, lang: 'en' });
+      const fr = Object.assign({}, f, { path: 'fr.' + f.i18n, lang: 'fr', pair: 'en.' + f.i18n });
+      html += '<div class="grid2">' + fieldHtml(obj, en) + fieldHtml(obj, fr) + '</div>'; i++; continue;
+    }
+    html += fieldHtml(obj, f); i++;
+  }
+  return html;
+}
+function readFields(root, obj) {
+  $$('[data-path]', root).forEach(el => {
+    if (el.closest('[data-skip]')) return;
+    let v;
+    if (el.dataset.kind === 'tags') v = el.value.split(',').map(s => s.trim()).filter(Boolean);
+    else if (el.dataset.kind === 'lines') v = el.value.split('\n').map(s => s.trim()).filter(Boolean);
+    else if (el.dataset.kind === 'check') v = el.checked;
+    else v = el.tagName === 'TEXTAREA' ? el.value.trim() : el.value.trim();
+    setPath(obj, el.dataset.path, v);
+  });
+  return obj;
+}
+function wireWidgets(root) {
+  $$('[data-svgprev]', root).forEach(svg => {
+    const ta = svg.closest('.file-row').querySelector('textarea');
+    ta.addEventListener('input', () => { svg.innerHTML = ta.value; });
+  });
+  $$('[data-kind="file"]', root).forEach(inp => {
+    const img = inp.parentNode.querySelector('[data-prev]');
+    if (img) inp.addEventListener('change', () => { img.src = previewSrc(inp.value); });
+  });
+  $$('[data-upload]', root).forEach(btn => btn.addEventListener('click', () => {
+    pickFile(btn.dataset.accept, btn.dataset.upload).then(up => {
+      if (!up) return;
+      const inp = btn.parentNode.querySelector('input');
+      inp.value = up.path; inp.dispatchEvent(new Event('change'));
+    });
+  }));
+}
+
+/* =====================================================================
+   UPLOADS (staged, committed together with Publish)
+   ===================================================================== */
+function pickFile(accept, folder) {
+  return new Promise(res => {
+    const fp = $('#filePicker'); fp.accept = accept || ''; fp.value = '';
+    fp.onchange = async () => { const f = fp.files[0]; res(f ? await stageFile(f, folder) : null); };
+    fp.click();
+  });
+}
+async function shrinkImage(file) {
+  if (!/^image\/(jpeg|png)$/.test(file.type)) return file;
+  const img = await new Promise((res, rej) => { const i = new Image(); i.onload = () => res(i); i.onerror = rej; i.src = URL.createObjectURL(file); });
+  const MAX = 1600;
+  if (img.naturalWidth <= MAX && img.naturalHeight <= MAX && file.size < 700 * 1024) return file;
+  const k = Math.min(1, MAX / Math.max(img.naturalWidth, img.naturalHeight));
+  const c = document.createElement('canvas'); c.width = Math.round(img.naturalWidth * k); c.height = Math.round(img.naturalHeight * k);
+  c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+  const type = file.type === 'image/png' ? 'image/png' : 'image/jpeg';
+  const blob = await new Promise(r => c.toBlob(r, type, 0.86));
+  return blob && blob.size < file.size ? blob : file;
+}
+async function stageFile(file, folder) {
+  if (S.mode !== 'github') { toast('L’envoi de fichiers nécessite le mode GitHub. Ajoute le fichier au dépôt toi-même.', 'error'); return null; }
+  if (file.size > 40 * 1024 * 1024) { toast('Fichier trop lourd (40 Mo maximum).', 'error'); return null; }
+  const path = (folder || 'img') + '/' + slug(file.name);
+  const blob = await shrinkImage(file);
+  const exists = (S.tree && S.tree.has(path)) || S.uploads.some(u => u.path === path);
+  if (exists && !(await confirmBox('Remplacer le fichier ?', '<p><code>' + esc(path) + '</code> existe déjà. Le remplacer à la publication ?</p>', 'Remplacer', 'btn-primary'))) return null;
+  S.uploads = S.uploads.filter(u => u.path !== path);
+  const up = { path, blob, size: blob.size, url: URL.createObjectURL(blob), isImage: /^image\//.test(blob.type || file.type) };
+  S.uploads.push(up);
+  updateDirty(); updateCounts();
+  toast('<code>' + esc(path) + '</code> prêt (' + Math.round(blob.size / 1024) + ' Ko). Il sera envoyé à la publication.');
+  return up;
+}
+window.addEventListener('beforeunload', e => { if (S.uploads.length) { e.preventDefault(); e.returnValue = ''; } });
+
+/* =====================================================================
+   SHELL
+   ===================================================================== */
+function setupShell() {
+  $$('.sb-btn[data-section]').forEach(b => b.addEventListener('click', () => show(b.dataset.section)));
+  $('#btnPublish').addEventListener('click', publishFlow);
+  $('#btnExport').addEventListener('click', exportData);
+  $('#btnDiscard').addEventListener('click', async () => {
+    if (!isDirty()) { toast('Rien à jeter.'); return; }
+    if (!(await confirmBox('Jeter le brouillon ?', '<p>Toutes les modifications non publiées et les fichiers en attente seront perdus.</p>', 'Jeter'))) return;
+    S.data = normalizeData(JSON.parse(S.published)); S.uploads = [];
+    localStorage.removeItem(DRAFT_KEY); refreshAll(); toast('Brouillon jeté.');
+  });
+  $('#btnLogout').addEventListener('click', async () => {
+    if (S.uploads.length && !(await confirmBox('Se déconnecter ?', '<p>Les fichiers en attente ne sont pas conservés et seront perdus. Le brouillon des textes reste dans ce navigateur.</p>', 'Se déconnecter'))) return;
+    sessionStorage.removeItem(TOKEN_KEY); localStorage.removeItem(TOKEN_KEY); S.uploads = []; location.reload();
+  });
+}
+function refreshAll() { updateDirty(); updateCounts(); show(S.section); }
+function show(section) {
+  S.section = section;
+  $$('.sb-btn').forEach(b => b.classList.toggle('active', b.dataset.section === section));
+  const el = $('#sectionContent');
+  const R = { experience: viewExperience, projects: viewProjects, services: viewServices, certificates: viewCertificates, skills: viewSkills, texts: viewTexts, media: viewMedia, checks: viewChecks, preview: viewPreview, history: viewHistory };
+  el.innerHTML = '';
+  R[section](el);
+  $('#mainContent').scrollTop = 0;
+}
+function header(title, sub, actions = '') {
+  return '<div class="page-header"><div><h1>' + title + '</h1>' + (sub ? '<p>' + sub + '</p>' : '') + '</div><div class="hdr-actions">' + actions + '</div></div>';
+}
 function updateCounts() {
-  ['experience','projects','services','certificates'].forEach(s => {
-    const el = document.getElementById('cnt-'+s);
-    if (el && adminData && adminData[s]) el.textContent = adminData[s].length;
+  const d = S.data; if (!d) return;
+  ['experience', 'projects', 'services', 'certificates'].forEach(s => { $('#cnt-' + s).textContent = d[s].length; });
+  $('#cnt-skills').textContent = d.skills.reduce((n, c) => n + (c.items || []).length, 0);
+  $('#cnt-texts').textContent = Object.keys(d.texts.en).length;
+  $('#cnt-media').textContent = S.uploads.length || '';
+  const r = runChecks();
+  const e = r.filter(x => x.level === 'err').length, w = r.length - e;
+  const c = $('#cnt-checks'); c.textContent = e ? e : (w || '✓'); c.className = 'sb-count' + (e ? ' err' : w ? ' warn' : '');
+}
+
+/* =====================================================================
+   GENERIC LIST VIEW
+   ===================================================================== */
+function listView(el, cfg) {
+  const arr = S.data[cfg.key];
+  el.innerHTML = header(cfg.title, cfg.sub, '<button class="btn btn-primary" data-add><i class="fa-solid fa-plus"></i>Ajouter</button>') +
+    '<div class="page-body"><input class="search" placeholder="Rechercher..." data-search>' +
+    '<table class="data-table"><thead><tr><th style="width:70px"></th>' + cfg.cols.map(c => '<th>' + c[0] + '</th>').join('') + '<th></th></tr></thead><tbody>' +
+    arr.map((it, i) => '<tr data-row="' + i + '" data-text="' + esc(JSON.stringify(it).toLowerCase()) + '">' +
+      '<td class="td-actions" style="text-align:left"><button class="btn btn-ghost btn-icon btn-sm" data-up="' + i + '" title="Monter"' + (i === 0 ? ' disabled' : '') + '><i class="fa-solid fa-arrow-up"></i></button><button class="btn btn-ghost btn-icon btn-sm" data-down="' + i + '" title="Descendre"' + (i === arr.length - 1 ? ' disabled' : '') + '><i class="fa-solid fa-arrow-down"></i></button></td>' +
+      cfg.cols.map(c => '<td>' + c[1](it) + '</td>').join('') +
+      '<td class="td-actions"><button class="btn btn-ghost btn-sm" data-edit="' + i + '"><i class="fa-solid fa-pen"></i>Modifier</button><button class="btn btn-ghost btn-icon btn-sm" data-dup="' + i + '" title="Dupliquer"><i class="fa-regular fa-copy"></i></button><button class="btn btn-danger btn-icon btn-sm" data-del="' + i + '" title="Supprimer"><i class="fa-solid fa-trash"></i></button></td></tr>').join('') +
+    '</tbody></table>' + (arr.length ? '' : '<div class="empty">Rien pour l’instant.</div>') + '</div>';
+  $('[data-search]', el).addEventListener('input', e => { const q = e.target.value.toLowerCase(); $$('tr[data-row]', el).forEach(tr => { tr.hidden = q && !tr.dataset.text.includes(q); }); });
+  $('[data-add]', el).addEventListener('click', () => cfg.edit(null));
+  $$('[data-edit]', el).forEach(b => b.addEventListener('click', () => cfg.edit(+b.dataset.edit)));
+  $$('[data-up]', el).forEach(b => b.addEventListener('click', () => { const i = +b.dataset.up; [arr[i - 1], arr[i]] = [arr[i], arr[i - 1]]; changed(); show(S.section); }));
+  $$('[data-down]', el).forEach(b => b.addEventListener('click', () => { const i = +b.dataset.down; [arr[i + 1], arr[i]] = [arr[i], arr[i + 1]]; changed(); show(S.section); }));
+  $$('[data-dup]', el).forEach(b => b.addEventListener('click', () => { const i = +b.dataset.dup; const c = clone(arr[i]); c.id = uniqueId(arr, c.id + '-copy'); if (c.detId) c.detId = c.id; arr.splice(i + 1, 0, c); changed(); show(S.section); toast('Dupliqué sous <b>' + esc(c.id) + '</b>.'); }));
+  $$('[data-del]', el).forEach(b => b.addEventListener('click', async () => {
+    const i = +b.dataset.del;
+    if (!(await confirmBox('Supprimer ?', '<p>Supprimer <b>' + esc(cfg.name(arr[i])) + '</b> ? Tu pourras encore jeter le brouillon ensuite.</p>', 'Supprimer'))) return;
+    arr.splice(i, 1); changed(); show(S.section);
+  }));
+}
+function uniqueId(arr, base) { let id = base, n = 2; while (arr.some(x => x.id === id)) id = base + '-' + n++; return id; }
+function saveItem(key, idx, obj) {
+  const arr = S.data[key];
+  if (!obj.id) { toast('L’identifiant est obligatoire.', 'error'); return false; }
+  if (arr.some((x, i) => x.id === obj.id && i !== idx)) { toast('Un autre élément utilise déjà l’identifiant <b>' + esc(obj.id) + '</b>.', 'error'); return false; }
+  if (idx === null) arr.push(obj); else arr[idx] = obj;
+  changed(); show(S.section); toast('Enregistré dans le brouillon.');
+  return true;
+}
+function trFlags(obj, pairs) {
+  const miss = pairs.filter(p => String(getPath(obj, 'en.' + p) || '').trim() && !String(getPath(obj, 'fr.' + p) || '').trim());
+  return miss.length ? '<span class="flag warn">FR manquant</span>' : '';
+}
+
+/* =====================================================================
+   EXPERIENCE
+   ===================================================================== */
+const EXP_FIELDS = [
+  { row: [{ path: 'id', label: 'Identifiant', hint: 'Unique, ex. exp7' }, { path: 'org', label: 'Organisation' }] },
+  { row: [{ path: 'logo', label: 'Logo', type: 'file', folder: 'img' }, { path: 'logoAlt', label: 'Texte alternatif du logo' }] },
+  { i18n: 'when', label: 'Dates' },
+  { i18n: 'role', label: 'Poste' },
+  { i18n: 'det', label: 'Description', type: 'textarea', rows: 6, hint: 'HTML autorisé (&lt;strong&gt;, &lt;br&gt;...)' }
+];
+function viewExperience(el) {
+  listView(el, {
+    key: 'experience', title: 'Expériences', sub: 'Frise chronologique, de la plus récente à la plus ancienne.', name: e => e.en.role + ' · ' + e.org,
+    cols: [['', e => e.logo ? '<img class="thumb" src="' + esc(previewSrc(e.logo)) + '" style="width:30px;height:30px">' : ''],
+           ['Poste', e => '<b>' + esc(stripTags(e.en.role)) + '</b>' + trFlags(e, ['when', 'role', 'det']) + '<div class="muted small">' + esc(e.org) + '</div>'],
+           ['Dates', e => '<span class="muted">' + esc(e.en.when) + '</span>']],
+    edit: idx => {
+      const obj = idx === null ? { id: uniqueId(S.data.experience, 'exp'), logo: '', logoAlt: '', org: '', en: { when: '', role: '', det: '' }, fr: { when: '', role: '', det: '' } } : clone(S.data.experience[idx]);
+      openModal(idx === null ? 'Nouvelle expérience' : 'Modifier l’expérience', fieldsHtml(obj, EXP_FIELDS), { onSave: () => saveItem('experience', idx, readFields($('#modalBody'), obj)) });
+    }
   });
-  const skEl = document.getElementById('cnt-skills');
-  if (skEl && adminData && adminData.skills) {
-    const total = adminData.skills.reduce((n, cat) => n + (cat.items||[]).length, 0);
-    skEl.textContent = total;
-  }
 }
 
-/* ── AUTH ── */
-document.getElementById('loginBtn').addEventListener('click', tryLogin);
-document.getElementById('passInput').addEventListener('keydown', e => { if (e.key === 'Enter') tryLogin(); });
-
-function tryLogin() {
-  const val = document.getElementById('passInput').value;
-  const err = document.getElementById('authError');
-  if (val === (localStorage.getItem(LS_PWD) || ADMIN_PASSWORD)) {
-    document.getElementById('authOverlay').style.display = 'none';
-    document.getElementById('adminShell').classList.add('visible');
-    initAdmin();
-  } else {
-    err.textContent = 'Incorrect password.';
-    document.getElementById('passInput').value = '';
-    document.getElementById('passInput').focus();
-  }
-}
-
-/* ── INIT ── */
-function initAdmin() {
-  // Load data: localStorage first (unsaved edits), then PORTFOLIO_DATA
-  let saved = null;
-  try { saved = JSON.parse(localStorage.getItem(LS_KEY)); } catch(e){}
-  if (saved && saved.experience && saved.projects) {
-    adminData = saved;
-    isDirty = true;
-    document.getElementById('unsavedBanner').classList.add('show');
-  } else if (window.PORTFOLIO_DATA) {
-    adminData = deepClone(window.PORTFOLIO_DATA);
-  } else {
-    adminData = { experience:[], services:[], projects:[], skills:[], certificates:[] };
-  }
-  /* Ensure skills array exists even on old data */
-  if (!adminData.skills) adminData.skills = [];
-  updateCounts();
-  renderSection('experience');
-  setupSidebarNav();
-  setupModalListeners();
-  document.getElementById('btnExport').addEventListener('click', exportData);
-  document.getElementById('btnLogout').addEventListener('click', () => {
-    localStorage.removeItem(LS_KEY);
-    location.reload();
+/* =====================================================================
+   SERVICES
+   ===================================================================== */
+const SV_FIELDS = [
+  { row: [{ path: 'id', label: 'Identifiant', hint: 'ex. sv9' }, { path: 'tags', label: 'Mots-clés', type: 'tags', hint: 'Séparés par des virgules' }] },
+  { path: 'iconSvg', label: 'Icône (contenu SVG, 24×24)', type: 'svg', hint: 'Éléments intérieurs seulement, ex. &lt;circle cx="12" cy="12" r="9"/&gt;. Les icônes de lucide.dev conviennent bien.' },
+  { i18n: 'title', label: 'Titre' },
+  { i18n: 'desc', label: 'Description', type: 'textarea' }
+];
+function viewServices(el) {
+  listView(el, {
+    key: 'services', title: 'Services', sub: 'Cartes de la section Services.', name: s => stripTags(s.en.title),
+    cols: [['', s => '<span class="icon-prev"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">' + s.iconSvg + '</svg></span>'],
+           ['Titre', s => '<b>' + esc(stripTags(s.en.title)) + '</b>' + trFlags(s, ['title', 'desc']) + '<div class="muted small">' + esc(stripTags(s.fr.title)) + '</div>'],
+           ['Mots-clés', s => (s.tags || []).map(t => '<span class="chip">' + esc(t) + '</span>').join('')]],
+    edit: idx => {
+      const obj = idx === null ? { id: uniqueId(S.data.services, 'sv'), color: 'blue', iconSvg: '<circle cx="12" cy="12" r="9"/>', tags: [], en: { title: '', desc: '' }, fr: { title: '', desc: '' } } : clone(S.data.services[idx]);
+      openModal(idx === null ? 'Nouveau service' : 'Modifier le service', fieldsHtml(obj, SV_FIELDS), { onSave: () => saveItem('services', idx, readFields($('#modalBody'), obj)) });
+    }
   });
-  setupPwdModal();
 }
 
-/* ── SIDEBAR NAV ── */
-function setupSidebarNav() {
-  document.querySelectorAll('.sb-btn[data-section]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.sb-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      renderSection(btn.dataset.section);
+/* =====================================================================
+   CERTIFICATES
+   ===================================================================== */
+const CE_FIELDS = [
+  { row: [{ path: 'id', label: 'Identifiant' }, { path: 'code', label: 'Petite étiquette', hint: 'ex. ISC² · CC' }] },
+  { row: [{ path: 'title', label: 'Titre' }, { path: 'issuer', label: 'Organisme' }] },
+  { path: 'pdf', label: 'Fichier du certificat (PDF)', type: 'file', folder: 'certificates', accept: 'application/pdf,image/*' },
+  { row: [{ path: 'thumb', label: 'Vignette', type: 'file', folder: 'img' }, { path: 'thumbAlt', label: 'Texte alternatif de la vignette' }] }
+];
+function viewCertificates(el) {
+  listView(el, {
+    key: 'certificates', title: 'Certificats', sub: 'Les titres s’affichent tels quels (non traduits).', name: c => c.title,
+    cols: [['', c => '<img class="thumb" src="' + esc(previewSrc(c.thumb)) + '">'],
+           ['Titre', c => '<b>' + esc(c.title) + '</b><div class="muted small">' + esc(c.issuer) + '</div>'],
+           ['Fichier', c => '<span class="muted small">' + esc(c.pdf) + '</span>']],
+    edit: idx => {
+      const obj = idx === null ? { id: uniqueId(S.data.certificates, 'cert'), pdf: '', thumb: '', thumbAlt: '', code: '', title: '', issuer: '' } : clone(S.data.certificates[idx]);
+      openModal(idx === null ? 'Nouveau certificat' : 'Modifier le certificat', fieldsHtml(obj, CE_FIELDS), { wide: false, onSave: () => saveItem('certificates', idx, readFields($('#modalBody'), obj)) });
+    }
+  });
+}
+
+/* =====================================================================
+   PROJECTS (+ detail page editor)
+   ===================================================================== */
+const PT_FIELDS = [
+  { row: [{ path: 'id', label: 'Identifiant', hint: 'Sert aussi au lien direct #pd-identifiant' }, { path: 'category', label: 'Catégorie de filtre', type: 'select', options: CATEGORIES }, { path: 'title', label: 'Titre' }] },
+  { row: [{ path: 'thumbnail', label: 'Image de la carte', type: 'file', folder: 'img' }, { path: 'thumbAlt', label: 'Texte alternatif de l’image' }] },
+  { path: 'stack', label: 'Technologies de la carte', type: 'tags', hint: 'Séparées par des virgules' },
+  { i18n: 'cats', label: 'Catégories de la carte', hint: 'ex. Web &amp;middot; React' },
+  { i18n: 'desc', label: 'Description de la carte', type: 'textarea' },
+  { path: 'github', label: 'Lien de la carte (URL)', hint: 'Dépôt GitHub ou autre site' },
+  { row: [{ path: 'linkLabel.en', label: 'Texte du lien', lang: 'en', placeholder: 'GitHub' }, { path: 'linkLabel.fr', label: 'Texte du lien', lang: 'fr', placeholder: 'GitHub' }] }
+];
+function emptyDetail() {
+  const side = () => ({ cats: '', title: '', sections: [{ title: '', type: 'text', text: '' }], links: [], team: null });
+  const d = { en: side(), fr: side(), media: [] };
+  d.en.sections[0].title = 'Overview'; d.fr.sections[0].title = 'Présentation';
+  return d;
+}
+function viewProjects(el) {
+  listView(el, {
+    key: 'projects', title: 'Projets', sub: 'Cartes du portfolio et leurs pages détaillées.', name: p => p.title,
+    cols: [['', p => '<img class="thumb" src="' + esc(previewSrc(p.thumbnail)) + '">'],
+           ['Projet', p => '<b>' + esc(p.title) + '</b>' + trFlags(p, ['cats', 'desc']) + (p.detail ? '' : '<span class="flag warn">pas de page détaillée</span>') + '<div class="muted small">' + esc(stripTags(p.en.cats)) + '</div>'],
+           ['Filtre', p => '<span class="chip">' + esc((CATEGORIES.find(c => c[0] === p.category) || [0, p.category])[1]) + '</span>']],
+    edit: editProject
+  });
+}
+function editProject(idx) {
+  const obj = idx === null
+    ? { id: uniqueId(S.data.projects, 'project'), category: 'web', detId: '', title: '', thumbnail: '', thumbAlt: '', stack: [], github: '', en: { cats: '', desc: '' }, fr: { cats: '', desc: '' }, detail: emptyDetail() }
+    : clone(S.data.projects[idx]);
+  if (!obj.linkLabel) obj.linkLabel = { en: '', fr: '' };
+  const body = '<div data-pane="0">' + fieldsHtml(obj, PT_FIELDS) + '</div><div data-pane="1" data-skip id="detailPane"></div>';
+  openModal(idx === null ? 'Nouveau projet' : 'Modifier le projet · ' + obj.title, body, {
+    tabs: ['Carte', 'Page détaillée'],
+    onSave: () => {
+      readFields($('#modalBody'), obj);
+      obj.detId = obj.id;
+      if (!obj.linkLabel.en && !obj.linkLabel.fr) delete obj.linkLabel;
+      else { obj.linkLabel.en = obj.linkLabel.en || 'GitHub'; obj.linkLabel.fr = obj.linkLabel.fr || obj.linkLabel.en; }
+      obj.detail = readDetail($('#detailPane'));
+      return saveItem('projects', idx, obj);
+    }
+  });
+  renderDetailEditor($('#detailPane'), obj.detail);
+}
+
+/* --- detail editor: sections / links / team / media, EN and FR side by side --- */
+function renderDetailEditor(root, det) {
+  const has = !!det;
+  det = det ? clone(det) : emptyDetail();
+  const n = Math.max(det.en.sections.length, det.fr.sections.length);
+  const secs = []; for (let i = 0; i < n; i++) secs.push({ en: det.en.sections[i] || { title: '', type: (det.fr.sections[i] || {}).type || 'text' }, fr: det.fr.sections[i] || { title: '', type: (det.en.sections[i] || {}).type || 'text' } });
+  const nl = Math.max(det.en.links.length, det.fr.links.length);
+  const links = []; for (let i = 0; i < nl; i++) links.push({ en: det.en.links[i] || {}, fr: det.fr.links[i] || {} });
+  root.innerHTML =
+    '<label class="auth-row" style="margin-top:0"><input type="checkbox" data-has' + (has ? ' checked' : '') + '> Ce projet a une page détaillée (ouverte au clic sur la carte)</label>' +
+    '<div data-detbody' + (has ? '' : ' hidden') + '>' +
+    '<div class="section-title">En-tête</div>' +
+    '<div class="grid2">' + ['en', 'fr'].map(L => '<div><div class="fg"><label class="lbl">Catégories<span class="lang">' + L.toUpperCase() + '</span></label><input class="inp" data-d="' + L + '.cats" value="' + esc(det[L].cats) + '"></div><div class="fg"><label class="lbl">Titre de la page<span class="lang">' + L.toUpperCase() + '</span></label><input class="inp" data-d="' + L + '.title" value="' + esc(det[L].title) + '"></div></div>').join('') + '</div>' +
+    '<div class="section-title">Sections</div><div data-secs></div><button type="button" class="btn btn-ghost btn-sm" data-addsec><i class="fa-solid fa-plus"></i>Ajouter une section</button>' +
+    '<div class="section-title">Boutons</div><div data-links></div><button type="button" class="btn btn-ghost btn-sm" data-addlink><i class="fa-solid fa-plus"></i>Ajouter un bouton</button>' +
+    '<div class="section-title">Ligne de crédits</div><div class="grid2">' + ['en', 'fr'].map(L => '<div class="grid2"><div class="fg"><label class="lbl">Intitulé<span class="lang">' + L.toUpperCase() + '</span></label><input class="inp" data-d="' + L + '.team.label" value="' + esc(det[L].team ? det[L].team.label : '') + '" placeholder="Équipe / Auteur"></div><div class="fg"><label class="lbl">Noms<span class="lang">' + L.toUpperCase() + '</span></label><input class="inp" data-d="' + L + '.team.text" value="' + esc(det[L].team ? det[L].team.text : '') + '"></div></div>').join('') + '</div>' +
+    '<div class="section-title">Médias (colonne de droite, communs aux deux langues)</div><div data-media></div><button type="button" class="btn btn-ghost btn-sm" data-addmedia><i class="fa-solid fa-plus"></i>Ajouter un média</button>' +
+    '</div>';
+  $('[data-has]', root).addEventListener('change', e => { $('[data-detbody]', root).hidden = !e.target.checked; });
+  const secBox = $('[data-secs]', root), linkBox = $('[data-links]', root), mediaBox = $('[data-media]', root);
+  secs.forEach(s => secBox.appendChild(secEl(s)));
+  links.forEach(l => linkBox.appendChild(linkEl(l)));
+  (det.media || []).forEach(m => mediaBox.appendChild(mediaEl(m)));
+  $('[data-addsec]', root).onclick = () => secBox.appendChild(secEl({ en: { title: '', type: 'list', items: [] }, fr: { title: '', type: 'list', items: [] } }));
+  $('[data-addlink]', root).onclick = () => linkBox.appendChild(linkEl({ en: { label: '', url: '', icon: 'link', ghost: true }, fr: { label: '' } }));
+  $('[data-addmedia]', root).onclick = () => mediaBox.appendChild(mediaEl({ type: 'image', src: '', alt: '' }));
+}
+function boxTools(title) {
+  return '<div class="box-head"><span class="grow">' + title + '</span><button type="button" class="btn btn-ghost btn-icon btn-sm" data-mup title="Monter"><i class="fa-solid fa-arrow-up"></i></button><button type="button" class="btn btn-ghost btn-icon btn-sm" data-mdown title="Descendre"><i class="fa-solid fa-arrow-down"></i></button><button type="button" class="btn btn-danger btn-icon btn-sm" data-mdel title="Retirer"><i class="fa-solid fa-trash"></i></button></div>';
+}
+function wireBox(el) {
+  el.querySelector('[data-mup]').onclick = () => { if (el.previousElementSibling) el.parentNode.insertBefore(el, el.previousElementSibling); };
+  el.querySelector('[data-mdown]').onclick = () => { if (el.nextElementSibling) el.parentNode.insertBefore(el.nextElementSibling, el); };
+  el.querySelector('[data-mdel]').onclick = () => el.remove();
+  wireWidgets(el);
+  return el;
+}
+function secContent(L, s, type) {
+  if (type === 'text') return '<textarea class="ta" rows="4" data-s="' + L + '.text">' + esc(s.text || (s.items || []).join('\n')) + '</textarea>';
+  return '<textarea class="ta" rows="5" data-s="' + L + '.items" placeholder="Un élément par ligne">' + esc((s.items || (s.text ? [s.text] : [])).join('\n')) + '</textarea>';
+}
+function secEl(s) {
+  const el = document.createElement('div'); el.className = 'box';
+  const type = s.en.type || 'text';
+  el.innerHTML = boxTools('Section') +
+    '<div class="fg" style="max-width:240px"><label class="lbl">Type</label><select class="sel" data-stype><option value="text"' + (type === 'text' ? ' selected' : '') + '>Paragraphe</option><option value="list"' + (type === 'list' ? ' selected' : '') + '>Liste à puces</option><option value="stack"' + (type === 'stack' ? ' selected' : '') + '>Pastilles de technologies</option></select></div>' +
+    '<div class="grid2">' + ['en', 'fr'].map(L => '<div><div class="fg"><label class="lbl">Titre<span class="lang">' + L.toUpperCase() + '</span></label><input class="inp" data-s="' + L + '.title" value="' + esc(s[L].title) + '"></div><div class="fg" data-sc="' + L + '"><label class="lbl">Contenu<span class="lang">' + L.toUpperCase() + '</span></label>' + secContent(L, s[L], type) + '</div></div>').join('') + '</div>';
+  el.querySelector('[data-stype]').onchange = e => {
+    ['en', 'fr'].forEach(L => {
+      const box = el.querySelector('[data-sc="' + L + '"]'); const ta = box.querySelector('textarea');
+      const cur = ta.dataset.s.endsWith('.text') ? { text: ta.value } : { items: ta.value.split('\n').filter(Boolean) };
+      ta.outerHTML = secContent(L, cur, e.target.value);
+    });
+  };
+  return wireBox(el);
+}
+function linkEl(l) {
+  const el = document.createElement('div'); el.className = 'box';
+  el.innerHTML = boxTools('Bouton') +
+    '<div class="grid3"><div class="fg"><label class="lbl">URL</label><input class="inp" data-l="url" value="' + esc(l.en.url || '') + '"></div>' +
+    '<div class="fg"><label class="lbl">Icône</label><select class="sel" data-l="icon">' + [['github', 'GitHub'], ['link', 'Site web'], ['pdf', 'Document']].map(o => '<option value="' + o[0] + '"' + ((l.en.icon || 'link') === o[0] ? ' selected' : '') + '>' + o[1] + '</option>').join('') + '</select></div>' +
+    '<div class="fg"><label class="lbl">Style</label><select class="sel" data-l="ghost"><option value="0"' + (l.en.ghost ? '' : ' selected') + '>Plein</option><option value="1"' + (l.en.ghost ? ' selected' : '') + '>Contour</option></select></div></div>' +
+    '<div class="grid2">' + ['en', 'fr'].map(L => '<div class="fg"><label class="lbl">Texte<span class="lang">' + L.toUpperCase() + '</span></label><input class="inp" data-l="' + L + '.label" value="' + esc(l[L].label || '') + '"></div>').join('') + '</div>';
+  return wireBox(el);
+}
+function mediaFields(m) {
+  const t = m.type;
+  if (t === 'label') return '<div class="grid2"><div class="fg"><label class="lbl">Texte de la légende</label><input class="inp" data-m="text" value="' + esc(m.text || '') + '"></div><div class="fg"><label class="lbl">Style en ligne (facultatif)</label><input class="inp" data-m="style" value="' + esc(m.style || '') + '"></div></div>';
+  if (t === 'video') return '<div class="grid3">' + fieldHtml(m, { path: 'src', label: 'Vidéo (mp4)', type: 'file', folder: 'img', accept: 'video/mp4' }).replace(/data-path=/g, 'data-m=') + fieldHtml(m, { path: 'poster', label: 'Image d’affiche', type: 'file', folder: 'img' }).replace(/data-path=/g, 'data-m=') + '<div class="fg"><label class="lbl">Texte alternatif</label><input class="inp" data-m="alt" value="' + esc(m.alt || '') + '"></div></div>';
+  if (t === 'gallery') return '<div class="fg"><label class="lbl">Images</label><textarea class="ta" rows="4" data-m="images" placeholder="img/photo1.jpg | Description">' + esc((m.images || []).map(i => i.src + ' | ' + (i.alt || '')).join('\n')) + '</textarea><div class="hint">Une image par ligne : <code>chemin | texte alternatif</code>. Envoie les fichiers dans « Fichiers ».</div></div>';
+  return '<div class="grid3">' + fieldHtml(m, { path: 'src', label: 'Image', type: 'file', folder: 'img' }).replace(/data-path=/g, 'data-m=') + '<div class="fg"><label class="lbl">Texte alternatif</label><input class="inp" data-m="alt" value="' + esc(m.alt || '') + '"></div><div class="fg"><label class="lbl">Style en ligne (facultatif)</label><input class="inp" data-m="style" value="' + esc(m.style || '') + '"></div></div>' +
+    '<label class="auth-row" style="margin:0"><input type="checkbox" data-m="overview"' + (m.overview ? ' checked' : '') + '> Style « aperçu » (arrondi, pleine largeur)</label>';
+}
+function mediaEl(m) {
+  const el = document.createElement('div'); el.className = 'box';
+  el.innerHTML = boxTools('Média') + '<div class="fg" style="max-width:240px"><label class="lbl">Type</label><select class="sel" data-mtype>' + [['image', 'Image'], ['video', 'Vidéo'], ['gallery', 'Galerie d’images'], ['label', 'Légende']].map(o => '<option value="' + o[0] + '"' + (m.type === o[0] ? ' selected' : '') + '>' + o[1] + '</option>').join('') + '</select></div><div data-mf>' + mediaFields(m) + '</div>';
+  el.querySelector('[data-mtype]').onchange = e => { el.querySelector('[data-mf]').innerHTML = mediaFields({ type: e.target.value }); wireWidgets(el.querySelector('[data-mf]')); };
+  // file widgets inside media use data-m instead of data-path
+  $$('[data-kind="file"]', el).forEach(i => i.removeAttribute('data-path'));
+  return wireBox(el);
+}
+function readDetail(root) {
+  if (!$('[data-has]', root).checked) return undefined;
+  const det = { en: { cats: '', title: '', sections: [], links: [], team: null }, fr: { cats: '', title: '', sections: [], links: [], team: null }, media: [] };
+  $$('[data-d]', root).forEach(i => setPath(det, i.dataset.d, i.value.trim()));
+  ['en', 'fr'].forEach(L => { if (!det[L].team || (!det[L].team.label && !det[L].team.text)) det[L].team = null; });
+  $$('[data-secs] > .box', root).forEach(b => {
+    const type = b.querySelector('[data-stype]').value;
+    ['en', 'fr'].forEach(L => {
+      const sec = { title: b.querySelector('[data-s="' + L + '.title"]').value.trim(), type };
+      const ta = b.querySelector('[data-sc="' + L + '"] textarea');
+      if (type === 'text') sec.text = ta.value.trim(); else sec.items = ta.value.split('\n').map(x => x.trim()).filter(Boolean);
+      det[L].sections.push(sec);
     });
   });
-}
-
-/* ── SECTION RENDERERS ── */
-function renderSection(section) {
-  currentSection = section;
-  const el = document.getElementById('sectionContent');
-  switch(section) {
-    case 'experience':    el.innerHTML = renderExperience(); break;
-    case 'projects':      el.innerHTML = renderProjects(); break;
-    case 'services':      el.innerHTML = renderServices(); break;
-    case 'certificates':  el.innerHTML = renderCertificates(); break;
-    case 'skills':        el.innerHTML = renderSkills(); break;
-  }
-  attachSectionEvents(section);
-}
-
-/* ─ EXPERIENCE ─ */
-function renderExperience() {
-  const items = adminData.experience || [];
-  return `
-  <div class="page-header">
-    <h1>
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
-      Experience <span style="color:var(--muted);font-weight:400;font-size:.85rem;margin-left:6px">${items.length} entries</span>
-    </h1>
-    <div class="hdr-actions">
-      <button class="btn btn-primary" id="btnAddItem">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-        Add experience
-      </button>
-    </div>
-  </div>
-  <div class="table-wrap">
-    <table class="data-table">
-      <thead><tr>
-        <th style="width:36px"></th>
-        <th style="width:44px">Logo</th>
-        <th>Role (EN)</th>
-        <th>Organisation</th>
-        <th>Period</th>
-        <th style="width:100px;text-align:right">Actions</th>
-      </tr></thead>
-      <tbody>
-        ${items.length === 0 ? `<tr><td colspan="6"><div class="empty-state"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg><h3>No experience entries</h3></div></td></tr>` :
-        items.map((e, i) => `
-          <tr data-id="${escape(e.id)}">
-            <td class="drag-handle" draggable="true" data-idx="${i}">⠿</td>
-            <td>${e.logo ? `<img class="logo-thumb" src="../${escape(e.logo)}" alt="">` : `<div class="logo-placeholder"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>`}</td>
-            <td><strong>${escape(e.en && e.en.role || '')}</strong>${e.fr && e.fr.role ? `<br><small style="color:var(--muted)">${escape(e.fr.role)}</small>` : ''}</td>
-            <td>${escape(e.org)}</td>
-            <td style="color:var(--muted)">${escape(e.en && e.en.when || '')}</td>
-            <td class="td-actions">
-              <button class="btn btn-ghost btn-sm" data-action="edit" data-idx="${i}">Edit</button>
-              <button class="btn btn-danger btn-sm" data-action="delete" data-idx="${i}">Del</button>
-            </td>
-          </tr>`).join('')}
-      </tbody>
-    </table>
-    <div class="reorder-hint" style="margin-top:12px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/></svg> Drag rows to reorder</div>
-  </div>`;
-}
-
-/* ─ SERVICES ─ */
-function renderServices() {
-  const items = adminData.services || [];
-  const clrLabel = {red:'Red',blue:'Blue',purple:'Purple',green:'Green',orange:'Orange',amber:'Amber',sky:'Sky',violet:'Violet'};
-  return `
-  <div class="page-header">
-    <h1>
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
-      Services <span style="color:var(--muted);font-weight:400;font-size:.85rem;margin-left:6px">${items.length} entries</span>
-    </h1>
-    <div class="hdr-actions">
-      <button class="btn btn-primary" id="btnAddItem">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-        Add service
-      </button>
-    </div>
-  </div>
-  <div class="table-wrap">
-    <table class="data-table">
-      <thead><tr>
-        <th style="width:36px"></th>
-        <th style="width:40px">Color</th>
-        <th>Title (EN)</th>
-        <th>Title (FR)</th>
-        <th>Tags</th>
-        <th style="width:100px;text-align:right">Actions</th>
-      </tr></thead>
-      <tbody>
-        ${items.length === 0 ? `<tr><td colspan="6"><div class="empty-state"><h3>No services</h3></div></td></tr>` :
-        items.map((s, i) => `
-          <tr data-id="${escape(s.id)}">
-            <td class="drag-handle" draggable="true" data-idx="${i}">⠿</td>
-            <td><div class="color-opt selected" data-clr="${escape(s.color)}" style="width:24px;height:24px;pointer-events:none;border:none;"></div></td>
-            <td><strong>${escape(s.en && s.en.title || '')}</strong></td>
-            <td style="color:var(--muted)">${escape(s.fr && s.fr.title || '')}</td>
-            <td>${(s.tags||[]).slice(0,3).map(t=>`<span class="tag-chip">${escape(t)}</span>`).join(' ')}${(s.tags||[]).length > 3 ? `<span style="color:var(--muted);font-size:.75rem"> +${s.tags.length-3}</span>` : ''}</td>
-            <td class="td-actions">
-              <button class="btn btn-ghost btn-sm" data-action="edit" data-idx="${i}">Edit</button>
-              <button class="btn btn-danger btn-sm" data-action="delete" data-idx="${i}">Del</button>
-            </td>
-          </tr>`).join('')}
-      </tbody>
-    </table>
-    <div class="reorder-hint" style="margin-top:12px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/></svg> Drag rows to reorder</div>
-  </div>`;
-}
-
-/* ─ PROJECTS ─ */
-function renderProjects() {
-  const items = adminData.projects || [];
-  const catBadge = (c) => `<span class="badge badge-${c}">${c}</span>`;
-  return `
-  <div class="page-header">
-    <h1>
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-      Projects <span style="color:var(--muted);font-weight:400;font-size:.85rem;margin-left:6px">${items.length} entries</span>
-    </h1>
-    <div class="hdr-actions">
-      <button class="btn btn-primary" id="btnAddItem">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-        Add project
-      </button>
-    </div>
-  </div>
-  <div class="table-wrap">
-    <table class="data-table">
-      <thead><tr>
-        <th style="width:36px"></th>
-        <th style="width:52px">Thumb</th>
-        <th>Title</th>
-        <th style="width:90px">Category</th>
-        <th>Stack</th>
-        <th style="width:100px;text-align:right">Actions</th>
-      </tr></thead>
-      <tbody>
-        ${items.length === 0 ? `<tr><td colspan="6"><div class="empty-state"><h3>No projects</h3></div></td></tr>` :
-        items.map((p, i) => `
-          <tr data-id="${escape(p.id)}">
-            <td class="drag-handle" draggable="true" data-idx="${i}">⠿</td>
-            <td><img class="cert-thumb-preview" src="../${escape(p.thumbnail)}" alt="" onerror="this.style.display='none'"></td>
-            <td><strong>${escape(p.title)}</strong></td>
-            <td>${catBadge(p.category)}</td>
-            <td>${(p.stack||[]).slice(0,3).map(t=>`<span class="tag-chip">${escape(t)}</span>`).join(' ')}${(p.stack||[]).length > 3 ? `<span style="color:var(--muted);font-size:.75rem"> +${p.stack.length-3}</span>` : ''}</td>
-            <td class="td-actions">
-              <button class="btn btn-ghost btn-sm" data-action="edit" data-idx="${i}">Edit</button>
-              <button class="btn btn-danger btn-sm" data-action="delete" data-idx="${i}">Del</button>
-            </td>
-          </tr>`).join('')}
-      </tbody>
-    </table>
-    <div class="reorder-hint" style="margin-top:12px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/></svg> Drag rows to reorder</div>
-  </div>`;
-}
-
-/* ─ SKILLS ─ */
-const CAT_LABELS = { cat1:'Cybersecurity', cat2:'Embedded Systems', cat3:'Web & Software Dev', cat4:'Other Skills' };
-const CAT_COLORS = { cat1:'#f85149', cat2:'#3fb950', cat3:'#0288d1', cat4:'#d29922' };
-
-function renderSkills() {
-  const cats = adminData.skills || [];
-  const totalSkills = cats.reduce((n, c) => n + (c.items||[]).length, 0);
-  return `
-  <div class="page-header">
-    <h1>
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-      Skills <span style="color:var(--muted);font-weight:400;font-size:.85rem;margin-left:6px">${totalSkills} skills across ${cats.length} categories</span>
-    </h1>
-  </div>
-  <div class="table-wrap">
-    ${cats.map((cat, ci) => `
-    <div class="sk-cat-panel" data-catidx="${ci}">
-      <div class="sk-cat-header" onclick="toggleSkCat(${ci})">
-        <div class="sk-cat-title">
-          <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${CAT_COLORS[cat.id]||'var(--accent)'}"></span>
-          ${CAT_LABELS[cat.id] || cat.id}
-          <span class="sk-cat-count">${(cat.items||[]).length} skills</span>
-        </div>
-        <svg id="sk-chevron-${ci}" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="transition:transform .2s"><polyline points="6 9 12 15 18 9"/></svg>
-      </div>
-      <div class="sk-cat-body open" id="sk-body-${ci}">
-        <div class="sk-chips" id="sk-chips-${ci}">
-          ${(cat.items||[]).map((s, si) => `
-          <span class="sk-chip" data-catidx="${ci}" data-si="${si}">
-            <span class="sk-icon"><i class="${escape(s.iconClass)}"></i></span>
-            ${escape(s.name)}
-            <button class="sk-chip-edit" title="Edit" onclick="editSkill(${ci},${si})">✎</button>
-            <button class="sk-chip-del" title="Remove" onclick="deleteSkill(${ci},${si})">×</button>
-          </span>`).join('')}
-        </div>
-        <div class="sk-add-row" id="sk-add-${ci}">
-          <input id="sk-name-${ci}" placeholder="Skill name (e.g. Docker)" onkeydown="if(event.key==='Enter')addSkill(${ci})">
-          <input id="sk-icon-${ci}" placeholder="FA icon class (e.g. fa-brands fa-docker ibadge)" style="flex:2" onkeydown="if(event.key==='Enter')addSkill(${ci})">
-          <button class="btn btn-primary btn-sm" onclick="addSkill(${ci})">Add</button>
-        </div>
-      </div>
-    </div>`).join('')}
-  </div>`;
-}
-
-window.toggleSkCat = function(ci) {
-  const body = document.getElementById('sk-body-'+ci);
-  const chev = document.getElementById('sk-chevron-'+ci);
-  if (!body) return;
-  body.classList.toggle('open');
-  if (chev) chev.style.transform = body.classList.contains('open') ? '' : 'rotate(-90deg)';
-};
-
-window.addSkill = function(ci) {
-  const nameEl = document.getElementById('sk-name-'+ci);
-  const iconEl = document.getElementById('sk-icon-'+ci);
-  if (!nameEl) return;
-  const name = nameEl.value.trim();
-  if (!name) { toast('Skill name required', 'error'); return; }
-  const iconClass = (iconEl && iconEl.value.trim()) || 'fa-solid fa-star ibadge';
-  if (!adminData.skills[ci]) return;
-  adminData.skills[ci].items.push({ name, iconClass });
-  saveToLocalStorage(); markDirty(); updateCounts();
-  renderSection('skills');
-  setTimeout(() => { const b = document.getElementById('sk-body-'+ci); if (b) b.classList.add('open'); }, 0);
-  toast('Skill added');
-};
-
-window.deleteSkill = function(ci, si) {
-  if (!confirm('Remove this skill?')) return;
-  adminData.skills[ci].items.splice(si, 1);
-  saveToLocalStorage(); markDirty(); updateCounts();
-  renderSection('skills');
-};
-
-window.editSkill = function(ci, si) {
-  const item = adminData.skills[ci].items[si];
-  if (!item) return;
-  const newName = prompt('Skill name:', item.name);
-  if (newName === null) return;
-  const newIcon = prompt('FA icon class:', item.iconClass);
-  if (newIcon === null) return;
-  adminData.skills[ci].items[si] = { name: newName.trim() || item.name, iconClass: newIcon.trim() || item.iconClass };
-  saveToLocalStorage(); markDirty();
-  renderSection('skills');
-};
-
-/* ─ CERTIFICATES ─ */
-function renderCertificates() {
-  const items = adminData.certificates || [];
-  return `
-  <div class="page-header">
-    <h1>
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
-      Certificates <span style="color:var(--muted);font-weight:400;font-size:.85rem;margin-left:6px">${items.length} entries</span>
-    </h1>
-    <div class="hdr-actions">
-      <button class="btn btn-primary" id="btnAddItem">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-        Add certificate
-      </button>
-    </div>
-  </div>
-  <div class="table-wrap">
-    <table class="data-table">
-      <thead><tr>
-        <th style="width:36px"></th>
-        <th style="width:60px">Preview</th>
-        <th>Title</th>
-        <th>Code badge</th>
-        <th>Issuer</th>
-        <th style="width:100px;text-align:right">Actions</th>
-      </tr></thead>
-      <tbody>
-        ${items.length === 0 ? `<tr><td colspan="6"><div class="empty-state"><h3>No certificates</h3></div></td></tr>` :
-        items.map((c, i) => `
-          <tr data-id="${escape(c.id)}">
-            <td class="drag-handle" draggable="true" data-idx="${i}">⠿</td>
-            <td><img class="cert-thumb-preview" src="../${escape(c.thumb)}" alt="" onerror="this.style.display='none'"></td>
-            <td>${escape(c.title)}</td>
-            <td><span class="tag-chip">${escape(c.code)}</span></td>
-            <td style="color:var(--muted)">${escape(c.issuer)}</td>
-            <td class="td-actions">
-              <button class="btn btn-ghost btn-sm" data-action="edit" data-idx="${i}">Edit</button>
-              <button class="btn btn-danger btn-sm" data-action="delete" data-idx="${i}">Del</button>
-            </td>
-          </tr>`).join('')}
-      </tbody>
-    </table>
-    <div class="reorder-hint" style="margin-top:12px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/></svg> Drag rows to reorder</div>
-  </div>`;
-}
-
-/* ── SECTION EVENT DELEGATION ── */
-function attachSectionEvents(section) {
-  if (section === 'skills') return; // skills uses inline editing, no modal
-
-  const wrap = document.getElementById('sectionContent');
-
-  /* Add button */
-  const addBtn = document.getElementById('btnAddItem');
-  if (addBtn) addBtn.addEventListener('click', () => openModal(section, null));
-
-  /* Edit / Delete buttons */
-  wrap.addEventListener('click', (e) => {
-    const btn = e.target.closest('[data-action]');
-    if (!btn) return;
-    const idx = parseInt(btn.dataset.idx);
-    if (btn.dataset.action === 'edit') openModal(section, idx);
-    if (btn.dataset.action === 'delete') deleteItem(section, idx);
+  $$('[data-links] > .box', root).forEach(b => {
+    const g = k => b.querySelector('[data-l="' + k + '"]').value.trim();
+    const base = { url: g('url'), icon: g('icon'), ghost: g('ghost') === '1' };
+    det.en.links.push(Object.assign({ label: g('en.label') }, base));
+    det.fr.links.push(Object.assign({ label: g('fr.label') || g('en.label') }, base));
   });
-
-  /* Drag and drop reorder */
-  setupDragDrop(section);
+  $$('[data-media] > .box', root).forEach(b => {
+    const type = b.querySelector('[data-mtype]').value; const tmp = {};
+    $$('[data-m]', b).forEach(i => {
+      const k = i.dataset.m;
+      if (k === 'images') tmp.images = i.value.split('\n').map(x => x.trim()).filter(Boolean).map(x => { const [src, ...alt] = x.split('|'); return { src: src.trim(), alt: alt.join('|').trim() }; });
+      else if (k === 'overview') { if (i.checked) tmp.overview = true; }
+      else if (i.value.trim()) tmp[k] = i.value.trim();
+    });
+    const m = { type };   // fixed key order keeps unchanged items identical
+    ['text', 'src', 'poster', 'alt', 'images', 'overview', 'style'].forEach(k => { if (tmp[k] !== undefined) m[k] = tmp[k]; });
+    det.media.push(m);
+  });
+  return det;
 }
 
-/* ── DRAG & DROP ── */
-function setupDragDrop(section) {
-  const tbody = document.querySelector('.data-table tbody');
-  if (!tbody) return;
-  let dragSrc = null;
-
-  tbody.addEventListener('dragstart', e => {
-    dragSrc = e.target.closest('tr');
-    if (dragSrc) { dragSrc.style.opacity = '.5'; e.dataTransfer.effectAllowed = 'move'; }
+/* =====================================================================
+   SKILLS
+   ===================================================================== */
+function viewSkills(el) {
+  const cats = S.data.skills;
+  el.innerHTML = header('Compétences', 'Enregistrement automatique. Les titres des catégories se modifient dans Textes du site (skills-cat1...). Les icônes utilisent les classes Font Awesome, ex. <code>fa-solid fa-lock ibadge</code>.') +
+    '<div class="page-body">' + cats.map((c, ci) =>
+      '<div class="box" data-cat="' + ci + '"><div class="box-head"><span class="grow">' + esc(stripTags(S.data.texts.en[c.i18nKey] || c.id)) + ' <span class="muted small">(' + esc(c.i18nKey) + ')</span></span></div>' +
+      '<div data-items>' + (c.items || []).map(skRow).join('') + '</div>' +
+      '<button type="button" class="btn btn-ghost btn-sm" data-add><i class="fa-solid fa-plus"></i>Ajouter une compétence</button></div>').join('') + '</div>';
+  const save = () => {
+    $$('[data-cat]', el).forEach(box => {
+      cats[+box.dataset.cat].items = $$('.sk-item', box).map(r => ({ name: r.querySelector('[data-k="name"]').value.trim(), iconClass: r.querySelector('[data-k="icon"]').value.trim() })).filter(x => x.name);
+    });
+    changed();
+  };
+  $$('[data-cat]', el).forEach(box => {
+    $('[data-add]', box).onclick = () => { $('[data-items]', box).insertAdjacentHTML('beforeend', skRow({ name: '', iconClass: 'fa-solid fa-check ibadge' })); wireSk(box, save); $('[data-items] .sk-item:last-child [data-k="name"]', box).focus(); };
+    wireSk(box, save);
   });
-  tbody.addEventListener('dragover', e => {
-    e.preventDefault(); e.dataTransfer.dropEffect = 'move';
-    const row = e.target.closest('tr');
-    if (row && row !== dragSrc) row.classList.add('bg-hover');
-  });
-  tbody.addEventListener('dragleave', e => {
-    const row = e.target.closest('tr');
-    if (row) row.classList.remove('bg-hover');
-  });
-  tbody.addEventListener('drop', e => {
-    e.preventDefault();
-    const target = e.target.closest('tr');
-    if (!target || !dragSrc || target === dragSrc) return;
-    const from = parseInt(dragSrc.querySelector('[data-idx]').dataset.idx);
-    const to   = parseInt(target.querySelector('[data-idx]').dataset.idx);
-    const arr = adminData[section];
-    const [item] = arr.splice(from, 1);
-    arr.splice(to, 0, item);
-    saveToLocalStorage();
-    markDirty();
-    updateCounts();
-    renderSection(section);
-  });
-  tbody.addEventListener('dragend', e => {
-    if (dragSrc) { dragSrc.style.opacity = ''; dragSrc = null; }
-    document.querySelectorAll('.bg-hover').forEach(r => r.classList.remove('bg-hover'));
+  el.addEventListener('input', debounce(save, 400));
+}
+function skRow(it) {
+  return '<div class="sk-item"><span class="icon-prev"><i class="' + esc(it.iconClass) + '" style="margin:0"></i></span><input class="inp" data-k="name" value="' + esc(it.name) + '" placeholder="Compétence"><input class="inp" data-k="icon" value="' + esc(it.iconClass) + '"><span><button type="button" class="btn btn-ghost btn-icon btn-sm" data-sup><i class="fa-solid fa-arrow-up"></i></button><button type="button" class="btn btn-danger btn-icon btn-sm" data-sdel><i class="fa-solid fa-trash"></i></button></span></div>';
+}
+function wireSk(box, save) {
+  $$('.sk-item', box).forEach(r => {
+    if (r._w) return; r._w = 1;
+    r.querySelector('[data-k="icon"]').addEventListener('input', e => { r.querySelector('.icon-prev i').className = e.target.value; });
+    r.querySelector('[data-sdel]').onclick = () => { r.remove(); save(); };
+    r.querySelector('[data-sup]').onclick = () => { if (r.previousElementSibling) { r.parentNode.insertBefore(r, r.previousElementSibling); save(); } };
   });
 }
 
-/* ── DELETE ── */
-function deleteItem(section, idx) {
-  if (!confirm('Delete this item?')) return;
-  adminData[section].splice(idx, 1);
-  saveToLocalStorage();
-  markDirty();
-  updateCounts();
-  renderSection(section);
-  toast('Item deleted', 'success');
-}
-
-/* ── MODAL ── */
-function setupModalListeners() {
-  document.getElementById('btnModalClose').addEventListener('click', closeModal);
-  document.getElementById('btnModalCancel').addEventListener('click', closeModal);
-  document.getElementById('modalOverlay').addEventListener('click', e => {
-    if (e.target === document.getElementById('modalOverlay')) closeModal();
+/* =====================================================================
+   SITE TEXTS
+   ===================================================================== */
+const TX_GROUPS = [['nav', 'Navigation'], ['hero', 'Bandeau d’accueil'], ['edu', 'Formation'], ['skills', 'Compétences'], ['sv', 'Services'], ['pt', 'Portfolio'], ['pd', 'Pages des projets'], ['ct', 'Contact']];
+function viewTexts(el) {
+  const T = S.data.texts; const keys = Object.keys(T.en);
+  const group = k => (TX_GROUPS.find(g => k.startsWith(g[0] + '-')) || ['other', 'Autres'])[0];
+  el.innerHTML = header('Textes du site', 'Enregistrement automatique. Textes fixes du site, en anglais et en français. HTML autorisé. <code>hero-roles</code> : rôles qui défilent sur l’accueil, séparés par « | ».') +
+    '<div class="page-body"><input class="search" placeholder="Rechercher un texte..." data-search> <label class="auth-row" style="display:inline-flex;margin-left:12px"><input type="checkbox" data-onlymiss> Seulement les FR manquants</label>' +
+    TX_GROUPS.concat([['other', 'Autres']]).map(g => {
+      const ks = keys.filter(k => group(k) === g[0]); if (!ks.length) return '';
+      return '<div class="tx-group"><h3>' + g[1] + '</h3>' + ks.map(k => '<div class="tx-row" data-k="' + esc(k) + '" data-text="' + esc((k + ' ' + T.en[k] + ' ' + (T.fr[k] || '')).toLowerCase()) + '"><div class="tx-key">' + esc(k) + '</div>' +
+        '<textarea class="ta" data-lang="en" rows="' + rowsFor(T.en[k]) + '">' + esc(T.en[k]) + '</textarea>' +
+        '<textarea class="ta' + (T.en[k] && !T.fr[k] ? ' missing' : '') + '" data-lang="fr" rows="' + rowsFor(T.fr[k]) + '">' + esc(T.fr[k] || '') + '</textarea></div>').join('') + '</div>';
+    }).join('') + '</div>';
+  const filter = () => {
+    const q = $('[data-search]', el).value.toLowerCase(), om = $('[data-onlymiss]', el).checked;
+    $$('.tx-row', el).forEach(r => { r.hidden = (q && !r.dataset.text.includes(q)) || (om && !r.querySelector('[data-lang="fr"]').classList.contains('missing')); });
+  };
+  $('[data-search]', el).oninput = filter; $('[data-onlymiss]', el).onchange = filter;
+  $$('.tx-row', el).forEach(r => {
+    const k = r.dataset.k, en = r.querySelector('[data-lang="en"]'), fr = r.querySelector('[data-lang="fr"]');
+    const save = debounce(() => { T.en[k] = en.value.trim(); T.fr[k] = fr.value.trim(); fr.classList.toggle('missing', !!T.en[k] && !T.fr[k]); changed(); }, 400);
+    en.addEventListener('input', save); fr.addEventListener('input', save);
   });
-  document.getElementById('btnModalSave').addEventListener('click', saveModal);
+}
+function rowsFor(v) { return Math.min(8, Math.max(1, Math.ceil(String(v || '').length / 70))); }
+
+/* =====================================================================
+   FILES & UPLOADS
+   ===================================================================== */
+function viewMedia(el) {
+  el.innerHTML = header('Fichiers', S.mode === 'github' ? 'Les fichiers sont mis en attente ici puis envoyés au dépôt dans le même commit que tes modifications (Publier). Les grandes photos sont réduites à 1600 px.' : 'L’envoi de fichiers nécessite le mode GitHub. En mode local, copie les fichiers dans img/ ou certificates/ toi-même.') +
+    '<div class="page-body">' + (S.mode === 'github' ?
+      '<div class="grid2" style="margin-bottom:6px"><div class="dropzone" data-drop="img"><i class="fa-solid fa-image"></i><br>Dépose des images ou des vidéos ici, ou clique<br><span class="small">enregistrées dans img/</span></div><div class="dropzone" data-drop="certificates"><i class="fa-solid fa-file-pdf"></i><br>Dépose des certificats PDF ici, ou clique<br><span class="small">enregistrés dans certificates/</span></div></div>' : '') +
+    '<div class="section-title">En attente d’envoi (' + S.uploads.length + ')</div>' +
+    (S.uploads.length ? '<div class="up-list">' + S.uploads.map((u, i) => '<div class="up-card">' + (u.isImage ? '<img src="' + u.url + '">' : '<div class="up-ph"><i class="fa-solid fa-file"></i></div>') + '<div class="meta"><code>' + esc(u.path) + '</code><br><span class="muted">' + Math.round(u.size / 1024) + ' Ko</span><div style="margin-top:6px;display:flex;gap:6px"><button class="btn btn-ghost btn-sm" data-copy="' + esc(u.path) + '">Copier le chemin</button><button class="btn btn-danger btn-sm" data-rm="' + i + '">Retirer</button></div></div></div>').join('') + '</div>' : '<p class="muted">Aucun fichier en attente.</p>') +
+    '</div>';
+  $$('[data-drop]', el).forEach(z => {
+    const folder = z.dataset.drop;
+    z.onclick = () => pickFile(folder === 'img' ? 'image/*,video/mp4' : 'application/pdf,image/*', folder).then(() => show('media'));
+    z.ondragover = e => { e.preventDefault(); z.classList.add('over'); };
+    z.ondragleave = () => z.classList.remove('over');
+    z.ondrop = async e => { e.preventDefault(); z.classList.remove('over'); for (const f of e.dataTransfer.files) await stageFile(f, folder); show('media'); };
+  });
+  $$('[data-copy]', el).forEach(b => b.onclick = () => { navigator.clipboard.writeText(b.dataset.copy); toast('Chemin copié.'); });
+  $$('[data-rm]', el).forEach(b => b.onclick = () => { S.uploads.splice(+b.dataset.rm, 1); updateDirty(); updateCounts(); show('media'); });
 }
 
-function openModal(section, idx) {
-  editingSection = section;
-  editingId = idx;
-  const isNew = idx === null;
-  document.getElementById('modalTitle').textContent = (isNew ? 'Add ' : 'Edit ') + section.slice(0,-1);
-  document.getElementById('modalBody').innerHTML = buildForm(section, isNew ? null : adminData[section][idx]);
-  document.getElementById('modalOverlay').classList.add('visible');
-  initFormWidgets();
+/* =====================================================================
+   CHECKS
+   ===================================================================== */
+function collectRefs(d) {
+  const refs = [];
+  const add = (v, where) => { if (v && isLocalRef(v)) refs.push({ path: normPath(v), where }); };
+  d.experience.forEach(e => add(e.logo, 'Expérience · ' + e.id + ' · logo'));
+  d.certificates.forEach(c => { add(c.pdf, 'Certificat · ' + c.id + ' · fichier'); add(c.thumb, 'Certificat · ' + c.id + ' · vignette'); });
+  d.projects.forEach(p => {
+    add(p.thumbnail, 'Projet · ' + p.id + ' · image de la carte'); add(p.github, 'Projet · ' + p.id + ' · lien de la carte');
+    if (!p.detail) return;
+    ['en', 'fr'].forEach(L => (p.detail[L].links || []).forEach(l => add(l.url, 'Projet · ' + p.id + ' · bouton (' + L + ')')));
+    (p.detail.media || []).forEach(m => { add(m.src, 'Projet · ' + p.id + ' · média'); add(m.poster, 'Projet · ' + p.id + ' · affiche vidéo'); (m.images || []).forEach(i => add(i.src, 'Projet · ' + p.id + ' · galerie')); });
+  });
+  return refs;
 }
-
-function closeModal() {
-  document.getElementById('modalOverlay').classList.remove('visible');
-  editingSection = null;
-  editingId = null;
+function htmlBalanced(s) {
+  const tags = ['strong', 'em', 'b', 'i', 'a', 'span', 'code'];
+  return tags.every(t => (String(s).match(new RegExp('<' + t + '[\\s>]', 'g')) || []).length === (String(s).match(new RegExp('</' + t + '>', 'g')) || []).length);
 }
-
-function saveModal() {
-  const data = readForm(editingSection);
-  if (!data) return;
-  if (editingId === null) {
-    adminData[editingSection].push(data);
-  } else {
-    adminData[editingSection][editingId] = data;
-  }
-  saveToLocalStorage();
-  markDirty();
-  updateCounts();
-  renderSection(editingSection);
-  closeModal();
-  toast('Saved successfully');
-}
-
-/* ── FORM BUILDERS ── */
-function buildForm(section, item) {
-  switch(section) {
-    case 'experience':   return buildExpForm(item);
-    case 'services':     return buildSvForm(item);
-    case 'projects':     return buildPtForm(item);
-    case 'certificates': return buildCeForm(item);
-    default: return '';
-  }
-}
-
-function buildExpForm(e) {
-  const v = e || { id:'', logo:'', logoAlt:'', org:'', en:{when:'',role:'',det:''}, fr:{when:'',role:'',det:''} };
-  return `
-  <div class="form-group">
-    <label class="form-label">ID <span>(auto-generated, unique)</span></label>
-    <input class="form-input" id="f-id" value="${escape(v.id)}" placeholder="exp7" ${e ? 'readonly style="opacity:.5"':''}>
-    ${!e ? '<div class="form-hint">Use short slug: exp7, exp8 etc.</div>' : ''}
-  </div>
-  <div class="form-row">
-    <div class="form-group">
-      <label class="form-label">Logo image path</label>
-      <input class="form-input" id="f-logo" value="${escape(v.logo)}" placeholder="img/logo.jpg">
-      <div class="form-hint">Relative to repo root. Leave empty for no logo.</div>
-    </div>
-    <div class="form-group">
-      <label class="form-label">Logo alt text</label>
-      <input class="form-input" id="f-logoAlt" value="${escape(v.logoAlt)}" placeholder="Company logo">
-    </div>
-  </div>
-  <div class="form-group">
-    <label class="form-label">Organisation</label>
-    <input class="form-input" id="f-org" value="${escape(v.org)}" placeholder="Company name" required>
-  </div>
-  <div class="lang-tabs"><button class="lang-tab active" data-lang="en">🇬🇧 English</button><button class="lang-tab" data-lang="fr">🇫🇷 Français</button></div>
-  <div class="lang-pane active" id="pane-en">
-    <div class="form-row">
-      <div class="form-group"><label class="form-label">Period (EN)</label><input class="form-input" id="f-en-when" value="${escape(v.en.when)}" placeholder="Jan. 2025 – Present"></div>
-      <div class="form-group"><label class="form-label">Role (EN)</label><input class="form-input" id="f-en-role" value="${escape(v.en.role)}" placeholder="Software Engineer" required></div>
-    </div>
-    <div class="form-group"><label class="form-label">Description (EN)</label><textarea class="form-textarea" id="f-en-det" rows="4">${escape(v.en.det)}</textarea></div>
-  </div>
-  <div class="lang-pane" id="pane-fr">
-    <div class="form-row">
-      <div class="form-group"><label class="form-label">Période (FR)</label><input class="form-input" id="f-fr-when" value="${escape(v.fr.when)}" placeholder="Janv. 2025 – Présent"></div>
-      <div class="form-group"><label class="form-label">Rôle (FR)</label><input class="form-input" id="f-fr-role" value="${escape(v.fr.role)}" placeholder="Ingénieur logiciel"></div>
-    </div>
-    <div class="form-group"><label class="form-label">Description (FR)</label><textarea class="form-textarea" id="f-fr-det" rows="4">${escape(v.fr.det)}</textarea></div>
-  </div>`;
-}
-
-function buildSvForm(s) {
-  const v = s || { id:'', color:'blue', iconSvg:'', tags:[], en:{title:'',desc:''}, fr:{title:'',desc:''} };
-  const colors = ['red','blue','purple','green','orange','amber','sky','violet'];
-  const colorLabels = {red:'Red',blue:'Blue',purple:'Purple',green:'Green',orange:'Orange',amber:'Amber',sky:'Sky',violet:'Violet'};
-  return `
-  <div class="form-group">
-    <label class="form-label">ID <span>(auto-generated)</span></label>
-    <input class="form-input" id="f-id" value="${escape(v.id)}" placeholder="sv9" ${s ? 'readonly style="opacity:.5"':''}>
-    ${!s ? '<div class="form-hint">Use sv1–sv9, sv10 etc.</div>' : ''}
-  </div>
-  <div class="form-group">
-    <label class="form-label">Accent Color</label>
-    <div class="color-select-grid">
-      ${colors.map(c => `<div class="color-opt${v.color===c?' selected':''}" data-clr="${c}" title="${colorLabels[c]}" onclick="selectColor('${c}')"></div>`).join('')}
-    </div>
-    <input type="hidden" id="f-color" value="${escape(v.color)}">
-  </div>
-  <div class="form-group">
-    <label class="form-label">Icon SVG <span>(inner content of &lt;svg&gt; only)</span></label>
-    <textarea class="form-textarea" id="f-iconSvg" rows="3" placeholder='<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>'>${escape(v.iconSvg)}</textarea>
-    <div class="icon-preview"><svg id="iconPreview" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">${v.iconSvg}</svg><span>Live preview</span></div>
-  </div>
-  <div class="form-group">
-    <label class="form-label">Tags <span>(press Enter or comma to add)</span></label>
-    <div class="tags-editor" id="tagsEditor">
-      ${(v.tags||[]).map(t=>`<span class="tag-item">${escape(t)}<button class="tag-remove" data-tag="${escape(t)}" onclick="removeTag(this)">×</button></span>`).join('')}
-      <input id="tagInput" placeholder="Add tag…">
-    </div>
-    <input type="hidden" id="f-tags" value="${escape((v.tags||[]).join(','))}">
-  </div>
-  <div class="lang-tabs"><button class="lang-tab active" data-lang="en">🇬🇧 English</button><button class="lang-tab" data-lang="fr">🇫🇷 Français</button></div>
-  <div class="lang-pane active" id="pane-en">
-    <div class="form-group"><label class="form-label">Title (EN)</label><input class="form-input" id="f-en-title" value="${escape(v.en.title)}" required></div>
-    <div class="form-group"><label class="form-label">Description (EN)</label><textarea class="form-textarea" id="f-en-desc" rows="3">${escape(v.en.desc)}</textarea></div>
-  </div>
-  <div class="lang-pane" id="pane-fr">
-    <div class="form-group"><label class="form-label">Titre (FR)</label><input class="form-input" id="f-fr-title" value="${escape(v.fr.title)}"></div>
-    <div class="form-group"><label class="form-label">Description (FR)</label><textarea class="form-textarea" id="f-fr-desc" rows="3">${escape(v.fr.desc)}</textarea></div>
-  </div>`;
-}
-
-function buildPtForm(p) {
-  const v = p || { id:'', category:'web', detId:'', title:'', thumbnail:'', thumbAlt:'', stack:[], github:'', en:{cats:'',desc:''}, fr:{cats:'',desc:''} };
-  const cats = ['cyber','iot','java','fpga','web','autre'];
-  return `
-  <div class="form-row">
-    <div class="form-group">
-      <label class="form-label">ID <span>(unique slug)</span></label>
-      <input class="form-input" id="f-id" value="${escape(v.id)}" placeholder="myproject" ${p ? 'readonly style="opacity:.5"':''}>
-    </div>
-    <div class="form-group">
-      <label class="form-label">Category</label>
-      <select class="form-select" id="f-category">
-        ${cats.map(c=>`<option value="${c}"${v.category===c?' selected':''}>${c}</option>`).join('')}
-      </select>
-    </div>
-  </div>
-  <div class="form-row">
-    <div class="form-group">
-      <label class="form-label">Title</label>
-      <input class="form-input" id="f-title" value="${escape(v.title)}" required>
-    </div>
-    <div class="form-group">
-      <label class="form-label">Detail panel ID <span>(id of pt-det in HTML, or leave empty)</span></label>
-      <input class="form-input" id="f-detId" value="${escape(v.detId)}" placeholder="shadow">
-    </div>
-  </div>
-  <div class="form-row">
-    <div class="form-group">
-      <label class="form-label">Thumbnail path</label>
-      <input class="form-input" id="f-thumbnail" value="${escape(v.thumbnail)}" placeholder="img/project.jpg">
-    </div>
-    <div class="form-group">
-      <label class="form-label">Thumbnail alt text</label>
-      <input class="form-input" id="f-thumbAlt" value="${escape(v.thumbAlt)}">
-    </div>
-  </div>
-  <div class="form-group">
-    <label class="form-label">GitHub / Project link</label>
-    <input class="form-input" id="f-github" value="${escape(v.github)}" placeholder="https://github.com/...">
-  </div>
-  <div class="form-group">
-    <label class="form-label">Stack <span>(press Enter or comma to add)</span></label>
-    <div class="tags-editor" id="tagsEditor">
-      ${(v.stack||[]).map(t=>`<span class="tag-item">${escape(t)}<button class="tag-remove" onclick="removeTag(this)">×</button></span>`).join('')}
-      <input id="tagInput" placeholder="Add technology…">
-    </div>
-    <input type="hidden" id="f-tags" value="${escape((v.stack||[]).join(','))}">
-  </div>
-  <div class="lang-tabs"><button class="lang-tab active" data-lang="en">🇬🇧 English</button><button class="lang-tab" data-lang="fr">🇫🇷 Français</button></div>
-  <div class="lang-pane active" id="pane-en">
-    <div class="form-group"><label class="form-label">Categories label (EN) <span>(displayed below title)</span></label><input class="form-input" id="f-en-cats" value="${escape(v.en.cats)}" placeholder="Cybersecurity &middot; Python &middot; ML"></div>
-    <div class="form-group"><label class="form-label">Short description (EN)</label><textarea class="form-textarea" id="f-en-desc" rows="3">${escape(v.en.desc)}</textarea></div>
-  </div>
-  <div class="lang-pane" id="pane-fr">
-    <div class="form-group"><label class="form-label">Catégories (FR)</label><input class="form-input" id="f-fr-cats" value="${escape(v.fr.cats)}"></div>
-    <div class="form-group"><label class="form-label">Description courte (FR)</label><textarea class="form-textarea" id="f-fr-desc" rows="3">${escape(v.fr.desc)}</textarea></div>
-  </div>`;
-}
-
-function buildCeForm(c) {
-  const v = c || { id:'', pdf:'', thumb:'', thumbAlt:'', code:'', title:'', issuer:'' };
-  return `
-  <div class="form-group">
-    <label class="form-label">ID <span>(unique)</span></label>
-    <input class="form-input" id="f-id" value="${escape(v.id)}" placeholder="cert-new" ${c ? 'readonly style="opacity:.5"':''}>
-  </div>
-  <div class="form-row">
-    <div class="form-group">
-      <label class="form-label">PDF file path</label>
-      <input class="form-input" id="f-pdf" value="${escape(v.pdf)}" placeholder="certificates/MyCert.pdf">
-    </div>
-    <div class="form-group">
-      <label class="form-label">Code badge <span>(top of card)</span></label>
-      <input class="form-input" id="f-code" value="${escape(v.code)}" placeholder="ISC² · CC">
-    </div>
-  </div>
-  <div class="form-row">
-    <div class="form-group">
-      <label class="form-label">Thumbnail path</label>
-      <input class="form-input" id="f-thumb" value="${escape(v.thumb)}" placeholder="img/cert.jpg">
-    </div>
-    <div class="form-group">
-      <label class="form-label">Thumbnail alt text</label>
-      <input class="form-input" id="f-thumbAlt" value="${escape(v.thumbAlt)}">
-    </div>
-  </div>
-  <div class="form-row">
-    <div class="form-group">
-      <label class="form-label">Title</label>
-      <input class="form-input" id="f-title" value="${escape(v.title)}" required placeholder="Certified in Cybersecurity">
-    </div>
-    <div class="form-group">
-      <label class="form-label">Issuer</label>
-      <input class="form-input" id="f-issuer" value="${escape(v.issuer)}" placeholder="ISC²">
-    </div>
-  </div>`;
-}
-
-/* ── FORM WIDGETS ── */
-function initFormWidgets() {
-  /* Language tabs */
-  document.querySelectorAll('.lang-tab').forEach(tab => {
-    tab.addEventListener('click', () => {
-      document.querySelectorAll('.lang-tab').forEach(t => t.classList.remove('active'));
-      document.querySelectorAll('.lang-pane').forEach(p => p.classList.remove('active'));
-      tab.classList.add('active');
-      const pane = document.getElementById('pane-' + tab.dataset.lang);
-      if (pane) pane.classList.add('active');
+function runChecks() {
+  const d = S.data, out = [];
+  const E = (where, msg) => out.push({ level: 'err', where, msg }), W = (where, msg) => out.push({ level: 'warn', where, msg });
+  ['experience', 'services', 'projects', 'certificates'].forEach(k => {
+    const seen = {};
+    d[k].forEach(it => { if (!it.id) E(k, 'Un élément n’a pas d’identifiant.'); else if (seen[it.id]) E(k + ' · ' + it.id, 'Identifiant en double.'); seen[it.id] = 1; });
+  });
+  const texts = [];
+  const pair = (where, en, fr) => { texts.push([where, en], [where, fr]); if (String(en || '').trim() && !String(fr || '').trim()) W(where, 'Traduction française manquante.'); };
+  d.experience.forEach(e => { ['when', 'role', 'det'].forEach(f => pair('Expérience · ' + e.id + ' · ' + f, e.en[f], e.fr[f])); if (!e.en.role) E('Expérience · ' + e.id, 'Le poste est vide.'); });
+  d.services.forEach(s => ['title', 'desc'].forEach(f => pair('Service · ' + s.id + ' · ' + f, s.en[f], s.fr[f])));
+  d.projects.forEach(p => {
+    ['cats', 'desc'].forEach(f => pair('Projet · ' + p.id + ' · ' + f, p.en[f], p.fr[f]));
+    if (!p.title) E('Projet · ' + p.id, 'Le titre est vide.');
+    if (!p.detail) W('Projet · ' + p.id, 'Pas de page détaillée : cliquer sur la carte ne fait rien.');
+    else ['en', 'fr'].forEach(L => {
+      const l = p.detail[L];
+      texts.push(['Page projet · ' + p.id, l.title], ['Page projet · ' + p.id, l.cats]);
+      (l.sections || []).forEach((s, i) => { texts.push(['Page projet · ' + p.id + ' · section ' + (i + 1) + ' (' + L + ')', s.text || (s.items || []).join(' ')]); if (!s.title) W('Page projet · ' + p.id + ' · section ' + (i + 1) + ' (' + L + ')', 'Le titre de la section est vide.'); if (L === 'fr' && !(s.text || (s.items || []).length) && ((p.detail.en.sections[i] || {}).text || ((p.detail.en.sections[i] || {}).items || []).length)) W('Page projet · ' + p.id + ' · section ' + (i + 1), 'Contenu français manquant.'); });
+      (l.links || []).forEach(a => { if (!a.url) E('Page projet · ' + p.id, 'Un bouton n’a pas d’URL.'); else if (!isLocalRef(a.url) && !/^(https?:|mailto:)/.test(a.url)) W('Page projet · ' + p.id, 'URL inhabituelle : ' + a.url); });
     });
   });
+  Object.keys(d.texts.en).forEach(k => pair('Texte du site · ' + k, d.texts.en[k], d.texts.fr[k]));
+  texts.forEach(([where, v]) => {
+    if (!v) return;
+    if (/—|&mdash;/.test(v)) W(where, 'Contient un tiret long (—). Préfère deux-points, virgule ou parenthèses.');
+    if (!htmlBalanced(v)) E(where, 'Balises HTML mal fermées.');
+  });
+  const staged = new Set(S.uploads.map(u => u.path));
+  collectRefs(d).forEach(r => {
+    if (staged.has(r.path)) return;
+    if (S.tree && !S.tree.has(r.path)) E(r.where, 'Fichier introuvable dans le dépôt : ' + r.path);
+  });
+  S.lastChecks = out;
+  return out;
+}
+async function viewChecks(el) {
+  el.innerHTML = header('Contrôles', 'Lancés automatiquement avant chaque publication. Les erreurs bloquent la publication, les avertissements non.', '<button class="btn btn-ghost" data-rerun><i class="fa-solid fa-rotate"></i>Relancer</button>') + '<div class="page-body" data-res><p class="muted">Vérification...</p></div>';
+  $('[data-rerun]', el).onclick = () => show('checks');
+  if (S.mode !== 'github') await localFileCheck();
+  const r = runChecks().concat(S.localMissing || []);
+  const res = $('[data-res]', el);
+  if (!r.length) { res.innerHTML = '<div class="empty"><i class="fa-solid fa-circle-check" style="font-size:2rem;color:var(--success)"></i><h3 style="margin-top:10px">Tout est bon</h3></div>'; return; }
+  const order = r.sort((a, b) => (a.level === 'err' ? 0 : 1) - (b.level === 'err' ? 0 : 1));
+  res.innerHTML = (S.mode !== 'github' ? '<p class="hint" style="margin-bottom:10px">Mode local : les fichiers sont vérifiés sur le serveur local.</p>' : '') +
+    order.map(c => '<div class="check ' + c.level + '"><i class="fa-solid ' + (c.level === 'err' ? 'fa-circle-xmark' : 'fa-triangle-exclamation') + '"></i><div><div>' + esc(c.msg) + '</div><div class="where">' + esc(c.where) + '</div></div></div>').join('');
+}
+async function localFileCheck() {
+  const refs = collectRefs(S.data); const seen = new Map();
+  await Promise.all([...new Set(refs.map(r => r.path))].map(async p => {
+    try { const r = await fetch('../' + p.split('/').map(encodeURIComponent).join('/'), { method: 'HEAD', cache: 'no-store' }); seen.set(p, r.ok); } catch (e) { seen.set(p, false); }
+  }));
+  S.localMissing = refs.filter(r => seen.get(r.path) === false).map(r => ({ level: 'err', where: r.where, msg: 'Fichier introuvable : ' + r.path }));
+}
 
-  /* Tags editor */
-  const tagInput = document.getElementById('tagInput');
-  if (tagInput) {
-    tagInput.addEventListener('keydown', e => {
-      if (e.key === 'Enter' || e.key === ',') { e.preventDefault(); addTag(tagInput.value.trim()); tagInput.value = ''; }
+/* =====================================================================
+   PREVIEW
+   ===================================================================== */
+function viewPreview(el) {
+  saveDraftForPreview();
+  el.innerHTML = header('Aperçu', 'Ton brouillon, affiché avec le vrai site. Les fichiers en attente apparaissent après la publication.',
+    '<button class="btn btn-ghost" data-lang="en">EN</button><button class="btn btn-ghost" data-lang="fr">FR</button><button class="btn btn-ghost" data-mobile><i class="fa-solid fa-mobile-screen"></i>Mobile</button><button class="btn btn-ghost" data-reload><i class="fa-solid fa-rotate"></i>Recharger</button><a class="btn btn-ghost" href="../index.html?preview=1" target="_blank" rel="noopener"><i class="fa-solid fa-up-right-from-square"></i>Nouvel onglet</a>') +
+    '<div class="page-body" style="padding-top:14px"><div class="pv-frame-wrap"><iframe id="pvFrame" src="../index.html?preview=1"></iframe></div></div>';
+  const fr = $('#pvFrame', el);
+  $$('[data-lang]', el).forEach(b => b.onclick = () => { try { fr.contentWindow.applyLang && fr.contentWindow.applyLang(b.dataset.lang); } catch (e) {} });
+  $('[data-mobile]', el).onclick = () => $('.pv-frame-wrap', el).classList.toggle('mobile');
+  $('[data-reload]', el).onclick = () => { saveDraftForPreview(); fr.src = '../index.html?preview=1&t=' + Date.now(); };
+}
+function saveDraftForPreview() {
+  try { localStorage.setItem(DRAFT_KEY, JSON.stringify({ savedAt: Date.now(), base: S.base.blob, data: S.data })); } catch (e) {}
+  if (!isDirty()) setTimeout(() => { if (!isDirty()) localStorage.removeItem(DRAFT_KEY); }, 8000);
+}
+
+/* =====================================================================
+   HISTORY
+   ===================================================================== */
+async function viewHistory(el) {
+  el.innerHTML = header('Historique', 'Versions publiées du contenu. En charger une la place dans ton brouillon ; publie pour la restaurer.') + '<div class="page-body" data-h><p class="muted">Chargement...</p></div>';
+  const box = $('[data-h]', el);
+  if (S.mode !== 'github') { box.innerHTML = '<p class="muted">L’historique nécessite le mode GitHub.</p>'; return; }
+  try {
+    const list = await gh('GET', repoPath('/commits?path=' + encodeURIComponent(DATA_PATH) + '&sha=' + BRANCH + '&per_page=30'));
+    box.innerHTML = list.map(c => '<div class="hist"><div class="grow"><div>' + esc(c.commit.message.split('\n')[0]) + '</div><div class="muted small">' + fmtDate(c.commit.author.date) + ' · ' + esc(c.commit.author.name) + ' · <code>' + c.sha.slice(0, 7) + '</code></div></div>' +
+      '<a class="btn btn-ghost btn-sm" href="' + esc(c.html_url) + '" target="_blank" rel="noopener">Voir</a>' +
+      '<button class="btn btn-ghost btn-sm" data-load="' + c.sha + '"' + (c.sha === S.base.commit ? ' disabled' : '') + '>Charger comme brouillon</button></div>').join('') || '<p class="muted">Aucun historique.</p>';
+    $$('[data-load]', box).forEach(b => b.onclick = async () => {
+      if (isDirty() && !(await confirmBox('Remplacer le brouillon ?', '<p>Tes modifications non publiées seront remplacées par cette version.</p>', 'Charger', 'btn-primary'))) return;
+      try { const f = await ghFile(DATA_PATH, b.dataset.load); S.data = normalizeData(parseDataFile(f.text)); changed(); toast('Version ' + b.dataset.load.slice(0, 7) + ' chargée dans le brouillon. Vérifie-la dans l’Aperçu, puis publie pour la restaurer.', 'success', 6000); show('preview'); }
+      catch (e) { toast('Chargement impossible : ' + esc(e.message), 'error'); }
     });
-    tagInput.addEventListener('blur', () => { if (tagInput.value.trim()) { addTag(tagInput.value.trim()); tagInput.value = ''; } });
-  }
-
-  /* Icon SVG live preview */
-  const iconInput = document.getElementById('f-iconSvg');
-  if (iconInput) {
-    iconInput.addEventListener('input', () => {
-      const prev = document.getElementById('iconPreview');
-      if (prev) prev.innerHTML = iconInput.value;
-    });
-  }
+  } catch (e) { box.innerHTML = '<p style="color:var(--danger)">' + esc(e.message) + '</p>'; }
 }
 
-function addTag(val) {
-  if (!val) return;
-  const editor = document.getElementById('tagsEditor');
-  const hiddenInput = document.getElementById('f-tags');
-  if (!editor || !hiddenInput) return;
-  const span = document.createElement('span');
-  span.className = 'tag-item';
-  span.innerHTML = `${escape(val)}<button class="tag-remove" onclick="removeTag(this)">×</button>`;
-  const tagInput = document.getElementById('tagInput');
-  editor.insertBefore(span, tagInput);
-  const tags = getTags();
-  if (!tags.includes(val)) { tags.push(val); hiddenInput.value = tags.join(','); }
-}
-
-function removeTag(btn) {
-  const span = btn.parentElement;
-  const tag = span.textContent.slice(0, -1); // remove ×
-  span.remove();
-  const hiddenInput = document.getElementById('f-tags');
-  if (hiddenInput) hiddenInput.value = getTags().filter(t => t !== tag).join(',');
-}
-
-window.removeTag = removeTag; // expose globally for onclick
-
-function getTags() {
-  const h = document.getElementById('f-tags');
-  return h && h.value ? h.value.split(',').filter(Boolean) : [];
-}
-
-function selectColor(clr) {
-  document.querySelectorAll('.color-opt').forEach(o => o.classList.toggle('selected', o.dataset.clr === clr));
-  const h = document.getElementById('f-color');
-  if (h) h.value = clr;
-}
-window.selectColor = selectColor;
-
-/* ── FORM READERS ── */
-function readForm(section) {
-  switch(section) {
-    case 'experience':   return readExpForm();
-    case 'services':     return readSvForm();
-    case 'projects':     return readPtForm();
-    case 'certificates': return readCeForm();
-  }
-}
-
-function readExpForm() {
-  const id = document.getElementById('f-id').value.trim();
-  const org = document.getElementById('f-org').value.trim();
-  if (!id || !org) { toast('ID and Organisation are required', 'error'); return null; }
-  const enRole = document.getElementById('f-en-role').value.trim();
-  if (!enRole) { toast('EN Role is required', 'error'); return null; }
-  return {
-    id,
-    logo: document.getElementById('f-logo').value.trim(),
-    logoAlt: document.getElementById('f-logoAlt').value.trim(),
-    org,
-    en: { when: document.getElementById('f-en-when').value.trim(), role: enRole, det: document.getElementById('f-en-det').value.trim() },
-    fr: { when: document.getElementById('f-fr-when').value.trim(), role: document.getElementById('f-fr-role').value.trim(), det: document.getElementById('f-fr-det').value.trim() }
-  };
-}
-
-function readSvForm() {
-  const id = document.getElementById('f-id').value.trim();
-  const enTitle = document.getElementById('f-en-title').value.trim();
-  if (!id || !enTitle) { toast('ID and EN Title are required', 'error'); return null; }
-  return {
-    id,
-    color: document.getElementById('f-color').value,
-    iconSvg: document.getElementById('f-iconSvg').value.trim(),
-    tags: getTags(),
-    en: { title: enTitle, desc: document.getElementById('f-en-desc').value.trim() },
-    fr: { title: document.getElementById('f-fr-title').value.trim(), desc: document.getElementById('f-fr-desc').value.trim() }
-  };
-}
-
-function readPtForm() {
-  const id = document.getElementById('f-id').value.trim();
-  const title = document.getElementById('f-title').value.trim();
-  if (!id || !title) { toast('ID and Title are required', 'error'); return null; }
-  return {
-    id,
-    category: document.getElementById('f-category').value,
-    detId: document.getElementById('f-detId').value.trim(),
-    title,
-    thumbnail: document.getElementById('f-thumbnail').value.trim(),
-    thumbAlt: document.getElementById('f-thumbAlt').value.trim(),
-    stack: getTags(),
-    github: document.getElementById('f-github').value.trim(),
-    en: { cats: document.getElementById('f-en-cats').value.trim(), desc: document.getElementById('f-en-desc').value.trim() },
-    fr: { cats: document.getElementById('f-fr-cats').value.trim(), desc: document.getElementById('f-fr-desc').value.trim() }
-  };
-}
-
-function readCeForm() {
-  const id = document.getElementById('f-id').value.trim();
-  const title = document.getElementById('f-title').value.trim();
-  if (!id || !title) { toast('ID and Title are required', 'error'); return null; }
-  return {
-    id,
-    pdf: document.getElementById('f-pdf').value.trim(),
-    thumb: document.getElementById('f-thumb').value.trim(),
-    thumbAlt: document.getElementById('f-thumbAlt').value.trim(),
-    code: document.getElementById('f-code').value.trim(),
-    title,
-    issuer: document.getElementById('f-issuer').value.trim()
-  };
-}
-
-/* ── LOCAL STORAGE ── */
-function saveToLocalStorage() {
-  try { localStorage.setItem(LS_KEY, JSON.stringify(adminData)); } catch(e) { console.error('LS write failed', e); }
-}
-
-/* ── EXPORT ── */
+/* =====================================================================
+   EXPORT (local workflow)
+   ===================================================================== */
 function exportData() {
-  const js = generatePortfolioDataJs(adminData);
-  const blob = new Blob([js], { type: 'text/javascript' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'portfolio-data.js';
-  a.click();
-  URL.revokeObjectURL(url);
-  isDirty = false;
-  document.getElementById('unsavedBanner').classList.remove('show');
-  localStorage.removeItem(LS_KEY);
-  toast('portfolio-data.js downloaded! Replace the file in your repo and push.', 'success', 5000);
+  const blob = new Blob([serializeData(S.data)], { type: 'text/javascript' });
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'portfolio-data.js'; a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+  toast('portfolio-data.js téléchargé. Remplace le fichier dans le dépôt, puis fais le commit et le push.', 'success', 6000);
 }
 
-function generatePortfolioDataJs(data) {
-  const j = (v) => JSON.stringify(v, null, 2);
-
-  const expStr = (data.experience || []).map(e => `    {
-      id: ${j(e.id)},
-      logo: ${j(e.logo || '')},
-      logoAlt: ${j(e.logoAlt || '')},
-      org: ${j(e.org)},
-      en: { when: ${j(e.en.when)}, role: ${j(e.en.role)}, det: ${j(e.en.det)} },
-      fr: { when: ${j(e.fr.when)}, role: ${j(e.fr.role)}, det: ${j(e.fr.det)} }
-    }`).join(',\n');
-
-  const svStr = (data.services || []).map(s => `    {
-      id: ${j(s.id)},
-      color: ${j(s.color)},
-      iconSvg: ${j(s.iconSvg)},
-      tags: ${j(s.tags)},
-      en: { title: ${j(s.en.title)}, desc: ${j(s.en.desc)} },
-      fr: { title: ${j(s.fr.title)}, desc: ${j(s.fr.desc)} }
-    }`).join(',\n');
-
-  const ptStr = (data.projects || []).map(p => `    {
-      id: ${j(p.id)},
-      category: ${j(p.category)},
-      detId: ${j(p.detId)},
-      title: ${j(p.title)},
-      thumbnail: ${j(p.thumbnail)},
-      thumbAlt: ${j(p.thumbAlt || '')},
-      stack: ${j(p.stack)},
-      github: ${j(p.github)},
-      en: { cats: ${j(p.en.cats)}, desc: ${j(p.en.desc)} },
-      fr: { cats: ${j(p.fr.cats)}, desc: ${j(p.fr.desc)} }
-    }`).join(',\n');
-
-  const ceStr = (data.certificates || []).map(c => `    { id: ${j(c.id)}, pdf: ${j(c.pdf)}, thumb: ${j(c.thumb)}, thumbAlt: ${j(c.thumbAlt || '')}, code: ${j(c.code)}, title: ${j(c.title)}, issuer: ${j(c.issuer)} }`).join(',\n');
-
-  const skStr = (data.skills || []).map(cat => `    {
-      id: ${j(cat.id)},
-      containerClass: ${j(cat.containerClass)},
-      i18nKey: ${j(cat.i18nKey)},
-      items: [
-        ${(cat.items||[]).map(s => `{ name: ${j(s.name)}, iconClass: ${j(s.iconClass)} }`).join(',\n        ')}
-      ]
-    }`).join(',\n');
-
-  return `/* portfolio-data.js — generated by Portfolio Admin on ${new Date().toLocaleDateString('en-GB')}
- * Edit via admin/index.html → Export → replace this file → commit & push
- */
-window.PORTFOLIO_DATA = {
-
-  experience: [
-${expStr}
-  ],
-
-  services: [
-${svStr}
-  ],
-
-  projects: [
-${ptStr}
-  ],
-
-  skills: [
-${skStr}
-  ],
-
-  certificates: [
-${ceStr}
-  ]
-
-};
-`;
+/* =====================================================================
+   PUBLISH
+   ===================================================================== */
+async function publishFlow() {
+  if (S.mode !== 'github') return;
+  if (!isDirty()) { toast('Rien à publier.'); return; }
+  const checks = runChecks();
+  const errs = checks.filter(c => c.level === 'err'), warns = checks.length - errs.length;
+  if (errs.length) { toast(errs.length + ' erreur(s) à corriger avant de publier.', 'error'); show('checks'); return; }
+  dialog('Publier sur le site en ligne',
+    '<div class="fg"><label class="lbl">Description des changements</label><input class="inp" id="pubMsg" value="Mise à jour du contenu du portfolio"></div>' +
+    '<p class="small muted">' + summaryOfChanges() + '</p>' +
+    (warns ? '<p class="small" style="color:var(--warn);margin-top:8px"><i class="fa-solid fa-triangle-exclamation"></i> ' + warns + ' avertissement(s), voir Contrôles.</p>' : '') +
+    '<p class="small muted" style="margin-top:8px">Le site se met à jour environ une minute après la publication.</p>',
+    [{ label: 'Annuler' }, { label: '<i class="fa-solid fa-cloud-arrow-up"></i>Publier', cls: 'btn-success', fn: () => publish($('#pubMsg').value.trim() || 'Mise à jour du contenu du portfolio') }]);
+  setTimeout(() => $('#pubMsg') && $('#pubMsg').select(), 50);
 }
-/* ── CHANGE PASSWORD ── */
-function setupPwdModal() {
-  const overlay = document.getElementById('pwdOverlay');
-  const msg = document.getElementById('pwdMsg');
-
-  function openPwd() {
-    document.getElementById('pwdCurrent').value = '';
-    document.getElementById('pwdNew').value = '';
-    document.getElementById('pwdConfirm').value = '';
-    msg.style.display = 'none';
-    overlay.classList.add('visible');
-    document.getElementById('pwdCurrent').focus();
-  }
-  function closePwd() { overlay.classList.remove('visible'); }
-
-  function showMsg(text, isError) {
-    msg.textContent = text;
-    msg.style.color = isError ? 'var(--danger)' : 'var(--success)';
-    msg.style.display = 'block';
-  }
-
-  document.getElementById('btnChangePwd').addEventListener('click', openPwd);
-  document.getElementById('btnPwdClose').addEventListener('click', closePwd);
-  document.getElementById('btnPwdCancel').addEventListener('click', closePwd);
-  overlay.addEventListener('click', e => { if (e.target === overlay) closePwd(); });
-
-  document.getElementById('btnPwdSave').addEventListener('click', () => {
-    const current  = document.getElementById('pwdCurrent').value;
-    const newPwd   = document.getElementById('pwdNew').value.trim();
-    const confirm  = document.getElementById('pwdConfirm').value;
-    const active   = localStorage.getItem(LS_PWD) || ADMIN_PASSWORD;
-
-    if (current !== active)       return showMsg('Incorrect current password.', true);
-    if (newPwd.length < 6)        return showMsg('New password must be at least 6 characters.', true);
-    if (newPwd !== confirm)       return showMsg('Passwords do not match.', true);
-
-    localStorage.setItem(LS_PWD, newPwd);
-    showMsg('Password updated successfully.', false);
-    setTimeout(closePwd, 1200);
+function summaryOfChanges() {
+  const old = JSON.parse(S.published), now = S.data, parts = [];
+  const NAMES = { experience: 'expériences', projects: 'projets', services: 'services', certificates: 'certificats', skills: 'compétences' };
+  ['experience', 'projects', 'services', 'certificates', 'skills'].forEach(k => {
+    const a = old[k] || [], b = now[k] || [];
+    const ids = new Set(a.map(x => x.id)), idsB = new Set(b.map(x => x.id));
+    const added = b.filter(x => !ids.has(x.id)).length, removed = a.filter(x => !idsB.has(x.id)).length;
+    const edited = b.filter(x => ids.has(x.id) && JSON.stringify(x) !== JSON.stringify(a.find(y => y.id === x.id))).length;
+    const moved = !added && !removed && a.map(x => x.id).join() !== b.map(x => x.id).join();
+    const bits = [added && added + ' ajouté(s)', edited && edited + ' modifié(s)', removed && removed + ' supprimé(s)', moved && 'réordonnés'].filter(Boolean);
+    if (bits.length) parts.push('<b>' + NAMES[k] + '</b> : ' + bits.join(', '));
   });
+  const tChanged = Object.keys(now.texts.en).filter(k => now.texts.en[k] !== (old.texts.en || {})[k] || now.texts.fr[k] !== (old.texts.fr || {})[k]).length;
+  if (tChanged) parts.push('<b>textes du site</b> : ' + tChanged + ' modifié(s)');
+  if (S.uploads.length) parts.push('<b>fichiers</b> : ' + S.uploads.length + ' à envoyer');
+  return parts.join(' · ') || 'Modifications détectées.';
+}
+async function publish(message) {
+  const busy = t => toast('<i class="fa-solid fa-spinner fa-spin"></i> ' + t, 'success', 60000);
+  try {
+    busy('Vérification de la dernière version...');
+    const head = await ghHead();
+    if (head !== S.base.commit) {
+      const f = await ghFile(DATA_PATH, head);
+      if (f.sha !== S.base.blob) {
+        const go = await confirmBox('Le contenu a changé sur GitHub',
+          '<p>portfolio-data.js a été modifié sur GitHub après l’ouverture de l’admin (autre appareil ou commit). Publier maintenant <b>remplacerait ces changements</b> par ton brouillon.</p><p class="small muted" style="margin-top:8px">Annule, puis recharge l’admin pour repartir de la dernière version, ou écrase si tu es sûr.</p>', 'Écraser');
+        if (!go) { $('#toast').className = ''; return; }
+      }
+    }
+    const files = [{ path: DATA_PATH, content: serializeData(S.data) }];
+    busy('Mise à jour de la version statique de la page...');
+    let fallbackNote = '';
+    try { files.push({ path: INDEX_PATH, content: await buildFallbackIndex(head) }); }
+    catch (e) { fallbackNote = ' (version statique non mise à jour : ' + e.message + ')'; console.warn(e); }
+    busy('Envoi...');
+    const entries = [];
+    for (const f of files) {
+      const b = await gh('POST', repoPath('/git/blobs'), { content: utf8ToB64(f.content), encoding: 'base64' });
+      entries.push({ path: f.path, mode: '100644', type: 'blob', sha: b.sha });
+    }
+    for (const u of S.uploads) {
+      const b = await gh('POST', repoPath('/git/blobs'), { content: await blobToB64(u.blob), encoding: 'base64' });
+      entries.push({ path: u.path, mode: '100644', type: 'blob', sha: b.sha });
+    }
+    const baseCommit = await gh('GET', repoPath('/git/commits/' + head));
+    const tree = await gh('POST', repoPath('/git/trees'), { base_tree: baseCommit.tree.sha, tree: entries });
+    const commit = await gh('POST', repoPath('/git/commits'), { message: message + '\n\nPublié depuis l’admin du portfolio.', tree: tree.sha, parents: [head] });
+    await gh('PATCH', repoPath('/git/refs/heads/' + BRANCH), { sha: commit.sha, force: false });
+    // new base
+    S.base = { commit: commit.sha, blob: entries[0].sha };
+    S.published = JSON.stringify(S.data);
+    S.uploads.forEach(u => S.tree && S.tree.add(u.path));
+    S.uploads = [];
+    localStorage.removeItem(DRAFT_KEY);
+    refreshAll();
+    toast('<i class="fa-solid fa-circle-check"></i> Publié' + esc(fallbackNote) + '. <a href="https://github.com/' + OWNER + '/' + REPO + '/commit/' + commit.sha + '" target="_blank" rel="noopener">Voir le commit</a>', fallbackNote ? 'error' : 'success', 9000);
+  } catch (e) {
+    console.error(e);
+    toast('Échec de la publication : ' + esc(e.message) + (e.status === 403 || e.status === 404 ? '<br>Vérifie que le jeton a « Contents : Read and write ».' : e.status === 422 || e.status === 409 ? '<br>La branche a bougé entre-temps : réessaie.' : ''), 'error', 10000);
+  }
+}
 
-  document.getElementById('pwdOverlay').addEventListener('keydown', e => {
-    if (e.key === 'Escape') closePwd();
-    if (e.key === 'Enter')  document.getElementById('btnPwdSave').click();
-  });
+/* --- static fallback: render the draft in a hidden frame, copy the generated sections into index.html --- */
+function innerSpans(s, openTag) {
+  const res = []; let pos = 0;
+  while (true) {
+    const i = s.indexOf(openTag, pos); if (i < 0) return res;
+    const st = i + openTag.length; let depth = 1; const re = /<(\/?)div\b[^>]*>/g; re.lastIndex = st; let m;
+    while ((m = re.exec(s))) { depth += m[1] ? -1 : 1; if (depth === 0) { res.push([st, m.index]); break; } }
+    if (depth !== 0) throw new Error('unbalanced ' + openTag);
+    pos = st;
+  }
+}
+function unglitch(x) { return x.replace(/<span class="glitch-word" data-text="[^"]*">([\s\S]*?)<\/span>/g, '$1'); }
+async function buildFallbackIndex(head) {
+  const src = (await ghFile(INDEX_PATH, head)).text;
+  const crlf = src.includes('\r\n');
+  saveDraftForPreview();
+  const savedLang = localStorage.getItem('lang');
+  const frame = document.createElement('iframe');
+  frame.style.cssText = 'position:fixed;left:-10000px;top:0;width:1280px;height:900px;visibility:hidden';
+  frame.src = '../index.html?preview=1&fallback=' + Date.now();
+  document.body.appendChild(frame);
+  try {
+    await new Promise((res, rej) => { frame.onload = res; setTimeout(() => rej(new Error('délai dépassé')), 20000); });
+    await new Promise(r => setTimeout(r, 400));
+    const w = frame.contentWindow, doc = frame.contentDocument;
+    if (w.applyLang) w.applyLang('en');
+    let out = src;
+    for (const [sel, tag] of FALLBACK_TARGETS) {
+      const els = [...doc.querySelectorAll(sel)];
+      const spans = innerSpans(out, tag);
+      if (!els.length || els.length !== spans.length) throw new Error('structure différente pour ' + sel);
+      for (let k = spans.length - 1; k >= 0; k--) {
+        let html = unglitch(els[k].innerHTML);
+        if (crlf) html = html.replace(/\r?\n/g, '\r\n');
+        out = out.slice(0, spans[k][0]) + html + out.slice(spans[k][1]);
+      }
+    }
+    // fixed texts (English defaults of data-i18n elements)
+    const T = S.data.texts.en;
+    Object.keys(T).forEach(k => {
+      const re = new RegExp('(<(\\w+)[^>]*\\sdata-i18n="' + k.replace(/[-]/g, '\\-') + '"[^>]*>)([\\s\\S]*?)(</\\2>)', 'g');
+      const ms = [...out.matchAll(re)];
+      if (ms.length !== 1 || new RegExp('<' + ms[0][2] + '[\\s>]').test(ms[0][3])) return;
+      out = out.replace(re, (m, a, t, b, c) => a + T[k] + c);
+    });
+    if (out.length < src.length * 0.5) throw new Error('résultat tronqué');
+    return out;
+  } finally {
+    frame.remove();
+    if (savedLang === null) localStorage.removeItem('lang'); else localStorage.setItem('lang', savedLang);
+  }
 }
 </script>
 </body>
