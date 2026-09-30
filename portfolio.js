@@ -50,7 +50,7 @@
                 + '<h3 class="pt-title">' + p.title + '</h3>'
                 + '<p class="pt-desc" data-i18n="pt-' + p.id + '-desc">' + l.desc + '</p>'
                 + '<div class="pt-stack">' + p.stack.map(function(t) { return '<span>' + t + '</span>'; }).join('') + '</div>'
-                + '<a class="pt-link" href="' + p.github + '" target="_blank" rel="noopener">' + (p.linkLabel ? '<span data-i18n="pt-' + p.id + '-link">' + (p.linkLabel[lang] || p.linkLabel.en) + '</span>' : 'GitHub') + ' ' + GITHUB_ICON + '</a>'
+                + (p.github ? '<a class="pt-link" href="' + p.github + '" target="_blank" rel="noopener">' + (p.linkLabel ? '<span data-i18n="pt-' + p.id + '-link">' + (p.linkLabel[lang] || p.linkLabel.en) + '</span>' : 'GitHub') + ' ' + GITHUB_ICON + '</a>' : '')
                 + '</div></article>';
         }).join('');
     }
