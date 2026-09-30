@@ -78,12 +78,14 @@
         return html + '</div>';
     }
 
+    var PDF_ICON = '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>';
     function _pdMedia(det) {
         var play = '<div class="pd-play"><svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg><span data-i18n="pd-watch-demo">Watch demo</span></div>';
         return '<div class="pd-media">' + (det.media || []).map(function(m) {
             var st = m.style ? ' style="' + m.style + '"' : '';
             if (m.type === 'label') return '<div class="pd-media-label"' + st + '>' + m.text + '</div>';
             if (m.type === 'video') return '<div class="pd-video-wrap" data-src="' + m.src + '"><img src="' + (m.poster || '') + '" alt="' + (m.alt || '') + '">' + play + '</div>';
+            if (m.type === 'pdf') return '<div class="pd-video-wrap pd-pdf-wrap" data-pdf="' + m.src + '"><img src="' + (m.poster || '') + '" alt="' + (m.alt || '') + '"><div class="pd-play">' + PDF_ICON + '<span data-i18n="pd-view-pdf">View presentation</span></div></div>';
             if (m.type === 'gallery') return '<div class="pd-imgs">' + (m.images || []).map(function(im) { return '<img src="' + im.src + '" alt="' + (im.alt || '') + '">'; }).join('') + '</div>';
             return '<img' + (m.overview ? ' class="pd-overview-img"' : '') + ' src="' + m.src + '" alt="' + (m.alt || '') + '"' + st + '>';
         }).join('') + '</div>';
@@ -905,6 +907,17 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     window.addEventListener('hashchange', ptHandleHash);
     setTimeout(ptHandleHash, 300);
+
+    /* --- PDF presentations in detail view (inline on desktop, new tab on phones) --- */
+    document.querySelectorAll('.pd-pdf-wrap').forEach(function(wrap) {
+        wrap.addEventListener('click', function() {
+            var src = wrap.getAttribute('data-pdf');
+            if (!src || wrap.querySelector('iframe')) return;
+            if (window.innerWidth < 740) { window.open(src, '_blank', 'noopener'); return; }
+            wrap.innerHTML = '<iframe src="' + src + '#view=FitH" title="PDF" loading="lazy"></iframe>';
+            wrap.style.cursor = 'default';
+        });
+    });
 
     /* --- Video players in detail view --- */
     document.querySelectorAll('.pd-video-wrap').forEach(function(wrap) {
