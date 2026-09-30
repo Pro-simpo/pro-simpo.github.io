@@ -296,7 +296,7 @@ window.PORTFOLIO_DATA = {
         "Modbus",
         "iptables"
       ],
-      "github": "https://github.com/Pro-simpo",
+      "github": "https://www.linkedin.com/posts/taobata-simpore-21b255272_operation-shadow-factory-ugcPost-7472259101587234816-ylmG/",
       "en": {
         "cats": "Cybersecurity &middot; SOC &middot; Cloud &middot; R&amp;D",
         "desc": "Full SOC infrastructure (Wazuh, TheHive 5, Shuffle SOAR) on OCI monitoring a simulated IT/OT industrial environment. 15 detection rules, automated SOAR workflow (detect → block IP → TheHive incident)."
@@ -346,15 +346,15 @@ window.PORTFOLIO_DATA = {
           ],
           "links": [
             {
-              "label": "GitHub",
-              "url": "https://github.com/Pro-simpo",
-              "icon": "github",
+              "label": "Demo on LinkedIn",
+              "url": "https://www.linkedin.com/posts/taobata-simpore-21b255272_operation-shadow-factory-ugcPost-7472259101587234816-ylmG/",
+              "icon": "link",
               "ghost": false
             }
           ],
           "team": {
-            "label": "Author",
-            "text": "Taobata Simporé"
+            "label": "Team",
+            "text": "Taobata SIMPORÉ, Abdoul-Moumouni DIALLO, Daniel KUNAKA, Otman DAKACH"
           }
         },
         "fr": {
@@ -397,15 +397,15 @@ window.PORTFOLIO_DATA = {
           ],
           "links": [
             {
-              "label": "GitHub",
-              "url": "https://github.com/Pro-simpo",
-              "icon": "github",
+              "label": "Démo sur LinkedIn",
+              "url": "https://www.linkedin.com/posts/taobata-simpore-21b255272_operation-shadow-factory-ugcPost-7472259101587234816-ylmG/",
+              "icon": "link",
               "ghost": false
             }
           ],
           "team": {
-            "label": "Auteur",
-            "text": "Taobata Simporé"
+            "label": "Équipe",
+            "text": "Taobata SIMPORÉ, Abdoul-Moumouni DIALLO, Daniel KUNAKA, Otman DAKACH"
           }
         },
         "media": [
@@ -415,6 +415,10 @@ window.PORTFOLIO_DATA = {
             "alt": "ShadowFactory architecture"
           }
         ]
+      },
+      "linkLabel": {
+        "en": "Demo on LinkedIn",
+        "fr": "Démo sur LinkedIn"
       }
     },
     {
@@ -721,7 +725,7 @@ window.PORTFOLIO_DATA = {
         "NSG",
         "IDS/IPS"
       ],
-      "github": "https://github.com/Pro-simpo",
+      "github": "https://github.com/KunakaDK/Cloud-Intrusion-Detection-System",
       "en": {
         "cats": "Cybersecurity &middot; IDS/IPS &middot; Azure",
         "desc": "Suricata 8.0.4 deployment on Azure with custom VNet segmentation and NSG rules. 50,000+ active signatures and 4 custom detection rules for intrusion prevention."
@@ -770,14 +774,14 @@ window.PORTFOLIO_DATA = {
           "links": [
             {
               "label": "GitHub",
-              "url": "https://github.com/Pro-simpo",
+              "url": "https://github.com/KunakaDK/Cloud-Intrusion-Detection-System",
               "icon": "github",
               "ghost": false
             }
           ],
           "team": {
-            "label": "Author",
-            "text": "Taobata Simporé"
+            "label": "Team",
+            "text": "Taobata SIMPORÉ, Abdoul-Moumouni DIALLO, Daniel KUNAKA, Ahmed EL MAAZOUZI"
           }
         },
         "fr": {
@@ -819,14 +823,14 @@ window.PORTFOLIO_DATA = {
           "links": [
             {
               "label": "GitHub",
-              "url": "https://github.com/Pro-simpo",
+              "url": "https://github.com/KunakaDK/Cloud-Intrusion-Detection-System",
               "icon": "github",
               "ghost": false
             }
           ],
           "team": {
-            "label": "Auteur",
-            "text": "Taobata Simporé"
+            "label": "Équipe",
+            "text": "Taobata SIMPORÉ, Abdoul-Moumouni DIALLO, Daniel KUNAKA, Ahmed EL MAAZOUZI"
           }
         },
         "media": [
@@ -983,7 +987,7 @@ window.PORTFOLIO_DATA = {
         "Firebase",
         "AI/ML"
       ],
-      "github": "https://github.com/Pro-simpo/",
+      "github": "https://www.linkedin.com/posts/taobata-simpore-21b255272_solar-tracker-ai-driven-system-ugcPost-7334541377864708096-BlcJ/",
       "en": {
         "cats": "IoT &middot; AI &middot; Embedded",
         "desc": "Embedded system with ESP32 and AI algorithms that automatically adjusts solar panel orientation to maximize energy production."
@@ -1029,9 +1033,9 @@ window.PORTFOLIO_DATA = {
           ],
           "links": [
             {
-              "label": "GitHub",
-              "url": "https://github.com/Pro-simpo/",
-              "icon": "github",
+              "label": "Demo on LinkedIn",
+              "url": "https://www.linkedin.com/posts/taobata-simpore-21b255272_solar-tracker-ai-driven-system-ugcPost-7334541377864708096-BlcJ/",
+              "icon": "link",
               "ghost": false
             },
             {
@@ -1082,9 +1086,9 @@ window.PORTFOLIO_DATA = {
           ],
           "links": [
             {
-              "label": "GitHub",
-              "url": "https://github.com/Pro-simpo/",
-              "icon": "github",
+              "label": "Démo sur LinkedIn",
+              "url": "https://www.linkedin.com/posts/taobata-simpore-21b255272_solar-tracker-ai-driven-system-ugcPost-7334541377864708096-BlcJ/",
+              "icon": "link",
               "ghost": false
             },
             {
@@ -1107,6 +1111,10 @@ window.PORTFOLIO_DATA = {
             "alt": "Solar Tracker demo"
           }
         ]
+      },
+      "linkLabel": {
+        "en": "Demo on LinkedIn",
+        "fr": "Démo sur LinkedIn"
       }
     },
     {
@@ -1122,7 +1130,7 @@ window.PORTFOLIO_DATA = {
         "JDBC",
         "SHA-256"
       ],
-      "github": "https://github.com/KunakaDK/Healthcare-Patient-Records-and-Analytics-System-HePRAS-",
+      "github": "https://github.com/Pro-simpo/Healthcare-Patient-Records-and-Analytics-System-HePRAS-",
       "en": {
         "cats": "Java &middot; Database",
         "desc": "Database management app for medical practices: patient records, appointments, billing, role-based access control and SHA-256 password hashing."
@@ -1169,7 +1177,7 @@ window.PORTFOLIO_DATA = {
           "links": [
             {
               "label": "GitHub",
-              "url": "https://github.com/KunakaDK/Healthcare-Patient-Records-and-Analytics-System-HePRAS-",
+              "url": "https://github.com/Pro-simpo/Healthcare-Patient-Records-and-Analytics-System-HePRAS-",
               "icon": "github",
               "ghost": false
             }
@@ -1216,7 +1224,7 @@ window.PORTFOLIO_DATA = {
           "links": [
             {
               "label": "GitHub",
-              "url": "https://github.com/KunakaDK/Healthcare-Patient-Records-and-Analytics-System-HePRAS-",
+              "url": "https://github.com/Pro-simpo/Healthcare-Patient-Records-and-Analytics-System-HePRAS-",
               "icon": "github",
               "ghost": false
             }
@@ -1559,10 +1567,16 @@ window.PORTFOLIO_DATA = {
           ],
           "links": [
             {
-              "label": "GitHub",
+              "label": "GitHub · Phishing scanner",
               "url": "https://github.com/Pro-simpo/Brainwave_Matrix_Intern",
               "icon": "github",
               "ghost": false
+            },
+            {
+              "label": "GitHub · Password checker",
+              "url": "https://github.com/Pro-simpo/Brainwave_Matrix_Intern-2",
+              "icon": "github",
+              "ghost": true
             }
           ],
           "team": null
@@ -1610,10 +1624,16 @@ window.PORTFOLIO_DATA = {
           ],
           "links": [
             {
-              "label": "GitHub",
+              "label": "GitHub · Scanner de phishing",
               "url": "https://github.com/Pro-simpo/Brainwave_Matrix_Intern",
               "icon": "github",
               "ghost": false
+            },
+            {
+              "label": "GitHub · Vérificateur de mots de passe",
+              "url": "https://github.com/Pro-simpo/Brainwave_Matrix_Intern-2",
+              "icon": "github",
+              "ghost": true
             }
           ],
           "team": null
@@ -1656,7 +1676,7 @@ window.PORTFOLIO_DATA = {
         "MySQL",
         "JDBC"
       ],
-      "github": "https://github.com/Pro-simpo",
+      "github": "https://github.com/Pro-simpo/JAVA-Travel_Agency_Project",
       "en": {
         "cats": "Java &middot; JavaFX &middot; Database",
         "desc": "Desktop app for managing clients, reservations, itineraries, and payments, with admin dashboard and WhatsApp integration."
@@ -1790,7 +1810,7 @@ window.PORTFOLIO_DATA = {
         "JavaScript",
         "Canvas"
       ],
-      "github": "https://github.com/Pro-simpo",
+      "github": "https://github.com/Pro-simpo/pro-simpo.github.io",
       "en": {
         "cats": "Web &middot; Front-end",
         "desc": "Built from scratch in vanilla HTML, CSS and JavaScript, with no framework: dark and light themes, canvas animations and a fully responsive layout."
@@ -1834,7 +1854,14 @@ window.PORTFOLIO_DATA = {
               ]
             }
           ],
-          "links": [],
+          "links": [
+            {
+              "label": "GitHub",
+              "url": "https://github.com/Pro-simpo/pro-simpo.github.io",
+              "icon": "github",
+              "ghost": false
+            }
+          ],
           "team": null
         },
         "fr": {
@@ -1871,7 +1898,14 @@ window.PORTFOLIO_DATA = {
               ]
             }
           ],
-          "links": [],
+          "links": [
+            {
+              "label": "GitHub",
+              "url": "https://github.com/Pro-simpo/pro-simpo.github.io",
+              "icon": "github",
+              "ghost": false
+            }
+          ],
           "team": null
         },
         "media": [
@@ -1907,7 +1941,7 @@ window.PORTFOLIO_DATA = {
         "C++",
         "Electronics"
       ],
-      "github": "https://github.com/Pro-simpo",
+      "github": "",
       "en": {
         "cats": "IoT &middot; Electronics &middot; Arduino",
         "desc": "Hands-on Arduino and electronics projects in the O'dace club: components, circuits, and applied embedded systems theory."
@@ -2017,7 +2051,7 @@ window.PORTFOLIO_DATA = {
         "HTML",
         "CSS"
       ],
-      "github": "https://github.com/Pro-simpo",
+      "github": "",
       "en": {
         "cats": "Web &middot; HTML &middot; CSS",
         "desc": "Two timed front-end coding challenges. Won Marathon 1 by delivering a complete website in 5 hours. Placed 3rd in Marathon 2."
@@ -2143,7 +2177,7 @@ window.PORTFOLIO_DATA = {
         "VHDL",
         "Network"
       ],
-      "github": "https://github.com/Pro-simpo",
+      "github": "",
       "en": {
         "cats": "Academic &middot; Engineering",
         "desc": "Academic projects from the engineering cycle at ENSA Tétouan combining cybersecurity and embedded systems across various modules."
@@ -2258,7 +2292,7 @@ window.PORTFOLIO_DATA = {
         "Community",
         "Leadership"
       ],
-      "github": "https://github.com/Pro-simpo",
+      "github": "",
       "en": {
         "cats": "Community &middot; Social",
         "desc": "Team social project: renovated an orphanage study room, organized tutoring sessions, and raised 6,500 MAD in community funding."
