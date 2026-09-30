@@ -84,10 +84,10 @@
         return '<div class="pd-media">' + (det.media || []).map(function(m) {
             var st = m.style ? ' style="' + m.style + '"' : '';
             if (m.type === 'label') return '<div class="pd-media-label"' + st + '>' + m.text + '</div>';
-            if (m.type === 'video') return '<div class="pd-video-wrap" data-src="' + m.src + '"><img src="' + (m.poster || '') + '" alt="' + (m.alt || '') + '">' + play + '</div>';
-            if (m.type === 'pdf') return '<div class="pd-video-wrap pd-pdf-wrap" data-pdf="' + m.src + '"><img src="' + (m.poster || '') + '" alt="' + (m.alt || '') + '"><div class="pd-play">' + PDF_ICON + '<span data-i18n="pd-view-pdf">View presentation</span></div></div>';
-            if (m.type === 'gallery') return '<div class="pd-imgs">' + (m.images || []).map(function(im) { return '<img src="' + im.src + '" alt="' + (im.alt || '') + '">'; }).join('') + '</div>';
-            return '<img' + (m.overview ? ' class="pd-overview-img"' : '') + ' src="' + m.src + '" alt="' + (m.alt || '') + '"' + st + '>';
+            if (m.type === 'video') return '<div class="pd-video-wrap" data-src="' + m.src + '"><img loading="lazy" src="' + (m.poster || '') + '" alt="' + (m.alt || '') + '">' + play + '</div>';
+            if (m.type === 'pdf') return '<div class="pd-video-wrap pd-pdf-wrap" data-pdf="' + m.src + '"><img loading="lazy" src="' + (m.poster || '') + '" alt="' + (m.alt || '') + '"><div class="pd-play">' + PDF_ICON + '<span data-i18n="pd-view-pdf">View presentation</span></div></div>';
+            if (m.type === 'gallery') return '<div class="pd-imgs">' + (m.images || []).map(function(im) { return '<img loading="lazy" src="' + im.src + '" alt="' + (im.alt || '') + '">'; }).join('') + '</div>';
+            return '<img loading="lazy"' + (m.overview ? ' class="pd-overview-img"' : '') + ' src="' + m.src + '" alt="' + (m.alt || '') + '"' + st + '>';
         }).join('') + '</div>';
     }
 
