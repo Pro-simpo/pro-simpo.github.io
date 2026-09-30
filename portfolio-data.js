@@ -286,8 +286,8 @@ window.PORTFOLIO_DATA = {
       "category": "cyber",
       "detId": "shadow",
       "title": "ShadowFactory – Red Team vs Blue Team",
-      "thumbnail": "img/img19.png",
-      "thumbAlt": "ShadowFactory SOC",
+      "thumbnail": "img/shadowfactory.jpg",
+      "thumbAlt": "ShadowFactory: Red Team vs Blue Team",
       "stack": [
         "OCI",
         "Wazuh",
@@ -346,15 +346,21 @@ window.PORTFOLIO_DATA = {
           ],
           "links": [
             {
-              "label": "Demo on LinkedIn",
+              "label": "LinkedIn post (PDF)",
               "url": "https://www.linkedin.com/posts/taobata-simpore-21b255272_operation-shadow-factory-ugcPost-7472259101587234816-ylmG/",
               "icon": "link",
               "ghost": false
+            },
+            {
+              "label": "PDF presentation",
+              "url": "certificates/shadowFactory.pdf",
+              "icon": "pdf",
+              "ghost": true
             }
           ],
           "team": {
             "label": "Team",
-            "text": "Taobata SIMPORÉ, Abdoul-Moumouni DIALLO, Daniel KUNAKA, Otman DAKACH"
+            "text": "Taobata SIMPORÉ, Abdoul-Moumouni DIALLO, Daniel KUNAKA, Otman DAKACH · Supervisor: Prof. Younes WADIAI"
           }
         },
         "fr": {
@@ -397,28 +403,35 @@ window.PORTFOLIO_DATA = {
           ],
           "links": [
             {
-              "label": "Démo sur LinkedIn",
+              "label": "Publication LinkedIn (PDF)",
               "url": "https://www.linkedin.com/posts/taobata-simpore-21b255272_operation-shadow-factory-ugcPost-7472259101587234816-ylmG/",
               "icon": "link",
               "ghost": false
+            },
+            {
+              "label": "Présentation PDF",
+              "url": "certificates/shadowFactory.pdf",
+              "icon": "pdf",
+              "ghost": true
             }
           ],
           "team": {
             "label": "Équipe",
-            "text": "Taobata SIMPORÉ, Abdoul-Moumouni DIALLO, Daniel KUNAKA, Otman DAKACH"
+            "text": "Taobata SIMPORÉ, Abdoul-Moumouni DIALLO, Daniel KUNAKA, Otman DAKACH · Encadrant : Pr Younes WADIAI"
           }
         },
         "media": [
           {
-            "type": "image",
-            "src": "img/img19.png",
-            "alt": "ShadowFactory architecture"
+            "type": "pdf",
+            "src": "certificates/shadowFactory.pdf",
+            "poster": "img/shadowFactory-slide1.jpg",
+            "alt": "Operation ShadowFactory presentation"
           }
         ]
       },
       "linkLabel": {
-        "en": "Demo on LinkedIn",
-        "fr": "Démo sur LinkedIn"
+        "en": "LinkedIn post (PDF)",
+        "fr": "Publication LinkedIn (PDF)"
       }
     },
     {
@@ -716,8 +729,8 @@ window.PORTFOLIO_DATA = {
       "category": "cyber",
       "detId": "ids",
       "title": "IDS/IPS Cloud Deployment (Azure)",
-      "thumbnail": "img/img19.png",
-      "thumbAlt": "IDS/IPS Azure",
+      "thumbnail": "img/ids-cover.jpg",
+      "thumbAlt": "Suricata intrusion detection and prevention demo",
       "stack": [
         "Azure",
         "Suricata 8.0.4",
@@ -835,9 +848,10 @@ window.PORTFOLIO_DATA = {
         },
         "media": [
           {
-            "type": "image",
-            "src": "img/img19.png",
-            "alt": "IDS/IPS Azure architecture"
+            "type": "video",
+            "src": "img/ids-suricata-demo.mp4",
+            "poster": "img/ids-cover.jpg",
+            "alt": "IDS/IPS Suricata on Azure demo"
           }
         ]
       }
@@ -1033,7 +1047,7 @@ window.PORTFOLIO_DATA = {
           ],
           "links": [
             {
-              "label": "Demo on LinkedIn",
+              "label": "LinkedIn post (PDF)",
               "url": "https://www.linkedin.com/posts/taobata-simpore-21b255272_solar-tracker-ai-driven-system-ugcPost-7334541377864708096-BlcJ/",
               "icon": "link",
               "ghost": false
@@ -1046,8 +1060,8 @@ window.PORTFOLIO_DATA = {
             }
           ],
           "team": {
-            "label": "Supervisor",
-            "text": "Mr. Younes WADIAI"
+            "label": "Team",
+            "text": "Taobata SIMPORÉ, Abdoul-Moumouni DIALLO, Daniel KUNAKA · Supervisor: Mr. Younes WADIAI"
           }
         },
         "fr": {
@@ -1086,7 +1100,7 @@ window.PORTFOLIO_DATA = {
           ],
           "links": [
             {
-              "label": "Démo sur LinkedIn",
+              "label": "Publication LinkedIn (PDF)",
               "url": "https://www.linkedin.com/posts/taobata-simpore-21b255272_solar-tracker-ai-driven-system-ugcPost-7334541377864708096-BlcJ/",
               "icon": "link",
               "ghost": false
@@ -1099,8 +1113,8 @@ window.PORTFOLIO_DATA = {
             }
           ],
           "team": {
-            "label": "Superviseur",
-            "text": "M. Younes WADIAI"
+            "label": "Équipe",
+            "text": "Taobata SIMPORÉ, Abdoul-Moumouni DIALLO, Daniel KUNAKA · Encadrant : M. Younes WADIAI"
           }
         },
         "media": [
@@ -1113,8 +1127,8 @@ window.PORTFOLIO_DATA = {
         ]
       },
       "linkLabel": {
-        "en": "Demo on LinkedIn",
-        "fr": "Démo sur LinkedIn"
+        "en": "LinkedIn post (PDF)",
+        "fr": "Publication LinkedIn (PDF)"
       }
     },
     {
@@ -1317,7 +1331,7 @@ window.PORTFOLIO_DATA = {
           ],
           "team": {
             "label": "Team",
-            "text": "Taobata SIMPOR&Eacute;, Daniel KUNAKA, Abdoul-Moumouni DIALLO, Issoufou ABOUBACAR, Hind KADDOUR, Lina RAHMOUNE, Imane BENAKKA, Oussama LEMTIOUI"
+            "text": "Taobata SIMPORÉ, Daniel KUNAKA, Abdoul-Moumouni DIALLO, Youssra MAKRI, Doha BOUARRAF, Laila SABOR, Malak EL BAROUDI, Hafsa MOUHAFID · Supervisor: Prof. Jamal ZBITOU"
           }
         },
         "fr": {
@@ -1370,7 +1384,7 @@ window.PORTFOLIO_DATA = {
           ],
           "team": {
             "label": "Équipe",
-            "text": "Taobata SIMPOR&Eacute;, Daniel KUNAKA, Abdoul-Moumouni DIALLO, Issoufou ABOUBACAR, Hind KADDOUR, Lina RAHMOUNE, Imane BENAKKA, Oussama LEMTIOUI"
+            "text": "Taobata SIMPORÉ, Daniel KUNAKA, Abdoul-Moumouni DIALLO, Youssra MAKRI, Doha BOUARRAF, Laila SABOR, Malak EL BAROUDI, Hafsa MOUHAFID · Encadrant : Pr Jamal ZBITOU"
           }
         },
         "media": [
@@ -1668,8 +1682,8 @@ window.PORTFOLIO_DATA = {
       "category": "java",
       "detId": "agency",
       "title": "Travel Agency Management System",
-      "thumbnail": "img/img19.png",
-      "thumbAlt": "Travel Agency App",
+      "thumbnail": "img/overviewBg.png",
+      "thumbAlt": "Travel Agency app login screen",
       "stack": [
         "Java",
         "JavaFX",
@@ -1729,8 +1743,8 @@ window.PORTFOLIO_DATA = {
             }
           ],
           "team": {
-            "label": "Supervisor",
-            "text": "Fouad AYTOUNA"
+            "label": "Team",
+            "text": "Taobata SIMPORÉ, Abdoul-Moumouni DIALLO, Doha BOUARRAF, Youssra MAKRI · Supervisor: Mr. Fouad AYTOUNA"
           }
         },
         "fr": {
@@ -1776,8 +1790,8 @@ window.PORTFOLIO_DATA = {
             }
           ],
           "team": {
-            "label": "Superviseur",
-            "text": "Fouad AYTOUNA"
+            "label": "Équipe",
+            "text": "Taobata SIMPORÉ, Abdoul-Moumouni DIALLO, Doha BOUARRAF, Youssra MAKRI · Encadrant : M. Fouad AYTOUNA"
           }
         },
         "media": [
@@ -1934,8 +1948,8 @@ window.PORTFOLIO_DATA = {
       "category": "iot",
       "detId": "odace",
       "title": "O'dace Electronics Projects",
-      "thumbnail": "img/odace1.jpg",
-      "thumbAlt": "O'dace projects",
+      "thumbnail": "img/img19.png",
+      "thumbAlt": "O'dace Electronics Projects",
       "stack": [
         "Arduino",
         "C++",
@@ -2045,8 +2059,8 @@ window.PORTFOLIO_DATA = {
       "category": "web",
       "detId": "marathon",
       "title": "CoderSphere Coding Marathons",
-      "thumbnail": "img/marathon1-1.png",
-      "thumbAlt": "Marathon 1 screenshot",
+      "thumbnail": "img/img19.png",
+      "thumbAlt": "CoderSphere Coding Marathons",
       "stack": [
         "HTML",
         "CSS"
@@ -2781,7 +2795,8 @@ window.PORTFOLIO_DATA = {
       "ct-ph-message": "Your message…",
       "ct-submit": "Send message",
       "hero-roles": "Cybersecurity Engineer | QA & AppSec Engineer | Embedded Systems Dev",
-      "pd-watch-demo": "Watch demo"
+      "pd-watch-demo": "Watch demo",
+      "pd-view-pdf": "View presentation"
     },
     "fr": {
       "nav-home": "Accueil",
@@ -2832,7 +2847,8 @@ window.PORTFOLIO_DATA = {
       "ct-ph-message": "Votre message…",
       "ct-submit": "Envoyer le message",
       "hero-roles": "Ingénieur Cybersécurité | Ingénieur QA & AppSec | Systèmes Embarqués",
-      "pd-watch-demo": "Voir la démo"
+      "pd-watch-demo": "Voir la démo",
+      "pd-view-pdf": "Voir la présentation"
     }
   }
 };

@@ -3796,13 +3796,19 @@ address{
 	gap: 6px;
 }
 
-.pd-stack span {
-	padding: 3px 10px;
-	border-radius: 20px;
-	background: rgba(6, 182, 212, 0.13);
+.pd-stack > span {
+	padding: 3px 9px;
+	border-radius: 4px;
+	border: 1px solid rgba(2, 136, 209, 0.28);
+	background: transparent;
 	font-size: 12px;
 	font-family: lato, sans-serif;
-	color: rgba(6, 182, 212, 0.9);
+	color: #C9D4DD;
+}
+
+[data-theme="light"] .pd-stack > span {
+	border-color: rgba(2, 136, 209, 0.25);
+	color: #334155;
 }
 
 /* --- Links --- */
@@ -3902,6 +3908,14 @@ address{
 
 .pd-play svg {
 	filter: drop-shadow(0 2px 8px rgba(0,0,0,0.7));
+}
+
+.pd-pdf-wrap iframe {
+	width: 100%;
+	height: 100%;
+	border: 0;
+	display: block;
+	background: #fff;
 }
 
 .pd-video-wrap video {
