@@ -320,11 +320,11 @@ window.PORTFOLIO_DATA = {
               "type": "list",
               "items": [
                 "Full SOC stack on OCI: Wazuh SIEM, TheHive 5 case management, Shuffle SOAR automation",
-                "Multi-VM environment simulating IT (Windows Server AD, Linux workstations) and OT (PLC via Modbus)",
+                "6 virtual machines simulating IT (DVWA web server, Active Directory) and OT (PLC simulated with OpenPLC, Modbus TCP)",
                 "5 attack phases: network scanning, SQL injection, Active Directory lateral movement, OT pivoting, PLC manipulation via Modbus",
                 "15 custom Wazuh detection rules mapped to each attack phase",
                 "Automated SOAR workflow: alert &rarr; IP block via iptables &rarr; incident case in TheHive",
-                "IT/OT network segmentation with dedicated VLAN and DMZ"
+                "Three segmented network zones (IT, DMZ, OT/SCADA) using Oracle Cloud security lists"
               ]
             },
             {
@@ -377,11 +377,11 @@ window.PORTFOLIO_DATA = {
               "type": "list",
               "items": [
                 "Stack SOC complète sur OCI : SIEM Wazuh, gestion des incidents avec TheHive 5, automatisation avec Shuffle SOAR",
-                "Environnement multi-VM simulant l’IT (Windows Server AD, postes Linux) et l’OT (automate PLC via Modbus)",
+                "6 machines virtuelles simulant l’IT (serveur web DVWA, Active Directory) et l’OT (automate simulé avec OpenPLC, Modbus TCP)",
                 "5 phases d’attaque : scan réseau, injection SQL, mouvement latéral dans Active Directory, pivot vers l’OT, manipulation de l’automate PLC via Modbus",
                 "15 règles de détection Wazuh personnalisées, associées à chaque phase d’attaque",
                 "Workflow SOAR automatisé : alerte &rarr; blocage de l’IP via iptables &rarr; dossier d’incident dans TheHive",
-                "Segmentation réseau IT/OT avec VLAN dédié et DMZ"
+                "Trois zones réseau segmentées (IT, DMZ, OT/SCADA) avec les security lists d’Oracle Cloud"
               ]
             },
             {
@@ -696,9 +696,9 @@ window.PORTFOLIO_DATA = {
               "type": "stack",
               "items": [
                 "CTF",
-                "Incident Response",
-                "Digital Forensics",
-                "Teamwork"
+                "Réponse à incident",
+                "Investigation numérique",
+                "Travail d’équipe"
               ]
             }
           ],
@@ -762,12 +762,12 @@ window.PORTFOLIO_DATA = {
               "type": "list",
               "items": [
                 "Suricata 8.0.4 deployed on Azure VM in inline IPS mode (NFQUEUE)",
-                "Custom VNet segmentation: DMZ, internal services and monitoring subnets",
+                "Custom VNet with a public subnet (attacker VM) and a private subnet (Suricata and target VMs), and a route table sending the traffic through Suricata",
                 "NSG (Network Security Group) rules for cloud-layer traffic filtering",
-                "50,000+ active Suricata ET Community signatures",
+                "50,000+ active Suricata ET Open signatures",
                 "4 custom detection rules targeting specific threat patterns",
-                "Real-time alert pipeline: Suricata EVE JSON &rarr; log parsing &rarr; dashboard",
-                "Tested against simulated attack traffic (port scans, brute-force, exploit attempts)"
+                "Alert analysis from the Suricata EVE JSON logs with jq",
+                "Tested against simulated attacks: Nmap scans, ICMP flood (hping3), SSH brute force (Hydra) and LFI attempts (ffuf)"
               ]
             },
             {
@@ -779,8 +779,9 @@ window.PORTFOLIO_DATA = {
                 "VNet",
                 "NSG",
                 "iptables",
-                "Python",
-                "Linux"
+                "Linux",
+                "Nmap",
+                "Hydra"
               ]
             }
           ],
@@ -811,12 +812,12 @@ window.PORTFOLIO_DATA = {
               "type": "list",
               "items": [
                 "Suricata 8.0.4 déployé sur une VM Azure en mode IPS inline (NFQUEUE)",
-                "Segmentation VNet personnalisée : sous-réseaux DMZ, services internes et supervision",
+                "VNet personnalisé avec un sous-réseau public (VM attaquante) et un sous-réseau privé (VM Suricata et VM cible), et une table de routage qui fait passer le trafic par Suricata",
                 "Règles NSG (Network Security Group) pour le filtrage du trafic au niveau cloud",
-                "Plus de 50 000 signatures Suricata ET Community actives",
+                "Plus de 50 000 signatures Suricata ET Open actives",
                 "4 règles de détection personnalisées ciblant des schémas de menace spécifiques",
-                "Chaîne d’alertes en temps réel : Suricata EVE JSON &rarr; analyse des logs &rarr; tableau de bord",
-                "Testé face à du trafic d’attaque simulé (scans de ports, force brute, tentatives d’exploitation)"
+                "Analyse des alertes à partir des logs Suricata EVE JSON avec jq",
+                "Testé face à des attaques simulées : scans Nmap, flood ICMP (hping3), force brute SSH (Hydra) et tentatives de LFI (ffuf)"
               ]
             },
             {
@@ -828,8 +829,9 @@ window.PORTFOLIO_DATA = {
                 "VNet",
                 "NSG",
                 "iptables",
-                "Python",
-                "Linux"
+                "Linux",
+                "Nmap",
+                "Hydra"
               ]
             }
           ],
@@ -894,12 +896,12 @@ window.PORTFOLIO_DATA = {
               "title": "Key Features",
               "type": "list",
               "items": [
-                "Distributed ESP32 sensor nodes (temperature, humidity, smoke, CO&#8322;)",
+                "ESP32 sensor nodes measuring temperature, humidity and smoke/gas levels",
                 "MQTT publish/subscribe for real-time data streaming",
-                "Random Forest ML classifier for fire risk classification",
-                "Flask web dashboard with live sensor maps and alert logs",
-                "Automated SMS/email alerts on threshold breach",
-                "MySQL data persistence for historical analysis"
+                "Random Forest classifier that separates real fires from false alarms",
+                "Flask web dashboard with a map of the sensor nodes (Leaflet) and history charts (Chart.js)",
+                "JWT authentication and an admin panel to manage users and sensor nodes",
+                "MySQL storage of raw data, risk probabilities and alert statuses"
               ]
             },
             {
@@ -912,7 +914,8 @@ window.PORTFOLIO_DATA = {
                 "Scikit-learn",
                 "Flask",
                 "MySQL",
-                "Node-RED"
+                "Leaflet",
+                "Chart.js"
               ]
             }
           ],
@@ -942,12 +945,12 @@ window.PORTFOLIO_DATA = {
               "title": "Fonctionnalités clés",
               "type": "list",
               "items": [
-                "Nœuds capteurs ESP32 distribués (température, humidité, fumée, CO&#8322;)",
+                "Nœuds capteurs ESP32 mesurant la température, l’humidité et les niveaux de fumée et de gaz",
                 "Publication/abonnement MQTT pour la transmission des données en temps réel",
-                "Classifieur ML Random Forest pour la classification du risque d’incendie",
-                "Tableau de bord web Flask avec cartes des capteurs en direct et journaux d’alertes",
-                "Alertes SMS/e-mail automatiques en cas de dépassement de seuil",
-                "Persistance des données dans MySQL pour l’analyse historique"
+                "Classifieur Random Forest qui distingue les vrais incendies des fausses alertes",
+                "Tableau de bord web Flask avec carte des nœuds capteurs (Leaflet) et graphiques d’historique (Chart.js)",
+                "Authentification JWT et panneau d’administration pour gérer les utilisateurs et les nœuds capteurs",
+                "Stockage dans MySQL des données brutes, des probabilités de risque et des statuts d’alerte"
               ]
             },
             {
@@ -960,7 +963,8 @@ window.PORTFOLIO_DATA = {
                 "Scikit-learn",
                 "Flask",
                 "MySQL",
-                "Node-RED"
+                "Leaflet",
+                "Chart.js"
               ]
             }
           ],
@@ -1018,18 +1022,18 @@ window.PORTFOLIO_DATA = {
             {
               "title": "Overview",
               "type": "text",
-              "text": "Intelligent embedded system that automatically adjusts solar panel orientation using AI inference on an ESP32. A Flutter mobile app provides remote monitoring via Firebase, with live performance graphs and power analytics."
+              "text": "Solar tracking system that orients a panel towards the sun in real time with LDR light sensors and a servomotor, and adds AI-based predictions. An ESP32 reads the sensors and sends the data to Firebase, an Arduino Uno drives the servomotor, and a Flutter mobile app shows live values, predictions and the panel charge."
             },
             {
               "title": "Key Features",
               "type": "list",
               "items": [
-                "ESP32 with dual-axis LDR feedback for angle computation",
-                "AI model inference for optimal panel orientation in real time",
-                "Flutter mobile app for live monitoring and remote control",
-                "Firebase real-time database for data sync",
-                "Power consumption analytics and production graphs",
-                "MATLAB simulation for algorithm validation"
+                "ESP32 (NodeMCU-32S) reading the LDR and DHT11 sensors, organised in FreeRTOS tasks",
+                "Arduino Uno driving the servomotor from the LDR values received over a serial link",
+                "Firebase real-time database for data synchronisation",
+                "Flutter mobile app with live data: power, harvested energy, charging time, light, temperature and humidity",
+                "Machine learning model that predicts upcoming values from the data history",
+                "Comparison screen between measured values and predictions, used to adjust the model"
               ]
             },
             {
@@ -1037,11 +1041,11 @@ window.PORTFOLIO_DATA = {
               "type": "stack",
               "items": [
                 "ESP32",
-                "Arduino",
+                "Arduino Uno",
+                "FreeRTOS",
                 "Flutter",
                 "Firebase",
-                "AI/ML",
-                "MATLAB"
+                "Machine Learning"
               ]
             }
           ],
@@ -1061,7 +1065,7 @@ window.PORTFOLIO_DATA = {
           ],
           "team": {
             "label": "Team",
-            "text": "Taobata SIMPORÉ, Abdoul-Moumouni DIALLO, Daniel KUNAKA · Supervisor: Mr. Younes WADIAI"
+            "text": "Taobata SIMPORÉ, Abdoul-Moumouni DIALLO, Daniel KUNAKA · Supervisor: Prof. Younes WADIAI"
           }
         },
         "fr": {
@@ -1071,18 +1075,18 @@ window.PORTFOLIO_DATA = {
             {
               "title": "Présentation",
               "type": "text",
-              "text": "Système embarqué intelligent qui ajuste automatiquement l’orientation d’un panneau solaire grâce à une inférence IA sur ESP32. Une application mobile Flutter assure la supervision à distance via Firebase, avec des graphiques de performance en direct et des analyses de puissance."
+              "text": "Système de suivi solaire qui oriente un panneau vers le soleil en temps réel grâce à des capteurs de lumière LDR et à un servomoteur, complété par des prédictions fondées sur l’IA. Un ESP32 lit les capteurs et envoie les données vers Firebase, un Arduino Uno commande le servomoteur, et une application mobile Flutter affiche les valeurs en direct, les prédictions et la charge du panneau."
             },
             {
               "title": "Fonctionnalités clés",
               "type": "list",
               "items": [
-                "ESP32 avec retour LDR sur deux axes pour le calcul de l’angle",
-                "Inférence d’un modèle IA pour une orientation optimale du panneau en temps réel",
-                "Application mobile Flutter : supervision en direct et contrôle à distance",
+                "ESP32 (NodeMCU-32S) qui lit les capteurs LDR et DHT11, organisé en tâches FreeRTOS",
+                "Arduino Uno qui commande le servomoteur à partir des valeurs LDR reçues par liaison série",
                 "Base de données temps réel Firebase pour la synchronisation des données",
-                "Analyse de la consommation électrique et graphiques de production",
-                "Simulation MATLAB pour la validation de l’algorithme"
+                "Application mobile Flutter avec les données en direct : puissance, énergie récoltée, temps de charge, luminosité, température et humidité",
+                "Modèle de machine learning qui prédit les prochaines valeurs à partir de l’historique des données",
+                "Écran de comparaison entre mesures réelles et prédictions, utilisé pour ajuster le modèle"
               ]
             },
             {
@@ -1090,11 +1094,11 @@ window.PORTFOLIO_DATA = {
               "type": "stack",
               "items": [
                 "ESP32",
-                "Arduino",
+                "Arduino Uno",
+                "FreeRTOS",
                 "Flutter",
                 "Firebase",
-                "AI/ML",
-                "MATLAB"
+                "Machine Learning"
               ]
             }
           ],
@@ -1114,7 +1118,7 @@ window.PORTFOLIO_DATA = {
           ],
           "team": {
             "label": "Équipe",
-            "text": "Taobata SIMPORÉ, Abdoul-Moumouni DIALLO, Daniel KUNAKA · Encadrant : M. Younes WADIAI"
+            "text": "Taobata SIMPORÉ, Abdoul-Moumouni DIALLO, Daniel KUNAKA · Encadrant : Pr Younes WADIAI"
           }
         },
         "media": [
@@ -1139,7 +1143,7 @@ window.PORTFOLIO_DATA = {
       "thumbnail": "img/videoHePRAS.jpg",
       "thumbAlt": "HePRAS",
       "stack": [
-        "Java Swing",
+        "JavaFX",
         "Oracle DB 21c",
         "JDBC",
         "SHA-256"
@@ -1180,8 +1184,9 @@ window.PORTFOLIO_DATA = {
               "title": "Technologies",
               "type": "stack",
               "items": [
-                "Java Swing",
+                "JavaFX",
                 "Oracle DB 21c",
+                "PL/SQL",
                 "JDBC",
                 "SHA-256",
                 "Maven"
@@ -1227,8 +1232,9 @@ window.PORTFOLIO_DATA = {
               "title": "Technologies",
               "type": "stack",
               "items": [
-                "Java Swing",
+                "JavaFX",
                 "Oracle DB 21c",
+                "PL/SQL",
                 "JDBC",
                 "SHA-256",
                 "Maven"
@@ -1288,18 +1294,18 @@ window.PORTFOLIO_DATA = {
             {
               "title": "Overview",
               "type": "text",
-              "text": "FPGA-based parking management system implementing a hierarchical Finite State Machine in VHDL at 50 MHz. Controls entry/exit barriers, tracks real-time slot availability across multiple zones, and drives a 7-segment display panel for live occupancy readout."
+              "text": "Parking management system on FPGA, written in VHDL and clocked at 50 MHz. It detects vehicles at the entry and exit, counts the free spaces in real time, shows the count on a 7-segment display and controls the access barrier automatically according to the state of the car park."
             },
             {
               "title": "Key Features",
               "type": "list",
               "items": [
-                "Hierarchical FSM design synthesized at 50 MHz on FPGA",
-                "Automated entry/exit barrier control via infrared sensors",
-                "Multi-zone occupancy tracking (full/available state)",
-                "7-segment display for live slot count",
-                "Debounce logic and synchronous reset",
-                "Full testbench simulation in ModelSim"
+                "Modular, hierarchical design in four blocks: space counter, barrier controller, 7-segment display driver and top-level module",
+                "Barrier controlled by a finite state machine: entry refused when the car park is full, exit always allowed",
+                "Safety rule: the barrier never closes while a vehicle is detected under it",
+                "Free spaces shown on a multiplexed 4-digit 7-segment display",
+                "Behaviour validated by testbench simulation before hardware implementation",
+                "Synthesis, place and route and programming with Quartus on a Cyclone IV FPGA, with infrared sensors and a servomotor"
               ]
             },
             {
@@ -1309,9 +1315,8 @@ window.PORTFOLIO_DATA = {
                 "VHDL",
                 "FPGA",
                 "FSM",
-                "ModelSim",
-                "Xilinx",
-                "Vivado"
+                "Quartus",
+                "Cyclone IV"
               ]
             }
           ],
@@ -1341,18 +1346,18 @@ window.PORTFOLIO_DATA = {
             {
               "title": "Présentation",
               "type": "text",
-              "text": "Système de gestion de parking sur FPGA, fondé sur une machine à états finis hiérarchique en VHDL à 50 MHz. Il commande les barrières d’entrée et de sortie, suit en temps réel la disponibilité des places dans plusieurs zones et pilote un afficheur 7 segments indiquant l’occupation en direct."
+              "text": "Système de gestion de parking sur FPGA, écrit en VHDL et cadencé à 50 MHz. Il détecte les véhicules à l’entrée et à la sortie, compte en temps réel les places libres, affiche ce nombre sur un afficheur 7 segments et commande automatiquement la barrière d’accès selon l’état du parking."
             },
             {
               "title": "Fonctionnalités clés",
               "type": "list",
               "items": [
-                "Conception d’une FSM hiérarchique synthétisée à 50 MHz sur FPGA",
-                "Commande automatique des barrières d’entrée/sortie par capteurs infrarouges",
-                "Suivi de l’occupation multi-zones (état complet/disponible)",
-                "Afficheur 7 segments pour le nombre de places en direct",
-                "Logique anti-rebond et réinitialisation synchrone",
-                "Simulation complète par testbench sous ModelSim"
+                "Conception modulaire et hiérarchique en quatre blocs : compteur de places, contrôle de la barrière, affichage 7 segments et module principal",
+                "Barrière pilotée par une machine à états finis : entrée refusée quand le parking est plein, sortie toujours autorisée",
+                "Règle de sécurité : la barrière ne se ferme jamais tant qu’un véhicule est détecté dessous",
+                "Nombre de places libres affiché sur un afficheur 7 segments multiplexé à 4 chiffres",
+                "Comportement validé par simulation avec testbench avant l’implémentation matérielle",
+                "Synthèse, placement-routage et programmation avec Quartus sur un FPGA Cyclone IV, avec capteurs infrarouges et servomoteur"
               ]
             },
             {
@@ -1362,9 +1367,8 @@ window.PORTFOLIO_DATA = {
                 "VHDL",
                 "FPGA",
                 "FSM",
-                "ModelSim",
-                "Xilinx",
-                "Vivado"
+                "Quartus",
+                "Cyclone IV"
               ]
             }
           ],
@@ -1433,12 +1437,13 @@ window.PORTFOLIO_DATA = {
               "type": "list",
               "items": [
                 "Application pipeline: applied → interview → offer → rejected",
-                "Smooth drag-and-drop status transitions",
-                "Analytics dashboard with Recharts (weekly activity, acceptance rates)",
+                "Add, edit and delete applications, with a detail view",
+                "Analytics dashboard with Recharts (pie and bar charts)",
                 "Advanced search and multi-criteria filtering",
                 "JSON import/export for data portability",
                 "Context API for global state management",
-                "Local storage persistence (no backend required)"
+                "Local storage persistence (no backend required)",
+                "Light and dark themes"
               ]
             },
             {
@@ -1448,7 +1453,7 @@ window.PORTFOLIO_DATA = {
                 "React",
                 "Context API",
                 "Recharts",
-                "CSS Modules"
+                "CSS"
               ]
             }
           ],
@@ -1476,12 +1481,13 @@ window.PORTFOLIO_DATA = {
               "type": "list",
               "items": [
                 "Pipeline de candidature : postulé → entretien → offre → refusé",
-                "Changements de statut fluides par glisser-déposer",
-                "Tableau de bord analytique avec Recharts (activité hebdomadaire, taux d’acceptation)",
+                "Ajout, modification et suppression des candidatures, avec une vue détaillée",
+                "Tableau de bord analytique avec Recharts (graphiques en camembert et en barres)",
                 "Recherche avancée et filtrage multicritère",
                 "Import/export JSON pour la portabilité des données",
                 "Context API pour la gestion de l’état global",
-                "Persistance en stockage local, sans backend"
+                "Persistance en stockage local, sans backend",
+                "Thèmes clair et sombre"
               ]
             },
             {
@@ -1491,7 +1497,7 @@ window.PORTFOLIO_DATA = {
                 "React",
                 "Context API",
                 "Recharts",
-                "CSS Modules"
+                "CSS"
               ]
             }
           ],
@@ -1531,11 +1537,11 @@ window.PORTFOLIO_DATA = {
       "github": "https://github.com/Pro-simpo/Brainwave_Matrix_Intern",
       "en": {
         "cats": "Cybersecurity &middot; Python &middot; ML",
-        "desc": "Two security tools built during internship: a Phishing URL Scanner with ML classification and a Password Strength Checker following OWASP standards."
+        "desc": "Two security tools built during the internship: a Phishing URL Scanner with ML classification and a Password Strength Checker with improvement suggestions."
       },
       "fr": {
         "cats": "Cybersécurité &middot; Python &middot; ML",
-        "desc": "Deux outils de sécurité développés pendant le stage : un scanner d'URL de phishing avec classification ML et un vérificateur de robustesse des mots de passe conforme aux recommandations OWASP."
+        "desc": "Deux outils de sécurité développés pendant le stage : un scanner d'URL de phishing avec classification ML et un vérificateur de robustesse des mots de passe avec suggestions d'amélioration."
       },
       "detail": {
         "en": {
@@ -1545,26 +1551,26 @@ window.PORTFOLIO_DATA = {
             {
               "title": "Overview",
               "type": "text",
-              "text": "Two cybersecurity tools developed during a Brainwave Matrix internship. A Phishing URL Scanner using a Scikit-learn ML classifier exposed as a Flask API, and a Password Strength Checker with real-time OWASP feedback built with Streamlit."
+              "text": "Two cybersecurity tools developed during an internship at Brainwave Matrix. A Phishing URL Scanner based on a Scikit-learn Random Forest classifier exposed through a Flask API, and a Password Strength Checker built with Streamlit that gives feedback in real time."
             },
             {
               "title": "Tool 1: Phishing URL Scanner",
               "type": "list",
               "items": [
-                "ML classifier trained on phishing URL datasets",
-                "Feature extraction: URL length, domain age, HTTPS, redirects",
-                "Flask REST API returning JSON with a confidence score",
-                "Interactive web UI for real-time URL checks"
+                "Random Forest classifier trained on phishing and legitimate URL datasets",
+                "Feature extraction: URL length, suspicious characters, number of subdomains",
+                "Flask REST API returning the verdict in JSON",
+                "Streamlit web interface to check a URL in real time"
               ]
             },
             {
               "title": "Tool 2: Password Strength Checker",
               "type": "list",
               "items": [
-                "Shannon entropy calculation for password strength",
-                "Common-pattern and dictionary attack detection",
-                "OWASP compliance scoring in real time",
-                "Streamlit interactive dashboard with visual feedback"
+                "Checks on length, uppercase and lowercase letters, digits, special characters and repeated characters",
+                "Strength level (weak, medium, strong) shown with a coloured bar",
+                "Improvement suggestions for each unmet criterion",
+                "Secure password generator (12 to 24 characters)"
               ]
             },
             {
@@ -1602,26 +1608,26 @@ window.PORTFOLIO_DATA = {
             {
               "title": "Présentation",
               "type": "text",
-              "text": "Deux outils de cybersécurité développés lors d’un stage chez Brainwave Matrix. Un scanner d’URL de phishing reposant sur un classifieur ML Scikit-learn exposé via une API Flask, et un vérificateur de robustesse des mots de passe avec retour OWASP en temps réel, développé avec Streamlit."
+              "text": "Deux outils de cybersécurité développés lors d’un stage chez Brainwave Matrix. Un scanner d’URL de phishing reposant sur un classifieur Random Forest (Scikit-learn) exposé via une API Flask, et un vérificateur de robustesse des mots de passe développé avec Streamlit, avec retour en temps réel."
             },
             {
               "title": "Outil 1 : scanner d’URL de phishing",
               "type": "list",
               "items": [
-                "Classifieur ML entraîné sur des jeux de données d’URL de phishing",
-                "Extraction de caractéristiques : longueur de l’URL, ancienneté du domaine, HTTPS, redirections",
-                "API REST Flask : réponse JSON avec score de confiance",
-                "Interface web interactive pour vérifier les URL en temps réel"
+                "Classifieur Random Forest entraîné sur des jeux de données d’URL de phishing et d’URL légitimes",
+                "Extraction de caractéristiques : longueur de l’URL, caractères suspects, nombre de sous-domaines",
+                "API REST Flask qui renvoie le verdict en JSON",
+                "Interface web Streamlit pour vérifier une URL en temps réel"
               ]
             },
             {
               "title": "Outil 2 : vérificateur de robustesse des mots de passe",
               "type": "list",
               "items": [
-                "Calcul de l’entropie de Shannon pour évaluer la robustesse du mot de passe",
-                "Détection des motifs courants et des attaques par dictionnaire",
-                "Score de conformité OWASP en temps réel",
-                "Tableau de bord interactif Streamlit avec retour visuel"
+                "Contrôles sur la longueur, les majuscules et minuscules, les chiffres, les caractères spéciaux et les répétitions",
+                "Niveau de robustesse (faible, moyen, fort) affiché avec une barre colorée",
+                "Suggestions d’amélioration pour chaque critère non rempli",
+                "Générateur de mots de passe sécurisés (12 à 24 caractères)"
               ]
             },
             {
@@ -2025,7 +2031,7 @@ window.PORTFOLIO_DATA = {
               "items": [
                 "Arduino",
                 "C++",
-                "Electronics",
+                "Électronique",
                 "Oscilloscope"
               ]
             }
@@ -2262,8 +2268,8 @@ window.PORTFOLIO_DATA = {
               "title": "Technologies",
               "type": "stack",
               "items": [
-                "Cybersecurity",
-                "Embedded",
+                "Cybersécurité",
+                "Embarqué",
                 "STM32",
                 "FreeRTOS",
                 "Wireshark"
@@ -2374,10 +2380,10 @@ window.PORTFOLIO_DATA = {
               "title": "Compétences",
               "type": "stack",
               "items": [
-                "Teamwork",
-                "Community",
+                "Travail d’équipe",
+                "Communauté",
                 "Leadership",
-                "Fundraising"
+                "Collecte de fonds"
               ]
             }
           ],
@@ -2685,10 +2691,19 @@ window.PORTFOLIO_DATA = {
       "id": "cert-ia",
       "pdf": "certificates/Certificat en Intelligence Artificielle.pdf",
       "thumb": "img/intelligence artificielle.png",
-      "thumbAlt": "Intelligence Artificielle",
-      "code": "IA · CERT",
-      "title": "Artificial Intelligence Certificate",
-      "issuer": "Formation IA"
+      "thumbAlt": "Intelligence Artificielle pour tous par FORCE-N",
+      "code": "FORCE-N · AI",
+      "title": "Intelligence Artificielle pour tous",
+      "issuer": "FORCE-N"
+    },
+    {
+      "id": "cert-forcen_llm",
+      "pdf": "certificates/Certificat_LLM.pdf",
+      "thumb": "img/forcen_llm.jpg",
+      "thumbAlt": "Large Language Model par FORCE-N",
+      "code": "FORCE-N · LLM",
+      "title": "Large Language Model",
+      "issuer": "FORCE-N"
     },
     {
       "id": "cert-alison",
@@ -2712,10 +2727,10 @@ window.PORTFOLIO_DATA = {
       "id": "cert-html",
       "pdf": "certificates/Learner-Verification-HTML5_CSS3_JS.pdf",
       "thumb": "img/HTML5_CSS3_JS.pdf.png",
-      "thumbAlt": "Web Development",
-      "code": "WEB · DEV",
-      "title": "HTML5 · CSS3 · JavaScript",
-      "issuer": "Learner Verification"
+      "thumbAlt": "Alison Diploma in HTML5, CSS3 and JavaScript",
+      "code": "ALISON · WEB",
+      "title": "Diploma in HTML5, CSS3 and JavaScript",
+      "issuer": "Alison"
     },
     {
       "id": "cert-google",
@@ -2730,10 +2745,10 @@ window.PORTFOLIO_DATA = {
       "id": "cert-ml",
       "pdf": "certificates/certificate machine learning.pdf",
       "thumb": "img/machine.png",
-      "thumbAlt": "Machine Learning",
-      "code": "ML · CERT",
-      "title": "Machine Learning",
-      "issuer": "Certification"
+      "thumbAlt": "MathWorks Machine Learning Onramp",
+      "code": "MATHWORKS · ML",
+      "title": "Machine Learning Onramp",
+      "issuer": "MathWorks"
     },
     {
       "id": "cert-canva",
@@ -2757,7 +2772,7 @@ window.PORTFOLIO_DATA = {
       "nav-contacts": "Contacts",
       "hero-status": "OPEN TO A PFE &middot; FEB 2027",
       "hero-intro": "// Hi, I'm",
-      "hero-bio": "23-year-old engineering student from Burkina&nbsp;Faso, based in Morocco, currently working as a <strong>QA &amp; application security engineer</strong> at EBHI (L3M Holding group). I combine <strong>cybersecurity</strong>, <strong>test automation</strong> and <strong>embedded systems</strong>: security audits, Playwright suites in CI/CD, SOC infrastructures and IoT solutions that are resilient by design.",
+      "hero-bio": "Engineering student from Burkina&nbsp;Faso, based in Morocco, currently working as a <strong>QA &amp; application security engineer</strong> at EBHI (L3M Holding group). I combine <strong>cybersecurity</strong>, <strong>test automation</strong> and <strong>embedded systems</strong>: security audits, Playwright suites in CI/CD, SOC infrastructures and IoT solutions that are resilient by design.",
       "hero-badge1": "&#9702; ENSA T&eacute;touan",
       "hero-badge2": "&#9702; Cybersecurity &middot; QA &middot; Embedded",
       "hero-badge3": "&#9702; Open to a PFE (Feb 2027)",
@@ -2773,7 +2788,6 @@ window.PORTFOLIO_DATA = {
       "skills-cat2": "Embedded systems",
       "skills-cat3": "Web and software development",
       "skills-cat4": "Other skills",
-      "sv-cta": "Contact me",
       "pt-back": "&#8592; All projects",
       "pt-filter-all": "All",
       "pt-filter-iot": "IoT / Embedded",
@@ -2796,7 +2810,15 @@ window.PORTFOLIO_DATA = {
       "ct-submit": "Send message",
       "hero-roles": "Cybersecurity Engineer | QA & AppSec Engineer | Embedded Systems Dev",
       "pd-watch-demo": "Watch demo",
-      "pd-view-pdf": "View presentation"
+      "pd-view-pdf": "View presentation",
+      "nav-cv": "My CV",
+      "nav-cv-en": "English",
+      "nav-cv-fr": "French",
+      "ct-cv-fr": "CV (French)",
+      "ct-cv-en": "CV (English)",
+      "ct-status-ok": "Message sent! I will reply within 24 hours.",
+      "ct-status-error": "Sending failed. Please contact me directly by email.",
+      "ct-status-network": "Connection error. Please try again later."
     },
     "fr": {
       "nav-home": "Accueil",
@@ -2809,7 +2831,7 @@ window.PORTFOLIO_DATA = {
       "nav-contacts": "Contacts",
       "hero-status": "OUVERT &Agrave; UN PFE &middot; F&Eacute;V. 2027",
       "hero-intro": "// Bonjour, je suis",
-      "hero-bio": "Étudiant ingénieur de 23 ans originaire du Burkina&nbsp;Faso, basé au Maroc, aujourd'hui <strong>ingénieur QA &amp; sécurité applicative</strong> chez EBHI (groupe L3M Holding). J'allie <strong>cybersécurité</strong>, <strong>automatisation des tests</strong> et <strong>systèmes embarqués</strong> : audits de sécurité, suites Playwright en CI/CD, infrastructures SOC et solutions IoT résilientes par conception.",
+      "hero-bio": "Étudiant ingénieur originaire du Burkina&nbsp;Faso, basé au Maroc, aujourd'hui <strong>ingénieur QA &amp; sécurité applicative</strong> chez EBHI (groupe L3M Holding). J'allie <strong>cybersécurité</strong>, <strong>automatisation des tests</strong> et <strong>systèmes embarqués</strong> : audits de sécurité, suites Playwright en CI/CD, infrastructures SOC et solutions IoT résilientes par conception.",
       "hero-badge1": "&#9702; ENSA T&eacute;touan",
       "hero-badge2": "&#9702; Cybersécurité &middot; QA &middot; Embarqué",
       "hero-badge3": "&#9702; Ouvert à un PFE (fév. 2027)",
@@ -2825,7 +2847,6 @@ window.PORTFOLIO_DATA = {
       "skills-cat2": "Systèmes embarqués",
       "skills-cat3": "Développement web et logiciel",
       "skills-cat4": "Autres compétences",
-      "sv-cta": "Me contacter",
       "pt-back": "&#8592; Tous les projets",
       "pt-filter-all": "Tous",
       "pt-filter-iot": "IoT / Embarqué",
@@ -2848,7 +2869,15 @@ window.PORTFOLIO_DATA = {
       "ct-submit": "Envoyer le message",
       "hero-roles": "Ingénieur Cybersécurité | Ingénieur QA & AppSec | Systèmes Embarqués",
       "pd-watch-demo": "Voir la démo",
-      "pd-view-pdf": "Voir la présentation"
+      "pd-view-pdf": "Voir la présentation",
+      "nav-cv": "Mon CV",
+      "nav-cv-en": "Anglais",
+      "nav-cv-fr": "Français",
+      "ct-cv-fr": "CV français",
+      "ct-cv-en": "CV anglais",
+      "ct-status-ok": "Message envoyé ! Je vous répondrai sous 24 h.",
+      "ct-status-error": "Erreur lors de l'envoi. Contactez-moi directement par e-mail.",
+      "ct-status-network": "Erreur de connexion. Réessayez plus tard."
     }
   }
 };

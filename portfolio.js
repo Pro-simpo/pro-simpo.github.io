@@ -1,3 +1,7 @@
+/* Préférence système « réduire les animations » : coupe les canevas animés, la frappe des rôles et le défilement doux */
+var REDUCE_MOTION = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+var SCROLL_BEHAVIOR = REDUCE_MOTION ? 'auto' : 'smooth';
+
 /* ===================== DATA-DRIVEN SECTION RENDERERS =====================
  * Runs synchronously at script load — fills sections from PORTFOLIO_DATA.
  * portfolio-data.js must be loaded BEFORE portfolio.js.
@@ -47,7 +51,7 @@
                 + '<div class="pt-thumb"><img src="' + p.thumbnail + '" alt="' + p.thumbAlt + '"></div>'
                 + '<div class="pt-body">'
                 + '<div class="pt-cats" data-i18n="pt-' + p.id + '-cats">' + l.cats + '</div>'
-                + '<h3 class="pt-title">' + p.title + '</h3>'
+                + '<h3 class="pt-title"><a href="#pd-' + (p.detId || p.id) + '">' + p.title + '</a></h3>'
                 + '<p class="pt-desc" data-i18n="pt-' + p.id + '-desc">' + l.desc + '</p>'
                 + '<div class="pt-stack">' + p.stack.map(function(t) { return '<span>' + t + '</span>'; }).join('') + '</div>'
                 + (p.github ? '<a class="pt-link" href="' + p.github + '" target="_blank" rel="noopener">' + (p.linkLabel ? '<span data-i18n="pt-' + p.id + '-link">' + (p.linkLabel[lang] || p.linkLabel.en) + '</span>' : 'GitHub') + ' ' + GITHUB_ICON + '</a>' : '')
@@ -84,8 +88,8 @@
         return '<div class="pd-media">' + (det.media || []).map(function(m) {
             var st = m.style ? ' style="' + m.style + '"' : '';
             if (m.type === 'label') return '<div class="pd-media-label"' + st + '>' + m.text + '</div>';
-            if (m.type === 'video') return '<div class="pd-video-wrap" data-src="' + m.src + '"><img loading="lazy" src="' + (m.poster || '') + '" alt="' + (m.alt || '') + '">' + play + '</div>';
-            if (m.type === 'pdf') return '<div class="pd-video-wrap pd-pdf-wrap" data-pdf="' + m.src + '"><img loading="lazy" src="' + (m.poster || '') + '" alt="' + (m.alt || '') + '"><div class="pd-play">' + PDF_ICON + '<span data-i18n="pd-view-pdf">View presentation</span></div></div>';
+            if (m.type === 'video') return '<div class="pd-video-wrap" role="button" tabindex="0" data-src="' + m.src + '"><img loading="lazy" src="' + (m.poster || '') + '" alt="' + (m.alt || '') + '">' + play + '</div>';
+            if (m.type === 'pdf') return '<div class="pd-video-wrap pd-pdf-wrap" role="button" tabindex="0" data-pdf="' + m.src + '"><img loading="lazy" src="' + (m.poster || '') + '" alt="' + (m.alt || '') + '"><div class="pd-play">' + PDF_ICON + '<span data-i18n="pd-view-pdf">View presentation</span></div></div>';
             if (m.type === 'gallery') return '<div class="pd-imgs">' + (m.images || []).map(function(im) { return '<img loading="lazy" src="' + im.src + '" alt="' + (im.alt || '') + '">'; }).join('') + '</div>';
             return '<img loading="lazy"' + (m.overview ? ' class="pd-overview-img"' : '') + ' src="' + m.src + '" alt="' + (m.alt || '') + '"' + st + '>';
         }).join('') + '</div>';
@@ -175,40 +179,11 @@ bouttons.forEach(button => {
         e.preventDefault();
         var targetSection = document.querySelector(this.getAttribute('href'));
         targetSection.scrollIntoView({
-            behavior: 'smooth',
+            behavior: SCROLL_BEHAVIOR,
             block: 'start'
         });
     });
 });
-
-// comportement des zones numérotées
-
-let areas = document.getElementsByClassName("area");
-for(let i = 0; i < areas.length; i++) {
-    areas[i].addEventListener('click', function(event) {
-        event.preventDefault();
-        var target = document.querySelector(this.getAttribute('href'));
-        target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-        });
-    });
-}
-let boutton2 = document.querySelectorAll('.button2');
-for(let a = 0, u = 0; a < areas.length; a++) {
-    areas[a].addEventListener("mouseover" , function() {
-        boutton2[u].style.background = "linear-gradient(90deg, #004AAD 0%, #1A8FD2 100%)";
-        boutton2[u].style.transition = "transform 0.5s ease";
-    });
-    areas[a].addEventListener("mouseout" , function() {
-        boutton2[u].style.background = "initial";
-        boutton2[u].style.transition = "transform 0.5s ease";
-    });
-    u++;
-    if(u == 8){
-        u = 1;
-    }
-}
 
 
 // ── Hamburger menu ──
@@ -258,247 +233,39 @@ for(let a = 0, u = 0; a < areas.length; a++) {
     });
 })();
 
-/*
-// comportement de "codé totalement par moi"
+// Affichage de la page dès que le DOM est prêt (sans attendre les images, les polices ni les vidéos)
+(function() {
+    var loadImage = document.getElementById("loadImage");
+    var loadDiv = document.getElementById("loadDiv");
+    if (loadImage) loadImage.style.display = "none";
+    if (loadDiv) loadDiv.style.display = "initial";
+})();
 
-let coded2 = document.getElementById("coded2");
-let coded = document.getElementById("coded");
-coded2.addEventListener('animationend', function(){
-    coded.classList.add("codedremove");
-    var windowWidth = window.innerWidth;
-    let desktop = document.getElementById("desktop");
-    if(windowWidth <= 500) {
-        desktop.style.display = "initial";
-        desktop.classList.add("desktopVisible");
+
+// Gestion des thèmes : le choix du visiteur est mémorisé ; sinon clair le jour (6 h - 19 h), sombre la nuit
+(function() {
+    var themeButton = document.getElementsByClassName("theme-toggle")[0];
+    function stored() {
+        try { var v = localStorage.getItem('theme'); return (v === 'light' || v === 'dark') ? v : null; } catch (e) { return null; }
     }
-
-});
-*/
-// comportement des images de projets portfolio
-
-let projetlien = document.getElementsByClassName("projets");
-let projetimage = document.getElementsByClassName("projetimage");
-for(let i = 0; i < projetimage.length; i++){
-    projetimage[i].addEventListener('click', function(){
-        projetlien[i].click();
-    });
-}
-
-// loadImage
-
-let loadImage = document.getElementById("loadImage");
-let loadDiv = document.getElementById("loadDiv");
-window.onload = function() {
-    loadImage.style.display = "none";
-    loadDiv.style.display = "initial"
-}
-// affichage projets
-
-let projetremove = document.getElementsByClassName("projetremove");
-let projetadd = document.getElementsByClassName("projetadd");
-let projetliens = document.getElementsByClassName("projetlien");
-let projetbutton = document.getElementsByClassName("projetbutton");
-
-
-
-for(let i = 0; i < projetliens.length; i++) {
-    projetliens[i].addEventListener("click", function(a) {
-        a.preventDefault();
-        for(element of projetremove) {
-            if(projetadd[i].style.display = "none") {}
-                element.classList.add("projetremoveactive");
-                projetadd[i].style.display = "initial";
-        }
-    });
-    projetbutton[i].addEventListener("click", function(){
-        if(projetadd[i].style.display = "initial") {
-            for(element of projetremove) {
-                projetadd[i].style.display = "none";
-                element.classList.remove("projetremoveactive");
-            }
-        }
-    });
-}
-
-// choose cliquée
-
-let choose = document.getElementsByClassName("choose");
-for(element of choose) {
-    element.addEventListener("click", function(){
-        setTimeout(function(){alert("Contact me for this service.");}, 1000);
-        
-    });
-}
-
-
-
-// video of agencyProject
-
-let video = document.getElementById("video-container");
-if (video) video.addEventListener("click", function(){
-    video.innerHTML = `
-        <video width="100%" height="auto" controls autoplay>
-            <source src="img/video.mp4" type="video/mp4">
-        </video>`;
-})
-
-
-// animation des listes
-
-
-window.addEventListener('scroll', function() {
-    let windowHeight = window.innerHeight;
-    var animations = document.querySelectorAll('.animations');
-    animations.forEach(function(anim) {
-        var position = anim.getBoundingClientRect().top;
-
-        if (position < windowHeight - 100) {
-            anim.classList.add('animation');
-        }
-    });
-}, { passive: true });
-
-// Age
-
-const annee = new Date().getFullYear();
-let calcul = annee - 2003;
-let age = document.getElementById("age");
-if (age) age.innerHTML = calcul;
-
-
-// videos of Brainwave projects
-
-
-let video2 = document.getElementById("video-container2");
-if (video2) video2.addEventListener("click", function(){
-    video2.innerHTML = `
-        <video width="100%" height="auto" controls autoplay>
-            <source src="img/phishing_checker.mp4" type="video/mp4">
-        </video>`;
-})
-
-let video3 = document.getElementById("video-container3");
-if (video3) video3.addEventListener("click", function(){
-    video3.innerHTML = `
-        <video width="100%" height="auto" controls autoplay>
-            <source src="img/password_checker.mp4" type="video/mp4">
-        </video>`;
-})
-
-let video4 = document.getElementById("video-container4");
-if (video4) video4.addEventListener("click", function(){
-    video4.innerHTML = `
-        <video width="100%" height="auto" controls autoplay>
-            <source src="img/Solar_Tracker.mp4" type="video/mp4">
-        </video>`;
-})
-
-let videoHePRAS = document.getElementById("videoHePRAS");
-if (videoHePRAS) videoHePRAS.addEventListener("click", function(){
-    videoHePRAS.innerHTML = `
-        <video width="100%" height="auto" controls autoplay>
-            <source src="img/videoHePRAS.mp4" type="video/mp4">
-        </video>`;
-})
-
-let videoJobApplication = document.getElementById("videoJobApplication");
-if (videoJobApplication) videoJobApplication.addEventListener("click", function(){
-    videoJobApplication.innerHTML = `
-        <video width="100%" height="auto" controls autoplay>
-            <source src="img/videoJobApplication.mp4" type="video/mp4">
-        </video>`;
-})
-
-let videoFireDetection = document.getElementById("videoFireDetection");
-if (videoFireDetection) videoFireDetection.addEventListener("click", function(){
-    videoFireDetection.innerHTML = `
-        <video width="100%" height="auto" controls autoplay>
-            <source src="img/videoFireDetection.mp4" type="video/mp4">
-        </video>`;
-})
-
-
-// Gestion des thèmes
-
-//document.documentElement.setAttribute('data-theme', 'light');
-let themeButton = document.getElementsByClassName("theme-toggle")[0];
-let img24 = document.getElementsByClassName("img24");
-const heure = new Date().getHours();
-
-// Détermine si c'est jour ou nuit
-if (heure >= 6 && heure < 19) {
-    document.documentElement.setAttribute('data-theme', 'light');
-} else {
-    document.documentElement.setAttribute('data-theme', 'dark');
-    for (let i = 0; i < img24.length; i++) {
-        img24[i].style.filter = "invert(100%)";
+    function byHour() {
+        var h = new Date().getHours();
+        return (h >= 6 && h < 19) ? 'light' : 'dark';
     }
-}
-
-themeButton.innerHTML = "🌙";
-themeButton.addEventListener("click", function(){
-    const currentTheme = document.documentElement.getAttribute('data-theme');
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-theme', newTheme);
-    themeButton.innerHTML = `${newTheme === "dark" ? "☀️" : "🌙"}`
-    if (newTheme === "dark") {
-        for (let i = 0; i < img24.length; i++) {
-            img24[i].style.filter = "invert(100%)";
-        }
+    function setTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        if (themeButton) themeButton.textContent = theme === 'dark' ? "☀️" : "🌙";
     }
-    else {
-        for (let i = 0; i < img24.length; i++) {
-            img24[i].style.filter = "initial";
-        }
-    }
-});
-
-
-
-
-// Gestion de seeMore
-
-let seeMore = document.getElementsByClassName("seeMore");
-let lienProjet = document.getElementsByClassName("lienProjet");
-let seeMoreButton = document.getElementsByClassName("seeMoreButton");
-
-
-window.addEventListener("load", () => {
-    for(let see = 0; see < seeMore.length; see++) {
-        if (seeMore[see].offsetHeight < 705) {
-            lienProjet[see].style.display = "none";
-        }
-    }
-});
-
-let handleButton = [];
-
-for(let e = 0; e < seeMoreButton.length; e++) {
-    seeMoreButton[e].addEventListener("click", () => {
-        const currentScroll = window.scrollY;
-        seeMore[e].classList.toggle("expanded");
-        seeMoreButton[e].classList.toggle("expended");
-        if (seeMore[e].classList.contains("expanded")) {
-            window.scrollTo({top: currentScroll});
-            seeMoreButton[e].textContent = "↑ SEE LESS ↑";
-            lienProjet[e].style.display = "initial";
-            seeMoreButton[e].style.opacity = "0.9";
-            window.addEventListener('scroll', handleButton[e] = function () {
-                let dist = window.innerHeight  - seeMore[e].getBoundingClientRect().top;
-                if ((dist - 50) < seeMore[e].offsetHeight) {
-                    seeMoreButton[e].style.top = `${dist - 100}px`;
-                }
-            });
-        } else {
-            seeMoreButton[e].textContent = "↓ SEE MORE ↓";
-            lienProjet[e].style.display = "none";
-            window.scrollTo({top: seeMore[e].offsetTop});
-            window.removeEventListener('scroll', handleButton[e]);
-            seeMoreButton[e].style.top = "initial";
-            seeMoreButton[e].style.opacity = "initial"
-        }
+    setTheme(stored() || byHour());
+    if (themeButton) themeButton.addEventListener("click", function() {
+        var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        setTheme(next);
+        try { localStorage.setItem('theme', next); } catch (e) {}
     });
-}
+})();
+
+
+
 
 
 // Gestion des documents cv
@@ -551,22 +318,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-// Positionnement dynamique des skillimages
-
-let skillphoto7 = document.getElementById('skillphoto7');
-let skillphoto8 = document.getElementById('skillphoto8');
-let aiesec = document.getElementById('aiesec');
-let skillphoto7para = document.getElementById('skillphoto7para');
-let skillphoto8para = document.getElementById('skillphoto8para');
-let aiesecpara = document.getElementById('aiesecpara');
-let pageExperience = document.getElementById('pageExperience');
-
-document.addEventListener('scroll', function() {
-    if (aiesec && aiesecpara) aiesec.style.top = `${aiesecpara.offsetTop + 6 }px`;
-    if (skillphoto7 && skillphoto7para) skillphoto7.style.top = `${skillphoto7para.offsetTop + 6 }px`;
-    if (skillphoto8 && skillphoto8para) skillphoto8.style.top = `${skillphoto8para.offsetTop + 6 }px`;
-}, { passive: true });
-
 
 // Met à jour les variables CSS --x et --y avec la position du curseur
 var lampEl = document.getElementById('pageHome');
@@ -579,45 +330,51 @@ if (lampEl) lampEl.addEventListener('mousemove', function(e) {
 
 
 
-// création du canevas de défilement style hacker
-const canvas = document.getElementById('matrix-canvas');
-const ctx = canvas.getContext('2d');
+// Canevas de défilement style hacker : en pause quand l'onglet est masqué, désactivé si le visiteur réduit les animations
+(function() {
+    var canvas = document.getElementById('matrix-canvas');
+    if (!canvas || !canvas.getContext) return;
+    var ctx = canvas.getContext('2d');
+    var alphabet = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッンABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    var fontSize = 8;
+    var rainDrops = [];
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-const alphabet = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッンABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-const fontSize = 8;
-const columns = Math.floor(canvas.width / fontSize);
-
-const rainDrops = Array(columns).fill(1);
-
-function draw() {
-    ctx.fillStyle = 'rgba(17, 24, 39, 0.1)';
-    //ctx.fillStyle = 'rgba(249, 250, 251, 0.1)';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    ctx.fillStyle = 'rgba(0, 255, 0, 0.3)'; // Vert
-    ctx.font = fontSize + 'px monospace';
-
-    for (let i = 0; i < rainDrops.length; i++) {
-        const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
-        ctx.fillText(text, i * fontSize, rainDrops[i] * fontSize);
-
-        if (rainDrops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-            rainDrops[i] = 0;
-        }
-        rainDrops[i]++;
+    function resize() {
+        if (canvas.width === window.innerWidth && canvas.height === window.innerHeight) return;
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        var columns = Math.floor(canvas.width / fontSize);
+        while (rainDrops.length < columns) rainDrops.push(1);
+        rainDrops.length = columns;
     }
-}
-setInterval(draw, 103); // 33ms correspond à environ 30 images par seconde
 
-// Gère le redimensionnement de la fenêtre pour que l'animation reste fluide
-window.addEventListener('resize', () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    // Recalculer les colonnes serait idéal ici pour une adaptation parfaite
-});    
+    function draw() {
+        ctx.fillStyle = 'rgba(17, 24, 39, 0.1)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.fillStyle = 'rgba(0, 255, 0, 0.3)'; // Vert
+        ctx.font = fontSize + 'px monospace';
+
+        for (var i = 0; i < rainDrops.length; i++) {
+            var text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+            ctx.fillText(text, i * fontSize, rainDrops[i] * fontSize);
+
+            if (rainDrops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                rainDrops[i] = 0;
+            }
+            rainDrops[i]++;
+        }
+    }
+
+    var timer = null;
+    function start() { if (!timer && !REDUCE_MOTION && !document.hidden) timer = setInterval(draw, 103); }
+    function stop() { clearInterval(timer); timer = null; }
+
+    resize();
+    start();
+    window.addEventListener('resize', resize);
+    document.addEventListener('visibilitychange', function() { if (document.hidden) stop(); else start(); });
+})();
 
 
 //
@@ -723,13 +480,30 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             ctx2d.stroke(); ctx2d.restore();
         };
-        let ctT = 0;
+        let ctT = 0, ctRunning = false, ctVisible = !('IntersectionObserver' in window);
         const ctFrame = () => {
-            if (cW === 0 || cH === 0) { ctResize(); ctAnim = requestAnimationFrame(ctFrame); return; }
-            drawContact(ctT++);
+            if (!ctRunning) return;
+            if (cW === 0 || cH === 0) ctResize(); else drawContact(ctT++);
             ctAnim = requestAnimationFrame(ctFrame);
         };
-        ctFrame();
+        // L'animation ne tourne que si la section Contact est à l'écran et l'onglet visible
+        const ctUpdate = () => {
+            const run = ctVisible && !document.hidden && !REDUCE_MOTION;
+            if (run && !ctRunning) { ctRunning = true; ctFrame(); }
+            else if (!run && ctRunning) { ctRunning = false; cancelAnimationFrame(ctAnim); }
+        };
+        // Animations réduites : une seule image fixe
+        const ctStatic = () => { if (REDUCE_MOTION && ctVisible) { ctResize(); if (cW && cH) drawContact(0); } };
+        if ('IntersectionObserver' in window) {
+            new IntersectionObserver(function(entries) {
+                ctVisible = entries[0].isIntersecting;
+                ctStatic();
+                ctUpdate();
+            }).observe(ctCanvas);
+        }
+        window.addEventListener('resize', ctStatic, { passive: true });
+        document.addEventListener('visibilitychange', ctUpdate);
+        ctUpdate();
     }
 
     // Contact form — Formspree via fetch (pas de redirection)
@@ -739,6 +513,8 @@ document.addEventListener('DOMContentLoaded', function() {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
             const submitBtn = contactForm.querySelector('[type="submit"]');
+            // Messages dans la langue affichée (textes ct-status-* de portfolio-data.js)
+            const tr = function(key, fallback) { return (window._i18n && window._i18n(key)) || fallback; };
             submitBtn.disabled = true;
             fetch(contactForm.action, {
                 method: 'POST',
@@ -746,15 +522,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 headers: { 'Accept': 'application/json' }
             }).then(function(res) {
                 if (res.ok) {
-                    ctFormStatus.textContent = 'Message envoyé ! Je vous répondrai sous 24h.';
+                    ctFormStatus.textContent = tr('ct-status-ok', 'Message sent! I will reply within 24 hours.');
                     contactForm.reset();
                 } else {
-                    ctFormStatus.textContent = 'Erreur lors de l\'envoi. Contactez-moi directement par email.';
+                    ctFormStatus.textContent = tr('ct-status-error', 'Sending failed. Please contact me directly by email.');
                 }
                 ctFormStatus.classList.add('show');
                 setTimeout(function() { ctFormStatus.classList.remove('show'); }, 5000);
             }).catch(function() {
-                ctFormStatus.textContent = 'Erreur de connexion. Réessayez plus tard.';
+                ctFormStatus.textContent = tr('ct-status-network', 'Connection error. Please try again later.');
                 ctFormStatus.classList.add('show');
                 setTimeout(function() { ctFormStatus.classList.remove('show'); }, 5000);
             }).finally(function() {
@@ -778,7 +554,7 @@ document.addEventListener('DOMContentLoaded', function() {
         dot.addEventListener('click', function(e) {
             e.preventDefault();
             var target = document.querySelector(dot.getAttribute('href'));
-            if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            if (target) target.scrollIntoView({ behavior: SCROLL_BEHAVIOR, block: 'start' });
         });
     });
 
@@ -824,9 +600,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     /* --- Filters --- */
     filters.forEach(function(btn) {
+        btn.setAttribute('aria-pressed', btn.classList.contains('pt-active') ? 'true' : 'false');
         btn.addEventListener('click', function() {
-            filters.forEach(function(b) { b.classList.remove('pt-active'); });
+            filters.forEach(function(b) { b.classList.remove('pt-active'); b.setAttribute('aria-pressed', 'false'); });
             btn.classList.add('pt-active');
+            btn.setAttribute('aria-pressed', 'true');
             var cat = btn.getAttribute('data-cat');
             cards.forEach(function(card) {
                 if (cat === 'all' || card.getAttribute('data-cat') === cat) {
@@ -864,31 +642,35 @@ document.addEventListener('DOMContentLoaded', function() {
             card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0)';
         });
 
+        /* The address becomes #pd-<id>: the page can be shared and the browser Back button returns to the list.
+           The title is a real link (keyboard and screen readers); a click anywhere else on the card does the same. */
         card.addEventListener('click', function(e) {
-            if (e.target.closest('a.pt-link')) return;
+            if (e.target.closest('a')) return;
             var detId = card.getAttribute('data-det');
-            if (!detId || !ptList || !ptDetail) return;
-            var detDiv = document.getElementById('pd-' + detId);
-            if (!detDiv) return;
-            document.querySelectorAll('.pt-det').forEach(function(d) { d.style.display = 'none'; });
-            detDiv.style.display = 'block';
-            ptList.style.display = 'none';
-            ptDetail.style.display = 'block';
-            var sec = document.getElementById('pagePortfolio');
-            if (sec) sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            if (!detId || !document.getElementById('pd-' + detId)) return;
+            if (location.hash === '#pd-' + detId) ptOpenById(detId);
+            else location.hash = 'pd-' + detId;
         });
     });
+
+    function ptShowList() {
+        if (!ptList || !ptDetail) return;
+        document.querySelectorAll('.pt-det').forEach(function(d) { d.style.display = 'none'; });
+        ptDetail.style.display = 'none';
+        ptList.style.display = 'block';
+    }
 
     /* --- Back button --- */
     if (ptBack) {
         ptBack.addEventListener('click', function() {
-            document.querySelectorAll('.pt-det').forEach(function(d) { d.style.display = 'none'; });
-            ptDetail.style.display = 'none';
-            ptList.style.display = 'block';
+            ptShowList();
+            if (/^#pd-/.test(location.hash) && window.history && history.pushState) {
+                history.pushState(null, '', location.pathname + location.search);
+            }
         });
     }
 
-    /* --- Deep-link: open a specific project via #pd-<id> (used by CV / external links) --- */
+    /* --- Open a specific project via #pd-<id> (cards, CV and external links) --- */
     function ptOpenById(detId) {
         if (!detId) return;
         var detDiv = document.getElementById('pd-' + detId);
@@ -899,14 +681,41 @@ document.addEventListener('DOMContentLoaded', function() {
             ptDetail.style.display = 'block';
         }
         var sec = document.getElementById('pagePortfolio');
-        if (sec) sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (sec) sec.scrollIntoView({ behavior: SCROLL_BEHAVIOR, block: 'start' });
     }
     function ptHandleHash() {
         var m = (location.hash || '').match(/^#pd-([\w-]+)$/);
         if (m) ptOpenById(m[1]);
+        else if (ptDetail && ptDetail.style.display === 'block') ptShowList();
     }
     window.addEventListener('hashchange', ptHandleHash);
     setTimeout(ptHandleHash, 300);
+
+    /* Direct link from a CV (#pd-<id>): the page is shown before its images are loaded, so the content above
+       can still move. Once everything is loaded, put the project back at the top, unless the visitor has
+       already started to scroll. */
+    if (/^#pd-[\w-]+$/.test(location.hash)) {
+        var ptUserMoved = false;
+        ['wheel', 'touchstart', 'keydown', 'mousedown'].forEach(function(ev) {
+            window.addEventListener(ev, function() { ptUserMoved = true; }, { passive: true, once: true });
+        });
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                if (ptUserMoved || !/^#pd-[\w-]+$/.test(location.hash)) return;
+                var sec = document.getElementById('pagePortfolio');
+                if (sec) sec.scrollIntoView({ behavior: 'auto', block: 'start' });
+            }, 350);
+        });
+    }
+
+    /* --- Keyboard: Enter or Space on a video / PDF thumbnail --- */
+    document.querySelectorAll('.pd-video-wrap').forEach(function(wrap) {
+        wrap.addEventListener('keydown', function(e) {
+            if (e.target !== wrap || (e.key !== 'Enter' && e.key !== ' ')) return;
+            e.preventDefault();
+            wrap.click();
+        });
+    });
 
     /* --- PDF presentations in detail view (inline on desktop, new tab on phones) --- */
     document.querySelectorAll('.pd-pdf-wrap').forEach(function(wrap) {
@@ -991,10 +800,12 @@ document.addEventListener('DOMContentLoaded', function() {
     window._typingReset = function() {
         clearTimeout(timer);
         ci = 0; del = false; ri = 0;
+        /* Reduced motion: the first role is shown as plain text, without the typing effect */
+        if (REDUCE_MOTION) { el.textContent = getRoles()[0] || ''; return; }
         el.textContent = '';
         tick();
     };
-    tick();
+    window._typingReset();
 })();
 
 (function() {
@@ -1004,7 +815,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var heroText = home.querySelector('.hero-text');
     var photoStage = home.querySelector('.photo-stage');
     var glowTop = home.querySelector('.hero-glowtop');
-    if (!grid) return;
+    if (!grid || REDUCE_MOTION) return;
 
     var ticking = false;
     var mx = 0, my = 0;
@@ -1149,4 +960,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     window.applyLang = applyLang;
+    /* Text lookup in the current language, for strings set from JavaScript (plain text) */
+    window._i18n = function(key) {
+        var v = (t[window._currentLang] || t.en)[key];
+        if (v === undefined) v = t.en[key];
+        return v === undefined ? '' : String(v).replace(/<[^>]+>/g, '');
+    };
 })();

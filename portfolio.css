@@ -55,7 +55,7 @@
 
 /* Application des variables aux éléments globaux */
 
-[data-theme="dark"] #pageAboutme, [data-theme="dark"] #pageEducation, [data-theme="dark"] #pageSkills, [data-theme="dark"] #pageCertificates, [data-theme="dark"] #pageExperience, [data-theme="dark"] #pageServices, [data-theme="dark"] #pagePortfolio, [data-theme="dark"] #pageContact {
+ [data-theme="dark"] #pageEducation, [data-theme="dark"] #pageSkills, [data-theme="dark"] #pageCertificates, [data-theme="dark"] #pageExperience, [data-theme="dark"] #pageServices, [data-theme="dark"] #pagePortfolio, [data-theme="dark"] #pageContact {
   background-image: url('img/dark_bg.png');
   background-size: cover;
   background-position: 0 0;
@@ -85,14 +85,6 @@
 	}
 }
 
-[data-theme="dark"] .AgencyArea2 {
-  background-image: url('img/dark_bg.png');
-  background-size: contain;
-  background-position: center;
-  background-repeat: repeat;
-  background-position: 0 0;
-  animation: scrollBg3 180s linear infinite;
-}
 
 @keyframes scrollBg3 {
 	from {
@@ -113,7 +105,7 @@
     box-shadow: 0 3px 6px black; /* Ombre plus marquée au survol */
 }
 
-[data-theme="dark"] .rouge, [data-theme="dark"] .nom2 {
+[data-theme="dark"] .rouge {
     color: #0288d1;
 }
 
@@ -126,25 +118,8 @@
     color: skyblue;
 }
 
-[data-theme="dark"] .list, [data-theme="dark"] .listP, [data-theme="dark"] .videolist{
+[data-theme="dark"] .list {
 	outline: solid #374151; 
-}
-
-[data-theme="dark"] .listTitre{
-	border: 3px solid #0288d1; 
-	outline: solid #374151; 
-	background-color: #111827;
-}
-
-[data-theme="dark"] #pageBrainwave .list, [data-theme="dark"] #pageBrainwave .listP {
-	background-image: url("img/brainwave2.png");
-	background-position: center;
-	background-size: contain;
-} 
-
-[data-theme="dark"] #pageSolarPanel .list {
-	background-image: none;
-	background-color: rgb(17, 24, 39, 0.5);
 }
 
 
@@ -175,12 +150,12 @@ section{
 }
 
 
-#pageHome, #div2 {
+#pageHome {
 	height: 700px;
 	overflow: hidden;
 }
 
-#pageAboutme, #pageEducation, #pageSkills, #pageCertificates, #pageExperience, #pageServices, #pagePortfolio {
+ #pageEducation, #pageSkills, #pageCertificates, #pageExperience, #pageServices, #pagePortfolio {
 	height: auto !important;
 	overflow: visible !important;
 	min-height: 700px;
@@ -336,7 +311,7 @@ section{
 	100% { top: 46px; opacity: 0; }
 }
 
-#pageAboutme p, #pageAboutme p, #pageExperience p, #pagePortfolio p{ 
+ #pageExperience p, #pagePortfolio p { 
 	text-align: justify;
 }
 
@@ -421,9 +396,6 @@ button:active {
     background: #01579b; /* Couleur enfoncée */
     box-shadow: none; /* Suppression de l'ombre */
 }
-
-
-
 
 
 /*-------------navbar---------------*/
@@ -687,12 +659,6 @@ hgroup{
 	color: #FFFEFE;
 }
 
-.maphoto{
-	position: absolute;
-	right: 0px;
-	bottom: -3px;
-	z-index: 21;
-}
 
 .lamp{
 		z-index: 25;
@@ -710,19 +676,6 @@ hgroup{
         transition: background 0.1s ease-out; /* Pour un mouvement plus fluide */
     }
 
-#Home3 {
-	position: absolute;
-	left: 0px;
-	top: 20px;
-	opacity: 0.3;
-}
-
-#Home4 {
-	position: absolute;
-	left: 0px;
-	bottom: 0px;
-	opacity: 0.3;
-}
 
 #coded{
 	font-size: 0.8em;
@@ -734,16 +687,8 @@ hgroup{
 	overflow: hidden;
 	white-space: nowrap;
 }
-#coded2{
-	width: 100%;
-}
-.codedremove{
-	display: none;
-}
-.coded2{
-	display: inline-block;
-    animation: scroll 14s linear 1;
-}
+
+
 @keyframes scroll {
     0% {
     	transform: translateX(100%);
@@ -753,19 +698,7 @@ hgroup{
     }
 }
 
-.dom1, .dom3 {
-	display: inline-block;
-    animation: domaineScroll1 40s ease-in-out infinite;
-    width: 100%;
-}
 
-.dom1{
-	animation-delay: 2s;
-}
-
-.dom3 {
-	animation-duration: 34s;
-}
 @keyframes domaineScroll1 {
     0% {
     	transform: translateX(0);
@@ -783,13 +716,6 @@ hgroup{
         transform: translateX(0);
     }
 }
-
-.dom2 {
-	display: inline-block;
-    animation: domaineScroll2 30s ease-in-out infinite;
-    width: 100%;
-}
-
 
 
 @keyframes domaineScroll2 {
@@ -876,7 +802,6 @@ hgroup{
 }
 
 
-
 @keyframes accScroll1 {
     0% {
     	transform: translate(0, 10px);
@@ -947,14 +872,7 @@ hgroup{
 	left: center;
 }*/
 /*------------div3----------------*/
-#pageAboutme{
-	background-image: url(img/img3.jpg);
-	background-size: cover;
-	background-position: center;
-	display: flex;
-	position: relative;
-	align-items: center;
-}
+
 .img5{
 	position: absolute;
 	left: 183.8px;
@@ -966,8 +884,6 @@ hgroup{
 	left: 263px;
 	top: 88px;
 }
-
-
 
 
 .div3{
@@ -982,11 +898,7 @@ hgroup{
 	border-top: solid #004AAD;
 	border-radius: 20px 0px 0px 0px;
 }
-#pageAboutme .div3{
-	align-self: flex-start;
-	width: 40%;
-	margin-top: 170px;
-}
+
 /*------------div4----------------*/
 #pageEducation{
 	background-image: url(img/img6.jpg);
@@ -1131,10 +1043,7 @@ hgroup{
 .rouge{
 	color: #004AAD;
 }
-.ecole2{
-	position: relative;
-	bottom: 10px;
-}
+
 .skills{
 	padding: 10px 0px 0px 0px;
 }
@@ -1147,7 +1056,6 @@ hgroup{
 }
 
 
- 
 .skill-badge {
     display: flex;
     align-items: center;
@@ -1184,7 +1092,6 @@ hgroup{
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     border: 1px solid #06B6D4;
 }
-
 
 
 #skillphoto2{
@@ -1259,10 +1166,6 @@ hgroup{
 	display: none;
 }
 
-.remove1200{
-	display: none;
-}
-
 
 /*--------------div7--------------*/
 #pageExperience{
@@ -1289,20 +1192,6 @@ hgroup{
 	margin-top: 180px;
 }
 
-#skillphoto7{
-	position: absolute;
-	left: 230px;
-	top: 386px;
-	z-index: -1;
-	opacity: 0.8;
-}
-#skillphoto8{
-	position: absolute;
-	left: 230px;
-	top: 583px;
-	z-index: -1;
-	opacity: 1;
-}
 
 #aiesec{
 	position: absolute;
@@ -1330,34 +1219,8 @@ hgroup{
 	align-self: flex-start;
 	margin-top: 80px;
 }
-.choose {
-	padding-top: 3px;
-}
-.choose a{
-	color: white;
-	font-style: italic;
-}
-#skillphoto1{
-	position: absolute;
-	left: 224px;
-	top: 296px;
-	z-index: -1;
-	opacity: 0.8;
-}
-#skillphoto5{
-	position: absolute;
-	left: 224px;
-	top: 507px;
-	z-index: -1;
-	opacity: 1;
-}
-#skillphoto6{
-	position: absolute;
-	right: 1%;
-	top: 40%;
-	z-index: -1;
-	opacity: 1;
-}
+
+
 /*--------------div9--------------*/
 #pagePortfolio{
 	background-image: url(img/img14.jpg);
@@ -1381,41 +1244,10 @@ hgroup{
 .projets{
 	color: inherit;
 }
-.projetimage{
-	cursor: pointer;
-}
 
 
-
-
-.projetremoveactive{
-	display: none;
-}
-.projetadd {
-	grid-area: projetadd;
-	display: none;
-}
-.resourcesImages{
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
-	grid-template-rows: auto;
-}
-.projetaddcontent{
-	display: flex;
-}
 .description{
 	width: 50%;
-}
-.resources{
-	width: 50%;
-}
-
-.projetbutton{
-	cursor: pointer;
-}
-
-.restaurantRemove {
-	display: none;
 }
 
 
@@ -1442,19 +1274,8 @@ address{
 	padding: 0px 100px;
 	font-size: 40px;
 }
-.img24{
-	justify-self: center;
-	align-self: center;
-}
-.nom2{
-	font-size: 1.4em;
-	color: #004AAD;
-	margin: 0px;
-	margin-bottom: 20px;
-}
-.separateur{
-	background-color: black;
-}
+
+
 #pageContact .div3{
 	align-self: flex-start;
 	margin-top: 200px;
@@ -1464,29 +1285,8 @@ address{
 }
 
 
-
 /*-------------div11---------------*/
 
-#pageAgencyProject {
-	display: grid;
-	grid-template-rows: auto;
-	grid-template-columns: 212.5px auto;
-	grid-template-areas: "gauche droite";
-	position: relative;
-}
-
-.AgencyArea1{
-	grid-area: gauche;
-}
-
-.AgencyArea2{
-	background-color: white;
-	grid-area: droite;
-	padding-top: 180px;
-	padding-bottom: 50px;
-	background-image: url("img/agencyBg.png");
-	background-size: cover;
-}
 
 .overview{
 	display: grid;
@@ -1516,37 +1316,8 @@ address{
 	align-self: flex-end;
 }
 
-.featuresList, .technologiesList{
-	display: grid;
-	grid-template-rows: auto auto auto;
-	grid-template-columns: 1fr 2px 1fr;
-	gap: 20px 10px;
-}
 
-.adminFeaturesList{
-	display: grid;
-	grid-template-rows: auto;
-	grid-template-columns: 1fr 2px 1fr;
-	gap: 20px 10px;
-}
-
-.structureList{
-	display: grid;
-	grid-template-rows: auto auto;
-	grid-template-columns: 1fr 2px 1fr;
-	gap: 20px 10px;
-}
-
-.backsep{
-	background-color: darkgray;
-}
-
-.gap{
-	display: grid;
-	gap: 10px;
-}
-
-.list, .listP{
+.list {
 	outline: solid darkgray; 
 	border-radius: 0px 0px 20px 20px; 
 	padding-top: 10px;
@@ -1556,100 +1327,6 @@ address{
 	background-image: url("img/listBg.png");
 }
 
-.videolist{
-	display: grid;
-	justify-items: center;
-	outline: solid darkgray; 
-	border-radius: 0px 0px 20px 20px; 
-	padding-bottom: 10px;
-	padding-left: 10px;
-	padding-right: 10px;
-	margin-top: 13px;
-	border-bottom: 10px solid #0288d1;
-	text-align: center;
-
-}
-
-#video-container{
-	box-shadow: 0 0 5px 2px #0288d1;
-	border-radius: 5px;
-	cursor: pointer;
-	width: 90%;
-}
-
-
-
-#pageAgencyProject	ol{
-	list-style: none;
-}
-
-#pageAgencyProject	ul{
-	list-style: none;
-	padding-left: 10px;
-}
-
-#pageAgencyProject	ul li{
-	position: relative;
-  	padding-left: 18px;
-}
-
-#pageAgencyProject	ul li::before{
-	content: "";
-  	position: absolute;
-  	left: 0;
-  	top: 12.5px;
-  	transform: translateY(-50%);
-  	width: 12px; /* Largeur de l’image */
-  	height: 12px; /* Hauteur de l’image */
-  	background: url('img/puce.png') no-repeat center / cover;
-}
-
-.technologiesList li {
-	opacity: 0;
-  	transform: translateX(-20px);
-}
-
-.technologiesList li:nth-of-type(1) { animation-delay: 0s; }
-.technologiesList li:nth-of-type(2) { animation-delay: 0.5s; }
-.technologiesList li:nth-of-type(3) { animation-delay: 0.8s; }
-.technologiesList li:nth-of-type(4) { animation-delay: 1s; }
-
-.featuresList li {
-	opacity: 0;
-  	transform: translateX(-20px);
-}
-
-.featuresList li:nth-of-type(1) { animation-delay: 0s; }
-.featuresList li:nth-of-type(2) { animation-delay: 0.5s; }
-.featuresList li:nth-of-type(3) { animation-delay: 0.8s; }
-.featuresList li:nth-of-type(4) { animation-delay: 1s; }
-.featuresList li:nth-of-type(5) { animation-delay: 1.2s; }
-.featuresList li:nth-of-type(6) { animation-delay: 1.4s; }
-.featuresList li:nth-of-type(7) { animation-delay: 1.6s; }
-.featuresList li:nth-of-type(8) { animation-delay: 1.8s; }
-.featuresList li:nth-of-type(9) { animation-delay: 2s; }
-.featuresList li:nth-of-type(10) { animation-delay: 2.2s; }
-.featuresList li:nth-of-type(11) { animation-delay: 2.4s; }
-
-.adminFeaturesList li {
-	opacity: 0;
-  	transform: translateX(-20px);
-}
-.adminFeaturesList li:nth-of-type(1) { animation-delay: 0s; }
-.adminFeaturesList li:nth-of-type(2) { animation-delay: 0.5s; }
-.adminFeaturesList li:nth-of-type(3) { animation-delay: 0.8s; }
-.adminFeaturesList li:nth-of-type(4) { animation-delay: 1s; }
-.adminFeaturesList li:nth-of-type(5) { animation-delay: 1.2s; }
-
-.databaselist li {
-	opacity: 0;
-  	transform: translateX(-20px);
-}
-.databaselist li:nth-of-type(1) { animation-delay: 0s; }
-.databaselist li:nth-of-type(2) { animation-delay: 0.5s; }
-.databaselist li:nth-of-type(3) { animation-delay: 0.8s; }
-.databaselist li:nth-of-type(4) { animation-delay: 1s; }
-.databaselist li:nth-of-type(5) { animation-delay: 1.2s; }
 
 .animation {
 	animation: fadeIn 0.5s ease-in-out forwards;
@@ -1663,256 +1340,14 @@ address{
 }
 
 
-.listTitre{
-	padding: 5px;
-	border: 5px solid #0288d1; 
-	outline: solid darkgray; 
-	display: inline; 
-	border-radius: 10px 0px 10px 0px; 
-	background-color: #f8f8f6;
-}
-
-
-.Area2Element{
-	display: grid;
-	gap: 60px;
-}
-
-.width100 {
-	overflow: hidden;
-	padding: 12px 5px;
-}
-
-
-.sousTitre{
-	display: block;
-	margin-top: 10px;
-	margin-bottom: 10px;
-}
-
-.videoPartie{
-	display: grid;
-	grid-template-columns: 70% auto;
-	overflow-x: scroll;
-}
-
-
-
-.credit{
-	display: grid;
-	align-content: center;
-	justify-content: right;
-	padding: 10px;
-}
-
-.lienProjet{
-	position: absolute;
-	left: 50%;
-	bottom: -5px;
-	transform: translateX(-50%);
-}
-
-
-.videoImage {
-	width: 100%;
-}
-
-.supervised740 {
-	display: none;
-}
-
-#pageAgencyProject	ul li::before{
-  	top: 10px;
-  	width: 10px;
-  	height: 10px;
-}
-
-
-
 /*-------------div12---------------*/
-
-#pageBrainwave {
-	display: grid;
-	grid-template-rows: auto;
-	grid-template-columns: 212.5px auto;
-	grid-template-areas: "gauche droite";
-	position: relative;
-}
-
-.internIndent {
-	padding: 20px;
-}
-
-#pageBrainwave	ol{
-	list-style: none;
-}
-
-#pageBrainwave	ul{
-	list-style: none;
-	padding-left: 10px;
-}
-
-#pageBrainwave	ul li{
-	position: relative;
-  	padding-left: 18px;
-}
-
-#pageBrainwave	ul li::before{
-	content: "";
-  	position: absolute;
-  	left: 0;
-  	top: 12.5px;
-  	transform: translateY(-50%);
-  	width: 12px; /* Largeur de l’image */
-  	height: 12px; /* Hauteur de l’image */
-  	background: url('img/puce.png') no-repeat center / cover;
-}
-
-#pageBrainwave	ul li::before{
-  	top: 10px;
-  	width: 10px;
-  	height: 10px;
-}
-
-#video-container2{
-	box-shadow: 0 0 5px 2px #0288d1;
-	border-radius: 5px;
-	cursor: pointer;
-	width: 90%;
-}
-
-#video-container3{
-	box-shadow: 0 0 5px 2px #0288d1;
-	border-radius: 5px;
-	cursor: pointer;
-	width: 90%;
-}
-
-#pageBrainwave .list, #pageBrainwave .listP {
-	background-image: url("img/brainwave.png");
-	background-position: center;
-} 
-
-
-.videoProjet {
-	display: initial;
-} 
-
 
 
 /*-------------div13---------------*/
-#pageSolarPanel {
-	display: grid;
-	grid-template-rows: auto;
-	grid-template-columns: 212.5px auto;
-	grid-template-areas: "gauche droite";
-	position: relative;
-}
-
-
-#pageSolarPanel	ol{
-	list-style: none;
-}
-
-#pageSolarPanel	ul{
-	list-style: none;
-	padding-left: 10px;
-}
-
-#pageSolarPanel	ul li{
-	position: relative;
-  	padding-left: 18px;
-}
-
-#pageSolarPanel	ul li::before{
-	content: "";
-  	position: absolute;
-  	left: 0;
-  	top: 12.5px;
-  	transform: translateY(-50%);
-  	width: 12px; /* Largeur de l’image */
-  	height: 12px; /* Hauteur de l’image */
-  	background: url('img/puce.png') no-repeat center / cover;
-}
-
-#pageSolarPanel	ul li::before{
-  	top: 10px;
-  	width: 10px;
-  	height: 10px;
-}
-
-
-
-#video-container4{
-	box-shadow: 0 0 5px 2px #0288d1;
-	border-radius: 5px;
-	cursor: pointer;
-	width: 90%;
-}
-
-#pageSolarPanel .list {
-	background-image: url("img/solarBg.jpg");
-	background-position: center;
-	background-size: cover;
-} 
-
-
-#video-container4{
-	box-shadow: 0 0 5px 2px #0288d1;
-	border-radius: 5px;
-	cursor: pointer;
-	width: 90%;
-}
-
-.doc {
-	color: #004AAD;
-}
-
-#pageSolarPanel .lienProjet {
-	text-align: center;
-}
 
 
 /*-------------div14-----div15----------*/
 
-#pageHePRAS, #pageJobApplication, #pageFPGA, #pageFireDetection {
-	display: grid;
-	grid-template-rows: auto;
-	grid-template-columns: 212.5px auto;
-	grid-template-areas: "gauche droite";
-	position: relative;
-}
-
-#pageHePRAS	ol, #pageJobApplication ol, #pageFPGA ol, #pageFireDetection ol{
-	list-style: none;
-}
-
-#pageHePRAS	ul, #pageJobApplication ul, #pageFPGA ul, #pageFireDetection ul{
-	list-style: none;
-	padding-left: 10px;
-}
-
-#pageHePRAS	ul li, #pageJobApplication ul li, #pageFPGA ul li, #pageFireDetection ul li{
-	position: relative;
-  	padding-left: 18px;
-}
-
-#pageHePRAS	ul li::before, #pageJobApplication ul li::before, #pageFPGA ul li::before, #pageFireDetection ul li::before{
-	content: "";
-  	position: absolute;
-  	left: 0;
-  	top: 12.5px;
-  	transform: translateY(-50%);
-  	width: 12px; /* Largeur de l’image */
-  	height: 12px; /* Hauteur de l’image */
-  	background: url('img/puce.png') no-repeat center / cover;
-}
-
-#pageHePRAS	ul li::before, #pageJobApplication ul li::before, #pageFPGA ul li::before, #pageFireDetection ul li::before{
-  	top: 10px;
-  	width: 10px;
-  	height: 10px;
-}
 
 #videoHePRAS, #videoJobApplication, #videoFPGA, #videoFireDetection{
 	box-shadow: 0 0 5px 2px #0288d1;
@@ -1922,57 +1357,6 @@ address{
 }
 
 /*-------------div11-12-13(see more)---------------*/
-.seeMore {
-	max-height: 700px;
-	overflow-y: hidden;
-	transition: max-height 1s ease;
-}
-
-.seeMore.expanded {
-	max-height: initial;
-}
-
-
-.seeMore::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: calc(100% - 212.5px);
-  height: 300px;
-  background: linear-gradient(to top, white, transparent);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.seeMoreButton{
-	padding: 10px 50px;
-	font-size: 1em;
-	z-index: 30;
-	position: absolute;
-	left: 50%;
-	bottom: 20px;
-	transform: translateX(-50%);
-	box-shadow: 0px 0px 10px 2px gray;
-	border-bottom-left-radius: 20px;
-	border-bottom-right-radius: 20px;
-	border-bottom: solid darkgrey;
-}
-
-.seeMoreButton.expended{
-	position: fixed;
-	bottom: initial;
-}
-
-.seeMore.expanded::after {
-	display: none;
-}
-
-[data-theme="dark"] .seeMore::after {
-	background: linear-gradient(to top, black, transparent);
-}
-
-
 
 
 /*---------------police-------------*/
@@ -1981,17 +1365,13 @@ address{
 }
 
 
-
 /*----------------------------*/
-
 
 
 /*.nav-button:hover {
     background: linear-gradient(90deg, rgba(255,94,0,1) 0%, rgba(255,183,0,1) 100%);
     transition: background 0.5s ease;
 }*/
-
-
 
 
 /*----------------------------*/
@@ -2004,7 +1384,7 @@ address{
 		padding: 0px 4%;
 	}
 
-	#pageAboutme .div3, #pageEducation .div3, #pageSkills .div3, #pageExperience .div3, #pageServices .div3, #pageContact .div3 {
+	 #pageEducation .div3, #pageSkills .div3, #pageExperience .div3, #pageServices .div3, #pageContact .div3 {
 		margin-top: initial;
 	}
 	.glisser { display: none; }
@@ -2015,10 +1395,10 @@ address{
 	.remove{
 		display: none;
 	}
-	#pageHome, #div2, #pageAboutme, #pageEducation, #pageSkills, #pageCertificates, #pageExperience, #pageServices, #pagePortfolio, #pageContact{
+	#pageHome, #pageEducation, #pageSkills, #pageCertificates, #pageExperience, #pageServices, #pagePortfolio, #pageContact {
 	height: auto;
 	}
-	#pageAboutme, #pageEducation, #pageSkills, #pageCertificates, #pageExperience, #pageServices, #pagePortfolio {
+	 #pageEducation, #pageSkills, #pageCertificates, #pageExperience, #pageServices, #pagePortfolio {
 		min-height: 0 !important;
 	}
 	body{
@@ -2027,7 +1407,7 @@ address{
 		margin-top: 25px;
 	}
 
-	[data-theme="dark"] #pageAboutme, [data-theme="dark"] #pageEducation, [data-theme="dark"] #pageSkills, [data-theme="dark"] #pageCertificates, [data-theme="dark"] #pageExperience, [data-theme="dark"] #pageServices, [data-theme="dark"] #pagePortfolio, [data-theme="dark"] #pageContact {
+	 [data-theme="dark"] #pageEducation, [data-theme="dark"] #pageSkills, [data-theme="dark"] #pageCertificates, [data-theme="dark"] #pageExperience, [data-theme="dark"] #pageServices, [data-theme="dark"] #pagePortfolio, [data-theme="dark"] #pageContact {
 	  background-image: url('img/dark_bg.png');
 	  background-size: contain;
 	  background-position: center;
@@ -2043,11 +1423,8 @@ address{
 		background-color: #1f2937;
 	}
 
-	[data-theme="dark"] .AgencyArea2 {
-		animation-duration: 80s;
-	}
 
-	@keyframes scrollBg3 {
+@keyframes scrollBg3 {
 		to {
 			background-position: -100vw 0;
 		}
@@ -2093,11 +1470,8 @@ address{
 		display: none;
 	}
 
-	.noirAgency1{
-		display: none;
-	}
 
-	.loading span {
+.loading span {
 		height: 2vh;
 	}
 
@@ -2138,8 +1512,7 @@ address{
 	}
 
 
-
-	/*--------------div1--------------*/
+/*--------------div1--------------*/
 	
 	#pageHome{
 		padding: 0px;
@@ -2154,22 +1527,14 @@ address{
 		margin: 0px;
 	}
 
-	.maphoto {
-		height: 70%;
-	}
 
-	
-
-	#coded{
+#coded{
 		left: 2%;
 		width: 70%;
 		z-index: 1;
 		overflow: hidden;
 	}
-	#coded2{
-		display: inline-block;
-		width: 100%;
-	}
+
 	@keyframes scroll {
       0% {
         transform: translateX(100%);
@@ -2178,35 +1543,19 @@ address{
         transform: translateX(-100%);
       }
     }
-    .desktopVisible{
-    	margin-bottom: 0px;
-    	display: initial;
-    	font-size: 0.5em;
-		position: absolute;
-		bottom: 0px;
-		left: 10%;
-    }
 
 
-	.acc {
+.acc {
 		width: 3px;
 	}
 	
 	/*--------------div3--------------*/
-	
-	#pageAboutme .div3 p{
-		margin-top: 0px;
-	}
-	#pageAboutme .div3 .rouge{
-		margin-bottom: 2px;
-	}
-	.overflow{
+
+
+.overflow{
 		overflow-x: hidden;
 	}
-	#pageAboutme .div3{
-		width: initial;
-		margin-top: 50px;
-	}
+
 	/*-------------div4---------------*/
 	#pageEducation .div3{
 		margin-top: 75px;
@@ -2226,9 +1575,7 @@ address{
 		height: 30px;
 		left: 20%;
 	}
-	.smallsize2{
-		font-size: 0.8em;
-	}
+
 	
 	.ecart2 {
 		padding-bottom: 20px;
@@ -2306,16 +1653,13 @@ address{
 		top: 0px;
 	}
 
-	#aiesec, #skillphoto7, #skillphoto8{
+	#aiesec {
 		position: initial;
 		margin-right: 1%;
 	}
 
-	.restaurantRemove {
-		display: initial;
-	}
 
-	/*--------------div8--------------*/
+/*--------------div8--------------*/
 	#pageServices .div3{
 		margin-top: 80px;
 	}
@@ -2323,14 +1667,8 @@ address{
 	.div7 {
 		padding-top: 0px;
 	}
-	#skillphoto1{
-		left: 5px;
-		top: 170px;
-	}
-	#skillphoto5{
-		left: 5px;
-		top: 370px;
-	}
+
+
 	/*---------------div9-------------*/
 	#pagePortfolio .div3{
 		margin-top: 50px;
@@ -2365,14 +1703,9 @@ address{
 	address{
 		grid-template-columns: 1fr 1.5px 10fr;
 	}
-	.img24 {
-		width: 120%;
-	}
-	.img25 {
-		width: 100%;
-	}
 
-	footer{
+
+footer{
 		margin-bottom: 80px;
 	}
 	/*----------------------------*/
@@ -2380,17 +1713,8 @@ address{
 
 	/*--------------div11--------------*/
 
-	#pageAgencyProject {
-		grid-template-columns: auto;
-	}
 
-	.AgencyArea2 {
-		background-repeat: repeat-y;
-		background-size: auto;
-		padding-top: 50px;
-	}
-
-	.overview {
+.overview {
 		display: flex;
 		flex-direction: column;
 		padding-left: 0px;
@@ -2403,108 +1727,44 @@ address{
 		margin: 0px;
 	}
 
-	.list, .structureList{
+	.list {
 		display: flex;
 		flex-direction: column;
 		gap: 10px;
 	}
 
 
-	.Area2Element {
-		gap: 20px;
-		margin-top: 20px;
-	}
-
-	#pageAgencyProject .Area2Element {
-		margin-top: 0px;
-	}
+/*--------------div12--------------*/
 
 
-	.supervised740{
-		display: initial;
-	}
+/*--------------div13--------------*/
 
-	#pageAgencyProject	ol{
-		padding-left: 5px;
-	}
-	
 
-	/*--------------div12--------------*/
+/*--------------div14--------------*/
 
-	#pageBrainwave {
-		grid-template-columns: auto;
-	}
 
-	#pageBrainwave	ol{
-		padding-left: 5px;
-	}
+/*--------------div11-12-13(see more)--------------*/
 
-	/*--------------div13--------------*/
-
-	#pageSolarPanel {
-		grid-template-columns: auto;
-	}
-
-	#pageSolarPanel	ol{
-		padding-left: 5px;
-	}
-
-	/*--------------div14--------------*/
-
-	#pageHePRAS, #pageJobApplication, #pageFPGA, #pageFireDetection {
-		grid-template-columns: auto;
-	}
-
-	#pageHePRAS .Area2Element, #pageJobApplication .Area2Element, #pageFPGA .Area2Element, #pageFireDetection .Area2Element {
-		margin-top: 0px;
-	}
-
-	#pageHePRAS	ol, #pageJobApplication ol, #pageFPGA ol, #pageFireDetection ol{
-		padding-left: 5px;
-	}
-
-	/*--------------div11-12-13(see more)--------------*/
-
-	.seeMore::after {
-		overflow-y: initial;
-		width: 100%;
-	}
-
-	.seeMoreButton{
-		padding: 10px 30px;
-		left: 50%;
-	}
-
-	[data-theme="dark"] .seeMore::after {
-		background: linear-gradient(to top, black, transparent);
-	}
 
 }
-
 
 
 @media (max-width : 1000px ) and (min-width : 740px ){
 
 	/*--------------general--------------*/
 
-	#pageHome, #div2, #pageAboutme, #pageEducation, #pageSkills, #pageCertificates, #pageExperience, #pageServices, #pagePortfolio, #pageContact{
+	#pageHome, #pageEducation, #pageSkills, #pageCertificates, #pageExperience, #pageServices, #pagePortfolio, #pageContact {
 		height: auto;
 	}
-	.remove1000{
-		display: none;
-	}
+
 	.espaceNoir{
 		width: 140px;
 		height: 100%;
 		background-color: #090d16;
 	}
 
-	#pageAboutme {
-		display: grid;
-		grid-template-columns: auto auto;
-	}
 
-	#pageCertificates, #pagePortfolio {
+#pageCertificates, #pagePortfolio {
 		display: grid;
 		grid-template-columns: auto auto;
 	}
@@ -2513,9 +1773,7 @@ address{
 		display: grid;
 		grid-template-columns: auto auto auto;
 	}
-	#pageAboutme .div3{
-	width: 55%;
-	}
+
 	.img5{
 		left: 111.8px;
 		top: 106px;
@@ -2532,48 +1790,14 @@ address{
 		margin-top: 50px;
 	}
 
-	#skillphoto7{
-		left: 150px;
-		top: 423px;
-	}
+
 	#aiesec{
 		left: 150px;
 		top: 226px;
 	}
-	#skillphoto8{
-		left: 150px;
-		top: 700px;
-	}
-
-	#skillphoto1{
-		left: 145px;
-		top: 350px;
-	}
-	#skillphoto5{
-		left: 143px;
-		top: 580px;
-	}
-	#skillphoto6{
-		right: 1%;
-		top: 42%;
-	}
 
 
-	#pageAgencyProject, #pageBrainwave, #pageSolarPanel, #pageHePRAS, #pageJobApplication, #pageFPGA, #pageFireDetection {
-		grid-template-columns: 140px auto;
-	}
-
-
-	.noirAgency1{
-		width: 140px;
-	}
-
-	.seeMore::after {
-	  width: calc(100% - 140px);
-	}
-
-
-	.loading span {
+.loading span {
 		height: 2vh;
 	}
 
@@ -4089,7 +3313,6 @@ address{
 
 .sv-tags > span + span::before { content: "\00B7"; margin: 0 0.5em; }
 
-.sv-cta { display: none; }
 
 /* Light theme */
 [data-theme="light"] .sv-card {
@@ -4545,3 +3768,39 @@ address{
 /* Detail pages: EN/FR blocks follow the page language */
 html[lang="fr"] .pt-det .lang-en { display: none !important; }
 html:not([lang="fr"]) .pt-det .lang-fr { display: none !important; }
+
+/* ============================================================
+   ACCESSIBILITY (Nov. 2026)
+   ============================================================ */
+
+/* Project card title: real link to the detail page, same look as before */
+.pt-title a,
+.pt-title a:visited,
+.pt-title a:hover {
+	color: inherit;
+	text-decoration: none;
+}
+
+/* Visible focus for keyboard navigation */
+.pt-title a:focus-visible,
+.pt-filter:focus-visible,
+.pt-back:focus-visible,
+.pt-link:focus-visible,
+.pd-link-btn:focus-visible,
+.pd-video-wrap:focus-visible,
+.ce-card:focus-visible {
+	outline: 2px solid #0288d1;
+	outline-offset: 3px;
+}
+
+/* Visitors who ask their system to reduce motion: no looping animations, no slow transitions */
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
+}
