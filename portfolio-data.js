@@ -1731,11 +1731,11 @@ window.PORTFOLIO_DATA = {
       "github": "https://github.com/Pro-simpo/JAVA-Travel_Agency_Project",
       "en": {
         "cats": "Java &middot; JavaFX &middot; Database",
-        "desc": "Desktop app for managing clients, reservations, itineraries, and payments, with admin dashboard and WhatsApp integration."
+        "desc": "JavaFX desktop app for booking train trips: customer accounts, route search, class selection and payment, plus an admin space to manage customers, routes and reservations on a MySQL database."
       },
       "fr": {
         "cats": "Java &middot; JavaFX &middot; Base de données",
-        "desc": "Application bureau pour la gestion des clients, réservations, itinéraires et paiements, avec tableau de bord admin et intégration WhatsApp."
+        "desc": "Application de bureau JavaFX de réservation de trajets en train : comptes clients, recherche de trajets, choix de la classe et paiement, avec un espace administrateur pour gérer les clients, les trajets et les réservations sur une base MySQL."
       },
       "detail": {
         "en": {
@@ -1745,30 +1745,32 @@ window.PORTFOLIO_DATA = {
             {
               "title": "Overview",
               "type": "text",
-              "text": "Feature-rich JavaFX desktop application for travel agency operations. Manages clients, reservations, itineraries, and payments, with an admin statistics dashboard, printable invoices, and WhatsApp integration for automated booking confirmations."
+              "text": "JavaFX desktop application for a travel agency that sells train trips. A customer signs up, searches for a route between two stations, picks first or second class and completes the booking through a payment form. An administrator has a separate space to manage customer accounts, routes and reservations. All data is stored in MySQL through JDBC, and the eleven screens share one visual identity defined in CSS."
             },
             {
               "title": "Key Features",
               "type": "list",
               "items": [
-                "Client profile management with history",
-                "Reservation system with conflict detection",
-                "Dynamic itinerary builder with day-by-day planning",
-                "Payment tracking and printable PDF invoices",
-                "Admin dashboard: booking stats, revenue charts",
-                "WhatsApp API integration for booking confirmations",
-                "CSS-styled JavaFX UI with dark theme"
+                "Two separate spaces, customer and administrator, each with its own sign-up and login",
+                "Route search by departure and arrival station, with other trips from the same station suggested",
+                "First or second class selection, then a simulated payment step that records the booking",
+                "Customer accounts: search, full list, edit and delete",
+                "Routes: add, search by train number, edit and delete, with times and prices per class",
+                "Reservations: search, confirm and delete",
+                "Parameterized SQL queries (PreparedStatement) across five MySQL tables",
+                "Eleven JavaFX screens styled with CSS, delivered as a runnable JAR"
               ]
             },
             {
               "title": "Technologies",
               "type": "stack",
               "items": [
-                "JavaFX",
+                "Java 11",
+                "JavaFX 13",
                 "MySQL",
                 "JDBC",
                 "CSS",
-                "WhatsApp API"
+                "Maven"
               ]
             }
           ],
@@ -1778,6 +1780,12 @@ window.PORTFOLIO_DATA = {
               "url": "https://github.com/Pro-simpo/JAVA-Travel_Agency_Project",
               "icon": "github",
               "ghost": false
+            },
+            {
+              "label": "Runnable JAR",
+              "url": "https://github.com/Pro-simpo/JAVA-Travel_Agency_Project/releases/tag/v1.0",
+              "icon": "link",
+              "ghost": true
             }
           ],
           "team": {
@@ -1792,30 +1800,32 @@ window.PORTFOLIO_DATA = {
             {
               "title": "Présentation",
               "type": "text",
-              "text": "Application de bureau JavaFX complète pour la gestion d’une agence de voyages. Elle gère les clients, les réservations, les itinéraires et les paiements, avec un tableau de bord statistique pour l’administrateur, des factures imprimables et une intégration WhatsApp pour l’envoi automatique des confirmations de réservation."
+              "text": "Application de bureau JavaFX pour une agence de voyages qui vend des trajets en train. Le client crée son compte, cherche un trajet entre deux gares, choisit la première ou la deuxième classe et finalise sa réservation par un formulaire de paiement. L’administrateur dispose d’un espace séparé pour gérer les comptes clients, les trajets et les réservations. Les données sont enregistrées dans MySQL via JDBC, et les onze écrans partagent une même identité visuelle définie en CSS."
             },
             {
               "title": "Fonctionnalités clés",
               "type": "list",
               "items": [
-                "Gestion des profils clients avec historique",
-                "Système de réservation avec détection des conflits",
-                "Création dynamique d’itinéraires avec planification jour par jour",
-                "Suivi des paiements et factures PDF imprimables",
-                "Tableau de bord administrateur : statistiques de réservation, graphiques du chiffre d’affaires",
-                "Intégration de l’API WhatsApp pour les confirmations de réservation",
-                "Interface JavaFX mise en forme en CSS, avec thème sombre"
+                "Deux espaces distincts, client et administrateur, chacun avec son inscription et sa connexion",
+                "Recherche de trajets par gare de départ et d’arrivée, avec proposition des autres trajets au départ de la même gare",
+                "Choix de la première ou de la deuxième classe, puis étape de paiement simulée qui enregistre la réservation",
+                "Comptes clients : recherche, liste complète, modification et suppression",
+                "Trajets : ajout, recherche par numéro de train, modification et suppression, avec horaires et prix par classe",
+                "Réservations : recherche, confirmation et suppression",
+                "Requêtes SQL paramétrées (PreparedStatement) sur cinq tables MySQL",
+                "Onze écrans JavaFX mis en forme en CSS, application livrée en JAR exécutable"
               ]
             },
             {
               "title": "Technologies",
               "type": "stack",
               "items": [
-                "JavaFX",
+                "Java 11",
+                "JavaFX 13",
                 "MySQL",
                 "JDBC",
                 "CSS",
-                "WhatsApp API"
+                "Maven"
               ]
             }
           ],
@@ -1825,6 +1835,12 @@ window.PORTFOLIO_DATA = {
               "url": "https://github.com/Pro-simpo/JAVA-Travel_Agency_Project",
               "icon": "github",
               "ghost": false
+            },
+            {
+              "label": "JAR exécutable",
+              "url": "https://github.com/Pro-simpo/JAVA-Travel_Agency_Project/releases/tag/v1.0",
+              "icon": "link",
+              "ghost": true
             }
           ],
           "team": {
