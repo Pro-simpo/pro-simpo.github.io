@@ -9,12 +9,12 @@ window.PORTFOLIO_DATA = {
       "en": {
         "when": "Sep. 2026 – Present",
         "role": "QA &amp; Application Security Engineer",
-        "det": "Following my internship, I work on La Bonne Allure (online driving school, web and mobile) on two fronts. Application security: I audit the platform, identify vulnerabilities and give the team reports with reproduction steps. Test automation: I maintain the Playwright end-to-end suite that runs daily in a GitLab CI pipeline, with JUnit reports, Slack alerts and a dashboard."
+        "det": "Following my internship, I work on La Bonne Allure (online driving school: website, back-office and mobile app) on three fronts. Application security: I audit the platform, identify vulnerabilities and give the team reports with reproduction steps. Acceptance testing: I test each new feature and each fix before release (payments, invoicing, exams, lesson planning, two-factor authentication, framework upgrades), trace root causes across the interface, the API and the database, then retest once fixed. Test automation: I maintain the Playwright end-to-end suite that runs daily in a GitLab CI pipeline, with JUnit reports, Slack alerts and a dashboard. I also follow the QA of the group's other web and mobile products."
       },
       "fr": {
         "when": "Sept. 2026 – Présent",
         "role": "Ingénieur QA &amp; Sécurité applicative",
-        "det": "À la suite de mon stage, j'interviens sur La Bonne Allure (auto-école en ligne, web et mobile) sur deux volets. Sécurité applicative : j'audite la plateforme, j'identifie les vulnérabilités et je remets à l'équipe des rapports avec les étapes de reproduction. Automatisation des tests : je maintiens la suite Playwright de bout en bout exécutée chaque jour dans un pipeline GitLab CI, avec rapports JUnit, alertes Slack et tableau de bord."
+        "det": "À la suite de mon stage, j'interviens sur La Bonne Allure (auto-école en ligne : site, back-office et application mobile) sur trois volets. Sécurité applicative : j'audite la plateforme, j'identifie les vulnérabilités et je remets à l'équipe des rapports avec les étapes de reproduction. Recette : je teste chaque nouvelle fonctionnalité et chaque correctif avant la mise en production (paiements, facturation, examens, planning des leçons, double authentification, montées de version du framework), je remonte à la cause racine en recoupant l'interface, l'API et la base de données, puis je reteste après correction. Automatisation des tests : je maintiens la suite Playwright de bout en bout exécutée chaque jour dans un pipeline GitLab CI, avec rapports JUnit, alertes Slack et tableau de bord. J'assure aussi le suivi QA des autres produits web et mobiles du groupe."
       }
     },
     {
@@ -41,12 +41,12 @@ window.PORTFOLIO_DATA = {
       "en": {
         "when": "Jul. 2026 – Present",
         "role": "Lead Developer (volunteer)",
-        "det": "I lead the development of the alumni network platform of the Lycée Scientifique National de Ouagadougou, in production since July 2026 with 220+ members in 18 countries: directory with controlled visibility, networking requests, opportunities board, installable app with push notifications. Security is built in from the start: row-level security, two-factor authentication for sensitive roles, captcha, audit log and a dependency audit in CI. I design and lead the project; the code is developed with AI assistance."
+        "det": "I lead the development of the alumni network platform of the Lycée Scientifique National de Ouagadougou, in production since July 2026 with 250+ members in 18 countries: directory with controlled visibility, networking requests, opportunities board, private social network (feed, real-time messaging, events), library of past exam papers and an installable app with push notifications. Security is built in from the start: row-level security, two-factor authentication for sensitive roles, captcha, audit log and a dependency audit in CI. I design and lead the project; the code is developed with AI assistance."
       },
       "fr": {
         "when": "Juil. 2026 – Présent",
         "role": "Développeur principal (bénévole)",
-        "det": "Je dirige le développement de la plateforme du réseau des anciens du Lycée Scientifique National de Ouagadougou, en production depuis juillet 2026 avec plus de 220 membres dans 18 pays : annuaire à visibilité contrôlée, mise en relation, tableau d'opportunités, application installable avec notifications. J'intègre la sécurité dès la conception : contrôle d'accès au niveau des lignes, double authentification pour les rôles sensibles, captcha, journal d'audit et audit des dépendances en CI. Je conçois et pilote le projet ; le code est développé avec assistance IA."
+        "det": "Je dirige le développement de la plateforme du réseau des anciens du Lycée Scientifique National de Ouagadougou, en production depuis juillet 2026 avec plus de 250 membres dans 18 pays : annuaire à visibilité contrôlée, mise en relation, tableau d'opportunités, réseau social privé (fil, messagerie en temps réel, événements), bibliothèque d'annales et application installable avec notifications. J'intègre la sécurité dès la conception : contrôle d'accès au niveau des lignes, double authentification pour les rôles sensibles, captcha, journal d'audit et audit des dépendances en CI. Je conçois et pilote le projet ; le code est développé avec assistance IA."
       }
     },
     {
@@ -299,11 +299,11 @@ window.PORTFOLIO_DATA = {
       "github": "https://www.linkedin.com/posts/taobata-simpore-21b255272_operation-shadow-factory-ugcPost-7472259101587234816-ylmG/",
       "en": {
         "cats": "Cybersecurity &middot; SOC &middot; Cloud &middot; R&amp;D",
-        "desc": "Full SOC infrastructure (Wazuh, TheHive 5, Shuffle SOAR) on OCI monitoring a simulated IT/OT industrial environment. 15 detection rules, automated SOAR workflow (detect → block IP → TheHive incident)."
+        "desc": "Full SOC infrastructure (Wazuh, TheHive 5, Shuffle SOAR) on OCI monitoring a simulated IT/OT industrial environment. 15 detection rules, automated SOAR workflow (detect → block IP → TheHive incident). Team project where I built the SOC side."
       },
       "fr": {
         "cats": "Cybersécurité &middot; SOC &middot; Cloud &middot; R&amp;D",
-        "desc": "Infrastructure SOC complète (Wazuh, TheHive 5, Shuffle SOAR) sur OCI pour surveiller un environnement IT/OT simulant un site industriel. 15 règles de détection, workflow SOAR automatisé (détection → blocage IP → incident TheHive)."
+        "desc": "Infrastructure SOC complète (Wazuh, TheHive 5, Shuffle SOAR) sur OCI pour surveiller un environnement IT/OT simulant un site industriel. 15 règles de détection, workflow SOAR automatisé (détection → blocage IP → incident TheHive). Projet mené en équipe, dont j'ai réalisé la partie SOC."
       },
       "detail": {
         "en": {
@@ -313,7 +313,17 @@ window.PORTFOLIO_DATA = {
             {
               "title": "Overview",
               "type": "text",
-              "text": "Full-stack industrial cybersecurity simulation: a Red Team executes multi-phase attacks on a multi-VM environment simulating an industrial plant (IT + OT), while a Blue Team SOC built on Oracle Cloud Infrastructure (Wazuh, TheHive 5, Shuffle SOAR) monitors, detects and auto-responds in real time."
+              "text": "Full-stack industrial cybersecurity simulation: a Red Team executes multi-phase attacks on a multi-VM environment simulating an industrial plant (IT + OT), while a Blue Team SOC built on Oracle Cloud Infrastructure (Wazuh, TheHive 5, Shuffle SOAR) monitors, detects and auto-responds in real time. The scenario reproduces the logic of Stuxnet on a small scale: a classic IT intrusion that ends with the silent manipulation of a simulated industrial controller."
+            },
+            {
+              "title": "My Role",
+              "type": "list",
+              "items": [
+                "Team project: I built the SOC side, and the attacks were played by the team",
+                "Deployment of the SOC stack on Oracle Cloud: Wazuh, TheHive 5 and Shuffle SOAR",
+                "Writing of the 15 custom Wazuh detection rules, which cover the 5 attack phases",
+                "Automated response workflow: Wazuh alert, Shuffle playbook, TheHive case and IP block with iptables, in under 5 seconds"
+              ]
             },
             {
               "title": "Key Features",
@@ -321,10 +331,11 @@ window.PORTFOLIO_DATA = {
               "items": [
                 "Full SOC stack on OCI: Wazuh SIEM, TheHive 5 case management, Shuffle SOAR automation",
                 "6 virtual machines simulating IT (DVWA web server, Active Directory) and OT (PLC simulated with OpenPLC, Modbus TCP)",
-                "5 attack phases: network scanning, SQL injection, Active Directory lateral movement, OT pivoting, PLC manipulation via Modbus",
+                "5 attack phases: network scan, SQL injection and webshell, Active Directory brute force and Kerberoasting, SSH tunnel to the OT zone, PLC register manipulation over Modbus",
                 "15 custom Wazuh detection rules mapped to each attack phase",
                 "Automated SOAR workflow: alert &rarr; IP block via iptables &rarr; incident case in TheHive",
-                "Three segmented network zones (IT, DMZ, OT/SCADA) using Oracle Cloud security lists"
+                "Three segmented network zones (IT, DMZ, OT/SCADA) using Oracle Cloud security lists",
+                "Red Team side: a network scanner written in Python by the team (port scan, Active Directory enumeration), validated against Nmap"
               ]
             },
             {
@@ -370,7 +381,17 @@ window.PORTFOLIO_DATA = {
             {
               "title": "Présentation",
               "type": "text",
-              "text": "Simulation complète de cybersécurité industrielle : une Red Team mène des attaques en plusieurs phases sur un environnement multi-VM simulant une usine (IT + OT), tandis qu’un SOC Blue Team déployé sur Oracle Cloud Infrastructure (Wazuh, TheHive 5, Shuffle SOAR) surveille, détecte et répond automatiquement en temps réel."
+              "text": "Simulation complète de cybersécurité industrielle : une Red Team mène des attaques en plusieurs phases sur un environnement multi-VM simulant une usine (IT + OT), tandis qu’un SOC Blue Team déployé sur Oracle Cloud Infrastructure (Wazuh, TheHive 5, Shuffle SOAR) surveille, détecte et répond automatiquement en temps réel. Le scénario reproduit à petite échelle la logique de Stuxnet : une intrusion IT classique qui aboutit à la manipulation silencieuse d’un automate industriel simulé."
+            },
+            {
+              "title": "Mon rôle",
+              "type": "list",
+              "items": [
+                "Projet mené en équipe : j’en ai réalisé la partie SOC, les attaques étaient jouées par l’équipe",
+                "Déploiement de la stack SOC sur Oracle Cloud : Wazuh, TheHive 5 et Shuffle SOAR",
+                "Rédaction des 15 règles de détection Wazuh personnalisées, qui couvrent les 5 phases d’attaque",
+                "Workflow de réponse automatisé : alerte Wazuh, playbook Shuffle, dossier TheHive et blocage de l’IP par iptables, en moins de 5 secondes"
+              ]
             },
             {
               "title": "Fonctionnalités clés",
@@ -378,10 +399,11 @@ window.PORTFOLIO_DATA = {
               "items": [
                 "Stack SOC complète sur OCI : SIEM Wazuh, gestion des incidents avec TheHive 5, automatisation avec Shuffle SOAR",
                 "6 machines virtuelles simulant l’IT (serveur web DVWA, Active Directory) et l’OT (automate simulé avec OpenPLC, Modbus TCP)",
-                "5 phases d’attaque : scan réseau, injection SQL, mouvement latéral dans Active Directory, pivot vers l’OT, manipulation de l’automate PLC via Modbus",
+                "5 phases d’attaque : scan réseau, injection SQL et webshell, force brute Active Directory et Kerberoasting, tunnel SSH vers la zone OT, manipulation des registres de l’automate via Modbus",
                 "15 règles de détection Wazuh personnalisées, associées à chaque phase d’attaque",
                 "Workflow SOAR automatisé : alerte &rarr; blocage de l’IP via iptables &rarr; dossier d’incident dans TheHive",
-                "Trois zones réseau segmentées (IT, DMZ, OT/SCADA) avec les security lists d’Oracle Cloud"
+                "Trois zones réseau segmentées (IT, DMZ, OT/SCADA) avec les security lists d’Oracle Cloud",
+                "Côté Red Team : un scanner réseau écrit en Python par l’équipe (scan de ports, énumération Active Directory), validé face à Nmap"
               ]
             },
             {
@@ -452,11 +474,11 @@ window.PORTFOLIO_DATA = {
       "github": "https://github.com/lsno-alumni/site",
       "en": {
         "cats": "Web &middot; Full-stack &middot; Security",
-        "desc": "Alumni network platform of my high school, in production since July 2026 (220+ members, 18 countries): directory with controlled visibility, networking, opportunities board, push notifications and two-factor authentication. As volunteer lead developer, I design and lead the project; the code is developed with AI assistance."
+        "desc": "Alumni network platform of my high school, in production since July 2026 (250+ members, 18 countries): directory with controlled visibility, private social network with real-time messaging, opportunities board, push notifications and two-factor authentication. As volunteer lead developer, I design and lead the project; the code is developed with AI assistance."
       },
       "fr": {
         "cats": "Web &middot; Full-stack &middot; Sécurité",
-        "desc": "Plateforme du réseau des anciens de mon lycée, en production depuis juillet 2026 (plus de 220 membres, 18 pays) : annuaire à visibilité contrôlée, mise en relation, tableau d'opportunités, notifications push et double authentification. Développeur principal bénévole, je conçois et pilote le projet ; le code est développé avec assistance IA."
+        "desc": "Plateforme du réseau des anciens de mon lycée, en production depuis juillet 2026 (plus de 250 membres, 18 pays) : annuaire à visibilité contrôlée, réseau social privé avec messagerie en temps réel, tableau d'opportunités, notifications push et double authentification. Développeur principal bénévole, je conçois et pilote le projet ; le code est développé avec assistance IA."
       },
       "detail": {
         "en": {
@@ -466,15 +488,18 @@ window.PORTFOLIO_DATA = {
             {
               "title": "Overview",
               "type": "text",
-              "text": "Alumni network platform of the Lycée Scientifique National de Ouagadougou (Burkina Faso), my high school. In production since July 2026, it is used by 220+ alumni across 18 countries and 9 graduating classes, mostly on mobile. I am its lead developer, on a volunteer basis, within the IT committee of my class: I design the product, lead every technical decision and test it on real devices. The code is developed with AI assistance."
+              "text": "Alumni network platform of the Lycée Scientifique National de Ouagadougou (Burkina Faso), my high school. In production since July 2026, it is used by 250+ alumni across 18 countries and 9 graduating classes, mostly on mobile. I am its lead developer, on a volunteer basis, within the IT committee of my class: I design the product, lead every technical decision and test it on real devices. The code is developed with AI assistance."
             },
             {
               "title": "Key Features",
               "type": "list",
               "items": [
                 "Member directory with three levels of contact visibility, enforced in the database",
+                "Private social network since October 2026: feed, real-time messaging, questions, stories and events",
                 "Networking requests, opportunities board (internships, jobs, scholarships) and an advice space",
+                "Library of past exam papers, stored on Google Drive",
                 "Installable app (PWA) with self-hosted push notifications and scheduled automations",
+                "Mobile-first interface (most members use a phone), with a full desktop version",
                 "Complete admin back-office: members, announcements, backups and system health",
                 "Zero running cost, built on free tiers (Supabase, Vercel, Brevo)"
               ]
@@ -487,7 +512,8 @@ window.PORTFOLIO_DATA = {
                 "Two-factor authentication (TOTP) for delegates and administrators",
                 "Captcha on authentication entry points and strict security headers (CSP, HSTS)",
                 "Append-only audit log of privileged actions and a monthly automated health check",
-                "Monthly dependency audit in CI"
+                "Monthly dependency audit in CI",
+                "Every database migration replayed on a PostgreSQL test bench in CI before release"
               ]
             },
             {
@@ -499,6 +525,7 @@ window.PORTFOLIO_DATA = {
                 "Supabase",
                 "PostgreSQL",
                 "Row-Level Security",
+                "Supabase Realtime",
                 "Vercel",
                 "GitHub Actions",
                 "Playwright",
@@ -533,15 +560,18 @@ window.PORTFOLIO_DATA = {
             {
               "title": "Présentation",
               "type": "text",
-              "text": "Plateforme du réseau des anciens élèves du Lycée Scientifique National de Ouagadougou (Burkina Faso), mon lycée. En production depuis juillet 2026, elle est utilisée par plus de 220 anciens élèves répartis dans 18 pays et issus de 9 promotions, principalement sur mobile. J’en suis le développeur principal, à titre bénévole, au sein du comité informatique de ma promotion : je conçois le produit, je pilote toutes les décisions techniques et je teste l’application sur des appareils réels. Le code est développé avec l’assistance de l’IA."
+              "text": "Plateforme du réseau des anciens élèves du Lycée Scientifique National de Ouagadougou (Burkina Faso), mon lycée. En production depuis juillet 2026, elle est utilisée par plus de 250 anciens élèves répartis dans 18 pays et issus de 9 promotions, principalement sur mobile. J’en suis le développeur principal, à titre bénévole, au sein du comité informatique de ma promotion : je conçois le produit, je pilote toutes les décisions techniques et je teste l’application sur des appareils réels. Le code est développé avec l’assistance de l’IA."
             },
             {
               "title": "Fonctionnalités clés",
               "type": "list",
               "items": [
                 "Annuaire des membres avec trois niveaux de visibilité des coordonnées, appliqués directement dans la base de données",
+                "Réseau social privé depuis octobre 2026 : fil, messagerie en temps réel, questions, stories et événements",
                 "Demandes de mise en relation, tableau d’opportunités (stages, emplois, bourses) et espace conseils",
+                "Bibliothèque d’annales et de sujets, stockée sur Google Drive",
                 "Application installable (PWA) avec notifications push auto-hébergées et automatisations planifiées",
+                "Interface pensée d’abord pour le mobile (la plupart des membres utilisent un téléphone), avec une version bureau complète",
                 "Back-office d’administration complet : membres, annonces, sauvegardes et état du système",
                 "Coût de fonctionnement nul, grâce aux offres gratuites (Supabase, Vercel, Brevo)"
               ]
@@ -554,7 +584,8 @@ window.PORTFOLIO_DATA = {
                 "Authentification à deux facteurs (TOTP) pour les délégués et les administrateurs",
                 "Captcha sur les points d’entrée d’authentification et en-têtes de sécurité stricts (CSP, HSTS)",
                 "Journal d’audit en ajout seul (append-only) des actions privilégiées et contrôle de santé automatisé mensuel",
-                "Audit mensuel des dépendances en CI"
+                "Audit mensuel des dépendances en CI",
+                "Chaque migration de base de données rejouée sur un banc d’essai PostgreSQL en CI avant la mise en production"
               ]
             },
             {
@@ -566,6 +597,7 @@ window.PORTFOLIO_DATA = {
                 "Supabase",
                 "PostgreSQL",
                 "Row-Level Security",
+                "Supabase Realtime",
                 "Vercel",
                 "GitHub Actions",
                 "Playwright",
